@@ -93,8 +93,29 @@ class BirthdayBot(commands.Bot):
         print("Bot bereit!")
 
     async def on_guild_join(self, guild):
+        christianst_id = 1235134572157603841
+        christianst = self.get_user(christianst_id)
+
+        embed = discord.Embed(
+            title="Birthdayyyyys ist auf einem neuen Server!",
+            description="Hii Chris, ich bin auf einem neuen Server hinzugefügt worden! :) \n \n"
+                        f"🪧 Servername: '{guild.name}' ({guild.id})\n"
+                        f"🧑‍🦱 Mitgliederanzahl: '{guild.member_count}'\n"
+                        f"👑 Serverinhaber: {guild.owner.name}\n (https://discord.gg/users/{guild.owner.id})"
+                        f"💜 Boostlevel: {guild.premium_tier} ({guild.premium_subscription_count} Boosts)",
+            color=discord.Color.blue()
+        )
+        if guild.icon.url is not None:
+            embed.set_thumbnail(url=guild.icon_url)
+        else:
+            embed.set_thumbnail(url=self.user.display_avatar.url)
+        try:
+            christianst.send(embed=embed)
+        except discord.Forbidden:
+            print("❌ Fehler: Keine Berechtigung, Christianst_ eine Nachricht zu senden.")
+
         print(f"Bot wurde einer neuen Guild hinzugefügt: {guild.name} (ID: {guild.id})")
-        from cogs.birthday_check_task import load_bot_config # Importiere die Funktion aus dem Cog
+        from cogs.birthday_check_task import load_bot_config
         await load_bot_config(self, guild.id)
 
     async def on_guild_remove(self, guild):
