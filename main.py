@@ -29,29 +29,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-async def extend_db():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    database_dir = os.path.join(base_dir, "databases")
-
-    if not os.path.exists(database_dir):
-        print(f"ℹ️ Verzeichnis {database_dir} nicht gefunden, überspringe Migration.")
-        return
-
-    for filename in os.listdir(database_dir):
-        if filename.endswith(".db"):
-            path = os.path.join(database_dir, filename)
-
-            async with aiosqlite.connect(path) as db:
-                try:
-                    await db.execute("ALTER TABLE birthdays ADD COLUMN timezone TEXT DEFAULT 'Europe/Berlin'")
-                    await db.commit()
-                    print(f"✅ Zeitzone zu {filename} hinzugefügt.")
-                except aiosqlite.OperationalError:
-                    print(f"ℹ️ Datenbank {filename} ist bereits aktuell.")
-                except Exception as e:
-                    print(f"❌ Kritischer Fehler bei {filename}: {e}")
-
-
 class BirthdayBot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=intents, help_command=None)
