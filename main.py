@@ -110,7 +110,7 @@ class BirthdayBot(commands.Bot):
         else:
             embed.set_thumbnail(url=self.user.display_avatar.url)
         try:
-            christianst.send(embed=embed)
+            await christianst.send(embed=embed)
         except discord.Forbidden:
             print("❌ Fehler: Keine Berechtigung, Christianst_ eine Nachricht zu senden.")
 
