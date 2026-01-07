@@ -44,8 +44,6 @@ class BirthdayBot(commands.Bot):
                 except Exception as e:
                     print(f"Fehler beim Laden von Cog '{filename[:-3]}': {e}")
 
-        await extend_db()
-
         try:
             synced = await self.tree.sync()
             print(f"Synchronisierte {len(synced)} Befehle.")
