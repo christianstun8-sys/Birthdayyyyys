@@ -1,0 +1,7 @@
+discord.py
+aiosqlite
+python-dotenv
+Pillow
+aiohttp
+Babel
+pytz
