@@ -6,7 +6,7 @@ import aiosqlite
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!!!!!) ---
-beta = True
+beta = False
 
 if beta:
     TOKEN = os.getenv('DISCORD_BETA_TOKEN')
