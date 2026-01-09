@@ -81,7 +81,7 @@ class BirthdayBot(commands.Bot):
             color=discord.Color.blue()
         )
         if guild.icon.url is not None:
-            embed.set_thumbnail(url=guild.icon_url)
+            embed.set_thumbnail(url=guild.icon.url)
         else:
             embed.set_thumbnail(url=self.user.display_avatar.url)
         try:
