@@ -5,3 +5,4 @@ Pillow
 aiohttp
 Babel
 pytz
+jishaku

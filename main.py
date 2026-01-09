@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import aiosqlite
 load_dotenv()
 
-# --- BETA VERWALTUNG (Nur für Beta-Versionen!!!!!) ---
+# --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
 beta = True
 
 if beta:
@@ -36,19 +36,33 @@ class BirthdayBot(commands.Bot):
 
     async def setup_hook(self):
         print("Starte Cogs-Ladevorgang...")
+        done = True
         for filename in os.listdir('./cogs'):
             if filename.endswith('.py'):
                 try:
                     await self.load_extension(f'cogs.{filename[:-3]}')
-                    print(f"Cog '{filename[:-3]}' erfolgreich geladen.")
                 except Exception as e:
-                    print(f"Fehler beim Laden von Cog '{filename[:-3]}': {e}")
+                    print(f"❌ Fehler beim Laden von Cog '{filename[:-3]}': {e}")
+                    done = False
+
+        if done:
+            print("✅ Alle Cogs geladen!")
 
         try:
-            synced = await self.tree.sync()
-            print(f"Synchronisierte {len(synced)} Befehle.")
+            await self.load_extension('jishaku')
+            jsk = self.get_command('jsk')
+            if jsk:
+                jsk.hidden = True
+            print("✅ Jishaku erfolgreich geladen!")
         except Exception as e:
-            print(f"Fehler beim Synchronisieren der Befehle: {e}")
+            print(f"Fehler beim Laden von Jishaku: {e}")
+
+        if beta:
+            try:
+                synced = await self.tree.sync()
+                print(f"Synchronisierte {len(synced)} Befehle.")
+            except Exception as e:
+                print(f"Fehler beim Synchronisieren der Befehle: {e}")
 
         try:
             support_server_id = discord.Object(id=1453670454350057613)
@@ -56,6 +70,14 @@ class BirthdayBot(commands.Bot):
             print(f"Erfolgreich {len(guild_synced)} Befehle für den Support-Server gesynct.")
         except Exception as e:
             print(f"Fehler beim Synchronisieren der Support-Server-Befehle: {e}")
+
+        @self.command(name="restart", hidden=True)
+        async def restart_cmd(ctx):
+            if ctx.author.id == 1235134572157603841:
+                await ctx.send("⌛ Starte neu...")
+                await self.close()
+            else:
+                return
 
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
