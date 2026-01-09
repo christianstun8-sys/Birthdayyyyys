@@ -6,7 +6,7 @@ import aiosqlite
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!!!!!) ---
-beta = False
+beta = True
 
 if beta:
     TOKEN = os.getenv('DISCORD_BETA_TOKEN')
@@ -60,7 +60,7 @@ class BirthdayBot(commands.Bot):
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
         print('------------------------------')
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="nach Geburtstagen"))
+        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Happy Birthdayyyyy! 🎂"))
         from cogs.birthday_check_task import load_all_guild_configs
         await load_all_guild_configs(self)
 
