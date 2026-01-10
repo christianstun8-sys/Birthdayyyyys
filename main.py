@@ -120,11 +120,11 @@ class BirthdayBot(commands.Bot):
             description="Hii Chris, ich bin auf einem neuen Server hinzugefügt worden! :) \n \n"
                         f"🪧 Servername: '{guild.name}' ({guild.id})\n"
                         f"🧑‍🦱 Mitgliederanzahl: '{guild.member_count}'\n"
-                        f"👑 Serverinhaber: {guild.owner.name}\n (https://discord.gg/users/{guild.owner.id})"
+                        f"👑 Serverinhaber: {guild.owner.name}\n (https://discord.gg/users/{guild.owner.id}/) \n"
                         f"💜 Boostlevel: {guild.premium_tier} ({guild.premium_subscription_count} Boosts)",
             color=discord.Color.blue()
         )
-        if guild.icon.url is not None:
+        if guild.icon:
             embed.set_thumbnail(url=guild.icon.url)
         else:
             embed.set_thumbnail(url=self.user.display_avatar.url)
@@ -141,6 +141,10 @@ class BirthdayBot(commands.Bot):
         print(f"Bot wurde aus Guild {guild.name} (ID: {guild.id}) entfernt. Schade... :(")
         if guild.id in self.guild_configs:
             del self.guild_configs[guild.id]
+
+        db_path = "databases" / f"guild_{guild.id}.db"
+        if os.path.exists(db_path):
+            os.remove(db_path)
 
 if __name__ == '__main__':
     setup_directories()
