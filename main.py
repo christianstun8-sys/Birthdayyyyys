@@ -29,9 +29,30 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
+async def db_update():
+    path = "databases"
+    files = os.listdir(path)
+    for f in files:
+        if f.startswith("guild") and f.endswith(".db"):
+            fpath= os.path.join(path, f)
+            async with aiosqlite.connect(fpath) as db:
+                try:
+                    await db.execute("""ALTER TABLE guild_settings ADD COLUMN alerts INT DEFAULT NULL""")
+                    await db.commit()
+                    print(f"✅ Datenbank {f} aktualisiert.")
+                except aiosqlite.OperationalError:
+                    print(f"ℹ️ Datenbank {f} bereits aktualisiert.")
+
 class BirthdayBot(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix="!", intents=intents, help_command=None)
+
+        prefix = []
+        if beta:
+            prefix.append("beta!")
+        else:
+            prefix.append("!")
+
+        super().__init__(command_prefix=prefix, intents=intents, help_command=None)
         self.guild_configs = {}
 
     async def setup_hook(self):
@@ -81,6 +102,7 @@ class BirthdayBot(commands.Bot):
 
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
+        await db_update()
         print('------------------------------')
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Happy Birthdayyyyy! 🎂"))
         from cogs.birthday_check_task import load_all_guild_configs

@@ -1,9 +1,8 @@
-# cogs/info_commands.py
 import discord
 from discord.ext import commands
 from discord import app_commands
-import os
-import asyncio
+from datetime import time
+import aiosqlite
 
 class InfoCommands(commands.Cog, name="InfoCommands"):
     def __init__(self, bot):
@@ -13,7 +12,6 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
     @app_commands.command(name="info", description="Zeigt Informationen über den Bot an.")
     async def info(self, interaction: discord.Interaction):
         if interaction.guild is None:
-            # Für DMs die Standardfarbe verwenden
             embed_color = 0x45a6c9
         else:
             await self.bot.load_bot_config(self.bot, interaction.guild.id)
@@ -24,14 +22,9 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
 
 *❔ __Infos:__*
 <:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden
-<:developer:1390293000747225098> Entwickler: _chrxstianstun
+<:developer:1390293000747225098> Entwickler: _chrxstianst.
 <:python:1390293453606486056> Library: discord.py-2.5.2
-ℹ️ Bot-Version: 1.24
-
-*<:adorable:1396798143835799642> __Bot-Tester:__*
--dergamer1.0
-
-Danke an alle Bot-Tester, die sich freiwillig bereit erklärt haben, den Bot zu testen <3.
+ℹ️ Bot-Version: 2.0
         """
 
         info_embed = discord.Embed(
@@ -42,7 +35,6 @@ Danke an alle Bot-Tester, die sich freiwillig bereit erklärt haben, den Bot zu 
 
         await interaction.response.send_message(embed=info_embed)
 
-    # --- SLASH COMMAND: /help ---
     @app_commands.command(name="help", description="Zeigt eine Liste aller Befehle an.")
     async def help_command(self, interaction: discord.Interaction):
         if interaction.guild is None:
@@ -87,24 +79,62 @@ Danke an alle Bot-Tester, die sich freiwillig bereit erklärt haben, den Bot zu 
         embed.set_footer(text="Birthdayyyyys")
         await interaction.response.send_message(embed=embed, ephemeral=False)
 
-    # --- SLASH COMMAND: /ping ---
-    @app_commands.command(name="ping", description="Misst die Antwortzeit (Latenz) des Bots.")
-    async def ping(self, interaction: discord.Interaction):
+    @app_commands.command(name="ping", description="Zeigt die aktuelle Latenz des Bots an.")
+    async def ping_command(self, interaction: discord.Interaction):
+        discord_latency_ms = round(self.bot.latency * 1000)
+        start_time = time.perf_counter()
+        await interaction.response.defer(thinking=True, ephemeral=True)
+
         if interaction.guild is None:
-            # Für DMs die Standardfarbe verwenden
             embed_color = 0x45a6c9
         else:
             await self.bot.load_bot_config(self.bot, interaction.guild.id)
             embed_color = self.bot.guild_configs.get(interaction.guild.id, {}).get("config_embed_color", 0x45a6c9)
 
-        latency_ms = round(self.bot.latency * 1000)
-        ping_embed = discord.Embed(
-            title="Pong! 🏓",
-            description=f"Ich brauchte {latency_ms}ms um dir zu antworten!",
+        db_start_time = time.perf_counter()
+        db_latency_ms = "Fehler"
+
+        try:
+            db: aiosqlite.Connection = getattr(self.bot, 'db', None)
+
+            if db:
+                await db.execute("SELECT 1")
+                await db.commit()
+                db_end_time = time.perf_counter()
+                db_latency_ms = round((db_end_time - db_start_time) * 1000)
+            else:
+                db_latency_ms = "Nicht verbunden"
+
+        except Exception as e:
+            db_latency_ms = f"DB-Fehler: {type(e).__name__}"
+
+        end_time = time.perf_counter()
+        processing_latency_ms = round((end_time - start_time) * 1000)
+
+        embed = discord.Embed(
+            title="⏱️ Ping-Ergebnisse",
+            description="Latenzzeiten des Bots zu verschiedenen Komponenten:",
             color=embed_color
         )
 
-        await interaction.response.send_message(embed=ping_embed)
+        embed.add_field(
+            name="🤖 Interne Verarbeitung",
+            value=f"`{processing_latency_ms}ms`",
+            inline=True
+        )
+        embed.add_field(
+            name="🌐 Discord API (Heartbeat)",
+            value=f"`{discord_latency_ms}ms`",
+            inline=True
+        )
+        embed.add_field(
+            name="💾 Datenbank (aiosqlite)",
+            value=f"`{db_latency_ms}ms`",
+            inline=True
+        )
+
+
+        await interaction.followup.send(embed=embed, ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(InfoCommands(bot))

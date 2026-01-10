@@ -1,9 +1,13 @@
+import pathlib
+
 import discord
+from babel.plural import within_range_list
 from discord.ext import commands
 from discord import app_commands
 import aiosqlite
 import os
 import asyncio
+from pathlib import Path
 
 DEFAULT_NO_AGE_TITLE = "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 DEFAULT_NO_AGE_MESSAGE = "Bitte sende deine besten Wünsche an %mention!"
@@ -55,6 +59,17 @@ async def update_embed_settings(bot: commands.Bot, guild_id: int, title: str, me
             )
         )
         await db.commit()
+
+async def update_alerts_settings(bot: commands.Bot, guild_id: int, channel_id: int):
+    await bot.setup_database(guild_id)
+
+    async with aiosqlite.connect(bot.get_db_path(guild_id)) as db:
+        await db.execute("UPDATE guild_settings SET alerts = ? WHERE guild_id = ?", (channel_id, guild_id))
+        await db.commit()
+
+    if guild_id not in bot.guild_configs:
+        await bot.load_bot_config(bot, guild_id)
+    bot.guild_configs[guild_id]["alerts"] = channel_id
 
 class NoAgeMessageModal(discord.ui.Modal, title="Nachricht ohne Altersangabe anpassen"):
     def __init__(self, bot: commands.Bot, current_settings, guild_id: int):
@@ -144,6 +159,62 @@ class ConfigColorModal(discord.ui.Modal, title="Embed-Farbe anpassen"):
         self.bot.guild_configs[self.guild_id]["config_embed_color"] = new_color
         await interaction.followup.send(f"Farbe auf `#{new_color_str.upper()}` aktualisiert.", ephemeral=True)
 
+class AlertsConfigModal(discord.ui.Modal, title="News-Kanal festlegen"):
+    def __init__(self, bot: commands.Bot, guild_id: int, current_val: str = ""):
+        super().__init__()
+        self.bot = bot
+        self.guild_id = guild_id
+        self.channel_id_input = discord.ui.TextInput(
+            label="Kanal-ID für Bot-News",
+            placeholder="Kanal-ID hier einfügen, 0 zum deaktivieren.",
+            default=str(current_val) if current_val and current_val != "None" else "",
+            required=True,
+            max_length=20
+        )
+        self.add_item(self.channel_id_input)
+
+    async def on_submit(self, interaction: discord.Interaction):
+        raw_id = self.channel_id_input.value.strip()
+
+        if not raw_id.isdigit():
+            await interaction.response.send_message("❌ Die ID darf nur aus Zahlen bestehen.", ephemeral=True)
+            return
+
+        channel_id = int(raw_id)
+
+        if channel_id == 0:
+            await update_alerts_settings(self.bot, self.guild_id, 0)
+            await interaction.response.send_message("✅ Bot-News wurden deaktiviert.", ephemeral=True)
+            return
+
+        try:
+            channel = await interaction.client.fetch_channel(channel_id)
+        except (discord.NotFound, discord.HTTPException):
+            await interaction.response.send_message(
+                "❌ Der Kanal konnte nicht gefunden werden. Stelle bitte sicher, dass die ID korrekt ist.",
+                ephemeral=True
+            )
+            return
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "❌ Ich habe keinen Zugriff auf diesen Kanal.",
+                ephemeral=True
+            )
+            return
+
+        try:
+            testmsg = await channel.send("ℹ️ **Testnachricht:** Dieser Kanal wurde als News-Kanal für Birthdayyyyys ausgewählt.")
+            await testmsg.delete()
+        except discord.Forbidden:
+            await interaction.response.send_message(
+                "❌ Ich kann den Kanal sehen, aber ich habe keine Berechtigung, dort Nachrichten zu senden.",
+                ephemeral=True
+            )
+            return
+
+        await update_alerts_settings(self.bot, self.guild_id, channel_id)
+        await interaction.response.send_message(f"✅ News-Kanal wurde auf {channel.mention} gesetzt.", ephemeral=True)
+
 class MainConfigView(discord.ui.View):
     def __init__(self, bot: commands.Bot, guild_id: int):
         super().__init__(timeout=300)
@@ -197,6 +268,12 @@ class MainConfigView(discord.ui.View):
         settings = await get_embed_settings(self.bot, self.guild_id, 'with_age')
         await interaction.response.send_modal(WithAgeMessageModal(self.bot, settings, self.guild_id))
 
+    @discord.ui.button(label="News Kanal", style=discord.ButtonStyle.secondary, row=1)
+    async def set_alerts_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await self.bot.load_bot_config(self.bot, self.guild_id)
+        current_alerts = self.bot.guild_configs.get(self.guild_id, {}).get("alerts")
+        await interaction.response.send_modal(AlertsConfigModal(self.bot, self.guild_id, current_alerts))
+
 class ConfigCommands(commands.Cog, name="ConfigCommands"):
     def __init__(self, bot):
         self.bot = bot
@@ -214,7 +291,7 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
         raise error
 
     @app_commands.command(name="config", description="Zentrales Menü für alle Bot-Einstellungen.")
-    @app_commands.describe(channel="Setze den Kanal für Nachrichten", role="Setze die Geburtstagsrolle")
+    @app_commands.describe(channel="Setze den Kanal für Geburtstagsnachrichten", role="Setze die Geburtstagsrolle")
     @app_commands.default_permissions(manage_messages=True)
     async def config_main(self, interaction: discord.Interaction, channel: discord.TextChannel = None, role: discord.Role = None):
         if interaction.guild is None:

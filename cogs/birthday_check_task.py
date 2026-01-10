@@ -42,7 +42,8 @@ async def ensure_tables(db: aiosqlite.Connection):
                                                                    footer_with_age TEXT,
                                                                    image_title_no_age TEXT,
                                                                    image_title_with_age TEXT,
-                                                                   birthday_role_id INTEGER -- NEU
+                                                                   birthday_role_id INTEGER,
+                                                                   alerts INTEGER
                      )
                      ''')
     await db.execute('''
@@ -93,7 +94,8 @@ async def load_bot_config(bot: commands.Bot, guild_id: int):
         "footer_with_age": "Lass dich feiern!",
         "image_title_no_age": DEFAULT_IMAGE_NO_AGE_TITLE,
         "image_title_with_age": DEFAULT_IMAGE_WITH_AGE_TITLE,
-        "birthday_role_id": None # NEU
+        "birthday_role_id": None,
+        "alerts": None
     }
 
     config = default_config.copy() # Beginne mit Standardwerten
