@@ -29,20 +29,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-async def db_update():
-    path = "databases"
-    files = os.listdir(path)
-    for f in files:
-        if f.startswith("guild") and f.endswith(".db"):
-            fpath= os.path.join(path, f)
-            async with aiosqlite.connect(fpath) as db:
-                try:
-                    await db.execute("""ALTER TABLE guild_settings ADD COLUMN alerts INT DEFAULT NULL""")
-                    await db.commit()
-                    print(f"✅ Datenbank {f} aktualisiert.")
-                except aiosqlite.OperationalError:
-                    print(f"ℹ️ Datenbank {f} bereits aktualisiert.")
-
 class BirthdayBot(commands.Bot):
     def __init__(self):
 
