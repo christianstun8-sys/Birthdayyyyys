@@ -1,3 +1,5 @@
+import collections.abc
+
 import discord
 from discord.ext import commands, tasks
 import aiosqlite
@@ -107,7 +109,7 @@ async def load_bot_config(bot: commands.Bot, guild_id: int):
                                   SELECT
                                       birthday_channel_id, config_embed_color, birthday_image_enabled, birthday_image_background,
                                       message_no_age, title_no_age, footer_no_age, message_with_age, title_with_age, footer_with_age,
-                                      image_title_no_age, image_title_with_age, birthday_role_id -- HIER NEU
+                                      image_title_no_age, image_title_with_age, birthday_role_id, alerts
                                   FROM guild_settings WHERE guild_id = ?
                                   """, (guild_id,))
         row = await cursor.fetchone()
@@ -127,19 +129,20 @@ async def load_bot_config(bot: commands.Bot, guild_id: int):
             config["image_title_no_age"] = row[10] if row[10] is not None else DEFAULT_IMAGE_NO_AGE_TITLE
             config["image_title_with_age"] = row[11] if row[11] is not None else DEFAULT_IMAGE_WITH_AGE_TITLE
             config["birthday_role_id"] = row[12] # NEUER WERT
+            config["alerts"] = row[13]
         else:
             # Standardwerte in die DB speichern, falls kein Eintrag existiert
             await db.execute("""
                 INSERT OR REPLACE INTO guild_settings (
                     guild_id, birthday_channel_id, config_embed_color, birthday_image_enabled,
                     birthday_image_background, message_no_age, title_no_age, footer_no_age,
-                    message_with_age, title_with_age, footer_with_age, image_title_no_age, image_title_with_age, birthday_role_id
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) -- 14 Werte
+                    message_with_age, title_with_age, footer_with_age, image_title_no_age, image_title_with_age, birthday_role_id, alerts
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 guild_id, config["birthday_channel_id"], config["config_embed_color"], config["birthday_image_enabled"],
                 config["birthday_image_background"], config["message_no_age"], config["title_no_age"], config["footer_no_age"],
                 config["message_with_age"], config["title_with_age"], config["footer_with_age"],
-                config["image_title_no_age"], config["image_title_with_age"], config["birthday_role_id"]
+                config["image_title_no_age"], config["image_title_with_age"], config["birthday_role_id"], config["alerts"]
             ))
             await db.commit()
 
@@ -251,7 +254,6 @@ class BirthdayCheckTask(commands.Cog, name="BirthdayCheckTask"):
 
     @tasks.loop(hours=1.0)
     async def check_birthdays(self):
-        print("Überprüfe Geburtstage unter Berücksichtigung der Zeitzonen...")
 
         # Iteriere über alle Gilden
         for guild_id, current_config in list(self.bot.guild_configs.items()):

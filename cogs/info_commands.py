@@ -1,12 +1,16 @@
-import discord
-from discord.ext import commands
-from discord import app_commands
-from datetime import time
+import time
+from typing import Optional
+
 import aiosqlite
+import discord
+from discord import app_commands
+from discord.ext import commands
+
 
 class InfoCommands(commands.Cog, name="InfoCommands"):
     def __init__(self, bot):
         self.bot = bot
+        self.command_list = ["birthday-set", "config", "birthday-test"]
 
     # --- SLASH COMMAND: /info ---
     @app_commands.command(name="info", description="Zeigt Informationen über den Bot an.")
@@ -24,7 +28,7 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
 <:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden
 <:developer:1390293000747225098> Entwickler: _chrxstianst.
 <:python:1390293453606486056> Library: discord.py-2.5.2
-ℹ️ Bot-Version: 2.0
+ℹ️ Bot-Version: 3.0
         """
 
         info_embed = discord.Embed(
@@ -36,7 +40,13 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
         await interaction.response.send_message(embed=info_embed)
 
     @app_commands.command(name="help", description="Zeigt eine Liste aller Befehle an.")
-    async def help_command(self, interaction: discord.Interaction):
+    @app_commands.describe(command="Wähle einen Befehl für mehr Infos.")
+    @app_commands.choices(command=[
+        app_commands.Choice(name="birthday-set", value="birthday-set"),
+        app_commands.Choice(name="config", value="config"),
+        app_commands.Choice(name="birthday-test", value="birthday-test")
+    ])
+    async def help_command(self, interaction: discord.Interaction, command: Optional[str] = None):
         if interaction.guild is None:
             await interaction.response.send_message("Dieser Befehl kann nur in einem Server verwendet werden.", ephemeral=False)
             return
@@ -48,36 +58,84 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
 
         permissions = channel.permissions_for(interaction.user)
 
-        embed = discord.Embed(
-            title="Bot-Befehle",
-            description="Hier ist eine Liste aller verfügbaren Befehle:",
-            color=current_config.get("config_embed_color", 0x45a6c9)
-        )
-        if permissions.manage_messages:
-            embed.add_field(name="__Mitglieder:__", value='\u200b', inline=False)
-            embed.add_field(name="/birthday-set <month> <day> [year]", value="Setzt deinen Geburtstag.", inline=False)
-            embed.add_field(name="/birthday-remove", value="Entfernt deinen Geburtstag.", inline=False)
-            embed.add_field(name="/birthday-list", value="Zeigt alle gespeicherten Geburtstage an.", inline=False)
-            embed.add_field(name="/info", value="Zeigt Informationen über den Bot an.", inline=False)
-            embed.add_field(name="/ping", value="Misst die derzeitige Antwortlatenz des Bots", inline=False)
-            embed.add_field(name='_Team:_', value='\u200b', inline=False)
-            embed.add_field(name="/set-birthday-message", value="Passt die Nachricht für Geburtstags-Embeds *und Bildtexte* an.", inline=False)
-            embed.add_field(name="/config-channel <channel>", value="Setzt den Kanal, in den Geburtstagsnachrichten gesendet werden.", inline=False)
-            embed.add_field(name="/config-image <enable|disable>", value="Aktiviert/Deaktiviert Geburtstagsbilder.", inline=False)
-            embed.add_field(name="/config-color", value="Passt die Farbe der Bot-Embeds an (Info, Hilfe, Liste).", inline=False)
-            embed.add_field(name="/config-role", value="Setzt eine Geburtstagsrolle, die an Geburtstagen vergeben wird.", inline=False)
-            embed.add_field(name="/birthday-test", value="Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal.", inline=False)
+        if command:
+            if command == "birthday-set":
+                command_embed = discord.Embed(
+                    title=f"__Hilfe für den Befehl /{command}__",
+                    description=f"Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
+                                f"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
+                                f"Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal.",
+                    color=current_config.get("config_embed_color", 0x45a6c9)
+                )
+                command_embed.add_field(name="`<month>`", value="Mit dieser Auswahl legst du deinen Geburtsmonat fest.", inline=False)
+                command_embed.add_field(name="`<day>`", value="Mit dieser Auswahl legst du deinen Geburtstag fest.", inline=False)
+                command_embed.add_field(name="`[year]`", value="*(optional)*: Lege hiermit das Geburtsjahr von dir fest. Dein Alter wird errechnet und offen bekannt gegeben.", inline=False)
+                command_embed.add_field(name="`[timezone]`", value="*(optional)*: Falls du nicht in der Zeitzone **Europe/Berlin** wohnst, kannst du sie hier ändern.", inline=False)
+
+            elif command == "config":
+                if interaction.user.guild_permissions.manage_messages:
+                    command_embed = discord.Embed(
+                        title=f"__Hilfe für den Befehl /{command}__",
+                        description=f"Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu nutzt man die Buttons auf dem gesendeten Panel.",
+                        color=current_config.get("config_embed_color", 0x45a6c9)
+                    )
+                    command_embed.add_field(name="`Kanal`", value="Nutze den Befehl `/config <channel>`. Hiermit wird der Kanal für Geburtstagsnachrichten festgelegt. **WICHTIG!** Ohne diese Einstellung wird keine Nachricht gesendet.", inline=False)
+                    command_embed.add_field(name="`Rolle`", value="Nutze den Befehl `/config <role>`, um eine Geburtstagsrolle festzulegen, die bei einem Geburtstag für 24h vergeben wird.", inline=False)
+                    command_embed.add_field(name="`Bilder An/Aus`", value="Stelle hier ein, ob personalisierte Banner bei Geburtstagen gesendet werden sollen. Wie so ein Banner aussieht, siehst du auf **__[der Homepage](https://birthdayyyyys.christianst.xyz)__**.", inline=False)
+                    command_embed.add_field(name="`Embed Farbe`", value="Gebe in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden nun diese Farbe nutzen. Standard: `45A6C9`.", inline=False)
+                    command_embed.add_field(name="`News Kanal`", value="Wenn du Botneuigkeiten nicht verpassen willst, kannst du in das Formular die Kanal-ID für den gewünschten Kanal eingeben. In diesen werden Changelogs und Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu bekommen (was sehr schade wäre).", inline=False)
+                    command_embed.add_field(name="`Nachricht (Kein/Mit Alter)`", value="Hier kannst du die Geburtstagsembeds bearbeiten. Du kannst sogar den Titel des generierten Banners auswählen. Nutze die Variablen im Titel jedes Feldes, um die Nachricht weiter zu personalisieren.", inline=False)
+                else:
+                    await interaction.response.send_message("⚠️ Du hast keine Berechtigung dazu.", ephemeral=True)
+            elif command == "birthday-test":
+                if interaction.user.guild_permissions.manage_messages:
+                    command_embed = discord.Embed(
+                        title=f"__Hilfe für den Befehl /{command}__",
+                        description=f"Simuliere hier einen Geburtstag, um zu testen, ob deine Einstellungen funktionieren.",
+                        color=current_config.get("config_embed_color", 0x45a6c9)
+                    )
+                    command_embed.add_field(name="`Ohne Altersangabe`", value="Simuliere einen Geburtstag, wo der Benutzer kein Geburtsjahr angegeben hat.", inline=False)
+                    command_embed.add_field(name="`Mit Altersangabe (Test-Alter: 30)`", value="Simuliere einen Geburtstag, der gesendet wird, wenn der Benutzer 30 Jahre alt wird.", inline=False)
+                else:
+                    await interaction.response.send_message("⚠️ Du hast keine Berechtigung dazu.", ephemeral=True)
+
+            else:
+                await interaction.response.send_message("❌ Fehler: Du hast keinen gültigen Befehl angegeben.", ephemeral=True)
+
+            command_embed.set_thumbnail(url=self.bot.user.avatar)
+            await interaction.response.send_message(embed=command_embed)
+
+
         else:
-            embed.add_field(name="__Mitglieder:__", value='\u200b', inline=False)
-            embed.add_field(name="/birthday-set <month> <day> [year]", value="Setzt deinen Geburtstag.", inline=False)
-            embed.add_field(name="/birthday-remove", value="Entfernt deinen Geburtstag.", inline=False)
-            embed.add_field(name="/birthday-list", value="Zeigt alle gespeicherten Geburtstage an.", inline=False)
-            embed.add_field(name="/info", value="Zeigt Informationen über den Bot an.", inline=False)
-            embed.add_field(name="/ping", value="Misst die derzeitige Antwortlatenz des Bots", inline=False)
+
+            embed = discord.Embed(
+                title="Bot-Befehle",
+                description="Hier ist eine Liste aller verfügbaren Befehle:",
+                color=current_config.get("config_embed_color", 0x45a6c9)
+            )
+            if permissions.manage_messages:
+                embed.add_field(name="__Mitglieder:__", value='\u200b', inline=False)
+                embed.add_field(name="/birthday-set <month> <day> [year] [timezone]", value="Setzt deinen Geburtstag.", inline=False)
+                embed.add_field(name="/birthday-remove", value="Entfernt deinen Geburtstag.", inline=False)
+                embed.add_field(name="/birthday-list", value="Zeigt alle gespeicherten Geburtstage an.", inline=False)
+                embed.add_field(name="/info", value="Zeigt Informationen über den Bot an.", inline=False)
+                embed.add_field(name="/ping", value="Misst die derzeitige Antwortlatenz des Bots", inline=False)
+                embed.add_field(name='\u200b', value='\u200b', inline=False)
+                embed.add_field(name='__Team:__', value='\u200b', inline=False)
+                embed.add_field(name='/config [channel] [role]', value="Konfiguriert Birthdayyyyys.", inline=False)
+                embed.add_field(name="/birthday-test <message_type>", value="Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal.", inline=False)
+            else:
+                embed.add_field(name="__Mitglieder:__", value='\u200b', inline=False)
+                embed.add_field(name="/birthday-set <month> <day> [year] [timezone]", value="Setzt deinen Geburtstag.", inline=False)
+                embed.add_field(name="/birthday-remove", value="Entfernt deinen Geburtstag.", inline=False)
+                embed.add_field(name="/birthday-list", value="Zeigt alle gespeicherten Geburtstage an.", inline=False)
+                embed.add_field(name="/info", value="Zeigt Informationen über den Bot an.", inline=False)
+                embed.add_field(name="/ping", value="Misst die derzeitige Antwortlatenz von Birthdayyyyys.", inline=False)
 
 
-        embed.set_footer(text="Birthdayyyyys")
-        await interaction.response.send_message(embed=embed, ephemeral=False)
+            embed.set_footer(text="Nutze `/help [command]`, um über komplexere Befehle mehr zu erfahren.")
+            embed.set_thumbnail(url=self.bot.user.avatar)
+            await interaction.response.send_message(embed=embed, ephemeral=False)
 
     @app_commands.command(name="ping", description="Zeigt die aktuelle Latenz des Bots an.")
     async def ping_command(self, interaction: discord.Interaction):
@@ -105,6 +163,12 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
             else:
                 db_latency_ms = "Nicht verbunden"
 
+            if db_latency_ms != "Nicht verbunden":
+                db_latency_con = "✅ Verbunden"
+
+            elif db_latency_ms == "Nicht verbunden":
+                db_latency_con = "❌ Nicht verbunden"
+
         except Exception as e:
             db_latency_ms = f"DB-Fehler: {type(e).__name__}"
 
@@ -129,7 +193,7 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
         )
         embed.add_field(
             name="💾 Datenbank (aiosqlite)",
-            value=f"`{db_latency_ms}ms`",
+            value=f"{db_latency_con}",
             inline=True
         )
 

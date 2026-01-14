@@ -3,6 +3,9 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 import aiosqlite
+
+import Alerts
+
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
@@ -86,16 +89,19 @@ class BirthdayBot(commands.Bot):
             else:
                 return
 
+        self.db = await aiosqlite.connect("databases/tickets.db")
+
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
-        await db_update()
         print('------------------------------')
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Happy Birthdayyyyy! 🎂"))
         from cogs.birthday_check_task import load_all_guild_configs
         await load_all_guild_configs(self)
+        await Alerts.send_global_announcement(bot=self)
 
         print("------------------------------")
         print("Bot bereit!")
+
 
     async def on_guild_join(self, guild):
         christianst_id = 1235134572157603841
