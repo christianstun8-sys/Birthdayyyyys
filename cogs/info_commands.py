@@ -27,7 +27,7 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
 *❔ __Infos:__*
 <:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden
 <:developer:1390293000747225098> Entwickler: _chrxstianst.
-<:python:1390293453606486056> Library: discord.py-2.5.2
+<:python:1390293453606486056> Library: discord.py-2.6.4
 ℹ️ Bot-Version: 3.0
         """
 
