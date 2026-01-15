@@ -110,7 +110,7 @@ class BirthdayBot(commands.Bot):
             title="Birthdayyyyys ist auf einem neuen Server!",
             description="Hii Chris, ich bin auf einem neuen Server hinzugefügt worden! :) \n \n"
                         f"🪧 Servername: '{guild.name}' ({guild.id})\n"
-                        f"🧑‍🦱 Mitgliederanzahl: '{guild.member_count}'\n"
+                        f"🧑‍🦱 Mitgliederanzahl: {guild.member_count}\n"
                         f"👑 Serverinhaber: {guild.owner.name}\n (https://discord.gg/users/{guild.owner.id}/) \n"
                         f"💜 Boostlevel: {guild.premium_tier} ({guild.premium_subscription_count} Boosts)",
             color=discord.Color.blue()
@@ -133,7 +133,7 @@ class BirthdayBot(commands.Bot):
         if guild.id in self.guild_configs:
             del self.guild_configs[guild.id]
 
-        db_path = "databases" / f"guild_{guild.id}.db"
+        db_path = f"databases / guild_{guild.id}.db"
         if os.path.exists(db_path):
             os.remove(db_path)
 
