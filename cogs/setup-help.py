@@ -19,7 +19,7 @@ class Setuphelp(commands.Cog):
         welcome_embed.add_field(name="Bildgenerierung aktivieren:", value="Ein cooles Feature ist auch die Bildgenerierung. Sie wird ein Banner mit dem jeweiligen Profilbild und -namen generieren und an einen Geburtstagsgruß anhängen. \n"
                                                                           "Aktiviere das Feature, indem du `/config` nutzt, und auf den Button `Bilder An/Aus` klickst. Den Titel des Banners kannst du sogar mit den Nachrichtenkonfigurationen anpassen.", inline=False)
         welcome_embed.add_field(name="Geburtstag simulieren:", value="Wenn du deine Konfiguration überprüfen willst, kannst du `/birthday-test` nutzen.", inline=False)
-        welcome_embed.add_field(name="Weitere Hilfe:", value="Falls du weitere Hilfe brauchst, kannst du `/help` nutzen. Wenn du Probleme hast, trete doch gerne dem Support Server bei: [https://discord.gg/utD4afUrgt](https://discord.gg/utD4afUrgt).")
+        welcome_embed.add_field(name="Weitere Hilfe:", value="Falls du weitere Hilfe brauchst, kannst du `/help` nutzen. Wenn du Probleme hast, trete doch gerne dem Support Server bei: https://discord.gg/utD4afUrgt.")
         welcome_embed.set_thumbnail(url=self.bot.user.avatar)
         welcome_embed.set_footer(text="Danke für's Nutzen von Birthdayyyyys!")
 
