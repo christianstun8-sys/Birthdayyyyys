@@ -18,7 +18,7 @@ else:
     TOKEN = os.getenv('DISCORD_TOKEN')
 
 logger = logging.getLogger('discord.gateway')
-logger.setLevel(logging.WARNING)  # Show only WARNING and higher, hide INFO messages
+logger.setLevel(logging.WARNING)
 
 def setup_directories():
     for dir_name in ['databases', 'cogs', 'data']:
