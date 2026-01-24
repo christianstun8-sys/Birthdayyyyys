@@ -73,13 +73,13 @@ class BirthdayBot(commands.Bot):
                 print(f"Synchronisierte {len(synced)} Befehle.")
             except Exception as e:
                 print(f"Fehler beim Synchronisieren der Befehle: {e}")
-
-        try:
-            support_server_id = discord.Object(id=1453670454350057613)
-            guild_synced = await self.tree.sync(guild=support_server_id)
-            print(f"Erfolgreich {len(guild_synced)} Befehle für den Support-Server gesynct.")
-        except Exception as e:
-            print(f"Fehler beim Synchronisieren der Support-Server-Befehle: {e}")
+        if not beta:
+            try:
+                support_server_id = discord.Object(id=1453670454350057613)
+                guild_synced = await self.tree.sync(guild=support_server_id)
+                print(f"Erfolgreich {len(guild_synced)} Befehle für den Support-Server gesynct.")
+            except Exception as e:
+                print(f"Fehler beim Synchronisieren der Support-Server-Befehle: {e}")
 
         @self.command(name="restart", hidden=True)
         async def restart_cmd(ctx):
@@ -120,7 +120,7 @@ class BirthdayBot(commands.Bot):
         else:
             embed.set_thumbnail(url=self.user.display_avatar.url)
         try:
-            await christianst.send(embed=embed)
+            await christianst.send(embed=embed, content=christianst.mention)
         except discord.Forbidden:
             print("❌ Fehler: Keine Berechtigung, Christianst_ eine Nachricht zu senden.")
 
@@ -136,6 +136,27 @@ class BirthdayBot(commands.Bot):
         db_path = f"databases / guild_{guild.id}.db"
         if os.path.exists(db_path):
             os.remove(db_path)
+
+        embed = discord.Embed(
+            title="Birthdayyyyys wurde aus einem Server entfernt.",
+            description="Hi Chris! Ich wurde aus einem Server rausgeworfen. :c \n"
+                        f"🪧 Servername: '{guild.name}' ({guild.id})\n"
+                        f"🧑‍🦱 Mitgliederanzahl: {guild.member_count}\n"
+                        f"👑 Serverinhaber: {guild.owner.name}\n (https://discord.gg/users/{guild.owner.id}/) \n"
+                        f"💜 Boostlevel: {guild.premium_tier} ({guild.premium_subscription_count} Boosts)",
+            color=discord.Color.red()
+        )
+        christianst_id = 1235134572157603841
+        christianst = self.get_user(christianst_id)
+        if guild.icon:
+            embed.set_thumbnail(url=guild.icon.url)
+        else:
+            embed.set_thumbnail(url=self.user.display_avatar.url)
+
+        try:
+            await christianst.send(embed=embed, content=christianst.mention)
+        except discord.Forbidden:
+            print(f"Konnte keine Nachricht an {christianst.global_name} senden.")
 
 if __name__ == '__main__':
     setup_directories()
