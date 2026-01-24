@@ -3,6 +3,7 @@ from discord.ext import commands
 import os
 from dotenv import load_dotenv
 import aiosqlite
+import logging
 
 import Alerts
 
@@ -15,6 +16,9 @@ if beta:
     TOKEN = os.getenv('DISCORD_BETA_TOKEN')
 else:
     TOKEN = os.getenv('DISCORD_TOKEN')
+
+logger = logging.getLogger('discord.gateway')
+logger.setLevel(logging.WARNING)
 
 def setup_directories():
     for dir_name in ['databases', 'cogs', 'data']:
