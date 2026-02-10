@@ -6,11 +6,12 @@ import aiosqlite
 import logging
 
 import Alerts
+import mdb
 
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
-beta = False
+beta = True
 
 if beta:
     TOKEN = os.getenv('DISCORD_BETA_TOKEN')
@@ -35,6 +36,8 @@ def setup_directories():
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
+
+
 
 class BirthdayBot(commands.Bot):
     def __init__(self):
@@ -97,7 +100,6 @@ class BirthdayBot(commands.Bot):
 
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
-        print('------------------------------')
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Happy Birthdayyyyy! 🎂"))
         from cogs.birthday_check_task import load_all_guild_configs
         await load_all_guild_configs(self)
@@ -131,6 +133,7 @@ class BirthdayBot(commands.Bot):
         print(f"Bot wurde einer neuen Guild hinzugefügt: {guild.name} (ID: {guild.id})")
         from cogs.birthday_check_task import load_bot_config
         await load_bot_config(self, guild.id)
+
 
     async def on_guild_remove(self, guild):
         print(f"Bot wurde aus Guild {guild.name} (ID: {guild.id}) entfernt. Schade... :(")

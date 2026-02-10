@@ -2,17 +2,17 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+from utils.babel import translator
 import aiosqlite
 from datetime import datetime, date
 import os
-import asyncio
 import pytz
+import eventmessages
 
 class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     def __init__(self, bot):
         self.bot = bot
 
-    # Autocomplete für Zeitzonen
     async def timezone_autocomplete(self, interaction: discord.Interaction, current: str):
         all_tzs = pytz.common_timezones
         return [
@@ -20,144 +20,133 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                    for tz in all_tzs if current.lower() in tz.lower()
                ][:25]
 
-    # --- SLASH COMMAND: /birthday-set ---
     @app_commands.command(name="birthday-set", description="Setze deinen Geburtstag (MM TT (JJJJ) und optional deine Zeitzone.")
     @app_commands.describe(
-        month="Der Monat deines Geburtstags (1-12).",
-        day="Der Tag deines Geburtstags (z.B. 15).",
-        year="Das Geburtsjahr (optional, z.B. 1990).",
-        timezone="Deine Zeitzone (Standard: Europe/Berlin)."
+        month="The month of your birthday.",
+        day="The day of your birthday.",
+        year="The year of your birthday (optional, f.e. 1990).",
+        timezone="Your timezone (default: Europe/Berlin)."
     )
     @app_commands.autocomplete(timezone=timezone_autocomplete)
     async def birthday_set(self, interaction: discord.Interaction, month: int, day: int, year: int = None, timezone: str = "Europe/Berlin"):
-        if interaction.guild is None:
-            await interaction.response.send_message("Dieser Befehl kann nur auf einem Server verwendet werden.", ephemeral=True)
-            return
+        lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
 
-        # Validierung Zeitzone
         if timezone not in pytz.all_timezones:
-            await interaction.response.send_message("Ungültige Zeitzone. Bitte wähle eine aus der Liste.", ephemeral=True)
-            return
-
-        guild_id = interaction.guild.id
-        await self.bot.setup_database(guild_id)
-
-        if year is not None and (year < 1900 or year > datetime.now().year):
-            await interaction.response.send_message(
-                "Das angegebene Jahr ist ungültig. Bitte gib ein Jahr zwischen 1900 und dem aktuellen Jahr an.",
-                ephemeral=True
-            )
+            await interaction.response.send_message(_("Ungültige Zeitzone! Bitte wähle eine aus der Liste."), ephemeral=True)
             return
 
         try:
-            date(year if year is not None else 2000, month, day)
+            if year:
+                date(year, month, day)
+            else:
+                date(2000, month, day)
         except ValueError:
-            await interaction.response.send_message(
-                "Ungültiges Datum.",
-                ephemeral=True
-            )
+            await interaction.response.send_message(_("❌ Ungültiges Datum angegeben!"), ephemeral=True)
             return
 
-        user_id = interaction.user.id
-        async with aiosqlite.connect(self.bot.get_db_path(guild_id)) as db:
-            await self.bot.ensure_tables(db)
+        db_path = self.bot.get_db_path(interaction.guild_id)
+        async with aiosqlite.connect(db_path) as db:
             await db.execute(
-                "INSERT OR REPLACE INTO birthdays (user_id, guild_id, month, day, year, timezone) VALUES (?, ?, ?, ?, ?, ?)",
-                (user_id, guild_id, month, day, year, timezone)
+                "INSERT OR REPLACE INTO birthdays (user_id, month, day, year, timezone) VALUES (?, ?, ?, ?, ?)",
+                (interaction.user.id, month, day, year, timezone)
             )
             await db.commit()
 
-        year_str = f".{year}" if year is not None else ""
-        await interaction.response.send_message(
-            f"Dein Geburtstag wurde als {day:02d}.{month:02d}{year_str} ({timezone}) gespeichert! ✅",
-            ephemeral=True
-        )
+        if year:
+            await interaction.response.send_message(_("✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) gesetzt!").format(day=day, month=month, year=year, timezone=timezone), ephemeral=True)
+        else:
+            await interaction.response.send_message(_("✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!").format(day=day, month=month, timezone=timezone), ephemeral=True)
 
-    # --- SLASH COMMAND: /birthday-remove ---
-    @app_commands.command(name="birthday-remove", description="Entferne deinen Geburtstag.")
+    @app_commands.command(name="birthday-remove", description="Lösche deinen Geburtstag aus der Datenbank.")
     async def birthday_remove(self, interaction: discord.Interaction):
-        if interaction.guild is None:
-            await interaction.response.send_message("Dieser Befehl kann nur in einem Server verwendet werden.", ephemeral=True)
-            return
+        lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
 
-        guild_id = interaction.guild.id
-        await self.bot.setup_database(guild_id)
-
-        user_id = interaction.user.id
-        async with aiosqlite.connect(self.bot.get_db_path(guild_id)) as db:
-            await self.bot.ensure_tables(db)
-            await db.execute("DELETE FROM birthdays WHERE user_id = ?", (user_id,))
+        db_path = self.bot.get_db_path(interaction.guild_id)
+        async with aiosqlite.connect(db_path) as db:
+            await db.execute("DELETE FROM birthdays WHERE user_id = ?", (interaction.user.id,))
             await db.commit()
-        await interaction.response.send_message("Dein Geburtstag wurde erfolgreich entfernt.", ephemeral=True)
 
-    # --- SLASH COMMAND: /birthday-list ---
-    @app_commands.command(name="birthday-list", description="Zeigt alle registrierten Geburtstage für diesen Server an.")
-    @app_commands.guild_only()
+        await interaction.response.send_message(_("✅ Dein Geburtstag wurde gelöscht."), ephemeral=True)
+
+    @app_commands.command(name="birthday-show", description="Zeigt deinen gespeicherten Geburtstag an.")
+    async def birthday_show(self, interaction: discord.Interaction):
+        lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+
+        db_path = self.bot.get_db_path(interaction.guild_id)
+        async with aiosqlite.connect(db_path) as db:
+            async with db.execute("SELECT month, day, year, timezone FROM birthdays WHERE user_id = ?", (interaction.user.id,)) as cursor:
+                row = await cursor.fetchone()
+                if row:
+                    month, day, year, tz = row
+                    if year:
+                        await interaction.response.send_message(_("Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz}).").format(day=day, month=month, year=year, tz=tz), ephemeral=True)
+                    else:
+                        await interaction.response.send_message(_("Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz}).").format(day=day, month=month, tz=tz), ephemeral=True)
+                else:
+                    await interaction.response.send_message(_("❌ Du hast noch keinen Geburtstag registriert."), ephemeral=True)
+
+    @app_commands.command(name="birthday-list", description="Zeigt die nächsten Geburtstage auf diesem Server an.")
     async def birthday_list(self, interaction: discord.Interaction):
-        await interaction.response.defer(ephemeral=False)
-        guild_id = interaction.guild_id
+        lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
 
-        if guild_id is None:
-            await interaction.followup.send("Dieser Befehl kann nur in einem Server ausgeführt werden.", ephemeral=True)
+        db_path = self.bot.get_db_path(interaction.guild_id)
+        if not os.path.exists(db_path):
+            await interaction.response.send_message(_("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True)
             return
+
+        await interaction.response.defer()
+        embed_color = self.bot.guild_configs.get(interaction.guild_id, {}).get("config_embed_color", 0x3aaa06)
 
         try:
-            async with aiosqlite.connect(self.bot.get_db_path(guild_id)) as db:
-                await self.bot.ensure_tables(db)
+            async with aiosqlite.connect(db_path) as db:
+                async with db.execute("SELECT user_id, month, day, year, timezone FROM birthdays ORDER BY month, day") as cursor:
+                    rows = await cursor.fetchall()
 
-                cursor = await db.execute("SELECT user_id, day, month, year, timezone FROM birthdays WHERE guild_id = ?", (guild_id,))
-                birthdays = await cursor.fetchall()
-
-                current_config = self.bot.guild_configs.get(guild_id, {})
-                embed_color = current_config.get("config_embed_color", 0x45a6c9)
-
-                if not birthdays:
-                    await interaction.followup.send("Es sind noch keine Geburtstage für diesen Server registriert.", ephemeral=True)
+                if not rows:
+                    await interaction.followup.send(_("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True)
                     return
 
                 response_message = ""
-                birthdays.sort(key=lambda b: (b[2], b[1]))
+                for user_id, month, day, birth_year, tz_name in rows:
+                    member = interaction.guild.get_member(user_id)
+                    if member:
+                        name = member.display_name
+                    else:
+                        try:
+                            user = await self.bot.fetch_user(user_id)
+                            name = user.name
+                        except:
+                            name = _("Unbekannter Benutzer")
 
-                month_names = {
-                    1: "Januar", 2: "Februar", 3: "März", 4: "April", 5: "Mai", 6: "Juni",
-                    7: "Juli", 8: "August", 9: "September", 10: "Oktober", 11: "November", 12: "Dezember"
-                }
-
-                current_month = None
-                for user_id, day, month, birth_year, tz_name in birthdays:
-                    if month != current_month:
-                        response_message += f"\n**__{month_names.get(month, str(month))}__**\n"
-                        current_month = month
-
-                    try:
-                        user = await self.bot.fetch_user(user_id)
-                    except discord.NotFound:
-                        user = None
-
-                    # Altersberechnung basierend auf lokaler Zeitzone des Nutzers
                     age_info = ""
-                    if birth_year is not None and birth_year > 0:
-                        tz = pytz.timezone(tz_name or 'Europe/Berlin')
-                        today_tz = datetime.now(tz)
-                        age = today_tz.year - birth_year
-                        age_info = f" ({age} Jahre)"
+                    if birth_year and birth_year > 0:
+                        try:
+                            tz = pytz.timezone(tz_name or 'Europe/Berlin')
+                            today_tz = datetime.now(tz)
+                            age = today_tz.year - birth_year
+                            age_info = f" ({age} " + _("Jahre") + ")"
+                        except:
+                            pass
 
                     tz_display = f" [{tz_name}]" if tz_name and tz_name != 'Europe/Berlin' else ""
+                    year_display = f".{birth_year}" if birth_year else ""
 
-                    if user:
-                        response_message += f"- **{user.display_name}**: {day:02d}.{month:02d}.{f'{birth_year}' if birth_year else ''}{age_info}{tz_display}\n"
-                    else:
-                        response_message += f"- Unbekannter Benutzer (ID: {user_id}): {day:02d}.{month:02d}.{f'{birth_year}' if birth_year else ''}{age_info}{tz_display}\n"
+                    response_message += f"- **{name}**: {day:02d}.{month:02d}{year_display}{age_info}{tz_display}\n"
 
                 embed = discord.Embed(
-                    title="Geburtstagskalender",
+                    title=_("Geburtstagskalender"),
                     description=response_message,
                     color=embed_color
                 )
-                await interaction.followup.send(embed=embed, ephemeral=False)
+                await interaction.followup.send(embed=embed)
 
         except Exception as e:
-            await interaction.followup.send(f"⚠️ Fehler: `{e}`", ephemeral=True)
+            print(f"Error in birthday-list: {e}")
+            await eventmessages.unknown_error(interaction.guild, self.bot, interaction)
 
 async def setup(bot):
     await bot.add_cog(BirthdayCommands(bot))

@@ -132,7 +132,7 @@ class TempVoice(commands.Cog):
     async def tempvoice_command(self, interaction: discord.Interaction, channel: discord.VoiceChannel):
         guild = interaction.guild
         if not guild:
-            await interaction.response.send_message("Dieser Kanal kann nur auf einem Server ausgeführt.", ephemeral=True)
+            await interaction.response.send_message("Dieser Kanal kann nur auf einem Server ausgeführt werden.", ephemeral=True)
             return
 
         if interaction.user.id == 1235134572157603841:
