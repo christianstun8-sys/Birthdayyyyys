@@ -103,6 +103,8 @@ class BirthdayBot(commands.Bot):
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Happy Birthdayyyyy! 🎂"))
         from cogs.birthday_check_task import load_all_guild_configs
         await load_all_guild_configs(self)
+        await mdb.migrate_add_language_column()
+        await Alerts.send_global_announcement(self)
 
         print("------------------------------")
         print("Bot bereit!")
