@@ -152,11 +152,13 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
 
         if interaction.guild is None:
             embed_color = 0x45a6c9
+            lang = "en"
         else:
             await self.bot.load_bot_config(self.bot, interaction.guild.id)
             embed_color = self.bot.guild_configs.get(interaction.guild.id, {}).get("config_embed_color", 0x45a6c9)
+            lang = self.bot.guild_configs.get(interaction.guild.id, {}).get("lang", "en")
 
-        lang = self.bot.guild_configs.get(interaction.guild.id, {}).get("lang", "en")
+
         _ = translator.get_translation(lang)
 
         db_start_time = time.perf_counter()
