@@ -59,13 +59,12 @@ async def update_embed_settings(bot: commands.Bot, guild_id: int, title: str, me
     config_to_save = bot.guild_configs[guild_id]
 
     async with aiosqlite.connect(bot.get_db_path(guild_id)) as db:
+        print("Saving config:", config_to_save)
         await bot.ensure_tables(db)
         await db.execute(
-            "INSERT OR REPLACE INTO guild_settings "
-            "(guild_id, birthday_channel_id, config_embed_color, birthday_image_enabled, birthday_image_background, "
-            "message_no_age, title_no_age, footer_no_age, message_with_age, title_with_age, footer_with_age, "
-            "image_title_no_age, image_title_with_age, birthday_role_id) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "UPDATE guild_settings SET guild_id = ?, config_embed_color = ?, birthday_channel_id = ?, birthday_image_enabled = ?, birthday_image_background = ?,"
+            "message_no_age = ?, title_no_age = ?, footer_no_age = ?, message_with_age = ?, title_with_age = ?, footer_with_age = ?,"
+            "image_title_no_age = ?, image_title_with_age = ?, birthday_role_id = ? WHERE guild_id = ?",
             (
                 guild_id,
                 config_to_save["birthday_channel_id"],
@@ -80,7 +79,8 @@ async def update_embed_settings(bot: commands.Bot, guild_id: int, title: str, me
                 config_to_save["footer_with_age"],
                 config_to_save["image_title_no_age"],
                 config_to_save["image_title_with_age"],
-                config_to_save["birthday_role_id"]
+                config_to_save["birthday_role_id"],
+                guild_id
             )
         )
         await db.commit()
@@ -307,14 +307,14 @@ class ConfigColorModal(discord.ui.Modal):
         await self.bot.setup_database(self.guild_id)
 
         current_config = self.bot.guild_configs.get(self.guild_id, {})
+        config_to_save = current_config.copy()
         async with aiosqlite.connect(self.bot.get_db_path(self.guild_id)) as db:
+            print("Saving config:", config_to_save)
             await self.bot.ensure_tables(db)
             await db.execute(
-                "INSERT OR REPLACE INTO guild_settings "
-                "(guild_id, config_embed_color, birthday_channel_id, birthday_image_enabled, birthday_image_background, "
-                "message_no_age, title_no_age, footer_no_age, message_with_age, title_with_age, footer_with_age, "
-                "image_title_no_age, image_title_with_age, birthday_role_id) "
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                "UPDATE guild_settings SET guild_id = ?, config_embed_color = ?, birthday_channel_id = ?, birthday_image_enabled = ?, birthday_image_background = ?,"
+                "message_no_age = ?, title_no_age = ?, footer_no_age = ?, message_with_age = ?, title_with_age = ?, footer_with_age = ?,"
+                "image_title_no_age = ?, image_title_with_age = ?, birthday_role_id = ? WHERE guild_id = ?",
                 (
                     self.guild_id,
                     new_color,
@@ -329,7 +329,8 @@ class ConfigColorModal(discord.ui.Modal):
                     current_config.get("footer_with_age"),
                     current_config.get("image_title_no_age"),
                     current_config.get("image_title_with_age"),
-                    current_config.get("birthday_role_id")
+                    current_config.get("birthday_role_id"),
+                    self.guild_id
                 )
             )
             await db.commit()
@@ -382,7 +383,7 @@ class ChannelConfigModal(discord.ui.Modal):
             await db.commit()
         self.bot.guild_configs[guild_id]["birthday_channel_id"] = channel.id
         current_config = self.bot.guild_configs[self.guild_id]
-        new_status = not current_config.get("birthday_image_enabled", False)
+        new_status = current_config.get("birthday_image_enabled", False)
         new_embed = discord.Embed(
             title=_("⚙️ Server-Konfiguration"),
             description=config_legend(_),
@@ -515,7 +516,7 @@ class RoleConfigModal(discord.ui.Modal):
 
         self.bot.guild_configs[guild_id]["birthday_role_id"] = role.id
         current_config = self.bot.guild_configs[self.guild_id]
-        new_status = not current_config.get("birthday_image_enabled", False)
+        new_status = current_config.get("birthday_image_enabled", False)
 
         new_embed = discord.Embed(
             title=_("⚙️ Server-Konfiguration"),
@@ -538,8 +539,6 @@ class RoleConfigModal(discord.ui.Modal):
             embed=new_embed,
             view=MainConfigView(self.bot, self.guild_id)
         )
-
-
 
 class LanguageConfigView(discord.ui.View):
     def __init__(self, bot: commands.Bot, guild_id: int):
@@ -611,7 +610,7 @@ class LanguageConfigView(discord.ui.View):
         )
         embed.add_field(
             name=_("Rolle"),
-            value=f"<@&{current_config.get('birthday_role_id')}>" if current_config.get("birthday_role_id") else _("Keine")
+            value=f"<@&{current_config.get('birthday_role_id')}>" if current_config.get("birthday_role_id") else _("Nicht gesetzt")
         )
         embed.add_field(
             name=_("Bilder"),
@@ -671,7 +670,7 @@ class MainConfigView(discord.ui.View):
     async def toggle_image(self, interaction: discord.Interaction):
         await self.bot.load_bot_config(self.bot, self.guild_id)
         current_config = self.bot.guild_configs.get(self.guild_id, {})
-        new_status = not current_config.get("birthday_image_enabled", False)
+        new_status = current_config.get("birthday_image_enabled", False)
 
         async with aiosqlite.connect(self.bot.get_db_path(self.guild_id)) as db:
             await db.execute(

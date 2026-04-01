@@ -81,8 +81,29 @@ async def load_bot_config(bot, guild_id: int):
                 columns = [column[0] for column in cursor.description]
                 bot.guild_configs[guild_id] = dict(zip(columns, row))
             else:
-                bot.guild_configs[guild_id] = {"lang": "de"}
-
+                bot.guild_configs[guild_id] = {
+                    "guild_id": guild_id,
+                    "birthday_channel_id": None,
+                    "config_embed_color": 0x45a6c9,
+                    "birthday_role_id": None,
+                    "birthday_image_enabled": False,
+                    "birthday_image_background": None,
+                    "lang": "en",
+                    "title_no_age": None,
+                    "message_no_age": None,
+                    "footer_no_age": None,
+                    "image_title_no_age": None,
+                    "title_with_age": None,
+                    "message_with_age": None,
+                    "footer_with_age": None,
+                    "image_title_with_age": None
+                }
+                async with aiosqlite.connect(db_path) as db:
+                    await db.execute("""
+                                     INSERT INTO guild_settings (guild_id, lang)
+                                     VALUES (?, ?)
+                                     """, (guild_id, "en"))
+                    await db.commit()
 async def load_all_guild_configs(bot):
     for guild in bot.guilds:
         try:
@@ -148,7 +169,7 @@ class BirthdayCheckTask(commands.Cog):
             return
 
         for guild in self.bot.guilds:
-            await self.bot.load_bot_config(self.bot, guild.id)
+            await self.bot.load_bot_config(guild.id)
             current_config = self.bot.guild_configs.get(guild.id, {})
             lang = current_config.get("lang", "en")
             _ = translator.get_translation(lang)

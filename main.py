@@ -42,12 +42,7 @@ intents.members = True
 class BirthdayBot(commands.Bot):
     def __init__(self):
 
-        prefix = []
-        if beta:
-            prefix.append("beta!")
-        else:
-            prefix.append("!")
-
+        prefix = "beta!" if beta else "!"
         super().__init__(command_prefix=prefix, intents=intents, help_command=None)
         self.guild_configs = {}
 
@@ -108,7 +103,7 @@ class BirthdayBot(commands.Bot):
         print("Bot bereit!")
 
 
-    async def on_guild_join(self, guild):
+    async def on_guild_join(self, guild: discord.Guild):
         christianst_id = 1235134572157603841
         christianst = self.get_user(christianst_id)
 
@@ -140,7 +135,7 @@ class BirthdayBot(commands.Bot):
         if guild.id in self.guild_configs:
             del self.guild_configs[guild.id]
 
-        db_path = f"databases / guild_{guild.id}.db"
+        db_path = f"databases/guild_{guild.id}.db"
         if os.path.exists(db_path):
             os.remove(db_path)
 
