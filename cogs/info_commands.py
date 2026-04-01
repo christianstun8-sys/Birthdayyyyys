@@ -57,7 +57,7 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
             return
 
         guild_id = interaction.guild.id
-        await self.bot.load_bot_config(guild_id)
+        await self.bot.load_bot_config(self.bot, guild_id)
         lang = self.bot.guild_configs.get(interaction.guild.id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
         channel = interaction.channel

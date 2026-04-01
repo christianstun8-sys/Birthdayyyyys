@@ -169,7 +169,7 @@ class BirthdayCheckTask(commands.Cog):
             return
 
         for guild in self.bot.guilds:
-            await self.bot.load_bot_config(guild.id)
+            await self.bot.load_bot_config(self.bot, guild.id)
             current_config = self.bot.guild_configs.get(guild.id, {})
             lang = current_config.get("lang", "en")
             _ = translator.get_translation(lang)
