@@ -9,7 +9,7 @@ class Setuphelp(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_join(self, guild: discord.Guild):
         lang = "de"
-        if guild.preferred_locale is not "de":
+        if guild.preferred_locale != "de":
             lang = "en"
 
         _ = translator.get_translation(lang)
