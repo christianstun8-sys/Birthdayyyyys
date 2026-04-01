@@ -30,14 +30,22 @@ async def send_global_announcement(bot):
                     color_val = int(color_val.replace("#", ""), 16)
 
                 embed = discord.Embed(
-                    title="📢 Birthdayyyyys Update 4.0",
-                    description="Hallo! 👋 \n"
-                                "Birthdayyyyys entwickelt sich immer weiter fort! Hier die neuesten News:",
+                    title="⚠️ Config-Problems",
+                    description="Hi! 👋 \n"
+                                "**__English:__**\n"
+                                "Birthdayyyyys had some heavy issues with the configurations. Users couldn't save their settings, even if the bot said so."
+                                "This problem is now fixed. You can now save your configurations again as you'd like.\n"
+                                "Also, the language-switcher wasn't working. The language just stayed german. \n"
+                                "Now, you can set your language again!\nSorry for the inconvenience.\n\nBy the way: if you enjoy using Birthdayyyyys, consider rating us on top.gg and other Discord Bot lists! That would really help Birthdayyyyys growing!"
+                                "\nThanks for using Birthdayyyyys!\n\n"
+                                "**__Deutsch:__**\n"
+                                "Birthdayyyyys hatte einige schwerwiegende Probleme mit den Konfigurationen. Benutzer konnten ihre Einstellungen nicht speichern, selbst, als der Bot es bestätigt hatte."
+                                "Dieser Bug wurde gefixt! Ihr könnt nun wieder eure Konfigurationen setzen, wie ihr wollt.\n"
+                                "Außerdem hat die Spracheinstellung nicht funktioniert. Die Bot-Sprache blieb weiterhin auf deutsch."
+                                "\nNun könnt ihr wieder die Sprache einstellen.\nEntschuldigung für die Unannehmlichkeiten.\n\nÜbrigens: wenn ihr Freude an Birthdayyyyys habt, erwägt eine Bewertung auf top.gg und anderen Discord Bot Listen. Das würde Birthdayyyyys wirklich beim Wachsen helfen!"
+                                "\nDanke für's Nutzen von Birthdayyyyys!",
                     color=color_val
                 )
-
-                embed.add_field(name="**Mehrsprachig**", value="Die Antworten sind nun auf deutsch und auf englisch verfügbar! Somit ist Birthdayyyyys offiziell **international**! Die Hauptsprache wird nun auf englisch sein (welche am Anfang genutzt wird und in der auch diese News kommen). Die Sprache kann jederzeit in der Konfiguration angepasst werden.", inline=False)
-                embed.add_field(name="**Bessere Konfigurationen**", value="Birthdayyyyys nutzt nun Features vom Discord Components v2 Update: Ihr könnt nun sowohl den Kanal für die Geburtstagsnachrichten und die News, als auch die Geburtstagsrolle einfach über ein Formular auswählen. Darin ist nun eine interaktive Auswahl, welche das mühsame Eingeben der ID ersetzt.", inline=False)
 
                 embed.set_thumbnail(url=bot.user.avatar)
                 await target_channel.send(embed=embed)
