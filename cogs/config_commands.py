@@ -67,8 +67,8 @@ async def update_embed_settings(bot: commands.Bot, guild_id: int, title: str, me
             "image_title_no_age = ?, image_title_with_age = ?, birthday_role_id = ? WHERE guild_id = ?",
             (
                 guild_id,
-                config_to_save["birthday_channel_id"],
                 config_to_save["config_embed_color"],
+                config_to_save["birthday_channel_id"],
                 config_to_save["birthday_image_enabled"],
                 config_to_save["birthday_image_background"],
                 config_to_save["message_no_age"],
@@ -825,7 +825,16 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             await interaction.followup.send(_("Kein Kanal konfiguriert."), ephemeral=True)
             return
 
-        target_channel = self.bot.get_channel(configured_channel_id) or await self.bot.fetch_channel(configured_channel_id)
+        target_channel = self.bot.get_channel(configured_channel_id)
+        if target_channel is None:
+            try:
+                target_channel = await self.bot.fetch_channel(configured_channel_id)
+            except discord.NotFound:
+                await interaction.followup.send(_("❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze ihn in der Config neu."), ephemeral=True)
+                return
+            except discord.Forbidden:
+                await interaction.followup.send(_("❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."), ephemeral=True)
+                return
 
         embed_title = current_config.get(f"title_{message_type.value}")
         embed_message = current_config.get(f"message_{message_type.value}")
