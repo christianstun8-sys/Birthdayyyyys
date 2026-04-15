@@ -638,8 +638,8 @@ class MainConfigView(discord.ui.View):
         self.add_item(discord.ui.Button(label="🎨", style=discord.ButtonStyle.secondary, row=1, custom_id="color"))
         self.add_item(discord.ui.Button(label="📣", style=discord.ButtonStyle.secondary, row=1, custom_id="alerts"))
         self.add_item(discord.ui.Button(label="🗣️", style=discord.ButtonStyle.secondary, row=1, custom_id="language"))
-        self.add_item(discord.ui.Button(label="🗨️ℹ️", style=discord.ButtonStyle.primary, row=2, custom_id="msg_no_age"))
-        self.add_item(discord.ui.Button(label="🗨️", style=discord.ButtonStyle.primary, row=2, custom_id="msg_with_age"))
+        self.add_item(discord.ui.Button(label="🗨️", style=discord.ButtonStyle.primary, row=2, custom_id="msg_no_age"))
+        self.add_item(discord.ui.Button(label="🗨️️ℹ️", style=discord.ButtonStyle.primary, row=2, custom_id="msg_with_age"))
 
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         await self.bot.load_bot_config(self.bot, self.guild_id)
@@ -671,6 +671,7 @@ class MainConfigView(discord.ui.View):
         await self.bot.load_bot_config(self.bot, self.guild_id)
         current_config = self.bot.guild_configs.get(self.guild_id, {})
         new_status = current_config.get("birthday_image_enabled", False)
+        new_status = not current_config.get("birthday_image_enabled", False)
 
         async with aiosqlite.connect(self.bot.get_db_path(self.guild_id)) as db:
             await db.execute(
@@ -836,16 +837,22 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
                 await interaction.followup.send(_("❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."), ephemeral=True)
                 return
 
-        embed_title = current_config.get(f"title_{message_type.value}")
-        embed_message = current_config.get(f"message_{message_type.value}")
+        embed_title = current_config.get(f"title_{message_type.value}") or default_title(_, message_type.value == "with_age")
+        embed_message = current_config.get(f"message_{message_type.value}") or default_description(_, message_type.value == "with_age")
         embed_footer = current_config.get(f"footer_{message_type.value}")
-        image_title = current_config.get(f"image_title_{message_type.value}")
+        image_title = current_config.get(f"image_title_{message_type.value}") or default_image_title(_, message_type.value == "with_age")
 
         age_str = "30" if message_type.value == "with_age" else ""
+
         final_embed_title = embed_title.replace("%username", user.display_name).replace("%age", age_str)
         final_embed_message = embed_message.replace("%username", user.display_name).replace("%age", age_str).replace("%mention", user.mention)
-        final_embed_footer = embed_footer.replace("%username", user.display_name).replace("%age", age_str) if embed_footer else None
         final_image_title = image_title.replace("%username", user.display_name).replace("%age", age_str)
+
+        final_embed_footer = None
+        if embed_footer:
+            final_embed_footer = embed_footer.replace("%username", user.display_name).replace("%age", age_str)
+        elif message_type.value == "with_age":
+            final_embed_footer = with_age_footer(_)
 
         embed = discord.Embed(
             title=final_embed_title,

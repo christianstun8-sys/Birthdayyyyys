@@ -28,11 +28,12 @@ async def ensure_tables(db: aiosqlite.Connection):
                      CREATE TABLE IF NOT EXISTS guild_settings (
                                                                    guild_id INTEGER PRIMARY KEY,
                                                                    birthday_channel_id INTEGER,
-                                                                   config_embed_color INTEGER DEFAULT 0x3aaa06,
-                                                                   birthday_role_id INTEGER,
+                                                                   config_embed_color INTEGER DEFAULT 0x45a6c9,
+                                                                   birthday_role_id INTEGER DEFAULT 0,
                                                                    birthday_image_enabled INTEGER DEFAULT 1,
                                                                    birthday_image_background TEXT,
                                                                    lang TEXT DEFAULT 'en',
+                                                                   alerts INTEGER DEFAULT 0,
                                                                    title_no_age TEXT,
                                                                    message_no_age TEXT,
                                                                    footer_no_age TEXT,
@@ -43,6 +44,28 @@ async def ensure_tables(db: aiosqlite.Connection):
                                                                    image_title_with_age TEXT
                      )
                      ''')
+
+    async with db.execute("PRAGMA table_info(guild_settings)") as cursor:
+        existing_columns = [row[1] for row in await cursor.fetchall()]
+
+    required_structure = {
+        "alerts": "INTEGER DEFAULT 0",
+        "birthday_role_id": "INTEGER DEFAULT 0",
+        "title_no_age": "TEXT",
+        "message_no_age": "TEXT",
+        "footer_no_age": "TEXT",
+        "image_title_no_age": "TEXT",
+        "title_with_age": "TEXT",
+        "message_with_age": "TEXT",
+        "footer_with_age": "TEXT",
+        "image_title_with_age": "TEXT"
+    }
+
+    for col_name, col_type in required_structure.items():
+        if col_name not in existing_columns:
+            print(f"Migration: Füge fehlende Spalte {col_name} hinzu...")
+            await db.execute(f"ALTER TABLE guild_settings ADD COLUMN {col_name} {col_type}")
+
     await db.execute('''
                      CREATE TABLE IF NOT EXISTS birthdays (
                                                               user_id INTEGER PRIMARY KEY,
@@ -52,6 +75,7 @@ async def ensure_tables(db: aiosqlite.Connection):
                                                               timezone TEXT DEFAULT 'Europe/Berlin'
                      )
                      ''')
+
     await db.commit()
 
 async def setup_database(guild_id: int):

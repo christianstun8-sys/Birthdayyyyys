@@ -20,7 +20,7 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             embed_color = 0x45a6c9
             lang = "en"
         else:
-            await self.bot.load_bot_config(interaction.guild.id)
+            await self.bot.load_bot_config(self.bot, interaction.guild.id)
             embed_color = self.bot.guild_configs.get(interaction.guild.id, {}).get("config_embed_color", 0x45a6c9)
             lang = self.bot.guild_configs.get(interaction.guild.id, {}).get("lang", "en")
 
@@ -154,7 +154,7 @@ Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **
             embed_color = 0x45a6c9
             lang = "en"
         else:
-            await self.bot.load_bot_config(interaction.guild.id)
+            await self.bot.load_bot_config(self.bot, interaction.guild.id)
             embed_color = self.bot.guild_configs.get(interaction.guild.id, {}).get("config_embed_color", 0x45a6c9)
             lang = self.bot.guild_configs.get(interaction.guild.id, {}).get("lang", "en")
 
