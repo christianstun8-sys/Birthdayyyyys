@@ -367,13 +367,15 @@ class ChannelConfigModal(discord.ui.Modal):
     async def on_submit(self, interaction: discord.Interaction):
         lang = self.bot.guild_configs.get(self.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
-
-        channel = await interaction.guild.fetch_channel(self.channel_select.values[0].id)
+        try:
+            channel = await interaction.guild.fetch_channel(self.channel_select.values[0].id)
+        except discord.Forbidden:
+            return await interaction.response.send_message(_("❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."), ephemeral=True)
         guild_id = interaction.guild.id
         perms = channel.permissions_for(interaction.guild.me).send_messages
 
         if not perms:
-            return await interaction.response.send_message("❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben.", ephemeral=True)
+            return await interaction.response.send_message(_("❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."), ephemeral=True)
 
         async with aiosqlite.connect(self.bot.get_db_path(guild_id)) as db:
             await db.execute(
