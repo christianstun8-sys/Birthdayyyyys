@@ -1,5 +1,4 @@
 import discord
-from discord._types import ClientT
 from discord.ext import commands
 from discord import app_commands, Interaction
 import aiosqlite
@@ -12,7 +11,7 @@ def default_title(_, age: bool):
         return _("🎉 Herzlichen Glückwunsch zum Geburtstag, %username!")
     else:
         return _("🎂 Alles Gute zum %age. Geburtstag, %username!")
-    
+
 def default_description(_, age: bool):
     if not age:
         return _("Bitte sende deine besten Wünsche an %mention!")
@@ -24,7 +23,7 @@ def default_image_title(_, age: bool):
         return _("Happy Birthday!")
     else:
         return _("Happy %age. Birthday!")
-    
+
 def with_age_footer(_):
     return _("Feiere schön!")
 
@@ -666,9 +665,8 @@ class MainConfigView(discord.ui.View):
             await self.set_alerts(interaction)
         elif custom_id == "language":
             await self.send_language_panel(interaction)
-        return False  # verhindert, dass Discord automatisch "Button nicht erkannt" meldet
+        return False
 
-    # --- die alten Callback-Methoden einfach anpassen ---
     async def toggle_image(self, interaction: discord.Interaction):
         await self.bot.load_bot_config(self.bot, self.guild_id)
         current_config = self.bot.guild_configs.get(self.guild_id, {})
@@ -761,7 +759,7 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             return
         raise error
 
-    @app_commands.command(name="config", description="Zentrales Menü für alle Bot-Einstellungen.")
+    @app_commands.command(name="config", description="Menu for all bot configurations")
     @app_commands.default_permissions(manage_guild=True)
     async def config_main(self, interaction: discord.Interaction):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
@@ -801,11 +799,11 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             ephemeral=True
         )
 
-    @app_commands.command(name="config-test", description="Sende eine Test-Geburtstagsnachricht.")
-    @app_commands.describe(message_type="Art der Testnachricht", user_to_test="Benutzer für den Test")
+    @app_commands.command(name="config-test", description="Send a birthday message to test your config")
+    @app_commands.describe(message_type="Type of birthday message", user_to_test="User for testing")
     @app_commands.choices(message_type=[
-        app_commands.Choice(name="Ohne Altersangabe", value="no_age"),
-        app_commands.Choice(name="Mit Altersangabe (Test-Alter: 30)", value="with_age")
+        app_commands.Choice(name="Without age", value="no_age"),
+        app_commands.Choice(name="With age (Age for test: 30)", value="with_age")
     ])
     @app_commands.default_permissions(manage_guild=True)
     async def test_birthday_message(self, interaction: discord.Interaction, message_type: app_commands.Choice[str], user_to_test: discord.User = None):
@@ -880,10 +878,14 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             except:
                 pass
 
-        if generated_image_file:
-            await target_channel.send(embed=embed, file=generated_image_file)
-        else:
-            await target_channel.send(embed=embed)
+        try:
+            if generated_image_file:
+                await target_channel.send(embed=embed, file=generated_image_file)
+            else:
+                await target_channel.send(embed=embed)
+
+        except discord.Forbidden:
+            return await interaction.followup.send(_("❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."), ephemeral=True)
 
         await interaction.followup.send(_("Test gesendet! ✅"), ephemeral=True)
 
