@@ -552,16 +552,18 @@ class LanguageConfigView(discord.ui.View):
 
         self.add_item(
             discord.ui.Button(
-                label=_("Deutsch 🇩🇪"),
+                label=_("Deutsch"),
                 style=discord.ButtonStyle.grey,
-                custom_id="lang_de"
+                custom_id="lang_de",
+                emoji="<:de:1470890238871339202>"
             )
         )
         self.add_item(
             discord.ui.Button(
-                label=_("English 🇬🇧"),
+                label=_("English"),
                 style=discord.ButtonStyle.grey,
-                custom_id="lang_en"
+                custom_id="lang_en",
+                emoji="<:gb:1470890201449758763>"
             )
         )
 

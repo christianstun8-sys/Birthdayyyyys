@@ -11,7 +11,7 @@ import mdb
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
-beta = False
+beta = True
 
 if beta:
     TOKEN = os.getenv('DISCORD_BETA_TOKEN')
