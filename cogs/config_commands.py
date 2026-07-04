@@ -566,6 +566,46 @@ class LanguageConfigView(discord.ui.View):
                 emoji="<:gb:1470890201449758763>"
             )
         )
+        self.add_item(
+            discord.ui.Button(
+                label=_("Französisch"),
+                style=discord.ButtonStyle.grey,
+                custom_id="lang_fr",
+                emoji="<:fr:1517917845550534666>"
+            )
+        )
+        self.add_item(
+            discord.ui.Button(
+                label=_("Spanisch"),
+                style=discord.ButtonStyle.grey,
+                custom_id="lang_es",
+                emoji="<:sp:1517919374046920774>"
+            )
+        )
+        self.add_item(
+            discord.ui.Button(
+                label=_("Polnisch"),
+                style=discord.ButtonStyle.grey,
+                custom_id="lang_pl",
+                emoji="<:pl:1517920067256324108>"
+            )
+        )
+        self.add_item(
+            discord.ui.Button(
+                label=_("Russisch"),
+                style=discord.ButtonStyle.grey,
+                custom_id="lang_ru",
+                emoji="<:ru:1517920710889050122>"
+            )
+        )
+        self.add_item(
+            discord.ui.Button(
+                label=_("Ukrainisch"),
+                style=discord.ButtonStyle.grey,
+                custom_id="lang_uk",
+                emoji="<:ua:1518274492156215366>"
+            )
+        )
 
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         custom_id = interaction.data.get("custom_id")
@@ -574,6 +614,16 @@ class LanguageConfigView(discord.ui.View):
             await self.set_language(interaction, "de")
         elif custom_id == "lang_en":
             await self.set_language(interaction, "en")
+        elif custom_id == "lang_fr":
+            await self.set_language(interaction, "fr")
+        elif custom_id == "lang_es":
+            await self.set_language(interaction, "es")
+        elif custom_id == "lang_pl":
+            await self.set_language(interaction, "pl")
+        elif custom_id == "lang_ru":
+            await self.set_language(interaction, "ru")
+        elif custom_id == "lang_uk":
+            await self.set_language(interaction, "uk")
 
         return False
 

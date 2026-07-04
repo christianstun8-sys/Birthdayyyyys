@@ -1,8 +1,9 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import os
 from dotenv import load_dotenv
 import aiosqlite
+import aiohttp
 import logging
 
 import Alerts
@@ -12,6 +13,7 @@ load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
 beta = False
+debug  = False
 
 if beta:
     TOKEN = os.getenv('DISCORD_BETA_TOKEN')
@@ -41,10 +43,10 @@ intents.members = True
 
 class BirthdayBot(commands.Bot):
     def __init__(self):
-
         prefix = "beta!" if beta else "!"
         super().__init__(command_prefix=prefix, intents=intents, help_command=None)
         self.guild_configs = {}
+        self.kuma_url = "https://status.christianst.xyz/api/push/bELLyg8wcQ?status=up&msg=OK&ping="
 
     async def setup_hook(self):
         print("Starte Cogs-Ladevorgang...")
@@ -53,6 +55,8 @@ class BirthdayBot(commands.Bot):
             if filename.endswith('.py'):
                 try:
                     await self.load_extension(f'cogs.{filename[:-3]}')
+                    if debug:
+                        print(f"[DEBUG] '{filename[:-3]}' Cog geladen.")
                 except Exception as e:
                     print(f"❌ Fehler beim Laden von Cog '{filename[:-3]}': {e}")
                     done = False
@@ -92,6 +96,8 @@ class BirthdayBot(commands.Bot):
                 return
 
         self.db = await aiosqlite.connect("databases/tickets.db")
+
+        self.uptime_ping.start()
 
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
@@ -160,6 +166,24 @@ class BirthdayBot(commands.Bot):
             await christianst.send(embed=embed, content=christianst.mention)
         except discord.Forbidden:
             print(f"Konnte keine Nachricht an {christianst.global_name} senden.")
+
+    @tasks.loop(seconds=30)
+    async def uptime_ping(self):
+        if self.is_ready():
+            try:
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(self.kuma_url) as response:
+                        if response.status == 200:
+                            if debug:
+                                print("[DEBUG] Uptime Kuma erfolgreich gepingt.")
+                        else:
+                            print(f"Kuma-Ping fehlgeschlagen: Status {response.status}")
+            except Exception as e:
+                print(f"Fehler beim Uptime-Ping: {e}")
+
+    @uptime_ping.before_loop
+    async def before_uptime_ping(self):
+        await self.wait_until_ready()
 
 if __name__ == '__main__':
     setup_directories()
