@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-import asyncio
 
 class SyncCommand(commands.Cog):
     def __init__(self, bot):
@@ -17,7 +16,6 @@ class SyncCommand(commands.Cog):
             )
 
         msg = await ctx.send(embed=loadingembed)
-        success = None
         no_sc = False
         try:
             synced = await self.bot.tree.sync()
@@ -51,8 +49,6 @@ class SyncCommand(commands.Cog):
             )
 
         await msg.edit(embed=embed)
-        await asyncio.sleep(15)
-        await msg.delete()
 
 async def setup(bot):
     await bot.add_cog(SyncCommand(bot))
