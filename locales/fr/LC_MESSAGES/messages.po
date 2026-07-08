@@ -1,0 +1,795 @@
+# French translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-07-09 00:01+0200\n"
+"PO-Revision-Date: 2026-06-27 19:15+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: eventmessages.py:17
+msgid "⚠️ Unbekannter Fehler"
+msgstr "⚠️ Erreur inconnue"
+
+#: eventmessages.py:18
+msgid ""
+"Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
+"Server."
+msgstr ""
+"Une erreur inconnue est survenue. Veuillez contacter le serveur de "
+"support."
+
+#: cogs/birthday_check_task.py:280 cogs/config_commands.py:10
+#, python-format
+msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
+msgstr "🎉 Joyeux anniversaire, %username !"
+
+#: cogs/birthday_check_task.py:280 cogs/config_commands.py:12
+#, python-format
+msgid "🎂 Alles Gute zum %age. Geburtstag, %username!"
+msgstr "🎂 Joyeux %agee anniversaire, %username !"
+
+#: cogs/birthday_check_task.py:281 cogs/config_commands.py:16
+msgid "Bitte sende deine besten Wünsche an %mention!"
+msgstr "Veuillez envoyer vos meilleurs vœux à %mention !"
+
+#: cogs/birthday_check_task.py:281 cogs/config_commands.py:18
+msgid "Lasst uns %mention zu seinem %age. Geburtstag gratulieren!"
+msgstr "Souhaitons un joyeux %agee anniversaire à %mention !"
+
+#: cogs/birthday_check_task.py:282 cogs/config_commands.py:27
+msgid "Feiere schön!"
+msgstr "Passe une excellente fête !"
+
+#: cogs/birthday_check_task.py:309
+msgid "Geburtstagsrolle zugewiesen"
+msgstr "Rôle d'anniversaire attribué"
+
+#: cogs/birthday_check_task.py:318
+msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
+msgstr "Rôle d'anniversaire retiré (anniversaire terminé)"
+
+#: cogs/birthday_commands.py:40 cogs/birthday_commands.py:86
+#: cogs/config_commands.py:805 cogs/config_commands.py:807
+#: cogs/info_commands.py:111
+msgid "⚠️ Du hast keine Berechtigung dazu."
+msgstr "⚠️ Vous n'avez pas la permission de faire cela."
+
+#: cogs/birthday_commands.py:43
+msgid "Ungültige Zeitzone! Bitte wähle eine aus der Liste."
+msgstr "Fuseau horaire invalide ! Veuillez en choisir un dans la liste."
+
+#: cogs/birthday_commands.py:51
+msgid "❌ Ungültiges Datum angegeben!"
+msgstr "❌ Date indiquée invalide !"
+
+#: cogs/birthday_commands.py:63
+#, python-brace-format
+msgid ""
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year}"
+" ({timezone}) gesetzt!"
+msgstr ""
+"✅ L'anniversaire de {mention} a été configuré pour le "
+"{day:02d}/{month:02d}/{year} ({timezone}) !"
+
+#: cogs/birthday_commands.py:65
+#, python-brace-format
+msgid ""
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} "
+"({timezone}) gesetzt!"
+msgstr ""
+"✅ L'anniversaire de {mention} a été configuré pour le "
+"{day:02d}/{month:02d} ({timezone}) !"
+
+#: cogs/birthday_commands.py:68
+#, python-brace-format
+msgid ""
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone})"
+" gesetzt!"
+msgstr ""
+"✅ Votre anniversaire a été configuré pour le {day:02d}/{month:02d}/{year}"
+" ({timezone}) !"
+
+#: cogs/birthday_commands.py:70
+#, python-brace-format
+msgid ""
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) "
+"gesetzt!"
+msgstr ""
+"✅ Votre anniversaire a été configuré pour le {day:02d}/{month:02d} "
+"({timezone}) !"
+
+#: cogs/birthday_commands.py:94
+#, python-brace-format
+msgid "✅ Der Geburtstag von {mention} wurde gelöscht."
+msgstr "✅ L'anniversaire de {mention} a été supprimé."
+
+#: cogs/birthday_commands.py:95
+msgid "✅ Dein Geburtstag wurde gelöscht."
+msgstr "✅ Votre anniversaire a été supprimé."
+
+#: cogs/birthday_commands.py:112
+#, python-brace-format
+msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "Votre anniversaire est le {day:02d}/{month:02d}/{year} ({tz})."
+
+#: cogs/birthday_commands.py:114
+#, python-brace-format
+msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
+msgstr "Votre anniversaire est le {day:02d}/{month:02d} ({tz})."
+
+#: cogs/birthday_commands.py:116
+msgid "❌ Du hast noch keinen Geburtstag registriert."
+msgstr "❌ Vous n'avez pas encore enregistré d'anniversaire."
+
+#: cogs/birthday_commands.py:129 cogs/birthday_commands.py:141
+msgid "⚠️ Es sind noch keine Geburtstage registriert."
+msgstr "⚠️ Aucun anniversaire n'est enregistré pour le moment."
+
+#: cogs/birthday_commands.py:154
+msgid "Jahre"
+msgstr "ans"
+
+#: cogs/birthday_commands.py:164
+msgid "Geburtstagskalender"
+msgstr "Calendrier des anniversaires"
+
+#: cogs/config_commands.py:22
+msgid "Happy Birthday!"
+msgstr "Joyeux anniversaire !"
+
+#: cogs/config_commands.py:24
+msgid "Happy %age. Birthday!"
+msgstr "Joyeux %agee anniversaire !"
+
+#: cogs/config_commands.py:100
+msgid ""
+"Hier kannst du alle Einstellungen für das Geburtstagssystem verwalten.\n"
+"Nutze die Buttons unten zum Konfigurieren.\n"
+"\n"
+"🪛 = Kanal\n"
+"⚙️ = Rolle\n"
+"🖼️ = Bilder An/Aus\n"
+"🎨 = Farbe\n"
+"📣 = Ankündigungen\n"
+"🗣️ = Sprache\n"
+"🗨️ℹ️ = Nachricht (Mit Alter)\n"
+"🗨️ = Nachricht (Ohne Alter)"
+msgstr ""
+"Ici, vous pouvez gérer tous les paramètres du système d'anniversaire.\n"
+"Utilisez les boutons ci-dessous pour configurer.\n"
+"\n"
+"🪛 = Salon\n"
+"⚙️ = Rôle\n"
+"🖼️ = Images Activer/Désactiver\n"
+"🎨 = Couleur\n"
+"📣 = Annonces\n"
+"🗣️ = Langue\n"
+"🗨️ℹ️ = Message (Avec âge)\n"
+"🗨️ = Message (Sans âge)"
+
+#: cogs/config_commands.py:120
+msgid "Nachricht ohne Altersangabe anpassen"
+msgstr "Personnaliser le message sans mention de l'âge"
+
+#: cogs/config_commands.py:128
+#, python-format
+msgid "Titel des Embeds (%username)"
+msgstr "Titre de l'embed (%username)"
+
+#: cogs/config_commands.py:137
+#, python-format
+msgid "Nachricht im Embed (%mention, %username)"
+msgstr "Message dans l'embed (%mention, %username)"
+
+#: cogs/config_commands.py:147
+#, python-format
+msgid "Footer im Embed (optional, %username)"
+msgstr "Pied de page de l'embed (optionnel, %username)"
+
+#: cogs/config_commands.py:148
+msgid "Kein Footer"
+msgstr "Pas de pied de page"
+
+#: cogs/config_commands.py:156
+#, python-format
+msgid "Titel auf Geburtstagsbild (%username)"
+msgstr "Titre sur l'image d'anniversaire (%username)"
+
+#: cogs/config_commands.py:188
+msgid "Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"
+msgstr "Le message d'anniversaire (sans âge) a été mis à jour avec succès ! ✅"
+
+#: cogs/config_commands.py:200
+msgid "Nachricht mit Altersangabe anpassen"
+msgstr "Personnaliser le message avec mention de l'âge"
+
+#: cogs/config_commands.py:208
+msgid "Titel (%age)"
+msgstr "Titre (%age)"
+
+#: cogs/config_commands.py:217
+#, python-format
+msgid "Beschr. (%mention, %username, %age)"
+msgstr "Description (%mention, %username, %age)"
+
+#: cogs/config_commands.py:227
+#, python-format
+msgid "Footer (optional, %username)"
+msgstr "Pied de page (optionnel, %username)"
+
+#: cogs/config_commands.py:228
+msgid "Standard: Feiere schön!"
+msgstr "Par défaut : Passe une excellente fête !"
+
+#: cogs/config_commands.py:236
+#, python-format
+msgid "Bildtitel (%age, %username)"
+msgstr "Titre de l'image (%age, %username)"
+
+#: cogs/config_commands.py:268
+msgid "Die Geburtstagsnachricht (mit Alter) wurde erfolgreich aktualisiert! ✅"
+msgstr "Le message d'anniversaire (avec âge) a été mis à jour avec succès ! ✅"
+
+#: cogs/config_commands.py:280
+msgid "Embed-Farbe anpassen"
+msgstr "Personnaliser la couleur de l'embed"
+
+#: cogs/config_commands.py:283
+msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
+msgstr "Couleur de l'embed (code hexadécimal, ex : FF00FF)"
+
+#: cogs/config_commands.py:284
+#, python-brace-format
+msgid "Aktuell: {color}"
+msgstr "Actuelle : {color}"
+
+#: cogs/config_commands.py:301
+msgid "Ungültiger Hex-Code."
+msgstr "Code hexadécimal invalide."
+
+#: cogs/config_commands.py:338
+#, python-brace-format
+msgid "Farbe auf `#{color}` aktualisiert."
+msgstr "Couleur mise à jour sur `#{color}`."
+
+#: cogs/config_commands.py:349
+msgid "Geburtstagskanal festlegen"
+msgstr "Définir le salon des anniversaires"
+
+#: cogs/config_commands.py:352
+msgid "Kanal auswählen..."
+msgstr "Choisir un salon..."
+
+#: cogs/config_commands.py:359
+msgid "Ziel-Kanal für Geburtstage:"
+msgstr "Salon cible pour les anniversaires :"
+
+#: cogs/config_commands.py:371 cogs/config_commands.py:897
+msgid "❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
+msgstr "❌ Je n'ai pas la permission d'accéder au salon configuré."
+
+#: cogs/config_commands.py:376 cogs/config_commands.py:444
+msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
+msgstr "❌ Je ne peux pas envoyer de messages dans le salon sélectionné."
+
+#: cogs/config_commands.py:388 cogs/config_commands.py:522
+#: cogs/config_commands.py:654 cogs/config_commands.py:739
+#: cogs/config_commands.py:832
+msgid "⚙️ Server-Konfiguration"
+msgstr "⚙️ Configuration du serveur"
+
+#: cogs/config_commands.py:393 cogs/config_commands.py:527
+#: cogs/config_commands.py:660 cogs/config_commands.py:744
+#: cogs/config_commands.py:838
+msgid "Kanal"
+msgstr "Salon"
+
+#: cogs/config_commands.py:394 cogs/config_commands.py:528
+#: cogs/config_commands.py:661 cogs/config_commands.py:665
+#: cogs/config_commands.py:745 cogs/config_commands.py:839
+msgid "Nicht gesetzt"
+msgstr "Non défini"
+
+#: cogs/config_commands.py:397 cogs/config_commands.py:531
+#: cogs/config_commands.py:664 cogs/config_commands.py:748
+#: cogs/config_commands.py:842
+msgid "Rolle"
+msgstr "Rôle"
+
+#: cogs/config_commands.py:398 cogs/config_commands.py:532
+#: cogs/config_commands.py:749 cogs/config_commands.py:843
+msgid "Keine"
+msgstr "Aucun"
+
+#: cogs/config_commands.py:401 cogs/config_commands.py:535
+#: cogs/config_commands.py:668 cogs/config_commands.py:752
+#: cogs/config_commands.py:846
+msgid "Bilder"
+msgstr "Images"
+
+#: cogs/config_commands.py:402 cogs/config_commands.py:536
+#: cogs/config_commands.py:669 cogs/config_commands.py:753
+#: cogs/config_commands.py:847
+msgid "✅ Aktiviert"
+msgstr "✅ Activé"
+
+#: cogs/config_commands.py:402 cogs/config_commands.py:536
+#: cogs/config_commands.py:669 cogs/config_commands.py:753
+#: cogs/config_commands.py:847
+msgid "❌ Deaktiviert"
+msgstr "❌ Désactivé"
+
+#: cogs/config_commands.py:416
+msgid "News-Kanal festlegen"
+msgstr "Définir le salon des nouveautés"
+
+#: cogs/config_commands.py:419
+msgid "Kanal auswählen, leer lassen zum Deaktivieren..."
+msgstr "Choisir un salon, laisser vide pour désactiver..."
+
+#: cogs/config_commands.py:425
+msgid "Ziel-Kanal für News:"
+msgstr "Salon cible pour les nouveautés :"
+
+#: cogs/config_commands.py:437
+msgid "✅ Bot-News wurden deaktiviert."
+msgstr "✅ Les nouveautés du bot ont été désactivées."
+
+#: cogs/config_commands.py:448
+#, python-brace-format
+msgid "✅ News-Kanal wurde auf {channel} gesetzt."
+msgstr "✅ Le salon des nouveautés a été défini sur {channel}."
+
+#: cogs/config_commands.py:462
+msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
+msgstr "Choisir un rôle, laisser vide pour désactiver..."
+
+#: cogs/config_commands.py:469
+msgid "Geburtstagsrolle wählen"
+msgstr "Choisir le rôle d'anniversaire"
+
+#: cogs/config_commands.py:491
+msgid "✅ Geburtstagsrolle deaktiviert."
+msgstr "✅ Rôle d'anniversaire désactivé."
+
+#: cogs/config_commands.py:500
+#, python-brace-format
+msgid ""
+"⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder "
+"gleichrangig mit meiner eigenen Rolle ist."
+msgstr ""
+"⚠️ Je ne peux pas attribuer le rôle {role} car il est supérieur ou égal à"
+" mon propre rôle dans la hiérarchie."
+
+#: cogs/config_commands.py:506
+msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
+msgstr "❌ Vous ne pouvez pas définir le rôle @everyone comme rôle d'anniversaire."
+
+#: cogs/config_commands.py:554
+msgid "Deutsch"
+msgstr "Allemand 🇩🇪"
+
+#: cogs/config_commands.py:562
+msgid "English"
+msgstr "Anglais 🇬🇧"
+
+#: cogs/config_commands.py:570
+msgid "Französisch"
+msgstr "Français 🇫🇷"
+
+#: cogs/config_commands.py:578
+msgid "Spanisch"
+msgstr "Espagnol 🇪🇸"
+
+#: cogs/config_commands.py:586
+msgid "Polnisch"
+msgstr "Polonais 🇵🇱"
+
+#: cogs/config_commands.py:594
+msgid "Russisch"
+msgstr "Russe 🇷🇺"
+
+#: cogs/config_commands.py:602
+msgid "Ukrainisch"
+msgstr "Ukrainien 🇺🇦"
+
+#: cogs/config_commands.py:635
+msgid "❌ Diese Sprache ist bereits eingestellt."
+msgstr "❌ Cette langue est déjà configurée."
+
+#: cogs/config_commands.py:785
+msgid "🌍 Sprache"
+msgstr "🌍 Langue"
+
+#: cogs/config_commands.py:786
+msgid ""
+"Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
+"**HINWEIS:** Übersetzungen können fehlerhaft sein."
+msgstr ""
+"Ici, vous pouvez modifier la langue des réponses du bot.\n"
+"**REMARQUE :** Les traductions peuvent contenir des erreurs."
+
+#: cogs/config_commands.py:823
+msgid "Nur in Servern möglich."
+msgstr "Disponible uniquement sur les serveurs."
+
+#: cogs/config_commands.py:874
+msgid "Nur auf einem Server möglich."
+msgstr "Disponible uniquement sur un serveur."
+
+#: cogs/config_commands.py:886
+msgid "Kein Kanal konfiguriert."
+msgstr "Aucun salon configuré."
+
+#: cogs/config_commands.py:894
+msgid ""
+"❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze "
+"ihn in der Config neu."
+msgstr ""
+"❌ Le salon configuré est introuvable (supprimé ?). Veuillez le redéfinir "
+"dans la configuration."
+
+#: cogs/config_commands.py:948
+msgid "❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
+msgstr "❌ Je n'ai pas la permission d'écrire dans le salon configuré."
+
+#: cogs/config_commands.py:950
+msgid "Test gesendet! ✅"
+msgstr "Test envoyé ! ✅"
+
+#: cogs/info_commands.py:31
+#, python-brace-format
+msgid ""
+"Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem "
+"**Geburtstag** zu **gratulieren**! :)\n"
+"\n"
+"## ❔ __Infos:__\n"
+"<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt "
+"worden\n"
+"<:developer:1390293000747225098> Entwickler: _chrxstianst.\n"
+"<:python:1390293453606486056> Library: discord.py-{version}\n"
+"ℹ️ Version: v5"
+msgstr ""
+"Salut ! Moi c'est **Birthdayyyyys**, un bot pour **souhaiter un joyeux "
+"anniversaire** aux utilisateurs ! :)\n"
+"\n"
+"## ❔ __Infos :__\n"
+"<:status_online:1390283178144698420> J'ai été créé <t:1751450400:R>\n"
+"<:developer:1390293000747225098> Développeur : _chrxstianst.\n"
+"<:python:1390293453606486056> Bibliothèque : discord.py-{version}\n"
+"ℹ️ Version : v5"
+
+#: cogs/info_commands.py:75 cogs/info_commands.py:89 cogs/info_commands.py:104
+#, python-brace-format
+msgid "__Hilfe für den Befehl /{command}__"
+msgstr "__Aide pour la commande /{command}__"
+
+#: cogs/info_commands.py:81
+msgid "Mit dieser Auswahl legst du deinen Geburtsmonat fest."
+msgstr "Avec ce choix, vous définissez votre mois de naissance."
+
+#: cogs/info_commands.py:82
+msgid "Mit dieser Auswahl legst du deinen Geburtstag fest."
+msgstr "Avec ce choix, vous définissez votre jour de naissance."
+
+#: cogs/info_commands.py:83
+msgid ""
+"*(optional)*: Lege hiermit das Geburtsjahr von dir fest. Dein Alter wird "
+"errechnet und offen bekannt gegeben."
+msgstr ""
+"*(optionnel)* : Définissez votre année de naissance. Votre âge sera "
+"calculé et affiché publiquement."
+
+#: cogs/info_commands.py:84
+msgid ""
+"*(optional)*: Falls du nicht in der Zeitzone **Europe/Berlin** wohnst, "
+"kannst du sie hier ändern."
+msgstr ""
+"*(optionnel)* : Si vous ne résidez pas dans le fuseau horaire "
+"**Europe/Berlin**, vous pouvez le modifier ici."
+
+#: cogs/info_commands.py:90
+msgid ""
+"Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu "
+"nutzt man die Buttons auf dem gesendeten Panel."
+msgstr ""
+"Permet de modifier les paramètres du bot d'anniversaire. Utilisez pour "
+"cela les boutons du panneau envoyé."
+
+#: cogs/info_commands.py:93
+msgid "`Kanal`"
+msgstr "`Salon`"
+
+#: cogs/info_commands.py:93
+msgid ""
+"Im Formular kannst du den Kanal einstellen, worin die Geburtstagsgrüße "
+"gesendet werden sollen. **WICHTIG!** Ohne diese Einstellung wird keine "
+"Nachricht gesendet."
+msgstr ""
+"Dans le formulaire, vous pouvez définir le salon où les vœux "
+"d'anniversaire seront envoyés. **IMPORTANT !** Sans ce paramètre, aucun "
+"message ne sera envoyé."
+
+#: cogs/info_commands.py:94
+msgid "`Rolle`"
+msgstr "`Rôle`"
+
+#: cogs/info_commands.py:94
+msgid ""
+"Im Formular kannst du eine Geburtstagsrolle festlegen, die bei einem "
+"Geburtstag für 24h vergeben wird."
+msgstr ""
+"Dans le formulaire, vous pouvez définir un rôle d'anniversaire qui sera "
+"attribué pendant 24h le jour de l'anniversaire."
+
+#: cogs/info_commands.py:95
+msgid "`Bilder An/Aus`"
+msgstr "`Images Activer/Désactiver`"
+
+#: cogs/info_commands.py:95
+msgid ""
+"Stelle hier ein, ob personalisierte Banner bei Geburtstagen gesendet "
+"werden sollen. Wie so ein Banner aussieht, siehst du auf **__[der "
+"Homepage](https://birthdayyyyys.christianst.xyz)__**."
+msgstr ""
+"Choisissez ici si des bannières personnalisées doivent être envoyées lors"
+" des anniversaires. Vous pouvez voir à quoi ressemble une bannière sur "
+"**__[la page d'accueil](https://birthdayyyyys.christianst.xyz)__**."
+
+#: cogs/info_commands.py:96
+msgid "`Embed Farbe`"
+msgstr "`Couleur de l'embed`"
+
+#: cogs/info_commands.py:96
+msgid ""
+"Gebe in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden "
+"nun diese Farbe nutzen. Standard: `45A6C9`."
+msgstr ""
+"Entrez un code HEX dans le formulaire. Tous les embeds de messages "
+"utiliseront désormais cette couleur. Par défaut : `45A6C9`."
+
+#: cogs/info_commands.py:97
+msgid "`News Kanal`"
+msgstr "`Salon des nouveautés`"
+
+#: cogs/info_commands.py:97
+msgid ""
+"Wenn du Botneuigkeiten nicht verpassen willst, kannst du in das Formular "
+"die Kanal-ID für den gewünschten Kanal eingeben. In diesen werden "
+"Changelogs und Announcements gesendet. Setze die Kanal-ID auf `0`, um "
+"keine News zu bekommen (was sehr schade wäre)."
+msgstr ""
+"Si vous ne voulez pas manquer les nouveautés du bot, vous pouvez entrer "
+"l'ID du salon souhaité dans le formulaire. Les journaux de modifications "
+"(changelogs) et les annonces y seront envoyés. Définissez l'ID du salon "
+"sur `0` pour ne recevoir aucune nouveauté (ce qui serait dommage)."
+
+#: cogs/info_commands.py:98
+msgid "`Nachricht (Kein/Mit Alter)`"
+msgstr "`Message (Sans/Avec âge)`"
+
+#: cogs/info_commands.py:98
+msgid ""
+"Hier kannst du die Geburtstagsembeds bearbeiten. Du kannst sogar den "
+"Titel des generierten Banners auswählen. Nutze die Variablen im Titel "
+"jedes Feldes, um die Nachricht weiter zu personalisieren."
+msgstr ""
+"Ici, vous pouvez modifier les embeds d'anniversaire. Vous pouvez même "
+"choisir le titre de la bannière générée. Utilisez les variables dans le "
+"titre de chaque champ pour personnaliser davantage le message."
+
+#: cogs/info_commands.py:105
+msgid ""
+"Simuliere hier einen Geburtstag, um zu testen, ob deine Einstellungen "
+"funktionieren."
+msgstr "Simulez un anniversaire ici pour tester si vos paramètres fonctionnent."
+
+#: cogs/info_commands.py:108
+msgid "`Ohne Altersangabe`"
+msgstr "`Sans mention de l'âge`"
+
+#: cogs/info_commands.py:108
+msgid ""
+"Simuliere einen Geburtstag, wo der Benutzer kein Geburtsjahr angegeben "
+"hat."
+msgstr ""
+"Simulez un anniversaire où l'utilisateur n'a pas indiqué d'année de "
+"naissance."
+
+#: cogs/info_commands.py:109
+msgid "`Mit Altersangabe (Test-Alter: 30)`"
+msgstr "`Avec mention de l'âge (Âge de test : 30)`"
+
+#: cogs/info_commands.py:109
+msgid ""
+"Simuliere einen Geburtstag, der gesendet wird, wenn der Benutzer 30 Jahre"
+" alt wird."
+msgstr ""
+"Simulez un anniversaire qui sera envoyé lorsque l'utilisateur fêtera ses "
+"30 ans."
+
+#: cogs/info_commands.py:114
+msgid "❌ Fehler: Du hast keinen gültigen Befehl angegeben."
+msgstr "❌ Erreur : Vous n'avez pas indiqué de commande valide."
+
+#: cogs/info_commands.py:123
+msgid "ℹ️ Bot-Befehle"
+msgstr "ℹ️ Commandes du bot"
+
+#: cogs/info_commands.py:124
+msgid "Hier ist eine Liste aller verfügbaren Befehle:"
+msgstr "Voici une liste de toutes les commandes disponibles :"
+
+#: cogs/info_commands.py:128 cogs/info_commands.py:139
+msgid "__Mitglieder:__"
+msgstr "__Membres :__"
+
+#: cogs/info_commands.py:129 cogs/info_commands.py:140
+msgid "Setzt deinen Geburtstag."
+msgstr "Définit votre anniversaire."
+
+#: cogs/info_commands.py:130 cogs/info_commands.py:141
+msgid "Entfernt deinen Geburtstag."
+msgstr "Supprime votre anniversaire."
+
+#: cogs/info_commands.py:131 cogs/info_commands.py:142
+msgid "Zeigt alle gespeicherten Geburtstage an."
+msgstr "Affiche tous les anniversaires enregistrés."
+
+#: cogs/info_commands.py:132 cogs/info_commands.py:143
+msgid "Zeigt Informationen über den Bot an."
+msgstr "Affiche des informations sur le bot."
+
+#: cogs/info_commands.py:133
+msgid "Misst die derzeitige Antwortlatenz des Bots"
+msgstr "Mesure la latence de réponse actuelle du bot."
+
+#: cogs/info_commands.py:136
+msgid "Konfiguriert Birthdayyyyys."
+msgstr "Configure Birthdayyyyys."
+
+#: cogs/info_commands.py:137
+msgid "Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal."
+msgstr "Envoie un message d'anniversaire de test dans le salon configuré."
+
+#: cogs/info_commands.py:144
+msgid "Misst die derzeitige Antwortlatenz von Birthdayyyyys."
+msgstr "Mesure la latence de réponse actuelle de Birthdayyyyys."
+
+#: cogs/info_commands.py:147
+msgid "Nutze `/help [command]`, um über komplexere Befehle mehr zu erfahren."
+msgstr ""
+"Utilisez `/help [commande]` pour en savoir plus sur les commandes "
+"complexes."
+
+#: cogs/info_commands.py:188
+msgid "✅ Verbunden"
+msgstr "✅ Connecté"
+
+#: cogs/info_commands.py:190
+msgid "❌ Nicht verbunden"
+msgstr "❌ Non connecté"
+
+#: cogs/info_commands.py:196
+msgid "⏱️ Ping-Ergebnisse"
+msgstr "⏱️ Résultats du ping"
+
+#: cogs/info_commands.py:197
+msgid "Latenzzeiten des Bots zu verschiedenen Komponenten:"
+msgstr "Temps de latence du bot vers les différents composants :"
+
+#: cogs/info_commands.py:202
+msgid "🤖 Interne Verarbeitung"
+msgstr "🤖 Traitement interne"
+
+#: cogs/info_commands.py:207
+msgid "🌐 Discord API (Heartbeat)"
+msgstr "🌐 API Discord (Heartbeat)"
+
+#: cogs/info_commands.py:212
+msgid "💾 Datenbank (aiosqlite)"
+msgstr "💾 Base de données (aiosqlite)"
+
+#: cogs/setup-help.py:22
+msgid "👋 Hallo!"
+msgstr "👋 Bonjour !"
+
+#: cogs/setup-help.py:23
+msgid ""
+"Vielen Dank für's Hinzufügen von Birthdayyyyys zu deinem Server! Bevor du"
+" anfängst, Birthdayyyyys einzurichten, sind hier einige erste Schritte, "
+"die du befolgen kannst."
+msgstr ""
+"Merci d'avoir ajouté Birthdayyyyys à votre serveur ! Avant de commencer à"
+" configurer Birthdayyyyys, voici quelques premières étapes que vous "
+"pouvez suivre."
+
+#: cogs/setup-help.py:28
+msgid "Kanal einstellen:"
+msgstr "Définir le salon :"
+
+#: cogs/setup-help.py:29
+msgid ""
+"Nutze `/config` und klicke auf den Button `Kanal`, um den "
+"Geburtstagskanal zu setzen."
+msgstr ""
+"Utilisez `/config` et cliquez sur le bouton `Salon` pour définir le salon"
+" des anniversaires."
+
+#: cogs/setup-help.py:33
+msgid "Nachrichten bearbeiten:"
+msgstr "Modifier les messages :"
+
+#: cogs/setup-help.py:34
+#, python-format
+msgid ""
+"Nutze `/config` und klicke auf den Button `Nachricht (Mit/Ohne Alter)`, "
+"um die Geburtstagsgrüße zu bearbeiten. Wenn der User ein Geburtsjahr "
+"angegeben hat, berechnet der Bot automatisch das Alter. Nutze Variablen "
+"wie `%username`, um Nachrichten anzupassen."
+msgstr ""
+"Utilisez `/config` et cliquez sur le bouton `Message (Avec/Sans âge)` "
+"pour modifier les vœux d'anniversaire. Si l'utilisateur a indiqué son "
+"année de naissance, le bot calcule automatiquement son âge. Utilisez des "
+"variables comme `%username` pour personnaliser les messages."
+
+#: cogs/setup-help.py:38
+msgid "Bildgenerierung aktivieren:"
+msgstr "Activer la génération d'images :"
+
+#: cogs/setup-help.py:39
+msgid ""
+"Ein cooles Feature ist die Bildgenerierung. Sie erstellt ein Banner mit "
+"Profilbild und Namen. Aktiviere dies mit `/config` -> `Bilder An/Aus`."
+msgstr ""
+"Une fonctionnalité super cool URL est la génération d'images. Elle crée "
+"une bannière avec la photo de profil et le nom. Activez-la avec `/config`"
+" -> `Images Activer/Désactiver`."
+
+#: cogs/setup-help.py:43
+msgid "Konfiguration testen:"
+msgstr "Tester la configuration :"
+
+#: cogs/setup-help.py:44
+msgid ""
+"Wenn du deine Konfiguration überprüfen willst, kannst du `/config-test` "
+"nutzen."
+msgstr ""
+"Si vous souhaitez vérifier votre configuration, vous pouvez utiliser "
+"`/config-test`."
+
+#: cogs/setup-help.py:48
+msgid "Weitere Hilfe:"
+msgstr "Aide supplémentaire :"
+
+#: cogs/setup-help.py:49
+msgid ""
+"Falls du weitere Hilfe brauchst, nutze `/help`. Bei Problemen tritt gerne"
+" dem Support Server bei: https://discord.gg/utD4afUrgt."
+msgstr ""
+"Si vous avez besoin d'aide supplémentaire, utilisez `/help`. En cas de "
+"problème, n'hésitez pas à rejoindre le serveur de support : "
+"https://discord.gg/utD4afUrgt."
+
+#: cogs/setup-help.py:53
+msgid "Danke für's Nutzen von Birthdayyyyys!"
+msgstr "Merci d'utiliser Birthdayyyyys !"
+
+#~ msgid "Unbekannter Benutzer"
+#~ msgstr "Utilisateur inconnu"
+
+#~ msgid "DB-Fehler: {error}"
+#~ msgstr "Erreur de BD : {error}"
+
