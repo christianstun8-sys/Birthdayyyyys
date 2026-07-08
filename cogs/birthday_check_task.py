@@ -143,26 +143,55 @@ async def generate_birthday_image(user: discord.Member, title_text: str, name_te
 
         with Image.open(bg_path) as img:
             draw = ImageDraw.Draw(img)
+
             try:
-                font_title = ImageFont.truetype(FONT_PATH, 60)
-                font_name = ImageFont.truetype(FONT_PATH, 80)
+                font_title = ImageFont.truetype(FONT_PATH, 75)
+                font_name = ImageFont.truetype(FONT_PATH, 105)
             except:
                 font_title = ImageFont.load_default()
                 font_name = ImageFont.load_default()
 
-            draw.text((img.width // 2, 150), title_text, font=font_title, fill=IMAGE_TEXT_COLOR, anchor="mm")
-            draw.text((img.width // 2, 300), name_text, font=font_name, fill=IMAGE_TEXT_COLOR, anchor="mm")
+            center_x = img.width // 2
+            center_y = img.height // 3
 
+            y_title = center_y - 100
+            y_name = center_y + 15
+
+            # Text zeichnen
+            draw.text((center_x, y_title), title_text, font=font_title, fill=IMAGE_TEXT_COLOR, anchor="mm")
+            draw.text((center_x, y_name), name_text, font=font_name, fill=IMAGE_TEXT_COLOR, anchor="mm")
+
+            # Avatar laden und einfügen
             async with aiohttp.ClientSession() as session:
                 async with session.get(str(user.display_avatar.url)) as resp:
                     if resp.status == 200:
                         avatar_data = io.BytesIO(await resp.read())
                         with Image.open(avatar_data) as avatar:
-                            avatar = avatar.resize((200, 200)).convert("RGBA")
-                            mask = Image.new("L", (200, 200), 0)
+                            avatar_size = int(img.height * 0.45)
+                            avatar = avatar.resize((avatar_size, avatar_size)).convert("RGBA")
+
+                            # 1. Runde Maske erstellen
+                            mask = Image.new("L", (avatar_size, avatar_size), 0)
                             draw_mask = ImageDraw.Draw(mask)
-                            draw_mask.ellipse((0, 0, 200, 200), fill=255)
-                            img.paste(avatar, (img.width // 2 - 100, 450), mask)
+                            draw_mask.ellipse((0, 0, avatar_size, avatar_size), fill=255)
+
+                            # 2. Alpha-Kanal des Avatars mit der runden Maske multiplizieren
+                            # Dadurch bleibt Transparenz transparent UND das Bild wird rund!
+                            avatar_alpha = avatar.split()[3]
+                            combined_mask = Image.alpha_composite(
+                                Image.new("RGBA", (avatar_size, avatar_size), (0, 0, 0, 0)),
+                                avatar
+                            ).split()[3]
+
+                            # Die finale Maske kombiniert die Kreisform mit der Transparenz
+                            final_mask = Image.new("L", (avatar_size, avatar_size), 0)
+                            final_mask.paste(mask, (0, 0), mask=avatar_alpha)
+
+                            x_pos = center_x - (avatar_size // 2)
+                            y_pos = img.height - avatar_size
+
+                            # 3. Mit der finalen, kombinierten Maske auf das Hintergrundbild setzen
+                            img.paste(avatar, (x_pos, y_pos), final_mask)
 
             img_byte_arr = io.BytesIO()
             img.save(img_byte_arr, format='PNG')
@@ -266,8 +295,6 @@ class BirthdayCheckTask(commands.Cog):
                     generated_image_file = None
                     if current_config.get("birthday_image_enabled", 1):
                         generated_image_file = await self.bot.generate_birthday_image(member, final_image_title, member.display_name, current_config.get("birthday_image_background"))
-                        if generated_image_file:
-                            embed.set_image(url="attachment://birthday_card.png")
 
                     if target_channel:
                         try:

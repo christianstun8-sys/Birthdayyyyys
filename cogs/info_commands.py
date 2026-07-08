@@ -26,15 +26,15 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
 
         _ = translator.get_translation(lang)
 
-        description_text = (_("""
-Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **gratulieren**! :)
-
-## ❔ __Infos:__
-<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden
-<:developer:1390293000747225098> Entwickler: _chrxstianst.
-<:python:1390293453606486056> Library: discord.py-2.6.4
-ℹ️ Version: v3.0
-        """))
+        description_text = _(
+            "Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **gratulieren**! :)\n"
+            "\n"
+            "## ❔ __Infos:__\n"
+            "<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden\n"
+            "<:developer:1390293000747225098> Entwickler: _chrxstianst.\n"
+            "<:python:1390293453606486056> Library: discord.py-{version}\n"
+            "ℹ️ Version: v4.5"
+        ).format(version=discord.__version__)
 
         info_embed = discord.Embed(
             title="Birthdayyyyys",
