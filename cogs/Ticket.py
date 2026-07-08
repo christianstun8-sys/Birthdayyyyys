@@ -362,8 +362,8 @@ class TicketCog(commands.Cog):
             return
 
         embed = discord.Embed(
-            title="Ticket erstellen",
-            description="Klicke auf den Button, um ein neues Ticket zu erstellen und unser Team zu kontaktieren.",
+            title="Ticket erstellen/Create Ticket",
+            description="Klicke auf den Button, um ein neues Ticket zu erstellen und unser Team zu kontaktieren.\n\n*Click on the button down below to create a new ticket and to contact the staff.*",
             color=discord.Color.blue()
         )
         await ctx.send(embed=embed, view=TicketCreateView())

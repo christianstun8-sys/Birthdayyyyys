@@ -30,21 +30,46 @@ async def send_global_announcement(bot):
                     color_val = int(color_val.replace("#", ""), 16)
 
                 embed = discord.Embed(
-                    title="⚠️ Config-Problems",
-                    description="Hi! 👋 \n"
-                                "**__English:__**\n"
-                                "Birthdayyyyys had some heavy issues with the configurations. Users couldn't save their settings, even if the bot said so."
-                                "This problem is now fixed. You can now save your configurations again as you'd like.\n"
-                                "Also, the language-switcher wasn't working. The language just stayed german. \n"
-                                "Now, you can set your language again!\nSorry for the inconvenience.\n\nBy the way: if you enjoy using Birthdayyyyys, consider rating us on top.gg and other Discord Bot lists! That would really help Birthdayyyyys growing!"
-                                "\nThanks for using Birthdayyyyys!\n\n"
-                                "**__Deutsch:__**\n"
-                                "Birthdayyyyys hatte einige schwerwiegende Probleme mit den Konfigurationen. Benutzer konnten ihre Einstellungen nicht speichern, selbst, als der Bot es bestätigt hatte."
-                                "Dieser Bug wurde gefixt! Ihr könnt nun wieder eure Konfigurationen setzen, wie ihr wollt.\n"
-                                "Außerdem hat die Spracheinstellung nicht funktioniert. Die Bot-Sprache blieb weiterhin auf deutsch."
-                                "\nNun könnt ihr wieder die Sprache einstellen.\nEntschuldigung für die Unannehmlichkeiten.\n\nÜbrigens: wenn ihr Freude an Birthdayyyyys habt, erwägt eine Bewertung auf top.gg und anderen Discord Bot Listen. Das würde Birthdayyyyys wirklich beim Wachsen helfen!"
-                                "\nDanke für's Nutzen von Birthdayyyyys!",
+                    title="📢 New Update: Languages, Birthday Management & Fixes!",
+                    description=(
+                        "A number of changes have been made to Birthdayyyyys. "
+                        "There are now new languages and more!\n\n"
+                        "If you like Birthdayyyyys, I’d really appreciate it if you could leave a rating on "
+                        "**__[Top.GG](https://top.gg/bot/1389267222261792868)__**. Since it currently has an "
+                        "unfair rating of **1 ⭐**, it would be great if we could set that straight. "
+                        "Thanks for using Birthdayyyyys! ❤️"
+                    ),
                     color=color_val
+                )
+
+                embed.add_field(
+                    name="🌍 New Languages",
+                    value="As promised, I’ve now added Spanish, French, Polish, Russian, and Ukrainian to Birthdayyyyys. This should help expand our reach, which I’d be very happy about.",
+                    inline=False
+                )
+
+                embed.add_field(
+                    name="🛡️ Support Server",
+                    value="The server is gradually being switched over to English. However, German support will still be available.",
+                    inline=False
+                )
+
+                embed.add_field(
+                    name="🎂 Birthday Management",
+                    value="You can now manage other users’ birthdays on your server! To do this, use `/birthday-set` or `/birthday-remove` as usual, but there’s now a new optional parameter: `user`. If you have administrator permissions, you can now use this.",
+                    inline=False
+                )
+
+                embed.add_field(
+                    name="🗣️ Command Translation",
+                    value="The descriptions of slash commands will now be adapted to the language of your Discord client, rather than defaulting to German.",
+                    inline=False
+                )
+
+                embed.add_field(
+                    name="🖼️ Fixed Birthday Banner",
+                    value="The banner was causing some issues, such as misalignment and scaling. These have been fixed. Additionally, transparent avatars are finally displayed as transparent.",
+                    inline=False
                 )
 
                 embed.set_thumbnail(url=bot.user.avatar)
