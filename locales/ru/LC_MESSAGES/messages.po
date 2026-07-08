@@ -120,6 +120,7 @@ msgstr "✅ День рождения {mention} успешно удалён."
 msgid "✅ Dein Geburtstag wurde gelöscht."
 msgstr "✅ Ваш день рождения успешно удалён."
 
+
 #: cogs/birthday_commands.py:112
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."

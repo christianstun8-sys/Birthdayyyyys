@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import aiosqlite
 import aiohttp
 import logging
+from utils.discord_translator import DiscordSlashTranslator
 
 import Alerts
 import mdb
@@ -43,12 +44,13 @@ intents.members = True
 
 class BirthdayBot(commands.Bot):
     def __init__(self):
-        prefix = "beta!" if beta else "!"
+        prefix = "bbeta." if beta else "b."
         super().__init__(command_prefix=prefix, intents=intents, help_command=None)
         self.guild_configs = {}
         self.kuma_url = "https://status.christianst.xyz/api/push/bELLyg8wcQ?status=up&msg=OK&ping="
 
     async def setup_hook(self):
+        await self.tree.set_translator(DiscordSlashTranslator())
         print("Starte Cogs-Ladevorgang...")
         done = True
         for filename in os.listdir('./cogs'):
@@ -127,7 +129,7 @@ class BirthdayBot(commands.Bot):
         else:
             embed.set_thumbnail(url=self.user.display_avatar.url)
         try:
-            await christianst.send(embed=embed, content=christianst.mention)
+            await christianst.send(embed=embed, content=f"{christianst.mention} Neuer Server!")
         except discord.Forbidden:
             print("❌ Fehler: Keine Berechtigung, Christianst_ eine Nachricht zu senden.")
 
@@ -163,7 +165,7 @@ class BirthdayBot(commands.Bot):
 
 
         try:
-            await christianst.send(embed=embed, content=christianst.mention)
+            await christianst.send(embed=embed, content=f"{christianst.mention} Server entfernt.")
         except discord.Forbidden:
             print(f"Konnte keine Nachricht an {christianst.global_name} senden.")
 

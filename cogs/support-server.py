@@ -1,6 +1,10 @@
 import discord
 from discord.ext import commands
 
+discord_role_id = 1453818699759747325
+status_role_id = 1453818753350500383
+news_role_id = 1453818662916984852
+
 class Rules(commands.Cog):
     def __init__(self, bot):
         self.bot = bot

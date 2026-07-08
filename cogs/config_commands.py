@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from discord import app_commands, Interaction
 import aiosqlite
-
 from utils.babel import translator
 
 
@@ -811,7 +810,10 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             return
         raise error
 
-    @app_commands.command(name="config", description="Menu for all bot configurations")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_config_name"),
+        description=app_commands.locale_str("cmd_config_desc")
+    )
     @app_commands.default_permissions(manage_guild=True)
     async def config_main(self, interaction: discord.Interaction):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
@@ -851,11 +853,17 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             ephemeral=True
         )
 
-    @app_commands.command(name="config-test", description="Send a birthday message to test your config")
-    @app_commands.describe(message_type="Type of birthday message", user_to_test="User for testing")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_config_test_name"),
+        description=app_commands.locale_str("cmd_config_test_desc")
+    )
+    @app_commands.describe(
+        message_type=app_commands.locale_str("param_config_test_type"),
+        user_to_test=app_commands.locale_str("param_config_test_user")
+    )
     @app_commands.choices(message_type=[
-        app_commands.Choice(name="Without age", value="no_age"),
-        app_commands.Choice(name="With age (Age for test: 30)", value="with_age")
+        app_commands.Choice(name=app_commands.locale_str("choice_test_no_age"), value="no_age"),
+        app_commands.Choice(name=app_commands.locale_str("choice_test_with_age"), value="with_age")
     ])
     @app_commands.default_permissions(manage_guild=True)
     async def test_birthday_message(self, interaction: discord.Interaction, message_type: app_commands.Choice[str], user_to_test: discord.User = None):

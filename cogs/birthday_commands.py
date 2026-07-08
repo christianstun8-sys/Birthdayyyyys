@@ -1,4 +1,3 @@
-# cogs/birthday_commands.py
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -20,21 +19,28 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                    for tz in all_tzs if current.lower() in tz.lower()
                ][:25]
 
-    @app_commands.command(name="birthday-set", description="Setze deinen Geburtstag (MM TT (JJJJ) und optional deine Zeitzone.")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_birthday_set_name"),
+        description=app_commands.locale_str("cmd_birthday_set_desc")
+    )
     @app_commands.describe(
-        month="The month of your birthday.",
-        day="The day of your birthday.",
-        year="The year of your birthday (optional, f.e. 1990).",
-        timezone="Your timezone (default: Europe/Berlin)."
+        month=app_commands.locale_str("param_birthday_set_month"),
+        day=app_commands.locale_str("param_birthday_set_day"),
+        year=app_commands.locale_str("param_birthday_set_year"),
+        timezone=app_commands.locale_str("param_birthday_set_timezone"),
+        user=app_commands.locale_str("param_birthday_set_user")
     )
     @app_commands.autocomplete(timezone=timezone_autocomplete)
-    async def birthday_set(self, interaction: discord.Interaction, month: int, day: int, year: int = None, timezone: str = "Europe/Berlin"):
+    async def birthday_set(self, interaction: discord.Interaction, month: int, day: int, year: int = None, timezone: str = "Europe/Berlin", user: discord.User = None):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
 
+        if user is not None:
+            if not interaction.user.guild_permissions.administrator:
+                return await interaction.response.send_message(_("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True)
+
         if timezone not in pytz.all_timezones:
-            await interaction.response.send_message(_("Ungültige Zeitzone! Bitte wähle eine aus der Liste."), ephemeral=True)
-            return
+            return await interaction.response.send_message(_("Ungültige Zeitzone! Bitte wähle eine aus der Liste."), ephemeral=True)
 
         try:
             if year:
@@ -42,35 +48,56 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
             else:
                 date(2000, month, day)
         except ValueError:
-            await interaction.response.send_message(_("❌ Ungültiges Datum angegeben!"), ephemeral=True)
-            return
+            return await interaction.response.send_message(_("❌ Ungültiges Datum angegeben!"), ephemeral=True)
 
         db_path = self.bot.get_db_path(interaction.guild_id)
         async with aiosqlite.connect(db_path) as db:
             await db.execute(
                 "INSERT OR REPLACE INTO birthdays (user_id, month, day, year, timezone) VALUES (?, ?, ?, ?, ?)",
-                (interaction.user.id, month, day, year, timezone)
+                (user.id if user else interaction.user.id, month, day, year, timezone)
             )
             await db.commit()
+
+        if user:
+            if year:
+                return await interaction.response.send_message(_("✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) gesetzt!").format(mention=user.mention, day=day, month=month, year=year, timezone=timezone), ephemeral=True)
+            else:
+                return await interaction.response.send_message(_("✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} ({timezone}) gesetzt!").format(mention=user.mention, day=day, month=month, timezone=timezone), ephemeral=True)
 
         if year:
             await interaction.response.send_message(_("✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) gesetzt!").format(day=day, month=month, year=year, timezone=timezone), ephemeral=True)
         else:
             await interaction.response.send_message(_("✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!").format(day=day, month=month, timezone=timezone), ephemeral=True)
 
-    @app_commands.command(name="birthday-remove", description="Lösche deinen Geburtstag aus der Datenbank.")
-    async def birthday_remove(self, interaction: discord.Interaction):
+
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_birthday_remove_name"),
+        description=app_commands.locale_str("cmd_birthday_remove_desc")
+    )
+    @app_commands.describe(
+        user=app_commands.locale_str("param_birthday_remove_user"),
+    )
+    async def birthday_remove(self, interaction: discord.Interaction, user: discord.User = None):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
 
+        if user is not None:
+            if not interaction.user.guild_permissions.administrator:
+                return await interaction.response.send_message(_("⚠️ Du hast keine Berechtigung dazu."))
+
         db_path = self.bot.get_db_path(interaction.guild_id)
         async with aiosqlite.connect(db_path) as db:
-            await db.execute("DELETE FROM birthdays WHERE user_id = ?", (interaction.user.id,))
+            await db.execute("DELETE FROM birthdays WHERE user_id = ?", (user.id if user else interaction.user.id,))
             await db.commit()
 
+        if user:
+            return await interaction.response.send_message(_("✅ Der Geburtstag von {mention} wurde gelöscht.").format(mention=user.mention), ephemeral=True)
         await interaction.response.send_message(_("✅ Dein Geburtstag wurde gelöscht."), ephemeral=True)
 
-    @app_commands.command(name="birthday-show", description="Zeigt deinen gespeicherten Geburtstag an.")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_birthday_show_name"),
+        description=app_commands.locale_str("cmd_birthday_show_desc")
+    )
     async def birthday_show(self, interaction: discord.Interaction):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
@@ -88,7 +115,11 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                 else:
                     await interaction.response.send_message(_("❌ Du hast noch keinen Geburtstag registriert."), ephemeral=True)
 
-    @app_commands.command(name="birthday-list", description="Zeigt die nächsten Geburtstage auf diesem Server an.")
+
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_birthday_list_name"),
+        description=app_commands.locale_str("cmd_birthday_list_desc")
+    )
     async def birthday_list(self, interaction: discord.Interaction):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
@@ -112,15 +143,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
 
                 response_message = ""
                 for user_id, month, day, birth_year, tz_name in rows:
-                    member = interaction.guild.get_member(user_id)
-                    if member:
-                        name = member.display_name
-                    else:
-                        try:
-                            user = await self.bot.fetch_user(user_id)
-                            name = user.name
-                        except:
-                            name = _("Unbekannter Benutzer")
+                    name = f"<@{user_id}>"
 
                     age_info = ""
                     if birth_year and birth_year > 0:

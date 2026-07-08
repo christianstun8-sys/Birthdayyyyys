@@ -109,6 +109,7 @@ msgid ""
 "gesetzt!"
 msgstr "✅ Your birthday has been set to {month:02d} {day:02} ({timezone})!"
 
+
 #: cogs/birthday_commands.py:94
 #, fuzzy, python-brace-format
 msgid "✅ Der Geburtstag von {mention} wurde gelöscht."

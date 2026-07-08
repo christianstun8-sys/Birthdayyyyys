@@ -1,6 +1,5 @@
 import time
 from typing import Optional
-
 import aiosqlite
 import discord
 from discord import app_commands
@@ -13,8 +12,10 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
         self.bot = bot
         self.command_list = ["birthday-set", "config", "birthday-test"]
 
-    # --- SLASH COMMAND: /info ---
-    @app_commands.command(name="info", description="Zeigt Informationen über den Bot an.")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_info_name"),
+        description=app_commands.locale_str("cmd_info_desc")
+    )
     async def info(self, interaction: discord.Interaction):
         if interaction.guild is None:
             embed_color = 0x45a6c9
@@ -33,7 +34,7 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             "<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden\n"
             "<:developer:1390293000747225098> Entwickler: _chrxstianst.\n"
             "<:python:1390293453606486056> Library: discord.py-{version}\n"
-            "ℹ️ Version: v4.5"
+            "ℹ️ Version: v5"
         ).format(version=discord.__version__)
 
         info_embed = discord.Embed(
@@ -44,12 +45,15 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
 
         await interaction.response.send_message(embed=info_embed)
 
-    @app_commands.command(name="help", description="Zeigt eine Liste aller Befehle an.")
-    @app_commands.describe(command="Wähle einen Befehl für mehr Infos.")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_help_name"),
+        description=app_commands.locale_str("cmd_help_desc")
+    )
+    @app_commands.describe(command=app_commands.locale_str("param_help_command"))
     @app_commands.choices(command=[
-        app_commands.Choice(name="birthday-set", value="birthday-set"),
-        app_commands.Choice(name="config", value="config"),
-        app_commands.Choice(name="birthday-test", value="birthday-test")
+        app_commands.Choice(name=app_commands.locale_str("choice_help_bday_set"), value="birthday-set"),
+        app_commands.Choice(name=app_commands.locale_str("choice_help_config"), value="config"),
+        app_commands.Choice(name=app_commands.locale_str("choice_help_bday_test"), value="birthday-test")
     ])
     async def help_command(self, interaction: discord.Interaction, command: Optional[str] = None):
         if interaction.guild is None:
@@ -69,9 +73,9 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             if command == "birthday-set":
                 command_embed = discord.Embed(
                     title=_("__Hilfe für den Befehl /{command}__",
-                    description=f"Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
-                                f"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
-                                f"Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal.").format(command=command),
+                            description=f"Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
+                                        f"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
+                                        f"Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal.").format(command=command),
                     color=current_config.get("config_embed_color", 0x45a6c9)
                 )
                 command_embed.add_field(name="`<month>`", value=_("Mit dieser Auswahl legst du deinen Geburtsmonat fest."), inline=False)
@@ -144,7 +148,10 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             embed.set_thumbnail(url=self.bot.user.avatar)
             await interaction.response.send_message(embed=embed, ephemeral=False)
 
-    @app_commands.command(name="ping", description="Zeigt die aktuelle Latenz des Bots an.")
+    @app_commands.command(
+        name=app_commands.locale_str("cmd_ping_name"),
+        description=app_commands.locale_str("cmd_ping_desc")
+    )
     async def ping_command(self, interaction: discord.Interaction):
         discord_latency_ms = round(self.bot.latency * 1000)
         start_time = time.perf_counter()
@@ -162,7 +169,6 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
         _ = translator.get_translation(lang)
 
         db_start_time = time.perf_counter()
-        db_latency_ms = "Fehler"
 
         try:
             db: aiosqlite.Connection = getattr(self.bot, 'db', None)
@@ -173,16 +179,15 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                 db_end_time = time.perf_counter()
                 db_latency_ms = round((db_end_time - db_start_time) * 1000)
             else:
-                db_latency_ms = "Nicht verbunden"
-
-            if db_latency_ms != "Nicht verbunden":
-                db_latency_con = _("✅ Verbunden")
-
-            elif db_latency_ms == "Nicht verbunden":
-                db_latency_con = _("❌ Nicht verbunden")
+                db_latency_ms = 0
 
         except Exception as e:
-            db_latency_ms = _("DB-Fehler: {error}").format(error=type(e).__name__)
+            db_latency_ms = 0
+
+        if db_latency_ms != 0:
+            db_latency_con = _("✅ Verbunden")
+        else:
+            db_latency_con = _("❌ Nicht verbunden")
 
         end_time = time.perf_counter()
         processing_latency_ms = round((end_time - start_time) * 1000)

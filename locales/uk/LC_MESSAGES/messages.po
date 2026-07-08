@@ -111,6 +111,7 @@ msgstr ""
 "✅ Ваш день народження успішно встановлено на {day:02d}.{month:02d}. "
 "({timezone})!"
 
+
 #: cogs/birthday_commands.py:94
 #, python-brace-format
 msgid "✅ Der Geburtstag von {mention} wurde gelöscht."

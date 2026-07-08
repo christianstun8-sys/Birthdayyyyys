@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import discord
-import discord.app_commands
+from discord.app_commands import locale_str
 from discord.ext import commands
 import aiosqlite
 import asyncio
@@ -372,7 +372,7 @@ class AddMember(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @discord.app_commands.command(name="ticket-addmember", description="Fügt einen Benutzer zum aktuellen Ticket hinzu.")
+    @discord.app_commands.command(name="ticket-addmember", description=locale_str("Fügt einen Benutzer zum aktuellen Ticket hinzu."))
     @discord.app_commands.guilds(discord.Object(id=1453670454350057613))
     @discord.app_commands.checks.has_permissions(manage_messages=True)
     @discord.app_commands.describe(member="Der Benutzer, der zum Ticket hinzugefügt werden soll.")
@@ -407,7 +407,7 @@ class RemoveMember(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @discord.app_commands.command(name="ticket-removemember", description="Entfernt einen Nutzer aus dem aktuellen Ticket.")
+    @discord.app_commands.command(name="ticket-removemember", description=locale_str("Entfernt einen Nutzer aus dem aktuellen Ticket."))
     @discord.app_commands.checks.has_permissions(manage_messages=True)
     @discord.app_commands.guilds(discord.Object(id=1453670454350057613))
     @discord.app_commands.describe(member="Der Benutzer, der vom Ticket entfernt werden soll.")
@@ -436,6 +436,39 @@ class RemoveMember(commands.Cog):
             await interaction.response.send_message("Ich habe nicht die Berechtigung, die Berechtigungen für diesen Benutzer zu ändern. Bitte überprüfe meine Rollen.", ephemeral=True)
         except Exception as e:
             await interaction.response.send_message(f"Ein Fehler ist aufgetreten: {e}", ephemeral=True)
+
+
+    @commands.Cog.listener()
+    async def on_member_remove(self, member: discord.Member):
+        guild = member.guild
+        if guild.id != 1453670454350057613:
+            return
+
+        async with aiosqlite.connect(TICKETS_DB) as db:
+            async with db.execute("SELECT channel_id FROM tickets WHERE user_id = ?", (member.id,)) as cursor:
+                rows = await cursor.fetchall()
+                channel_ids = [row[0] for row in rows]
+
+        for channel_id in channel_ids:
+            channel = guild.get_channel(channel_id)
+            if not channel:
+                try:
+                    channel = await guild.fetch_channel(channel_id)
+                except discord.NotFound:
+                    channel = None
+
+            if channel:
+                try:
+                    await channel.delete(reason="Nutzer hat den Support-Server verlassen.")
+                except discord.Forbidden:
+                    print(f"Keine Rechte um Ticket-Kanal {channel_id} zu löschen.")
+                except Exception as e:
+                    print(f"Fehler beim Löschen des Kanals {channel_id}: {e}")
+
+        if channel_ids:
+            async with aiosqlite.connect(TICKETS_DB) as db:
+                await db.execute("DELETE FROM tickets WHERE user_id = ?", (member.id,))
+                await db.commit()
 
 
 async def setup(bot):
