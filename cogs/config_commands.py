@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from discord import app_commands, Interaction
+from discord import app_commands
 import aiosqlite
 from utils.babel import translator
 
