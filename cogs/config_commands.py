@@ -459,7 +459,7 @@ class RoleConfigModal(discord.ui.Modal):
 
         lang = self.bot.guild_configs.get(self.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
-        super().__init__(title="Geburtstagsrolle festlegen")
+        super().__init__(title=_("Geburtstagsrolle festlegen"))
 
         self.role_select = discord.ui.RoleSelect(
             placeholder=_("Rolle auswählen, leer lassen zum Deaktivieren..."),

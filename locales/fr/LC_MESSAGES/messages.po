@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-09 16:38+0200\n"
-"PO-Revision-Date: 2026-06-27 19:15+0200\n"
+"POT-Creation-Date: 2026-07-09 17:25+0200\n"
+"PO-Revision-Date: 2026-07-09 17:12+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
 "Language-Team: fr <LL@li.org>\n"
@@ -118,29 +118,44 @@ msgstr "✅ L'anniversaire de {mention} a été supprimé."
 msgid "✅ Dein Geburtstag wurde gelöscht."
 msgstr "✅ Votre anniversaire a été supprimé."
 
-#: cogs/birthday_commands.py:112
+#: cogs/birthday_commands.py:116
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "L'anniversaire de {mention} est le {day:02d}/{month:02d}/{year} ({tz})."
+
+#: cogs/birthday_commands.py:118
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
+msgstr "L'anniversaire de {mention} est le {day:02d}/{month:02d} ({tz})."
+
+#: cogs/birthday_commands.py:121
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
 msgstr "Votre anniversaire est le {day:02d}/{month:02d}/{year} ({tz})."
 
-#: cogs/birthday_commands.py:114
+#: cogs/birthday_commands.py:123
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
 msgstr "Votre anniversaire est le {day:02d}/{month:02d} ({tz})."
 
-#: cogs/birthday_commands.py:116
+#: cogs/birthday_commands.py:126
+#, python-brace-format
+msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
+msgstr "❌ L'utilisateur {mention} n'a pas encore enregistré d'anniversaire."
+
+#: cogs/birthday_commands.py:128
 msgid "❌ Du hast noch keinen Geburtstag registriert."
 msgstr "❌ Vous n'avez pas encore enregistré d'anniversaire."
 
-#: cogs/birthday_commands.py:129 cogs/birthday_commands.py:141
+#: cogs/birthday_commands.py:141 cogs/birthday_commands.py:153
 msgid "⚠️ Es sind noch keine Geburtstage registriert."
 msgstr "⚠️ Aucun anniversaire n'est enregistré pour le moment."
 
-#: cogs/birthday_commands.py:154
+#: cogs/birthday_commands.py:166
 msgid "Jahre"
 msgstr "ans"
 
-#: cogs/birthday_commands.py:164
+#: cogs/birthday_commands.py:176
 msgid "Geburtstagskalender"
 msgstr "Calendrier des anniversaires"
 
@@ -351,6 +366,10 @@ msgstr "✅ Les nouveautés du bot ont été désactivées."
 msgid "✅ News-Kanal wurde auf {channel} gesetzt."
 msgstr "✅ Le salon des nouveautés a été défini sur {channel}."
 
+#: cogs/config_commands.py:462
+msgid "Geburtstagsrolle festlegen"
+msgstr "Définir le rôle des anniversaires"
+
 #: cogs/config_commands.py:465
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
 msgstr "Choisir un rôle, laisser vide pour désactiver..."
@@ -482,6 +501,11 @@ msgid ""
 "werden.\n"
 "Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."
 msgstr ""
+"Cela vous permet de définir facilement votre anniversaire.\n"
+"D'ailleurs, vous pouvez à tout moment supprimer votre anniversaire à "
+"l'aide de la commande `/birthday-remove`.\n"
+"Si vous avez fait une erreur de frappe, réutilisez simplement cette "
+"commande."
 
 #: cogs/info_commands.py:81
 msgid "Mit dieser Auswahl legst du deinen Geburtsmonat fest."
@@ -761,9 +785,9 @@ msgid ""
 "Ein cooles Feature ist die Bildgenerierung. Sie erstellt ein Banner mit "
 "Profilbild und Namen. Aktiviere dies mit `/config` -> `Bilder An/Aus`."
 msgstr ""
-"Une fonctionnalité super cool URL est la génération d'images. Elle crée "
-"une bannière avec la photo de profil et le nom. Activez-la avec `/config`"
-" -> `Images Activer/Désactiver`."
+"Une fonctionnalité super cool est la génération d'images. Elle crée une "
+"bannière avec la photo de profil et le nom. Activez-la avec `/config` -> "
+"`Images Activer/Désactiver`."
 
 #: cogs/setup-help.py:43
 msgid "Konfiguration testen:"
@@ -793,10 +817,4 @@ msgstr ""
 #: cogs/setup-help.py:53
 msgid "Danke für's Nutzen von Birthdayyyyys!"
 msgstr "Merci d'utiliser Birthdayyyyys !"
-
-#~ msgid "Unbekannter Benutzer"
-#~ msgstr "Utilisateur inconnu"
-
-#~ msgid "DB-Fehler: {error}"
-#~ msgstr "Erreur de BD : {error}"
 

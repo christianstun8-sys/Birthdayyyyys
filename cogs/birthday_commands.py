@@ -83,7 +83,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
 
         if user is not None:
             if not interaction.user.guild_permissions.administrator:
-                return await interaction.response.send_message(_("⚠️ Du hast keine Berechtigung dazu."))
+                return await interaction.response.send_message(_("⚠️ Du hast keine Berechtigung dazu.", ephemeral=True))
 
         db_path = self.bot.get_db_path(interaction.guild_id)
         async with aiosqlite.connect(db_path) as db:
@@ -98,22 +98,34 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
         name=app_commands.locale_str("cmd_birthday_show_name"),
         description=app_commands.locale_str("cmd_birthday_show_desc")
     )
-    async def birthday_show(self, interaction: discord.Interaction):
+    @app_commands.describe(
+        user=app_commands.locale_str("param_birthday_show_user")
+    )
+    async def birthday_show(self, interaction: discord.Interaction, user: discord.User = None):
         lang = self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
 
         db_path = self.bot.get_db_path(interaction.guild_id)
         async with aiosqlite.connect(db_path) as db:
-            async with db.execute("SELECT month, day, year, timezone FROM birthdays WHERE user_id = ?", (interaction.user.id,)) as cursor:
+            async with db.execute("SELECT month, day, year, timezone FROM birthdays WHERE user_id = ?", (user.id if user else interaction.user.id,)) as cursor:
                 row = await cursor.fetchone()
                 if row:
                     month, day, year, tz = row
-                    if year:
-                        await interaction.response.send_message(_("Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz}).").format(day=day, month=month, year=year, tz=tz), ephemeral=True)
+                    if user:
+                        if year:
+                            return await interaction.response.send_message(_("Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz}).").format(day=day, month=month, year=year, tz=tz, mention=user.mention), ephemeral=True)
+                        else:
+                            return await interaction.response.send_message(_("Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz}).").format(day=day, month=month, tz=tz, mention=user.mention), ephemeral=True)
                     else:
-                        await interaction.response.send_message(_("Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz}).").format(day=day, month=month, tz=tz), ephemeral=True)
+                        if year:
+                            return await interaction.response.send_message(_("Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz}).").format(day=day, month=month, year=year, tz=tz), ephemeral=True)
+                        else:
+                            return await interaction.response.send_message(_("Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz}).").format(day=day, month=month, tz=tz), ephemeral=True)
                 else:
-                    await interaction.response.send_message(_("❌ Du hast noch keinen Geburtstag registriert."), ephemeral=True)
+                    if user:
+                        return await interaction.response.send_message(_("❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert.").format(mention=user.mention), ephemeral=True)
+                    else:
+                        return await interaction.response.send_message(_("❌ Du hast noch keinen Geburtstag registriert."), ephemeral=True)
 
 
     @app_commands.command(

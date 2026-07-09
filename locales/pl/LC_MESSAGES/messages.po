@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-09 16:38+0200\n"
-"PO-Revision-Date: 2026-06-26 16:18+0200\n"
+"POT-Creation-Date: 2026-07-09 17:25+0200\n"
+"PO-Revision-Date: 2026-07-09 17:15+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: pl\n"
 "Language-Team: pl <LL@li.org>\n"
@@ -115,29 +115,44 @@ msgstr "✅ Urodziny użytkownika {mention} zostały usunięte."
 msgid "✅ Dein Geburtstag wurde gelöscht."
 msgstr "✅ Twoje urodziny zostały usunięte."
 
-#: cogs/birthday_commands.py:112
+#: cogs/birthday_commands.py:116
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "Urodziny użytkownika {mention} wypadają {day:02d}.{month:02d}.{year} ({tz})."
+
+#: cogs/birthday_commands.py:118
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
+msgstr "Urodziny użytkownika {mention} wypadają {day:02d}.{month:02d}. ({tz})."
+
+#: cogs/birthday_commands.py:121
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
 msgstr "Twoje urodziny wypadają {day:02d}.{month:02d}.{year} ({tz})."
 
-#: cogs/birthday_commands.py:114
+#: cogs/birthday_commands.py:123
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
 msgstr "Twoje urodziny wypadają {day:02d}.{month:02d}. ({tz})."
 
-#: cogs/birthday_commands.py:116
+#: cogs/birthday_commands.py:126
+#, python-brace-format
+msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
+msgstr "❌ Użytkownik {mention} nie zarejestrował jeszcze swoich urodzin."
+
+#: cogs/birthday_commands.py:128
 msgid "❌ Du hast noch keinen Geburtstag registriert."
 msgstr "❌ Nie masz jeszcze zarejestrowanych urodzin."
 
-#: cogs/birthday_commands.py:129 cogs/birthday_commands.py:141
+#: cogs/birthday_commands.py:141 cogs/birthday_commands.py:153
 msgid "⚠️ Es sind noch keine Geburtstage registriert."
 msgstr "⚠️ Nie zarejestrowano jeszcze żadnych urodzin."
 
-#: cogs/birthday_commands.py:154
+#: cogs/birthday_commands.py:166
 msgid "Jahre"
 msgstr "lat"
 
-#: cogs/birthday_commands.py:164
+#: cogs/birthday_commands.py:176
 msgid "Geburtstagskalender"
 msgstr "Kalendarz urodzin"
 
@@ -348,6 +363,10 @@ msgstr "✅ Wiadomości bota zostały wyłączone."
 msgid "✅ News-Kanal wurde auf {channel} gesetzt."
 msgstr "✅ Kanał informacyjny został ustawiony na {channel}."
 
+#: cogs/config_commands.py:462
+msgid "Geburtstagsrolle festlegen"
+msgstr "Ustaw rolę urodzinową"
+
 #: cogs/config_commands.py:465
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
 msgstr "Wybierz rolę, pozostaw puste aby wyłączyć..."
@@ -479,6 +498,10 @@ msgid ""
 "werden.\n"
 "Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."
 msgstr ""
+"Za pomocą tego polecenia możesz łatwo ustawić swoje urodziny.\n"
+"Nawiasem mówiąc, Twoje urodziny można usunąć w dowolnym momencie za "
+"pomocą polecenia `/birthday-remove`.\n"
+"Jeśli popełniłeś błąd, po prostu użyj tego polecenia ponownie."
 
 #: cogs/info_commands.py:81
 msgid "Mit dieser Auswahl legst du deinen Geburtsmonat fest."
@@ -785,10 +808,4 @@ msgstr ""
 #: cogs/setup-help.py:53
 msgid "Danke für's Nutzen von Birthdayyyyys!"
 msgstr "Dziękujemy za korzystanie z bota Birthdayyyyys!"
-
-#~ msgid "Unbekannter Benutzer"
-#~ msgstr "Nieznany użytkownik"
-
-#~ msgid "DB-Fehler: {error}"
-#~ msgstr "Błąd bazy danych: {error}"
 

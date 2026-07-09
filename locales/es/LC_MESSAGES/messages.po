@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-09 16:38+0200\n"
+"POT-Creation-Date: 2026-07-09 17:25+0200\n"
 "PO-Revision-Date: 2026-06-26 16:16+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -119,29 +119,44 @@ msgstr "✅ El cumpleaños de {mention} ha sido eliminado."
 msgid "✅ Dein Geburtstag wurde gelöscht."
 msgstr "✅ Tu cumpleaños ha sido eliminado."
 
-#: cogs/birthday_commands.py:112
+#: cogs/birthday_commands.py:116
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "El cumpleaños de {mention} es el {day:02d}/{month:02d}/{year} ({tz})."
+
+#: cogs/birthday_commands.py:118
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
+msgstr "El cumpleaños de {mention} es el {day:02d}/{month:02d} ({tz})."
+
+#: cogs/birthday_commands.py:121
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
 msgstr "Tu cumpleaños es el {day:02d}/{month:02d}/{year} ({tz})."
 
-#: cogs/birthday_commands.py:114
+#: cogs/birthday_commands.py:123
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
 msgstr "Tu cumpleaños es el {day:02d}/{month:02d} ({tz})."
 
-#: cogs/birthday_commands.py:116
+#: cogs/birthday_commands.py:126
+#, python-brace-format
+msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
+msgstr "❌ El usuario {mention} aún no ha registrado ningún cumpleaños."
+
+#: cogs/birthday_commands.py:128
 msgid "❌ Du hast noch keinen Geburtstag registriert."
 msgstr "❌ Aún no has registrado ningún cumpleaños."
 
-#: cogs/birthday_commands.py:129 cogs/birthday_commands.py:141
+#: cogs/birthday_commands.py:141 cogs/birthday_commands.py:153
 msgid "⚠️ Es sind noch keine Geburtstage registriert."
 msgstr "⚠️ Aún no hay cumpleaños registrados."
 
-#: cogs/birthday_commands.py:154
+#: cogs/birthday_commands.py:166
 msgid "Jahre"
 msgstr "años"
 
-#: cogs/birthday_commands.py:164
+#: cogs/birthday_commands.py:176
 msgid "Geburtstagskalender"
 msgstr "Calendario de cumpleaños"
 
@@ -352,6 +367,10 @@ msgstr "✅ Las noticias del bot han sido desactivadas."
 msgid "✅ News-Kanal wurde auf {channel} gesetzt."
 msgstr "✅ El canal de noticias se ha configurado en {channel}."
 
+#: cogs/config_commands.py:462
+msgid "Geburtstagsrolle festlegen"
+msgstr "Establecer rol de cumpleaños"
+
 #: cogs/config_commands.py:465
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
 msgstr "Seleccionar rol, dejar vacío para desactivar..."
@@ -483,6 +502,9 @@ msgid ""
 "werden.\n"
 "Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."
 msgstr ""
+"Esto te permite establecer fácilmente tu cumpleaños. \n"
+"Por cierto, puedes eliminar tu cumpleaños de nuevo con `/birthday-remove`.\n"
+"Si has cometido un error al escribir, simplemente usa este comando de nuevo."
 
 #: cogs/info_commands.py:81
 msgid "Mit dieser Auswahl legst du deinen Geburtsmonat fest."
