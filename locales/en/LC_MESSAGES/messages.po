@@ -350,7 +350,7 @@ msgstr "✅ Bot-News were deactivated."
 #: cogs/config_commands.py:448
 #, python-brace-format
 msgid "✅ News-Kanal wurde auf {channel} gesetzt."
-msgstr "✅ The birthday-channel was successfully set to {channel}."
+msgstr "✅ The news-channel was successfully set to {channel}."
 
 #: cogs/config_commands.py:462
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
