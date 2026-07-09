@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-09 00:01+0200\n"
+"POT-Creation-Date: 2026-07-09 16:38+0200\n"
 "PO-Revision-Date: 2026-06-26 16:20+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: eventmessages.py:17
 msgid "⚠️ Unbekannter Fehler"
@@ -62,7 +62,7 @@ msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
 msgstr "Роль именинника удалена (день рождения закончился)"
 
 #: cogs/birthday_commands.py:40 cogs/birthday_commands.py:86
-#: cogs/config_commands.py:805 cogs/config_commands.py:807
+#: cogs/config_commands.py:808 cogs/config_commands.py:810
 #: cogs/info_commands.py:111
 msgid "⚠️ Du hast keine Berechtigung dazu."
 msgstr "⚠️ У вас нет прав на это действие."
@@ -119,7 +119,6 @@ msgstr "✅ День рождения {mention} успешно удалён."
 #: cogs/birthday_commands.py:95
 msgid "✅ Dein Geburtstag wurde gelöscht."
 msgstr "✅ Ваш день рождения успешно удалён."
-
 
 #: cogs/birthday_commands.py:112
 #, python-brace-format
@@ -248,125 +247,125 @@ msgstr "Поздравительное сообщение (с возрастом
 msgid "Embed-Farbe anpassen"
 msgstr "Настройка цвета эмбеда"
 
-#: cogs/config_commands.py:283
+#: cogs/config_commands.py:286
 msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
 msgstr "Цвет эмбеда (Hex-код, например, FF00FF)"
 
-#: cogs/config_commands.py:284
+#: cogs/config_commands.py:287
 #, python-brace-format
 msgid "Aktuell: {color}"
 msgstr "Текущий: {color}"
 
-#: cogs/config_commands.py:301
+#: cogs/config_commands.py:304
 msgid "Ungültiger Hex-Code."
 msgstr "Неверный Hex-код."
 
-#: cogs/config_commands.py:338
+#: cogs/config_commands.py:341
 #, python-brace-format
 msgid "Farbe auf `#{color}` aktualisiert."
 msgstr "Цвет изменён на `#{color}`."
 
-#: cogs/config_commands.py:349
+#: cogs/config_commands.py:352
 msgid "Geburtstagskanal festlegen"
 msgstr "Установить канал для поздравлений"
 
-#: cogs/config_commands.py:352
+#: cogs/config_commands.py:355
 msgid "Kanal auswählen..."
 msgstr "Выбрать канал..."
 
-#: cogs/config_commands.py:359
+#: cogs/config_commands.py:362
 msgid "Ziel-Kanal für Geburtstage:"
 msgstr "Целевой канал для дней рождения:"
 
-#: cogs/config_commands.py:371 cogs/config_commands.py:897
+#: cogs/config_commands.py:374 cogs/config_commands.py:900
 msgid "❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
 msgstr "❌ У меня нет прав для доступа к указанному каналу."
 
-#: cogs/config_commands.py:376 cogs/config_commands.py:444
+#: cogs/config_commands.py:379 cogs/config_commands.py:447
 msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
 msgstr "❌ Я не могу отправлять сообщения в выбранный канал."
 
-#: cogs/config_commands.py:388 cogs/config_commands.py:522
-#: cogs/config_commands.py:654 cogs/config_commands.py:739
-#: cogs/config_commands.py:832
+#: cogs/config_commands.py:391 cogs/config_commands.py:525
+#: cogs/config_commands.py:657 cogs/config_commands.py:742
+#: cogs/config_commands.py:835
 msgid "⚙️ Server-Konfiguration"
 msgstr "⚙️ Конфигурация сервера"
 
-#: cogs/config_commands.py:393 cogs/config_commands.py:527
-#: cogs/config_commands.py:660 cogs/config_commands.py:744
-#: cogs/config_commands.py:838
+#: cogs/config_commands.py:396 cogs/config_commands.py:530
+#: cogs/config_commands.py:663 cogs/config_commands.py:747
+#: cogs/config_commands.py:841
 msgid "Kanal"
 msgstr "Канал"
 
-#: cogs/config_commands.py:394 cogs/config_commands.py:528
-#: cogs/config_commands.py:661 cogs/config_commands.py:665
-#: cogs/config_commands.py:745 cogs/config_commands.py:839
+#: cogs/config_commands.py:397 cogs/config_commands.py:531
+#: cogs/config_commands.py:664 cogs/config_commands.py:668
+#: cogs/config_commands.py:748 cogs/config_commands.py:842
 msgid "Nicht gesetzt"
 msgstr "Не установлен"
 
-#: cogs/config_commands.py:397 cogs/config_commands.py:531
-#: cogs/config_commands.py:664 cogs/config_commands.py:748
-#: cogs/config_commands.py:842
+#: cogs/config_commands.py:400 cogs/config_commands.py:534
+#: cogs/config_commands.py:667 cogs/config_commands.py:751
+#: cogs/config_commands.py:845
 msgid "Rolle"
 msgstr "Роль"
 
-#: cogs/config_commands.py:398 cogs/config_commands.py:532
-#: cogs/config_commands.py:749 cogs/config_commands.py:843
+#: cogs/config_commands.py:401 cogs/config_commands.py:535
+#: cogs/config_commands.py:752 cogs/config_commands.py:846
 msgid "Keine"
 msgstr "Нет"
 
-#: cogs/config_commands.py:401 cogs/config_commands.py:535
-#: cogs/config_commands.py:668 cogs/config_commands.py:752
-#: cogs/config_commands.py:846
+#: cogs/config_commands.py:404 cogs/config_commands.py:538
+#: cogs/config_commands.py:671 cogs/config_commands.py:755
+#: cogs/config_commands.py:849
 msgid "Bilder"
 msgstr "Картинки"
 
-#: cogs/config_commands.py:402 cogs/config_commands.py:536
-#: cogs/config_commands.py:669 cogs/config_commands.py:753
-#: cogs/config_commands.py:847
+#: cogs/config_commands.py:405 cogs/config_commands.py:539
+#: cogs/config_commands.py:672 cogs/config_commands.py:756
+#: cogs/config_commands.py:850
 msgid "✅ Aktiviert"
 msgstr "✅ Включены"
 
-#: cogs/config_commands.py:402 cogs/config_commands.py:536
-#: cogs/config_commands.py:669 cogs/config_commands.py:753
-#: cogs/config_commands.py:847
+#: cogs/config_commands.py:405 cogs/config_commands.py:539
+#: cogs/config_commands.py:672 cogs/config_commands.py:756
+#: cogs/config_commands.py:850
 msgid "❌ Deaktiviert"
 msgstr "❌ Выключены"
 
-#: cogs/config_commands.py:416
+#: cogs/config_commands.py:419
 msgid "News-Kanal festlegen"
 msgstr "Установить новостной канал"
 
-#: cogs/config_commands.py:419
+#: cogs/config_commands.py:422
 msgid "Kanal auswählen, leer lassen zum Deaktivieren..."
 msgstr "Выбрать канал (оставьте пустым для отключения)..."
 
-#: cogs/config_commands.py:425
+#: cogs/config_commands.py:428
 msgid "Ziel-Kanal für News:"
 msgstr "Целевой новостной канал:"
 
-#: cogs/config_commands.py:437
+#: cogs/config_commands.py:440
 msgid "✅ Bot-News wurden deaktiviert."
 msgstr "✅ Новости бота отключены."
 
-#: cogs/config_commands.py:448
+#: cogs/config_commands.py:451
 #, python-brace-format
 msgid "✅ News-Kanal wurde auf {channel} gesetzt."
 msgstr "✅ Новостной канал изменён на {channel}."
 
-#: cogs/config_commands.py:462
+#: cogs/config_commands.py:465
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
 msgstr "Выбрать роль (оставьте пустым для отключения)..."
 
-#: cogs/config_commands.py:469
+#: cogs/config_commands.py:472
 msgid "Geburtstagsrolle wählen"
 msgstr "Выбрать роль именинника"
 
-#: cogs/config_commands.py:491
+#: cogs/config_commands.py:494
 msgid "✅ Geburtstagsrolle deaktiviert."
 msgstr "✅ Роль именинника отключена."
 
-#: cogs/config_commands.py:500
+#: cogs/config_commands.py:503
 #, python-brace-format
 msgid ""
 "⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder "
@@ -375,47 +374,47 @@ msgstr ""
 "⚠️ Я не могу выдавать роль {role}, так как она находится выше или на том "
 "же уровне, что и моя собственная роль."
 
-#: cogs/config_commands.py:506
+#: cogs/config_commands.py:509
 msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
 msgstr "❌ Вы не можете использовать роль @everyone в качестве роли именинника."
 
-#: cogs/config_commands.py:554
+#: cogs/config_commands.py:557
 msgid "Deutsch"
 msgstr "Немецкий (Deutsch)"
 
-#: cogs/config_commands.py:562
+#: cogs/config_commands.py:565
 msgid "English"
 msgstr "Английский (English)"
 
-#: cogs/config_commands.py:570
+#: cogs/config_commands.py:573
 msgid "Französisch"
 msgstr "Французский (Français)"
 
-#: cogs/config_commands.py:578
+#: cogs/config_commands.py:581
 msgid "Spanisch"
 msgstr "Испанский (Español)"
 
-#: cogs/config_commands.py:586
+#: cogs/config_commands.py:589
 msgid "Polnisch"
 msgstr "Польский (Polski)"
 
-#: cogs/config_commands.py:594
+#: cogs/config_commands.py:597
 msgid "Russisch"
 msgstr "Русский"
 
-#: cogs/config_commands.py:602
+#: cogs/config_commands.py:605
 msgid "Ukrainisch"
 msgstr "Украинский (Українська)"
 
-#: cogs/config_commands.py:635
+#: cogs/config_commands.py:638
 msgid "❌ Diese Sprache ist bereits eingestellt."
 msgstr "❌ Этот язык уже выбран."
 
-#: cogs/config_commands.py:785
+#: cogs/config_commands.py:788
 msgid "🌍 Sprache"
 msgstr "🌍 Язык"
 
-#: cogs/config_commands.py:786
+#: cogs/config_commands.py:789
 msgid ""
 "Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
 "**HINWEIS:** Übersetzungen können fehlerhaft sein."
@@ -423,19 +422,19 @@ msgstr ""
 "Здесь вы можете изменить язык ответов бота.\n"
 "**ПРИМЕЧАНИЕ:** Перевод может содержать неточности."
 
-#: cogs/config_commands.py:823
+#: cogs/config_commands.py:826
 msgid "Nur in Servern möglich."
 msgstr "Возможно только на серверах."
 
-#: cogs/config_commands.py:874
+#: cogs/config_commands.py:877
 msgid "Nur auf einem Server möglich."
 msgstr "Возможно только в пределах сервера."
 
-#: cogs/config_commands.py:886
+#: cogs/config_commands.py:889
 msgid "Kein Kanal konfiguriert."
 msgstr "Канал не настроен."
 
-#: cogs/config_commands.py:894
+#: cogs/config_commands.py:897
 msgid ""
 "❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze "
 "ihn in der Config neu."
@@ -443,11 +442,11 @@ msgstr ""
 "❌ Настроенный канал не найден (возможно, удалён?). Пожалуйста, укажите "
 "его заново в конфигурации."
 
-#: cogs/config_commands.py:948
+#: cogs/config_commands.py:951
 msgid "❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
 msgstr "❌ У меня нет прав для отправки сообщений в настроенный канал."
 
-#: cogs/config_commands.py:950
+#: cogs/config_commands.py:953
 msgid "Test gesendet! ✅"
 msgstr "Тест отправлен! ✅"
 
@@ -477,6 +476,14 @@ msgstr ""
 #, python-brace-format
 msgid "__Hilfe für den Befehl /{command}__"
 msgstr "__Справка по команде /{command}__"
+
+#: cogs/info_commands.py:76
+msgid ""
+"Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
+"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt "
+"werden.\n"
+"Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."
+msgstr ""
 
 #: cogs/info_commands.py:81
 msgid "Mit dieser Auswahl legst du deinen Geburtsmonat fest."

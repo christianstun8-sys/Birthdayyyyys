@@ -72,10 +72,10 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
         if command:
             if command == "birthday-set":
                 command_embed = discord.Embed(
-                    title=_("__Hilfe für den Befehl /{command}__",
-                    description=f"Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
-                                f"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
-                                f"Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal.").format(command=command),
+                    title=_("__Hilfe für den Befehl /{command}__").format(command=command),
+                    description=_("Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
+                                "Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
+                                "Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."),
                     color=current_config.get("config_embed_color", 0x45a6c9)
                 )
                 command_embed.add_field(name="`<month>`", value=_("Mit dieser Auswahl legst du deinen Geburtsmonat fest."), inline=False)
