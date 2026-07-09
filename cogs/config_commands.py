@@ -279,10 +279,13 @@ class ConfigColorModal(discord.ui.Modal):
 
         super().__init__(title=_("Embed-Farbe anpassen"))
 
+        color_int = current_color if current_color is not None else 0xFFFFFF
+        color_hex = f"{color_int:06X}"
+
         self.color_input = discord.ui.TextInput(
             label=_("Farbe des Embeds (Hex-Code, z.B. FF00FF)"),
-            placeholder=_("Aktuell: {color}").format(color=f"{current_color:06X}"),
-            default=f"{current_color:06X}",
+            placeholder=_("Aktuell: {color}").format(color=color_hex),
+            default=color_hex,
             required=True,
             max_length=6,
             min_length=6
