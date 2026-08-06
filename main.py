@@ -112,8 +112,7 @@ class BirthdayBot(commands.Bot):
         await load_all_guild_configs(self)
 
         print("------------------------------")
-        print("Bot bereit!")#
-        await Alerts.send_global_announcement(self)
+        print("Bot bereit!")
 
 
     async def on_guild_join(self, guild: discord.Guild):
