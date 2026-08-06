@@ -6,3 +6,4 @@ Babel
 pytz
 jishaku
 aiomysql
+cryptography
