@@ -30,45 +30,33 @@ async def send_global_announcement(bot):
                     color_val = int(color_val.replace("#", ""), 16)
 
                 embed = discord.Embed(
-                    title="📢 New Update: Languages, Birthday Management & Fixes!",
+                    title="📢 New Update: Database Upgrade, Features & Fixes!",
                     description=(
-                        "A number of changes have been made to Birthdayyyyys. "
-                        "There are now new languages and more!\n\n"
-                        "If you like Birthdayyyyys, I’d really appreciate it if you could leave a rating on "
-                        "**__[Top.GG](https://top.gg/bot/1389267222261792868)__**. Since it currently has an "
-                        "unfair rating of **1 ⭐**, it would be great if we could set that straight. "
-                        "Thanks for using Birthdayyyyys! ❤️"
+                        "The new update includes new features, bug fixes, performance improvements, "
+                        "and a more secure database system.\n\n"
+                        "I hope you like the new update. Thank you for using Birthdayyyyys! ❤️"
                     ),
                     color=color_val
                 )
 
                 embed.add_field(
-                    name="🌍 New Languages",
-                    value="As promised, I’ve now added Spanish, French, Polish, Russian, and Ukrainian to Birthdayyyyys. This should help expand our reach, which I’d be very happy about.",
+                    name="⏰ Scheduled Messages & UI Updates",
+                    value=(
+                        "• **Custom Message Time:** You can now schedule birthday messages for a specific time instead of 00:00 using `/config`.\n"
+                        "• **Calendar View:** `/birthday-list` now displays an organized calendar by months again.\n"
+                        "• **Improved Config:** `/config` is now more user-friendly, showing current settings and using drop-down menus."
+                    ),
                     inline=False
                 )
 
                 embed.add_field(
-                    name="🛡️ Support Server",
-                    value="The server is gradually being switched over to English. However, German support will still be available.",
-                    inline=False
-                )
-
-                embed.add_field(
-                    name="🎂 Birthday Management",
-                    value="You can now manage other users’ birthdays on your server! To do this, use `/birthday-set` or `/birthday-remove` as usual, but there’s now a new optional parameter: `user`. If you have administrator permissions, you can now use this.",
-                    inline=False
-                )
-
-                embed.add_field(
-                    name="🗣️ Command Translation",
-                    value="The descriptions of slash commands will now be adapted to the language of your Discord client, rather than defaulting to German.",
-                    inline=False
-                )
-
-                embed.add_field(
-                    name="🖼️ Fixed Birthday Banner",
-                    value="The banner was causing some issues, such as misalignment and scaling. These have been fixed. Additionally, transparent avatars are finally displayed as transparent.",
+                    name="🗄️ Database Migration (Important!)",
+                    value=(
+                        "The bot is finally using a proper online database! All settings and birthdays should be carried over.\n\n"
+                        "⚠️ **Missing data?** If any settings or birthdays are missing, please open a ticket on the support server "
+                        "stating your Server ID or User ID by **20 August 2026** (<t:1787220000:R>). "
+                        "After this date, old files will be deleted."
+                    ),
                     inline=False
                 )
 

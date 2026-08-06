@@ -2,13 +2,12 @@ import discord
 from discord.ext import commands, tasks
 import os
 from dotenv import load_dotenv
-import aiosqlite
 import aiohttp
 import logging
 from utils.discord_translator import DiscordSlashTranslator
+import aiomysql
 
 import Alerts
-import mdb
 
 load_dotenv()
 
@@ -22,7 +21,10 @@ else:
     TOKEN = os.getenv('DISCORD_TOKEN')
 
 logger = logging.getLogger('discord.gateway')
-logger.setLevel(logging.WARNING)
+if debug:
+    logger.setLevel(logging.DEBUG)
+else:
+    logger.setLevel(logging.WARNING)
 
 def setup_directories():
     for dir_name in ['databases', 'cogs', 'data']:
@@ -40,17 +42,29 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-
-
 class BirthdayBot(commands.Bot):
     def __init__(self):
         prefix = "bbeta." if beta else "b."
         super().__init__(command_prefix=prefix, intents=intents, help_command=None)
         self.guild_configs = {}
         self.kuma_url = "https://status.christianst.xyz/api/push/bELLyg8wcQ?status=up&msg=OK&ping="
+        self.version = 5.2
+        self.db_pool = None
 
     async def setup_hook(self):
         await self.tree.set_translator(DiscordSlashTranslator())
+        try:
+            self.db_pool: aiomysql.Pool = await aiomysql.create_pool(
+                host=os.getenv("DB_HOST"),
+                user=os.getenv("DB_USER_NAME"),
+                db=os.getenv("DB_NAME"),
+                port=int(os.getenv("DB_PORT")),
+                password=os.getenv("DB_PASSWORD")
+            )
+            print("✅💾 Datenbank verbunden!")
+        except Exception as e:
+            print(e)
+
         print("Starte Cogs-Ladevorgang...")
         done = True
         for filename in os.listdir('./cogs'):
@@ -89,16 +103,6 @@ class BirthdayBot(commands.Bot):
             except Exception as e:
                 print(f"Fehler beim Synchronisieren der Support-Server-Befehle: {e}")
 
-        @self.command(name="restart", hidden=True)
-        async def restart_cmd(ctx):
-            if ctx.author.id == 1235134572157603841:
-                await ctx.send("⌛ Starte neu...")
-                await self.close()
-            else:
-                return
-
-        self.db = await aiosqlite.connect("databases/tickets.db")
-
         self.uptime_ping.start()
 
     async def on_ready(self):
@@ -108,7 +112,8 @@ class BirthdayBot(commands.Bot):
         await load_all_guild_configs(self)
 
         print("------------------------------")
-        print("Bot bereit!")
+        print("Bot bereit!")#
+        await Alerts.send_global_announcement(self)
 
 
     async def on_guild_join(self, guild: discord.Guild):
@@ -140,12 +145,21 @@ class BirthdayBot(commands.Bot):
 
     async def on_guild_remove(self, guild):
         print(f"Bot wurde aus Guild {guild.name} (ID: {guild.id}) entfernt. Schade... :(")
+
         if guild.id in self.guild_configs:
+            config = self.guild_configs[guild.id]
+            if hasattr(config, 'db_connection'):
+                config.db_connection.close()
+
             del self.guild_configs[guild.id]
 
         db_path = f"databases/guild_{guild.id}.db"
+
         if os.path.exists(db_path):
-            os.remove(db_path)
+            try:
+                os.remove(db_path)
+            except Exception as e:
+                print(f"Fehler beim Löschen der DB: {e}")
 
         embed = discord.Embed(
             title="Birthdayyyyys wurde aus einem Server entfernt.",

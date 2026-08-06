@@ -12,7 +12,7 @@ class Setuphelp(commands.Cog):
         langs = ["de", "en", "fr", "es", "pl", "ru", "uk"]
         lang = "en"
         for l in langs:
-            if guild.preferred_locale == l:
+            if guild.preferred_locale.language_code.startswith(l):
                 lang = l
 
 
@@ -20,7 +20,7 @@ class Setuphelp(commands.Cog):
 
         welcome_embed = discord.Embed(
             title=_("👋 Hallo!"),
-            description=_("Vielen Dank für's Hinzufügen von Birthdayyyyys zu deinem Server! Bevor du anfängst, Birthdayyyyys einzurichten, sind hier einige erste Schritte, die du befolgen kannst."),
+            description=_("Vielen Dank fürs Hinzufügen von Birthdayyyyys zu deinem Server! Bevor du anfängst, Birthdayyyyys einzurichten, sind hier einige erste Schritte, die du befolgen kannst."),
             color=discord.Color.blue()
         )
 

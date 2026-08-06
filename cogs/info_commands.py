@@ -1,6 +1,5 @@
 import time
 from typing import Optional
-import aiosqlite
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -34,8 +33,8 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             "<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden\n"
             "<:developer:1390293000747225098> Entwickler: _chrxstianst.\n"
             "<:python:1390293453606486056> Library: discord.py-{version}\n"
-            "ℹ️ Version: v5"
-        ).format(version=discord.__version__)
+            "ℹ️ Version: v{bot_version}"
+        ).format(version=discord.__version__, bot_version=interaction.client.version)
 
         info_embed = discord.Embed(
             title="Birthdayyyyys",
@@ -82,6 +81,7 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                 command_embed.add_field(name="`<day>`", value=_("Mit dieser Auswahl legst du deinen Geburtstag fest."), inline=False)
                 command_embed.add_field(name="`[year]`", value=_("*(optional)*: Lege hiermit das Geburtsjahr von dir fest. Dein Alter wird errechnet und offen bekannt gegeben."), inline=False)
                 command_embed.add_field(name="`[timezone]`", value=_("*(optional)*: Falls du nicht in der Zeitzone **Europe/Berlin** wohnst, kannst du sie hier ändern."), inline=False)
+                command_embed.add_field(name="`[user]`", value=_("ADMIN: *(optional)*: Falls du den Geburtstag eines anderen Benutzers festlegen willst, wähle hier aus, für welchen."), inline=False)
 
             elif command == "config":
                 if interaction.user.guild_permissions.manage_guild:
@@ -97,7 +97,7 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                     command_embed.add_field(name=_("`News Kanal`"), value=_("Wenn du Botneuigkeiten nicht verpassen willst, kannst du in das Formular die Kanal-ID für den gewünschten Kanal eingeben. In diesen werden Changelogs und Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu bekommen (was sehr schade wäre)."), inline=False)
                     command_embed.add_field(name=_("`Nachricht (Kein/Mit Alter)`"), value=_("Hier kannst du die Geburtstagsembeds bearbeiten. Du kannst sogar den Titel des generierten Banners auswählen. Nutze die Variablen im Titel jedes Feldes, um die Nachricht weiter zu personalisieren."), inline=False)
                 else:
-                    await interaction.response.send_message("⚠️ Du hast keine Berechtigung dazu.", ephemeral=True)
+                    return await interaction.response.send_message("⚠️ Du hast keine Berechtigung dazu.", ephemeral=True)
             elif command == "birthday-test":
                 if interaction.user.guild_permissions.manage_guild:
                     command_embed = discord.Embed(
@@ -108,17 +108,15 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                     command_embed.add_field(name=_("`Ohne Altersangabe`"), value=_("Simuliere einen Geburtstag, wo der Benutzer kein Geburtsjahr angegeben hat."), inline=False)
                     command_embed.add_field(name=_("`Mit Altersangabe (Test-Alter: 30)`"), value=_("Simuliere einen Geburtstag, der gesendet wird, wenn der Benutzer 30 Jahre alt wird."), inline=False)
                 else:
-                    await interaction.response.send_message(_("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True)
+                    return await interaction.response.send_message(_("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True)
 
             else:
-                await interaction.response.send_message(_("❌ Fehler: Du hast keinen gültigen Befehl angegeben."), ephemeral=True)
+                return await interaction.response.send_message(_("❌ Fehler: Du hast keinen gültigen Befehl angegeben."), ephemeral=True)
 
             command_embed.set_thumbnail(url=self.bot.user.avatar)
-            await interaction.response.send_message(embed=command_embed)
-
+            return await interaction.response.send_message(embed=command_embed)
 
         else:
-
             embed = discord.Embed(
                 title=_("ℹ️ Bot-Befehle"),
                 description=_("Hier ist eine Liste aller verfügbaren Befehle:"),
@@ -132,9 +130,9 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                 embed.add_field(name="/info", value=_("Zeigt Informationen über den Bot an."), inline=False)
                 embed.add_field(name="/ping", value=_("Misst die derzeitige Antwortlatenz des Bots"), inline=False)
                 embed.add_field(name='\u200b', value='\u200b', inline=False)
-                embed.add_field(name='__Team:__', value='\u200b', inline=False)
+                embed.add_field(name=_('__Team:__'), value='\u200b', inline=False)
                 embed.add_field(name='/config', value=_("Konfiguriert Birthdayyyyys."), inline=False)
-                embed.add_field(name="/birthday-test <message_type>", value=_("Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal."), inline=False)
+                embed.add_field(name="/config-test <message_type>", value=_("Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal."), inline=False)
             else:
                 embed.add_field(name=_("__Mitglieder:__"), value='\u200b', inline=False)
                 embed.add_field(name="/birthday-set <month> <day> [year] [timezone]", value=_("Setzt deinen Geburtstag."), inline=False)
@@ -165,29 +163,20 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             embed_color = self.bot.guild_configs.get(interaction.guild.id, {}).get("config_embed_color", 0x45a6c9)
             lang = self.bot.guild_configs.get(interaction.guild.id, {}).get("lang", "en")
 
-
         _ = translator.get_translation(lang)
 
         db_start_time = time.perf_counter()
 
         try:
-            db: aiosqlite.Connection = getattr(self.bot, 'db', None)
-
-            if db:
-                await db.execute("SELECT 1")
-                await db.commit()
+            async with self.bot.db_pool.acquire() as db:
+                async with db.cursor() as cursor:
+                    await cursor.execute("SELECT 1")
                 db_end_time = time.perf_counter()
-                db_latency_ms = round((db_end_time - db_start_time) * 1000)
-            else:
-                db_latency_ms = 0
+                db_latency_str = f"`{round((db_end_time - db_start_time) * 1000)}ms`"
 
         except Exception as e:
-            db_latency_ms = 0
-
-        if db_latency_ms != 0:
-            db_latency_con = _("✅ Verbunden")
-        else:
-            db_latency_con = _("❌ Nicht verbunden")
+            print(e)
+            db_latency_str = _("❌ Datenbankfehler")
 
         end_time = time.perf_counter()
         processing_latency_ms = round((end_time - start_time) * 1000)
@@ -209,11 +198,10 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
             inline=True
         )
         embed.add_field(
-            name=_("💾 Datenbank (aiosqlite)"),
-            value=f"{db_latency_con}",
+            name=_("💾 Datenbank"),
+            value=db_latency_str,
             inline=True
         )
-
 
         await interaction.followup.send(embed=embed, ephemeral=True)
 

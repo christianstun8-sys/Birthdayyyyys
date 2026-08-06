@@ -17,6 +17,9 @@ class SyncCommand(commands.Cog):
 
         msg = await ctx.send(embed=loadingembed)
         no_sc = False
+        error = None
+        synced = False
+        embed = None
         try:
             synced = await self.bot.tree.sync()
             success = True
@@ -43,7 +46,7 @@ class SyncCommand(commands.Cog):
         if not success:
             embed = discord.Embed(
                 title="<a:error:1458895434612215939> Fehler!",
-                description="Während dem Syncen ist ein Fehler aufgetreten. \n\n"
+                description="Während dem Synchronisieren ist ein Fehler aufgetreten. \n\n"
                             f"`{error}`",
                 color=discord.Color.red()
             )

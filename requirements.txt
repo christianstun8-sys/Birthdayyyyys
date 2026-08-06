@@ -6,3 +6,4 @@ aiohttp
 Babel
 pytz
 jishaku
+aiomysql

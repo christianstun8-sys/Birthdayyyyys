@@ -4,7 +4,6 @@ import aiosqlite
 from pathlib import Path
 from discord.app_commands import locale_str
 
-
 class RenameModal(discord.ui.Modal, title="Kanal umbenennen"):
     def __init__(self, voice_channel: discord.VoiceChannel):
         super().__init__()
