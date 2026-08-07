@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from utils.babel import translator
+from cogs.birthday_check_task import setup_database_record
 
 class Setuphelp(commands.Cog):
     def __init__(self, bot):
@@ -77,6 +78,8 @@ class Setuphelp(commands.Cog):
                     await guild.owner.send(embed=welcome_embed)
             except discord.Forbidden:
                 print(f"Konnte keine Nachricht an Server {guild.name} oder dessen Owner senden.")
+
+        await setup_database_record(self.bot, guild.id, lang)
 
 async def setup(bot):
     await bot.add_cog(Setuphelp(bot))

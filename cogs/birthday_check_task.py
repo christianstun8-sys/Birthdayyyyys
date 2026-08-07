@@ -6,6 +6,7 @@ import discord
 from discord.ext import commands, tasks
 from PIL import Image, ImageDraw, ImageFont
 import pytz
+import aiomysql
 
 from utils.babel import translator
 
@@ -30,6 +31,18 @@ def format_age(age: int, lang: str) -> str:
 
     return f"{age}{suffix}"
 
+async def setup_database_record(bot, guild_id: int, language: str):
+    async with bot.db_pool.acquire() as db:
+        async with db.cursor() as cursor:
+            await cursor.execute("""INSERT INTO guild_settings (guild_id, config_embed_color, lang, message_time) VALUES (%s, %s, %s, %s)""", (guild_id, 0x45A6C9, language, "08:00"))
+            await db.commit()
+
+async def remove_database_record(bot, guild_id: int):
+    async with bot.db_pool.acquire() as db:
+        async with db.cursor() as cursor:
+            await cursor.execute("""DELETE FROM guild_settings WHERE guild_id = %s""", (guild_id,))
+            await cursor.execute("""DELETE FROM birthdays WHERE guild_id = %s""", (guild_id,))
+            await db.commit()
 
 async def load_bot_config(bot, guild_id: int):
     async with bot.db_pool.acquire() as conn:
@@ -59,7 +72,7 @@ async def load_bot_config(bot, guild_id: int):
                     "message_with_age": None,
                     "footer_with_age": None,
                     "image_title_with_age": None,
-                    "message_time": None,
+                    "message_time": "08:00",
                 }
                 await cursor.execute(
                     """

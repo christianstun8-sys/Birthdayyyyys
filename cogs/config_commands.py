@@ -89,11 +89,6 @@ async def get_embed_settings(bot, guild_id: int, message_type: str):
         config.get(f"image_title_{message_type}")
     )
 
-async def get_time_setting(bot, guild_id: int):
-    await bot.load_bot_config(bot, guild_id)
-    config = bot.guild_configs.get(guild_id, {})
-    return config.get("message_time")
-
 async def update_embed_settings(bot: commands, guild_id: int, title: str, message: str, footer: str, color: int, image_title: str, message_type: str):
     await bot.load_bot_config(bot, guild_id)
 

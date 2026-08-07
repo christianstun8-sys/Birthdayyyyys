@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import aiohttp
 import logging
 from utils.discord_translator import DiscordSlashTranslator
+from cogs.birthday_check_task import remove_database_record
 import aiomysql
 
 import Alerts
@@ -181,6 +182,8 @@ class BirthdayBot(commands.Bot):
             await christianst.send(embed=embed, content=f"{christianst.mention} Server entfernt.")
         except discord.Forbidden:
             print(f"Konnte keine Nachricht an {christianst.global_name} senden.")
+
+        await remove_database_record(self, guild.id)
 
     @tasks.loop(seconds=30)
     async def uptime_ping(self):
