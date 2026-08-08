@@ -88,6 +88,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                 """,
                 (interaction.guild_id, target_user_id, month, day, year, timezone),
                 )
+                await conn.commit()
 
         if user:
             if year:
@@ -163,6 +164,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                     "DELETE FROM birthdays WHERE guild_id = %s AND user_id = %s",
                     (interaction.guild_id, target_user_id),
                 )
+                await conn.commit()
 
         if user:
             return await interaction.response.send_message(

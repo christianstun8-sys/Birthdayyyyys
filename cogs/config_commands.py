@@ -847,7 +847,6 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
 
         guild_id = interaction.guild.id
         await self.bot.load_bot_config(self.bot, guild_id)
-        current_config = self.bot.guild_configs.get(guild_id, {})
 
         embed = build_config_embed(interaction.client, interaction.guild.id)
 

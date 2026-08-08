@@ -87,15 +87,55 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                 if interaction.user.guild_permissions.manage_guild:
                     command_embed = discord.Embed(
                         title=_("__Hilfe für den Befehl /{command}__").format(command=command),
-                        description=_("Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu nutzt man die Buttons auf dem gesendeten Panel.").format(command=command),
+                        description=_("Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu nutzt man das Auswahlmenü auf dem gesendeten Panel.").format(command=command),
                         color=current_config.get("config_embed_color", 0x45a6c9)
                     )
-                    command_embed.add_field(name=_("`Kanal`"), value=_("Im Formular kannst du den Kanal einstellen, worin die Geburtstagsgrüße gesendet werden sollen. **WICHTIG!** Ohne diese Einstellung wird keine Nachricht gesendet."), inline=False)
-                    command_embed.add_field(name=_("`Rolle`"), value=_("Im Formular kannst du eine Geburtstagsrolle festlegen, die bei einem Geburtstag für 24h vergeben wird."), inline=False)
-                    command_embed.add_field(name=_("`Bilder An/Aus`"), value=_("Stelle hier ein, ob personalisierte Banner bei Geburtstagen gesendet werden sollen. Wie so ein Banner aussieht, siehst du auf **__[der Homepage](https://birthdayyyyys.christianst.xyz)__**."), inline=False)
-                    command_embed.add_field(name=_("`Embed Farbe`"), value=_("Gebe in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden nun diese Farbe nutzen. Standard: `45A6C9`."), inline=False)
-                    command_embed.add_field(name=_("`News Kanal`"), value=_("Wenn du Botneuigkeiten nicht verpassen willst, kannst du in das Formular die Kanal-ID für den gewünschten Kanal eingeben. In diesen werden Changelogs und Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu bekommen (was sehr schade wäre)."), inline=False)
-                    command_embed.add_field(name=_("`Nachricht (Kein/Mit Alter)`"), value=_("Hier kannst du die Geburtstagsembeds bearbeiten. Du kannst sogar den Titel des generierten Banners auswählen. Nutze die Variablen im Titel jedes Feldes, um die Nachricht weiter zu personalisieren."), inline=False)
+
+                    command_embed.add_field(
+                        name=_("`Kanal`"),
+                        value=_("Lege den Kanal fest, in dem die Geburtstagsgrüße gesendet werden sollen. Wird kein Kanal gewählt, werden die Nachrichten automatisch im Systemkanal des Servers gesendet."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Rolle`"),
+                        value=_("Im Formular kannst du eine Geburtstagsrolle festlegen, die bei einem Geburtstag für 24h vergeben wird."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Bilder An/Aus`"),
+                        value=_("Stelle hier ein, ob personalisierte Banner bei Geburtstagen gesendet werden sollen. Wie so ein Banner aussieht, siehst du auf **__[der Homepage](https://birthdayyyyys.christianst.xyz)__**."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Farbe`"),
+                        value=_("Gib in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden nun diese Farbe nutzen. Standard: `45A6C9`."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Ankündigungen`"),
+                        value=_("Wenn du Botneuigkeiten nicht verpassen willst, kannst du im Formular die Kanal-ID für den gewünschten Kanal eingeben. In diesen werden Changelogs und Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu bekommen."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Sprache`"),
+                        value=_("Ändere hier die Sprache, in der der Bot auf diesem Server kommuniziert."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Nachricht (ohne Alter)`"),
+                        value=_("Hier kannst du das Geburtstagsembed für Mitglieder bearbeiten, die ihr Alter nicht anzeigen lassen. Du kannst auch den Titel des generierten Banners sowie Variablen zur Personalisierung nutzen."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Nachricht (mit Alter)`"),
+                        value=_("Hier kannst du das Geburtstagsembed für Mitglieder bearbeiten, die ihr Alter anzeigen lassen. Du kannst auch den Titel des generierten Banners sowie Variablen zur Personalisierung nutzen."),
+                        inline=False
+                    )
+                    command_embed.add_field(
+                        name=_("`Uhrzeit`"),
+                        value=_("Lege die tägliche Uhrzeit fest (z. B. `08:00`), zu der die Geburtstagsnachrichten auf dem Server gesendet werden sollen."),
+                        inline=False
+                    )
                 else:
                     return await interaction.response.send_message("⚠️ Du hast keine Berechtigung dazu.", ephemeral=True)
             elif command == "birthday-test":
@@ -122,25 +162,32 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
                 description=_("Hier ist eine Liste aller verfügbaren Befehle:"),
                 color=current_config.get("config_embed_color", 0x45a6c9)
             )
-            if permissions.manage_guild:
-                embed.add_field(name=_("__Mitglieder:__"), value='\u200b', inline=False)
-                embed.add_field(name="/birthday-set <month> <day> [year] [timezone]", value=_("Setzt deinen Geburtstag."), inline=False)
-                embed.add_field(name="/birthday-remove", value=_("Entfernt deinen Geburtstag."), inline=False)
-                embed.add_field(name="/birthday-list", value=_("Zeigt alle gespeicherten Geburtstage an."), inline=False)
-                embed.add_field(name="/info", value=_("Zeigt Informationen über den Bot an."), inline=False)
-                embed.add_field(name="/ping", value=_("Misst die derzeitige Antwortlatenz des Bots"), inline=False)
-                embed.add_field(name='\u200b', value='\u200b', inline=False)
-                embed.add_field(name=_('__Team:__'), value='\u200b', inline=False)
-                embed.add_field(name='/config', value=_("Konfiguriert Birthdayyyyys."), inline=False)
-                embed.add_field(name="/config-test <message_type>", value=_("Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal."), inline=False)
-            else:
-                embed.add_field(name=_("__Mitglieder:__"), value='\u200b', inline=False)
-                embed.add_field(name="/birthday-set <month> <day> [year] [timezone]", value=_("Setzt deinen Geburtstag."), inline=False)
-                embed.add_field(name="/birthday-remove", value=_("Entfernt deinen Geburtstag."), inline=False)
-                embed.add_field(name="/birthday-list", value=_("Zeigt alle gespeicherten Geburtstage an."), inline=False)
-                embed.add_field(name="/info", value=_("Zeigt Informationen über den Bot an."), inline=False)
-                embed.add_field(name="/ping", value=_("Misst die derzeitige Antwortlatenz von Birthdayyyyys."), inline=False)
 
+            member_commands = (
+                    "`/birthday-set <month> <day> [year] [timezone] [user]`\n"
+                    "> " + _("Setzt deinen Geburtstag.") + "\n\n"
+                    "`/birthday-remove [user]`\n"
+                    "> " + _("Entfernt deinen Geburtstag.") + "\n\n"
+                    "`/birthday-show [user]`\n"
+                    "> " + _("Zeigt deinen oder den Geburtstag eines anderen Nutzers an.") + "\n\n"
+                    "`/birthday-list`\n"
+                    "> " + _("Zeigt alle gespeicherten Geburtstage an.") + "\n\n"
+                    "`/info`\n"
+                    "> " + _("Zeigt Informationen über den Bot an.") + "\n\n"
+                    "`/ping`\n"
+                    "> " + _("Misst die derzeitige Antwortlatenz des Bots")
+)
+
+            embed.add_field(name=_("__Mitglieder:__"), value=member_commands, inline=False)
+
+            if permissions.manage_guild:
+                team_commands = (
+                        "`/config`\n"
+                        "> " + _("Konfiguriert Birthdayyyyys.") + "\n\n"
+                        "`/config-test <message_type>`\n"
+                        "> " + _("Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal.")
+                )
+                embed.add_field(name=_("__Team:__"), value=team_commands, inline=False)
 
             embed.set_footer(text=_("Nutze `/help [command]`, um über komplexere Befehle mehr zu erfahren."))
             embed.set_thumbnail(url=self.bot.user.avatar)
