@@ -34,8 +34,11 @@ def format_age(age: int, lang: str) -> str:
 async def setup_database_record(bot, guild_id: int, language: str):
     async with bot.db_pool.acquire() as db:
         async with db.cursor() as cursor:
-            await cursor.execute("""INSERT INTO guild_settings (guild_id, config_embed_color, lang, message_time) VALUES (%s, %s, %s, %s)""", (guild_id, 0x45A6C9, language, "08:00"))
-            await db.commit()
+            try:
+                await cursor.execute("""INSERT INTO guild_settings (guild_id, config_embed_color, lang, message_time) VALUES (%s, %s, %s, %s)""", (guild_id, 0x45A6C9, language, "08:00"))
+                await db.commit()
+            except aiomysql.IntegrityError:
+                pass
 
 async def remove_database_record(bot, guild_id: int):
     async with bot.db_pool.acquire() as db:
