@@ -486,8 +486,10 @@ class AlertsConfigModal(discord.ui.Modal):
         if not self.channel_select.values:
             await update_alerts_settings(self.bot, self.guild_id, 0)
             return await interaction.response.edit_message(embed=build_config_embed(self.bot, self.guild_id), view=MainConfigView(self.bot, self.guild_id))
-
-        channel = await interaction.guild.fetch_channel(self.channel_select.values[0].id)
+        try:
+            channel = await interaction.guild.fetch_channel(self.channel_select.values[0].id)
+        except discord.Forbidden:
+            return await interaction.response.send_message(_("❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."), ephemeral=True)
         perms = channel.permissions_for(interaction.guild.me).send_messages
 
         if not perms:
