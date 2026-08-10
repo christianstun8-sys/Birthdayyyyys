@@ -3,25 +3,26 @@ from discord import app_commands
 from discord.ext import commands
 from datetime import datetime
 from utils.babel import translator
+from cogs.birthday_check_task import format_age
 
 
 def default_title(_, age: bool):
     if not age:
         return _("🎉 Herzlichen Glückwunsch zum Geburtstag, %username!")
     else:
-        return _("🎂 Alles Gute zum %age. Geburtstag, %username!")
+        return _("🎂 Alles Gute zum %age Geburtstag, %username!")
 
 def default_description(_, age: bool):
     if not age:
         return _("Bitte sende deine besten Wünsche an %mention!")
     else:
-        return _("Lasst uns %mention zu seinem %age. Geburtstag gratulieren!")
+        return _("Lasst uns %mention zu seinem %age Geburtstag gratulieren!")
 
 def default_image_title(_, age: bool):
     if not age:
         return _("Happy Birthday!")
     else:
-        return _("Happy %age. Birthday!")
+        return _("Happy %age Birthday!")
 
 def with_age_footer(_):
     return _("Feiere schön!")
@@ -907,7 +908,9 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
         embed_footer = current_config.get(f"footer_{message_type.value}")
         image_title = current_config.get(f"image_title_{message_type.value}") or default_image_title(_, message_type.value == "with_age")
 
-        age_str = "30" if message_type.value == "with_age" else ""
+        age_str = ""
+        if message_type.value == "with_age":
+            age_str = format_age(30, lang)
 
         final_embed_title = embed_title.replace("%username", user.display_name).replace("%age", age_str)
         final_embed_message = embed_message.replace("%username", user.display_name).replace("%age", age_str).replace("%mention", user.mention)

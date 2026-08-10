@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-08 18:42+0200\n"
+"POT-Creation-Date: 2026-08-10 21:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,38 +27,38 @@ msgid ""
 "Server."
 msgstr ""
 
-#: cogs/birthday_check_task.py:303 cogs/config_commands.py:10
+#: cogs/birthday_check_task.py:306 cogs/config_commands.py:10
 #, python-format
 msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr ""
 
-#: cogs/birthday_check_task.py:305 cogs/config_commands.py:12
+#: cogs/birthday_check_task.py:308
 #, python-format
-msgid "🎂 Alles Gute zum %age. Geburtstag, %username!"
+msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
 msgstr ""
 
-#: cogs/birthday_check_task.py:308 cogs/config_commands.py:16
+#: cogs/birthday_check_task.py:311 cogs/config_commands.py:16
 msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr ""
 
-#: cogs/birthday_check_task.py:311 cogs/config_commands.py:18
-msgid "Lasst uns %mention zu seinem %age. Geburtstag gratulieren!"
+#: cogs/birthday_check_task.py:314
+msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
 msgstr ""
 
-#: cogs/birthday_check_task.py:315 cogs/config_commands.py:27
+#: cogs/birthday_check_task.py:318 cogs/config_commands.py:27
 msgid "Feiere schön!"
 msgstr ""
 
-#: cogs/birthday_check_task.py:376
+#: cogs/birthday_check_task.py:379
 msgid "Geburtstagsrolle zugewiesen"
 msgstr ""
 
-#: cogs/birthday_check_task.py:392
+#: cogs/birthday_check_task.py:395
 msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
 msgstr ""
 
 #: cogs/birthday_commands.py:59 cogs/birthday_commands.py:156
-#: cogs/config_commands.py:827 cogs/config_commands.py:829
+#: cogs/config_commands.py:829 cogs/config_commands.py:831
 #: cogs/info_commands.py:151
 msgid "⚠️ Du hast keine Berechtigung dazu."
 msgstr ""
@@ -195,6 +195,15 @@ msgstr ""
 
 #: cogs/birthday_commands.py:341
 msgid "Geburtstagskalender"
+msgstr ""
+
+#: cogs/config_commands.py:12
+#, python-format
+msgid "🎂 Alles Gute zum %age. Geburtstag, %username!"
+msgstr ""
+
+#: cogs/config_commands.py:18
+msgid "Lasst uns %mention zu seinem %age. Geburtstag gratulieren!"
 msgstr ""
 
 #: cogs/config_commands.py:22
@@ -356,7 +365,7 @@ msgstr ""
 msgid "Ungültiger Hex-Code."
 msgstr ""
 
-#: cogs/config_commands.py:417 cogs/config_commands.py:704
+#: cogs/config_commands.py:417 cogs/config_commands.py:706
 msgid "Geburtstagskanal festlegen"
 msgstr ""
 
@@ -368,11 +377,12 @@ msgstr ""
 msgid "Ziel-Kanal für Geburtstage:"
 msgstr ""
 
-#: cogs/config_commands.py:439 cogs/config_commands.py:900
+#: cogs/config_commands.py:439 cogs/config_commands.py:492
+#: cogs/config_commands.py:902
 msgid "❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
 msgstr ""
 
-#: cogs/config_commands.py:444 cogs/config_commands.py:494
+#: cogs/config_commands.py:444 cogs/config_commands.py:496
 msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
 msgstr ""
 
@@ -388,166 +398,166 @@ msgstr ""
 msgid "Ziel-Kanal für News:"
 msgstr ""
 
-#: cogs/config_commands.py:508
+#: cogs/config_commands.py:510
 msgid "Geburtstagsrolle festlegen"
 msgstr ""
 
-#: cogs/config_commands.py:511
+#: cogs/config_commands.py:513
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
 msgstr ""
 
-#: cogs/config_commands.py:518
+#: cogs/config_commands.py:520
 msgid "Geburtstagsrolle wählen"
 msgstr ""
 
-#: cogs/config_commands.py:549
+#: cogs/config_commands.py:551
 #, python-brace-format
 msgid ""
 "⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder "
 "gleichrangig mit meiner eigenen Rolle ist."
 msgstr ""
 
-#: cogs/config_commands.py:555
+#: cogs/config_commands.py:557
 msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
 msgstr ""
 
-#: cogs/config_commands.py:589
+#: cogs/config_commands.py:591
 msgid "Deutsch"
 msgstr ""
 
-#: cogs/config_commands.py:597
+#: cogs/config_commands.py:599
 msgid "English"
 msgstr ""
 
-#: cogs/config_commands.py:605
+#: cogs/config_commands.py:607
 msgid "Französisch"
 msgstr ""
 
-#: cogs/config_commands.py:613
+#: cogs/config_commands.py:615
 msgid "Spanisch"
 msgstr ""
 
-#: cogs/config_commands.py:621
+#: cogs/config_commands.py:623
 msgid "Polnisch"
 msgstr ""
 
-#: cogs/config_commands.py:629
+#: cogs/config_commands.py:631
 msgid "Russisch"
 msgstr ""
 
-#: cogs/config_commands.py:637
+#: cogs/config_commands.py:639
 msgid "Ukrainisch"
 msgstr ""
 
-#: cogs/config_commands.py:670
+#: cogs/config_commands.py:672
 msgid "❌ Diese Sprache ist bereits eingestellt."
 msgstr ""
 
-#: cogs/config_commands.py:704
+#: cogs/config_commands.py:706
 msgid "Kanal"
 msgstr ""
 
-#: cogs/config_commands.py:705
+#: cogs/config_commands.py:707
 msgid "Rolle"
 msgstr ""
 
-#: cogs/config_commands.py:705
+#: cogs/config_commands.py:707
 msgid "Geburtstagsrolle zuweisen"
 msgstr ""
 
-#: cogs/config_commands.py:706
+#: cogs/config_commands.py:708
 msgid "Bilder An/Aus"
 msgstr ""
 
-#: cogs/config_commands.py:706
+#: cogs/config_commands.py:708
 msgid "Geburtstagskarten aktivieren/deaktivieren"
 msgstr ""
 
-#: cogs/config_commands.py:707
+#: cogs/config_commands.py:709
 msgid "Farbe"
 msgstr ""
 
-#: cogs/config_commands.py:707
+#: cogs/config_commands.py:709
 msgid "Farbe der Embeds ändern"
 msgstr ""
 
-#: cogs/config_commands.py:708
+#: cogs/config_commands.py:710
 msgid "Ankündigungen"
 msgstr ""
 
-#: cogs/config_commands.py:708
+#: cogs/config_commands.py:710
 msgid "News-Kanal verwalten"
 msgstr ""
 
-#: cogs/config_commands.py:709
+#: cogs/config_commands.py:711
 msgid "Sprache"
 msgstr ""
 
-#: cogs/config_commands.py:709
+#: cogs/config_commands.py:711
 msgid "Sprache des Bots ändern"
 msgstr ""
 
-#: cogs/config_commands.py:710
+#: cogs/config_commands.py:712
 msgid "Nachricht (ohne Alter)"
 msgstr ""
 
-#: cogs/config_commands.py:710
+#: cogs/config_commands.py:712
 msgid "Embed-Text für Modus ohne Alter"
 msgstr ""
 
-#: cogs/config_commands.py:711
+#: cogs/config_commands.py:713
 msgid "Nachricht (mit Alter)"
 msgstr ""
 
-#: cogs/config_commands.py:711
+#: cogs/config_commands.py:713
 msgid "Embed-Text für Modus mit Alter"
 msgstr ""
 
-#: cogs/config_commands.py:712
+#: cogs/config_commands.py:714
 msgid "Uhrzeit"
 msgstr ""
 
-#: cogs/config_commands.py:712
+#: cogs/config_commands.py:714
 msgid "Sendezeit der Nachrichten anpassen"
 msgstr ""
 
-#: cogs/config_commands.py:716
+#: cogs/config_commands.py:718
 msgid "Wähle eine Einstellung zum Bearbeiten..."
 msgstr ""
 
-#: cogs/config_commands.py:804
+#: cogs/config_commands.py:806
 msgid "🌍 Sprache"
 msgstr ""
 
-#: cogs/config_commands.py:805
+#: cogs/config_commands.py:807
 msgid ""
 "Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
 "**HINWEIS:** Übersetzungen können fehlerhaft sein."
 msgstr ""
 
-#: cogs/config_commands.py:845
+#: cogs/config_commands.py:847
 msgid "Nur in Servern möglich."
 msgstr ""
 
-#: cogs/config_commands.py:877
+#: cogs/config_commands.py:879
 msgid "Nur auf einem Server möglich."
 msgstr ""
 
-#: cogs/config_commands.py:889
+#: cogs/config_commands.py:891
 msgid "Kein Kanal konfiguriert."
 msgstr ""
 
-#: cogs/config_commands.py:897
+#: cogs/config_commands.py:899
 msgid ""
 "❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze "
 "ihn in der Config neu."
 msgstr ""
 
-#: cogs/config_commands.py:951
+#: cogs/config_commands.py:953
 msgid "❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
 msgstr ""
 
-#: cogs/config_commands.py:953
+#: cogs/config_commands.py:955
 msgid "Test gesendet! ✅"
 msgstr ""
 

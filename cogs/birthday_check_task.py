@@ -15,21 +15,21 @@ FONT_PATH = "data/arial.ttf"
 IMAGE_TEXT_COLOR = (0, 0, 0, 255)
 
 DEFAULT_IMAGE_NO_AGE_TITLE = "Happy Birthday!"
-DEFAULT_IMAGE_WITH_AGE_TITLE = "Happy %age. Birthday!"
+DEFAULT_IMAGE_WITH_AGE_TITLE = "Happy %age Birthday!"
 
 
 def format_age(age: int, lang: str) -> str:
-    suffix = None
     if lang == "de":
-        suffix = "."
+        return f"{age}."
 
     if lang == "en":
         if 11 <= (age % 100) <= 13:
             suffix = "th"
         else:
             suffix = {1: "st", 2: "nd", 3: "rd"}.get(age % 10, "th")
+        return f"{age}{suffix}"
 
-    return f"{age}{suffix}"
+    return str(age)
 
 async def setup_database_record(bot, guild_id: int, language: str):
     async with bot.db_pool.acquire() as db:
@@ -299,19 +299,21 @@ class BirthdayCheckTask(commands.Cog):
                     if birth_year > 0:
                         tz = pytz.timezone(user_tz_name)
                         age = datetime.now(tz).year - birth_year
+                        print(f"[BIRTHDAY DEBUG] guild={guild.name!r} lang={lang!r} age={age}")
                         age_str = format_age(age, lang)
+                        print(f"[BIRTHDAY DEBUG] age_str={age_str!r}")
                         message_type = "with_age"
 
                     embed_title = current_config.get(f"title_{message_type}") or (
                         _("🎉 Herzlichen Glückwunsch zum Geburtstag, %username!")
                         if message_type == "no_age"
-                        else _("🎂 Alles Gute zum %age. Geburtstag, %username!")
+                        else _("🎂 Alles Gute zum %age Geburtstag, %username!")
                     )
                     embed_message = current_config.get(f"message_{message_type}") or (
                         _("Bitte sende deine besten Wünsche an %mention!")
                         if message_type == "no_age"
                         else _(
-                            "Lasst uns %mention zu seinem %age. Geburtstag gratulieren!"
+                            "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
                         )
                     )
                     embed_footer = current_config.get(f"footer_{message_type}") or (
