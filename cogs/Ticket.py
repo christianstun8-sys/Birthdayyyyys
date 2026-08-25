@@ -36,7 +36,7 @@ async def get_ticket_data(channel_id):
             return await cursor.fetchone()
 
 async def create_transcript(channel: discord.TextChannel):
-    transcript_text = f"Transkript für Ticket: {channel.name}\n"
+    transcript_text = f"Transcript for ticket: {channel.name}\n"
     transcript_text += f"ID: {channel.id}\n"
     transcript_text += "-" * 30 + "\n\n"
 
@@ -53,13 +53,15 @@ async def create_transcript(channel: discord.TextChannel):
 
     return io.BytesIO(transcript_text.encode('utf-8'))
 
-async def log_to_channel(bot, guild, embed, file=None):
+async def log_to_channel(bot, guild, embed, file=None, created: bool = None):
     log_channel = bot.get_channel(log_channel_id)
     if log_channel:
-        await log_channel.send(embed=embed, file=file)
+        if created:
+            await log_channel.send(embed=embed, file=file, content=f"<&{team_role_id}>")
+        else:
+            await log_channel.send(embed=embed, file=file)
 
 async def move_ticket_category(channel: discord.TextChannel, status: str, claimed_by_id: int = None):
-
     category_id = None
     if status == 'geschlossen':
         category_id = CLOSED_CATEGORY_ID
@@ -89,6 +91,9 @@ class ConfirmDeleteView(discord.ui.View):
 
         channel = interaction.channel
 
+        user_id = ticket_data[0]
+        user = interaction.guild.get_member(user_id)
+
         transcript_file = await create_transcript(channel)
         file = discord.File(transcript_file, filename=f"transcript-{channel.name}.txt")
 
@@ -98,6 +103,15 @@ class ConfirmDeleteView(discord.ui.View):
             color=discord.Color.dark_red()
         )
 
+        member_embed = discord.Embed(
+            title="🎫 Ticket gelöscht / Ticket deleted",
+            description="Danke, dass du den Birthdayyyyys Support kontaktiert hast. Wir hoffen, wir konnten dir weiterhelfen. Wenn ja, würden wir uns riesig freuen, wenn du uns eine Bewertung auf **__[Top.GG](https://top.gg/bot/1389267222261792868)__** schreiben könntest. \n"
+                        "Wenn du weitere Fragen hast, fühl dich frei, ein neues Ticket zu eröffnen!\n\n"
+                        "*Thank you for contacting Birthdayyyyys Support. We hope we were able to help you. If so, we’d be absolutely delighted if you could leave us a review on **__[Top.GG](https://top.gg/bot/1389267222261792868)__**."
+                        "If you have any further questions, please feel free to open a new ticket!*",
+            color=discord.Color.blue()
+        )
+
         await asyncio.sleep(5)
 
         async with aiosqlite.connect(TICKETS_DB) as db:
@@ -105,7 +119,12 @@ class ConfirmDeleteView(discord.ui.View):
             await db.commit()
 
         await log_to_channel(interaction.client, interaction.guild, log_embed, file=file)
-        await channel.delete()
+        try:
+            await user.send(embed=member_embed, file=file)
+        except discord.Forbidden:
+            pass
+
+        return await channel.delete()
 
     @discord.ui.button(label="❌ Abbrechen / Cancel", style=discord.ButtonStyle.green, custom_id="cancel_delete_button")
     async def cancel_delete_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -156,7 +175,7 @@ class ClosedTicketView(discord.ui.View):
         await log_to_channel(interaction.client, interaction.guild, log_embed)
 
         embed = discord.Embed(title="🔓 Ticket wieder geöffnet\n*Ticket reopened*", description=f"{interaction.user.mention} hat das Ticket geöffnet!\n*{interaction.user.mention} has opened the ticket!*", color=discord.Color.blue())
-        await interaction.response.send_message(embed=embed, view=OpenTicketView())
+        return await interaction.response.send_message(embed=embed, view=OpenTicketView())
 
     @discord.ui.button(label="⛔ Löschen / Delete", style=discord.ButtonStyle.red, custom_id="delete_ticket_button")
     async def delete_ticket_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
@@ -172,7 +191,7 @@ class ClosedTicketView(discord.ui.View):
             description="Diese Aktion kann **nicht** rückgängig gemacht werden. Der Channel wird permanent gelöscht.\n*This action **cannot** be undone. The channel will be permanently deleted.*",
             color=discord.Color.dark_red()
         )
-        await interaction.response.send_message(embed=embed, view=ConfirmDeleteView(), ephemeral=True)
+        return await interaction.response.send_message(embed=embed, view=ConfirmDeleteView(), ephemeral=True)
 
 class OpenTicketView(discord.ui.View):
     def __init__(self):
@@ -283,7 +302,7 @@ class TicketClaimView(discord.ui.View):
                 return await interaction.response.send_message(f"Dieses Ticket ist bereits von {claimer.mention if claimer else 'einem Teammitglied'} geclaimt.\n*This ticket is already claimed by {claimer.mention if claimer else 'a staff member'}.*", ephemeral=True)
 
             await db.commit()
-            await interaction.response.send_message(embed=embed)
+            return await interaction.response.send_message(embed=embed)
 
 class TicketCreateView(discord.ui.View):
     def __init__(self):
@@ -303,8 +322,8 @@ class TicketCreateView(discord.ui.View):
             guild = interaction.guild
             category = guild.get_channel(OPEN_CATEGORY_ID)
             if not category:
-                await interaction.followup.send("Fehler: Die Kategorie für offene Tickets wurde nicht gefunden.\n*Error: The category for open tickets was not found.*", ephemeral=True)
-                return
+                return await interaction.followup.send("Fehler: Die Kategorie für offene Tickets wurde nicht gefunden.\n*Error: The category for open tickets was not found.*", ephemeral=True)
+
 
             op = interaction.user
             team_role = guild.get_role(team_role_id)
@@ -333,14 +352,14 @@ class TicketCreateView(discord.ui.View):
         log_embed = discord.Embed(
             title="Neues Ticket! / New Ticket!",
             description=f"{interaction.user.mention} ({interaction.user.id}) hat ein neues Ticket erstellt: {new_channel.mention}\n*{interaction.user.mention} ({interaction.user.id}) has created a new ticket: {new_channel.mention}*",
-            color=discord.Color.blue()
+            color=discord.Color.green()
         )
 
         await new_channel.send(embed=embed, view=OpenTicketView(), content=f"{interaction.user.mention}")
         await new_channel.send(view=TicketClaimView())
         await interaction.followup.send(f"Dein Ticket wurde erstellt: {new_channel.mention}\n*Your ticket has been created: {new_channel.mention}*", ephemeral=True)
 
-        await log_to_channel(interaction.client, interaction.guild, log_embed)
+        return await log_to_channel(interaction.client, interaction.guild, log_embed, None, True)
 
 class TicketCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
