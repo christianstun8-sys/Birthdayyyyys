@@ -111,6 +111,7 @@ class ConfirmDeleteView(discord.ui.View):
                         "If you have any further questions, please feel free to open a new ticket!*",
             color=discord.Color.blue()
         )
+        member_embed.set_thumbnail(url=interaction.client.user.avatar.url)
 
         await asyncio.sleep(5)
 
