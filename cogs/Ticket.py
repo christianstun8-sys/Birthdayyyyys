@@ -57,7 +57,7 @@ async def log_to_channel(bot, guild, embed, file=None, created: bool = None):
     log_channel = bot.get_channel(log_channel_id)
     if log_channel:
         if created:
-            await log_channel.send(embed=embed, file=file, content=f"<&{team_role_id}>")
+            await log_channel.send(embed=embed, file=file, content=f"<@&{team_role_id}>")
         else:
             await log_channel.send(embed=embed, file=file)
 
