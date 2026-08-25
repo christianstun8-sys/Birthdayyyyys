@@ -37,7 +37,7 @@ msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr "🎉 Вітаємо з днем народження, %username!"
 
 #: cogs/birthday_check_task.py:308
-#, fuzzy, python-format
+#, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
 msgstr "🎂 Вітаємо з %age-річчям, %username!"
 
@@ -46,7 +46,6 @@ msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr "Будь ласка, передайте свої найкращі побажання %mention!"
 
 #: cogs/birthday_check_task.py:314
-#, fuzzy
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
 msgstr "Давайте привітаємо %mention з %age-м днем народження!"
 
@@ -224,7 +223,7 @@ msgid "Happy Birthday!"
 msgstr "З днем народження!"
 
 #: cogs/config_commands.py:24
-msgid "Happy %age. Birthday!"
+msgid "Happy %age Birthday!"
 msgstr "З %age-м днем народження!"
 
 #: cogs/config_commands.py:53
@@ -289,7 +288,7 @@ msgstr "📣 Оголошення"
 
 #: cogs/config_commands.py:151
 msgid "Sendezeit der Geburtstagsnachricht setzen"
-msgstr "Встановити час відправки привітального повідомлення"
+msgstr "Задати час відправки привітання"
 
 #: cogs/config_commands.py:153
 msgid "Neue Zeit (Format: HH:MM)"
@@ -312,7 +311,7 @@ msgstr "Заголовок ембеду (%username)"
 #: cogs/config_commands.py:210
 #, python-format
 msgid "Nachricht im Embed (%mention, %username)"
-msgstr "Текст повідомлення в ембеді (%mention, %username)"
+msgstr "Повідомлення в ембеді (%mention, %username)"
 
 #: cogs/config_commands.py:220
 #, python-format
@@ -326,7 +325,7 @@ msgstr "Без нижнього колонтитула"
 #: cogs/config_commands.py:229
 #, python-format
 msgid "Titel auf Geburtstagsbild (%username)"
-msgstr "Заголовок на святковому зображенні (%username)"
+msgstr "Заголовок картинки (%username)"
 
 #: cogs/config_commands.py:261
 msgid "Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"

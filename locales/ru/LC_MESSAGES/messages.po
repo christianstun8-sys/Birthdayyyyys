@@ -37,7 +37,7 @@ msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr "🎉 С днём рождения, %username!"
 
 #: cogs/birthday_check_task.py:308
-#, fuzzy, python-format
+#, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
 msgstr "🎂 Поздравляем с %age-летием, %username!"
 
@@ -46,7 +46,6 @@ msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr "Пожалуйста, передайте свои наилучшие пожелания %mention!"
 
 #: cogs/birthday_check_task.py:314
-#, fuzzy
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
 msgstr "Давайте поздравим %mention с %age-м днём рождения!"
 
@@ -224,7 +223,7 @@ msgid "Happy Birthday!"
 msgstr "С днём рождения!"
 
 #: cogs/config_commands.py:24
-msgid "Happy %age. Birthday!"
+msgid "Happy %age Birthday!"
 msgstr "С %age-м днём рождения!"
 
 #: cogs/config_commands.py:53
@@ -289,7 +288,7 @@ msgstr "📣 Объявления"
 
 #: cogs/config_commands.py:151
 msgid "Sendezeit der Geburtstagsnachricht setzen"
-msgstr "Установить время отправки поздравительного сообщения"
+msgstr "Задать время отправки поздравления"
 
 #: cogs/config_commands.py:153
 msgid "Neue Zeit (Format: HH:MM)"
@@ -302,7 +301,7 @@ msgstr "❌ Введённое значение {input} не является к
 
 #: cogs/config_commands.py:193
 msgid "Nachricht ohne Altersangabe anpassen"
-msgstr "Настройка сообщения без указания возраста"
+msgstr "Настройка сообщения без возраста"
 
 #: cogs/config_commands.py:201
 #, python-format
@@ -312,7 +311,7 @@ msgstr "Заголовок эмбеда (%username)"
 #: cogs/config_commands.py:210
 #, python-format
 msgid "Nachricht im Embed (%mention, %username)"
-msgstr "Текст сообщения в эмбеде (%mention, %username)"
+msgstr "Сообщение в эмбеде (%mention, %username)"
 
 #: cogs/config_commands.py:220
 #, python-format
@@ -326,7 +325,7 @@ msgstr "Без футера"
 #: cogs/config_commands.py:229
 #, python-format
 msgid "Titel auf Geburtstagsbild (%username)"
-msgstr "Заголовок на поздравительной картинке (%username)"
+msgstr "Заголовок открытки (%username)"
 
 #: cogs/config_commands.py:261
 msgid "Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"

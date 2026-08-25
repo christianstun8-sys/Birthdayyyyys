@@ -90,7 +90,7 @@ class BirthdayBot(commands.Bot):
         except Exception as e:
             print(f"Fehler beim Laden von Jishaku: {e}")
 
-        if beta:
+        if debug:
             try:
                 synced = await self.tree.sync()
                 print(f"Synchronisierte {len(synced)} Befehle.")

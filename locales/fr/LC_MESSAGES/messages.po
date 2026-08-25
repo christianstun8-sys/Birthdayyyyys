@@ -35,7 +35,7 @@ msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr "🎉 Joyeux anniversaire, %username !"
 
 #: cogs/birthday_check_task.py:308
-#, fuzzy, python-format
+#, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
 msgstr "🎂 Joyeux %agee anniversaire, %username !"
 
@@ -44,7 +44,6 @@ msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr "Veuillez envoyer vos meilleurs vœux à %mention !"
 
 #: cogs/birthday_check_task.py:314
-#, fuzzy
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
 msgstr "Souhaitons un joyeux %agee anniversaire à %mention !"
 
@@ -222,7 +221,7 @@ msgid "Happy Birthday!"
 msgstr "Joyeux anniversaire !"
 
 #: cogs/config_commands.py:24
-msgid "Happy %age. Birthday!"
+msgid "Happy %age Birthday!"
 msgstr "Joyeux %agee anniversaire !"
 
 #: cogs/config_commands.py:53
@@ -287,7 +286,7 @@ msgstr "📣 Annonces"
 
 #: cogs/config_commands.py:151
 msgid "Sendezeit der Geburtstagsnachricht setzen"
-msgstr "Définir l'heure d'envoi du message d'anniversaire"
+msgstr "Régler l'heure du message d'anniversaire"
 
 #: cogs/config_commands.py:153
 msgid "Neue Zeit (Format: HH:MM)"
@@ -300,7 +299,7 @@ msgstr "❌ L'entrée {input} n'est pas une heure valide."
 
 #: cogs/config_commands.py:193
 msgid "Nachricht ohne Altersangabe anpassen"
-msgstr "Personnaliser le message sans mention de l'âge"
+msgstr "Modifier le message sans âge"
 
 #: cogs/config_commands.py:201
 #, python-format
@@ -315,7 +314,7 @@ msgstr "Message dans l'embed (%mention, %username)"
 #: cogs/config_commands.py:220
 #, python-format
 msgid "Footer im Embed (optional, %username)"
-msgstr "Pied de page de l'embed (optionnel, %username)"
+msgstr "Pied de page de l'embed (%username)"
 
 #: cogs/config_commands.py:221
 msgid "Kein Footer"
@@ -332,7 +331,7 @@ msgstr "Le message d'anniversaire (sans âge) a été mis à jour avec succès !
 
 #: cogs/config_commands.py:273
 msgid "Nachricht mit Altersangabe anpassen"
-msgstr "Personnaliser le message avec mention de l'âge"
+msgstr "Modifier le message avec âge"
 
 #: cogs/config_commands.py:281
 msgid "Titel (%age)"
@@ -367,7 +366,7 @@ msgstr "Personnaliser la couleur de l'embed"
 
 #: cogs/config_commands.py:359
 msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
-msgstr "Couleur de l'embed (code hexadécimal, ex : FF00FF)"
+msgstr "Couleur de l'embed (ex. : FF00FF)"
 
 #: cogs/config_commands.py:360
 #, python-brace-format

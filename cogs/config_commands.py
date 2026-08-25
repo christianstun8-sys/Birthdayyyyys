@@ -27,9 +27,9 @@ def default_image_title(_, age: bool):
 def with_age_footer(_):
     return _("Feiere schön!")
 
-def build_config_embed(bot: commands.Bot, guild_id: int):
+def build_config_embed(bot: commands.Bot, guild_id: int, l: str = None):
     config = bot.guild_configs.get(guild_id, {})
-    lang = config.get("lang", "en")
+    lang = l if l else config.get("lang", "en")
     _ = translator.get_translation(lang)
     guild = bot.get_guild(guild_id)
 
@@ -373,8 +373,7 @@ class ConfigColorModal(discord.ui.Modal):
 
         new_color_str = self.color_input.value.strip().replace("#", "")
         if not (len(new_color_str) == 6 and all(c in "0123456789abcdefABCDEF" for c in new_color_str)):
-            await interaction.response.send(_("Ungültiger Hex-Code."), ephemeral=True)
-            return
+            return await interaction.response.send_message(_("Ungültiger Hex-Code."), ephemeral=True)
 
         new_color = int(new_color_str, 16)
 
@@ -688,7 +687,7 @@ class LanguageConfigView(discord.ui.View):
 
         _ = translator.get_translation(lang_code)
 
-        embed = build_config_embed(interaction.client, interaction.guild.id)
+        embed = build_config_embed(interaction.client, interaction.guild.id, lang_code)
 
         await interaction.response.edit_message(
             embed=embed,

@@ -34,18 +34,17 @@ msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr "🎉 Wszystkiego najlepszego z okazji urodzin, %username!"
 
 #: cogs/birthday_check_task.py:308
-#, fuzzy, python-format
+#, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
-msgstr "🎂 Wszystkiego najlepszego z okazji %age. urodzin, %username!"
+msgstr "🎂 Wszystkiego najlepszego z okazji %age urodzin, %username!"
 
 #: cogs/birthday_check_task.py:311 cogs/config_commands.py:16
 msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr "Przekaż swoje najlepsze życzenia dla %mention!"
 
 #: cogs/birthday_check_task.py:314
-#, fuzzy
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
-msgstr "Złóżmy użytkownikowi %mention życzenia z okazji jego %age. urodzin!"
+msgstr "Złóżmy użytkownikowi %mention życzenia z okazji jego %age urodzin!"
 
 #: cogs/birthday_check_task.py:318 cogs/config_commands.py:27
 msgid "Feiere schön!"
@@ -221,7 +220,7 @@ msgid "Happy Birthday!"
 msgstr "Wszystkiego najlepszego!"
 
 #: cogs/config_commands.py:24
-msgid "Happy %age. Birthday!"
+msgid "Happy %age Birthday!"
 msgstr "Wszystkiego najlepszego z okazji %age. urodzin!"
 
 #: cogs/config_commands.py:53
@@ -309,7 +308,7 @@ msgstr "Tytuł osadzenia Embed (%username)"
 #: cogs/config_commands.py:210
 #, python-format
 msgid "Nachricht im Embed (%mention, %username)"
-msgstr "Treść wiadomości w Embed (%mention, %username)"
+msgstr "Wiadomość w embedzie (%mention, %username)"
 
 #: cogs/config_commands.py:220
 #, python-format

@@ -14,10 +14,6 @@ class ManualGuildRemover(commands.Cog):
 
     @commands.command(name='guild_remove')
     async def guild_remove(self, ctx: commands.Context, guild_id: int, *, reason: str = "Violation of Terms of Service"):
-        print("Event fired")
-        if ctx.author.id != 1235134572157603841:
-            return print("Not owner")
-
         guild = self.bot.get_guild(guild_id)
         if not guild:
             return await ctx.reply("❌ Server konnte nicht gefunden werden (Bot ist dort evtl. nicht mehr drauf).")

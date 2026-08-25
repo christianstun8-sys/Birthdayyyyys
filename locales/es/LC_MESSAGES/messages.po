@@ -37,16 +37,15 @@ msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr "🎉 ¡Feliz cumpleaños, %username!"
 
 #: cogs/birthday_check_task.py:308
-#, fuzzy, python-format
+#, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
-msgstr "🎂 ¡Feliz %age.º cumpleaños, %username!"
+msgstr "🎂 ¡Feliz %ageº cumpleaños, %username!"
 
 #: cogs/birthday_check_task.py:311 cogs/config_commands.py:16
 msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr "¡Por favor, envíale tus mejores deseos a %mention!"
 
 #: cogs/birthday_check_task.py:314
-#, fuzzy
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
 msgstr "¡Vamos a felicitar a %mention por su %age.º cumpleaños!"
 
@@ -224,8 +223,8 @@ msgid "Happy Birthday!"
 msgstr "¡Feliz cumpleaños!"
 
 #: cogs/config_commands.py:24
-msgid "Happy %age. Birthday!"
-msgstr "¡Feliz %age.º cumpleaños!"
+msgid "Happy %age Birthday!"
+msgstr "¡Feliz %ageº cumpleaños!"
 
 #: cogs/config_commands.py:53
 msgid "Deaktiviert"
@@ -289,7 +288,7 @@ msgstr "📣 Anuncios"
 
 #: cogs/config_commands.py:151
 msgid "Sendezeit der Geburtstagsnachricht setzen"
-msgstr "Establecer la hora de envío del mensaje de cumpleaños"
+msgstr "Hora de envío del mensaje de cumpleaños"
 
 #: cogs/config_commands.py:153
 msgid "Neue Zeit (Format: HH:MM)"
@@ -317,7 +316,7 @@ msgstr "Mensaje en el embed (%mention, %username)"
 #: cogs/config_commands.py:220
 #, python-format
 msgid "Footer im Embed (optional, %username)"
-msgstr "Pie de página en el embed (opcional, %username)"
+msgstr "Pie de página en el embed (%username)"
 
 #: cogs/config_commands.py:221
 msgid "Kein Footer"
