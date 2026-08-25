@@ -203,6 +203,11 @@ class BirthdayBot(commands.Bot):
     async def before_uptime_ping(self):
         await self.wait_until_ready()
 
+    async def close(self):
+        if self.db_pool:
+            self.db_pool.close()
+            await self.db_pool.wait_closed()
+
 if __name__ == '__main__':
     setup_directories()
     if TOKEN:
