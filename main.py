@@ -7,7 +7,6 @@ import logging
 from utils.discord_translator import DiscordSlashTranslator
 from cogs.birthday_check_task import remove_database_record
 import aiomysql
-import json
 import topgg
 
 import Alerts
