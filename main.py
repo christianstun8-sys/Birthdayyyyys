@@ -7,6 +7,8 @@ import logging
 from utils.discord_translator import DiscordSlashTranslator
 from cogs.birthday_check_task import remove_database_record
 import aiomysql
+import json
+import topgg
 
 import Alerts
 
@@ -51,6 +53,7 @@ class BirthdayBot(commands.Bot):
         self.kuma_url = "https://status.christianst.xyz/api/push/bELLyg8wcQ?status=up&msg=OK&ping="
         self.version = 5.2
         self.db_pool = None
+        self.topgg = None
 
     async def setup_hook(self):
         await self.tree.set_translator(DiscordSlashTranslator())
@@ -106,11 +109,15 @@ class BirthdayBot(commands.Bot):
 
         self.uptime_ping.start()
 
+
     async def on_ready(self):
         print(f'Bot eingeloggt als {self.user}')
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Happy Birthdayyyyy! 🎂"))
         from cogs.birthday_check_task import load_all_guild_configs
         await load_all_guild_configs(self)
+
+        self.topgg = topgg.DBLClient(self, os.getenv("TOPGG_TOKEN"))
+        self.update_stats.start()
 
         print("------------------------------")
         print("Bot bereit!")
@@ -203,6 +210,21 @@ class BirthdayBot(commands.Bot):
     async def before_uptime_ping(self):
         await self.wait_until_ready()
 
+    @tasks.loop(minutes=30)
+    async def update_stats(self):
+        if not hasattr(self, 'topgg') or self.topgg is None:
+            return
+
+        try:
+            await self.topgg.post_guild_count()
+            print(f"✅ Serveranzahl ({len(self.guilds)}) erfolgreich an Top.gg gesendet!")
+        except Exception as e:
+            print(f"❌ Fehler beim Senden der Serveranzahl an Top.gg: {e}")
+
+    @update_stats.before_loop
+    async def before_update_stats(self):
+        await self.wait_until_ready()
+
     async def close(self):
         if self.db_pool:
             self.db_pool.close()
@@ -215,3 +237,4 @@ if __name__ == '__main__':
         bot.run(TOKEN)
     else:
         print("Fehler: Discord Bot Token nicht gefunden. Bitte setze die DISCORD_TOKEN Umgebungsvariable.")
+    bot.topgg.run
