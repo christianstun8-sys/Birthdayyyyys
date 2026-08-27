@@ -216,7 +216,6 @@ class BirthdayBot(commands.Bot):
 
         try:
             await self.topgg.post_guild_count()
-            print(f"✅ Serveranzahl ({len(self.guilds)}) erfolgreich an Top.gg gesendet!")
         except Exception as e:
             print(f"❌ Fehler beim Senden der Serveranzahl an Top.gg: {e}")
 
