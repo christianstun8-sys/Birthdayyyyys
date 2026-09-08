@@ -1,6 +1,6 @@
 import io
 import os
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 import aiohttp
 import discord
 from discord.ext import commands, tasks
