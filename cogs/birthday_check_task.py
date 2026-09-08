@@ -85,6 +85,9 @@ async def load_bot_config(bot, guild_id: int):
                         title_no_age, message_no_age, footer_no_age, image_title_no_age,
                         title_with_age, message_with_age, footer_with_age, image_title_with_age, message_time
                     ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        ON DUPLICATE KEY UPDATE 
+                            birthday_channel_id = VALUES(birthday_channel_id), config_embed_color = VALUES(config_embed_color), birthday_role_id = VALUES(birthday_role_id), birthday_image_enabled = VALUES(birthday_image_enabled), birthday_image_background = VALUES(birthday_image_background), lang = VALUES(lang), title_no_age = VALUES(title_no_age), message_no_age = VALUES(message_no_age), footer_no_age = VALUES(footer_no_age), image_title_no_age = VALUES(image_title_no_age), title_with_age = VALUES(title_with_age), message_with_age = VALUES(message_with_age), footer_with_age = VALUES(footer_with_age), image_title_with_age = VALUES(image_title_with_age), message_time = VALUES(message_time)
+                            
                     """,
                     (
                         guild_id,
