@@ -29,7 +29,7 @@ else:
     logger.setLevel(logging.WARNING)
 
 def setup_directories():
-    for dir_name in ['cogs', 'data', 'data.custom_images']:
+    for dir_name in ['cogs', 'data', 'data/custom_images']:
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
             print(f"Verzeichnis '{dir_name}' erstellt.")
