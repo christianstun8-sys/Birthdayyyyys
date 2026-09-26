@@ -30,32 +30,30 @@ async def send_global_announcement(bot):
                     color_val = int(color_val.replace("#", ""), 16)
 
                 embed = discord.Embed(
-                    title="📢 New Update: Database Upgrade, Features & Fixes!",
+                    title="🎨 New Feature: Multiple Random Background Images!",
                     description=(
-                        "The new update includes new features, bug fixes, performance improvements, "
-                        "and a more secure database system.\n\n"
-                        "I hope you like the new update. Thank you for using Birthdayyyyys! ❤️"
+                        "I've updated the birthday card system to give your server's birthday "
+                        "wishes a fresh and dynamic look!\n\n"
+                        "Thank you for using Birthdayyyyys! ❤️"
                     ),
                     color=color_val
                 )
 
                 embed.add_field(
-                    name="⏰ Scheduled Messages & UI Updates",
+                    name="🖼️ Custom Image Gallery & Randomization",
                     value=(
-                        "• **Custom Message Time:** You can now schedule birthday messages for a specific time instead of 00:00 using `/config`.\n"
-                        "• **Calendar View:** `/birthday-list` now displays an organized calendar by months again.\n"
-                        "• **Improved Config:** `/config` is now more user-friendly, showing current settings and using drop-down menus."
+                        "• **Upload Multiple Images:** Server admins can now upload and manage multiple background images in `/config`.\n"
+                        "• **Random Backgrounds:** Every time a birthday card is generated, the bot randomly selects one of your uploaded images!\n"
+                        "• If no custom images are uploaded, the bot seamlessly uses the sleek default background."
                     ),
                     inline=False
                 )
 
                 embed.add_field(
-                    name="🗄️ Database Migration (Important!)",
+                    name="⚙️ Updated Config & Testing",
                     value=(
-                        "The bot is finally using a proper online database! All settings and birthdays should be carried over.\n\n"
-                        "⚠️ **Missing data?** If any settings or birthdays are missing, please open a ticket on the support server "
-                        "stating your Server ID or User ID by **20 August 2026** (<t:1787220000:R>). "
-                        "After this date, old files will be deleted."
+                        "• **Interactive Gallery View:** Easily browse and delete your uploaded images directly inside the `/config` UI.\n"
+                        "• **Instant Test Command:** Use `/config-test` to preview how your birthday cards look with random backgrounds before the real celebration."
                     ),
                     inline=False
                 )

@@ -4,6 +4,13 @@ from discord.ext import commands
 from datetime import datetime
 from utils.babel import translator
 from cogs.birthday_check_task import format_age
+import os
+import glob
+import pathlib
+import io
+from PIL import Image, ImageOps
+import random
+from cogs.birthday_check_task import generate_birthday_image
 
 
 def default_title(_, age: bool):
@@ -79,6 +86,59 @@ def build_config_embed(bot: commands.Bot, guild_id: int, l: str = None):
 
     return embed
 
+def is_valid_banner_resolution(width: int, height: int, tolerance: float = 0.15) -> bool:
+    if not width or not height or width <= 0 or height <= 0:
+        return False
+
+    target_ratio = 1920 / 540
+    actual_ratio = width / height
+
+    min_ratio = target_ratio * (1 - tolerance)
+    max_ratio = target_ratio * (1 + tolerance)
+
+    is_correct_ratio = min_ratio <= actual_ratio <= max_ratio
+
+    is_big_enough = width >= 800
+
+    return is_correct_ratio and is_big_enough
+
+async def validate_and_read_image(attachment: discord.Attachment) -> tuple[bool, str, Image.Image | None]:
+    ALLOWED_FORMATS = {"PNG", "JPEG", "WEBP"}
+    valid_extensions = (".png", ".jpg", ".jpeg", ".webp")
+    if not attachment.filename.lower().endswith(valid_extensions):
+        return False, "Ungültige Dateiendung. Erlaubt sind: .png, .jpg, .jpeg, .webp", None
+
+    if attachment.content_type and not attachment.content_type.startswith("image/"):
+        return False, "Der Dateityp ist kein gültiges Bild.", None
+
+    try:
+        image_bytes = await attachment.read()
+        image = Image.open(io.BytesIO(image_bytes))
+
+        if image.format not in ALLOWED_FORMATS:
+            return False, f"Das Format '{image.format}' wird nicht unterstützt.", None
+
+        image.verify()
+
+        image = Image.open(io.BytesIO(image_bytes))
+
+        return True, "", image
+
+    except Exception as e:
+        return False, "Die Datei ist beschädigt oder kein gültiges Bild.", None
+
+async def process_image(attachment: discord.Attachment):
+    image_bytes = await attachment.read()
+    image = Image.open(io.BytesIO(image_bytes))
+
+    if image.mode in ("RGBA", "P"):
+        image = image.convert("RGB")
+
+    target_size = (1920, 540)
+    resized_image = ImageOps.fit(image, target_size, Image.Resampling.LANCZOS)
+
+    return resized_image
+
 async def get_embed_settings(bot, guild_id: int, message_type: str):
     await bot.load_bot_config(bot, guild_id)
     config = bot.guild_configs.get(guild_id, {})
@@ -109,7 +169,7 @@ async def update_embed_settings(bot: commands, guild_id: int, title: str, messag
     async with bot.db_pool.acquire() as db:
         async with db.cursor() as cur:
             await cur.execute(
-                "UPDATE guild_settings SET guild_id = %s, config_embed_color = %s, birthday_channel_id = %s, birthday_image_enabled = %s, birthday_image_background = %s,"
+                "UPDATE guild_settings SET guild_id = %s, config_embed_color = %s, birthday_channel_id = %s, birthday_image_enabled = %s,"
                 "message_no_age = %s, title_no_age = %s, footer_no_age = %s, message_with_age = %s, title_with_age = %s, footer_with_age = %s,"
                 "image_title_no_age = %s, image_title_with_age = %s, birthday_role_id = %s WHERE guild_id = %s",
                 (
@@ -117,7 +177,6 @@ async def update_embed_settings(bot: commands, guild_id: int, title: str, messag
                     config_to_save["config_embed_color"],
                     config_to_save["birthday_channel_id"],
                     config_to_save["birthday_image_enabled"],
-                    config_to_save["birthday_image_background"],
                     config_to_save["message_no_age"],
                     config_to_save["title_no_age"],
                     config_to_save["footer_no_age"],
@@ -142,6 +201,102 @@ async def update_alerts_settings(bot: commands.Bot, guild_id: int, channel_id: i
     if guild_id not in bot.guild_configs:
         await bot.load_bot_config(bot, guild_id)
     bot.guild_configs[guild_id]["alerts"] = channel_id
+
+async def save_uploaded_image(guild_id: int, image_or_attachment) -> str:
+    IMAGE_DIR = "data/custom_images"
+    os.makedirs(IMAGE_DIR, exist_ok=True)
+
+    if isinstance(image_or_attachment, discord.Attachment):
+        filename_source = image_or_attachment.filename
+        ext = pathlib.Path(filename_source).suffix.lower()
+    else:
+        ext = ".png"
+
+    if not ext:
+        ext = ".png"
+
+    existing_files = glob.glob(os.path.join(IMAGE_DIR, f"{guild_id}_*.*"))
+
+    max_count = 0
+    for file_path in existing_files:
+        filename = os.path.basename(file_path)
+        try:
+            parts = filename.split("_", 1)
+            if len(parts) > 1:
+                count_part = parts[1].split(".")[0]
+                count = int(count_part)
+                if count > max_count:
+                    max_count = count
+        except ValueError:
+            continue
+
+    next_count = max_count + 1
+    new_filename = f"{guild_id}_{next_count}{ext}"
+    full_path = os.path.join(IMAGE_DIR, new_filename)
+
+    if isinstance(image_or_attachment, discord.Attachment):
+        await image_or_attachment.save(full_path)
+    elif isinstance(image_or_attachment, Image.Image):
+        image_or_attachment.save(full_path)
+    elif hasattr(image_or_attachment, "save"):
+        image_or_attachment.save(full_path)
+    else:
+        raise TypeError(f"Nicht unterstützter Bildtyp: {type(image_or_attachment)}")
+
+    return full_path
+
+class ResizeButtonView(discord.ui.View):
+    def __init__(self, bot: commands.Bot, attachment: discord.Attachment):
+        super().__init__(timeout=None)
+        self.attachment = attachment
+
+    @discord.ui.button(label="🔧 Größe anpassen", style=discord.ButtonStyle.success)
+    async def callback_change_size_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        new_image = await process_image(self.attachment)
+        await save_uploaded_image(interaction.guild.id, new_image)
+        return await interaction.response.edit_message(embed=None, content="✅ Bild wurde erfolgreich zugeschnitten und gespeichert!", view=None)
+
+    @discord.ui.button(label="👍 Überspringen", style=discord.ButtonStyle.danger)
+    async def callback_change_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        await save_uploaded_image(interaction.guild.id, self.attachment)
+        await interaction.response.edit_message(embed=None, content="✅ Bild wurde ohne Zuschneiden gespeichert!", view=None)
+
+class ImageUploadModal(discord.ui.Modal):
+    def __init__(self, bot, guild_id: int):
+        lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+        super().__init__(title="Bilddatei hochladen", timeout=None)
+        self.fileupload = discord.ui.FileUpload(
+            custom_id="file_upload_input",
+            min_values=1,
+            max_values=5,
+            required=True
+        )
+        self.add_item(discord.ui.Label(text=_("Bilder hochladen:"), component=self.fileupload))
+
+    async def on_submit(self, interaction: discord.Interaction):
+        await interaction.response.defer(thinking=True, ephemeral=True)
+        attachment = self.fileupload.values[0]
+        valid_file_type, err_msg, _ = await validate_and_read_image(attachment)
+        if not valid_file_type:
+            return await interaction.followup.send(f"❌ {err_msg}", ephemeral=True)
+
+        valid_size = is_valid_banner_resolution(attachment.width, attachment.height)
+        if not valid_size:
+            return await interaction.followup.send(
+                embed=discord.Embed(
+                    title="Falsches Bildformat!",
+                    description=f"Das Standard-Bildformat lautet `1920x540`. Das Format deines Bildes ist `{attachment.width}x{attachment.height}`. "
+                                f"Texte und Bilder können dadurch verrutschen. Willst du das Bild automatisch zuschneiden lassen, oder dennoch fortfahren?",
+                    color=discord.Color.red()
+                ),
+                view=ResizeButtonView(interaction.client, attachment),
+                ephemeral=True
+            )
+
+        await save_uploaded_image(interaction.guild.id, attachment)
+        return await interaction.followup.send("✅ Datei wurde erfolgreich hochgeladen!", ephemeral=True)
+
 
 class MessageTimeModal(discord.ui.Modal):
     def __init__(self, bot: commands.Bot, current_time: str, guild_id: int):
@@ -381,7 +536,7 @@ class ConfigColorModal(discord.ui.Modal):
         async with self.bot.db_pool.acquire() as db:
             async with db.cursor() as cur:
                 await cur.execute(
-                    "UPDATE guild_settings SET guild_id = %s, config_embed_color = %s, birthday_channel_id = %s, birthday_image_enabled = %s, birthday_image_background = %s,"
+                    "UPDATE guild_settings SET guild_id = %s, config_embed_color = %s, birthday_channel_id = %s, birthday_image_enabled = %s,"
                     "message_no_age = %s, title_no_age = %s, footer_no_age = %s, message_with_age = %s, title_with_age = %s, footer_with_age = %s,"
                     "image_title_no_age = %s, image_title_with_age = %s, birthday_role_id = %s WHERE guild_id = %s",
                     (
@@ -389,7 +544,6 @@ class ConfigColorModal(discord.ui.Modal):
                         new_color,
                         current_config.get("birthday_channel_id"),
                         current_config.get("birthday_image_enabled"),
-                        current_config.get("birthday_image_background"),
                         current_config.get("message_no_age"),
                         current_config.get("title_no_age"),
                         current_config.get("footer_no_age"),
@@ -694,6 +848,120 @@ class LanguageConfigView(discord.ui.View):
             view=MainConfigView(self.bot, self.guild_id)
         )
 
+class DeleteImageSelect(discord.ui.Select):
+    def __init__(self, bot: commands.Bot, guild_id: int, images: dict):
+        self.bot = bot
+        self.guild_id = guild_id
+        lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+
+        options = []
+        for filename in images.keys():
+            parts = filename.split("_", 1)
+            count_str = parts[1].split(".")[0] if len(parts) > 1 else filename
+            options.append(
+                discord.SelectOption(
+                    label=_("Bild {count}").format(count=count_str),
+                    value=filename,
+                    description=filename,
+                    emoji="🗑️"
+                )
+            )
+
+        super().__init__(
+            placeholder=_("Wähle ein Bild zum Löschen..."),
+            min_values=1,
+            max_values=1,
+            options=options
+        )
+
+    async def callback(self, interaction: discord.Interaction):
+        selected_file = self.values[0]
+        IMAGE_DIR = "data/custom_images"
+        file_path = os.path.join(IMAGE_DIR, selected_file)
+
+        lang = self.bot.guild_configs.get(self.guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+
+        if os.path.exists(file_path):
+            try:
+                os.remove(file_path)
+                await interaction.response.send_message(
+                    _("✅ Bild `{file}` wurde erfolgreich gelöscht!").format(file=selected_file),
+                    ephemeral=True
+                )
+            except Exception:
+                await interaction.response.send_message(
+                    _("❌ Fehler beim Löschen der Datei."),
+                    ephemeral=True
+                )
+        else:
+            await interaction.response.send_message(
+                _("❌ Das Bild existiert nicht mehr."),
+                ephemeral=True
+            )
+
+class AddImageButton(discord.ui.Button):
+    def __init__(self, bot: commands.Bot, guild_id: int):
+        self.bot = bot
+        self.guild_id = guild_id
+        super().__init__(style=discord.ButtonStyle.success, label="➕ Bild hinzufügen")
+
+    async def callback(self, interaction: discord.Interaction):
+        await interaction.response.send_modal(ImageUploadModal(self.bot, self.guild_id))
+
+class PictureListLayout(discord.ui.LayoutView):
+    def __init__(self, bot: commands.Bot, images: dict, colour: int, guild_id: int):
+        super().__init__(timeout=None)
+        self.bot = bot
+        self.guild_id = guild_id
+        self.images = images
+        self.files = []
+
+        lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+
+        self.container = discord.ui.Container(accent_color=discord.Color(colour))
+        self.container.add_item(discord.ui.TextDisplay(_("## Hintergrundbilder verwalten")))
+        self.container.add_item(discord.ui.Separator())
+        self.container.add_item(
+            discord.ui.TextDisplay(
+                _("Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. "
+                  "Solltest du derzeit keine Bilder hinzugefügt haben, wird das Standardbild genutzt.\n**HINWEIS:** Die Funktion ist derzeit in der Beta-Phase. Bugs oder Benutzerunfreundlichkeiten können auftreten. Bitte melde jegliche auf dem Support Server!")
+            )
+        )
+        self.container.add_item(discord.ui.Separator())
+
+        if self.images:
+            gallery = discord.ui.MediaGallery()
+            for filename, image_data in self.images.items():
+                if isinstance(image_data, bytes):
+                    file = discord.File(io.BytesIO(image_data), filename=filename)
+                elif isinstance(image_data, str):
+                    file = discord.File(image_data, filename=filename)
+                else:
+                    continue
+
+                self.files.append(file)
+
+                parts = filename.split("_", 1)
+                img_num = parts[1].split(".")[0] if len(parts) > 1 else filename
+                gallery.add_item(media=file, description=_("Bild {count}").format(count=img_num))
+
+            self.container.add_item(gallery)
+            self.container.add_item(discord.ui.Separator())
+
+            arow1 = discord.ui.ActionRow()
+            arow1.add_item(DeleteImageSelect(bot, guild_id, images))
+            self.container.add_item(arow1)
+
+        if len(self.images) < 10:
+            arow2 = discord.ui.ActionRow()
+            arow2.add_item(AddImageButton(bot, guild_id))
+            self.container.add_item(arow2)
+
+        self.add_item(self.container)
+
 class ConfigSelect(discord.ui.Select):
     def __init__(self, bot: commands.Bot, guild_id: int):
         self.bot = bot
@@ -705,13 +973,14 @@ class ConfigSelect(discord.ui.Select):
         options = [
             discord.SelectOption(label=_("Kanal"), value="set_channel", emoji="🪛", description=_("Geburtstagskanal festlegen")),
             discord.SelectOption(label=_("Rolle"), value="set_role", emoji="⚙️", description=_("Geburtstagsrolle zuweisen")),
-            discord.SelectOption(label=_("Bilder An/Aus"), value="toggle_image", emoji="🖼️", description=_("Geburtstagskarten aktivieren/deaktivieren")),
+            discord.SelectOption(label=_("Bilder An/Aus"), value="toggle_image", emoji="🪟", description=_("Geburtstagskarten aktivieren/deaktivieren")),
             discord.SelectOption(label=_("Farbe"), value="color", emoji="🎨", description=_("Farbe der Embeds ändern")),
             discord.SelectOption(label=_("Ankündigungen"), value="alerts", emoji="📣", description=_("News-Kanal verwalten")),
             discord.SelectOption(label=_("Sprache"), value="language", emoji="🗣️", description=_("Sprache des Bots ändern")),
             discord.SelectOption(label=_("Nachricht (ohne Alter)"), value="msg_no_age", emoji="🗨️", description=_("Embed-Text für Modus ohne Alter")),
             discord.SelectOption(label=_("Nachricht (mit Alter)"), value="msg_with_age", emoji="ℹ️", description=_("Embed-Text für Modus mit Alter")),
             discord.SelectOption(label=_("Uhrzeit"), value="set_time", emoji="⏰", description=_("Sendezeit der Nachrichten anpassen")),
+            discord.SelectOption(label=_("BETA: Bilder-Verwaltung"), value="image", emoji="🖼️", description=_("Öffne das Verwaltungsfenster für Hintergrundbilder"))
         ]
 
         super().__init__(
@@ -748,7 +1017,8 @@ class ConfigSelect(discord.ui.Select):
         elif selected == "set_time":
             current_time = self.bot.guild_configs[self.guild_id].get("message_time", "08:00")
             await interaction.response.send_modal(MessageTimeModal(self.bot, current_time, self.guild_id))
-
+        elif selected == "image":
+            await self.view.manage_custom_images(interaction)
 
 class MainConfigView(discord.ui.View):
     def __init__(self, bot: commands.Bot, guild_id: int):
@@ -814,6 +1084,28 @@ class MainConfigView(discord.ui.View):
         await self.bot.load_bot_config(self.bot, self.guild_id)
         current_time = self.bot.guild_configs[self.guild_id].get("message_time", "08:00")
         await interaction.response.send_modal(MessageTimeModal(self.bot, current_time, self.guild_id))
+
+    async def manage_custom_images(self, interaction: discord.Interaction):
+        await interaction.response.defer(thinking=True, ephemeral=True)
+        IMAGE_DIR = "data/custom_images"
+        os.makedirs(IMAGE_DIR, exist_ok=True)
+        files = glob.glob(os.path.join(IMAGE_DIR, f"{self.guild_id}_*.*"))
+
+        images = {}
+        for file_path in files:
+            filename = os.path.basename(file_path)
+            images[filename] = file_path
+
+        current_color = self.bot.guild_configs.get(self.guild_id, {}).get("config_embed_color", 0x45a6c9)
+        view = PictureListLayout(self.bot, images, current_color, self.guild_id)
+
+        await interaction.followup.send(
+            embed=None,
+            view=view,
+            files=view.files,
+            ephemeral=True
+        )
+
 
 class ConfigCommands(commands.Cog, name="ConfigCommands"):
     def __init__(self, bot):
@@ -932,18 +1224,24 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
             embed.set_footer(text=final_embed_footer)
 
         generated_image_file = None
-        if current_config.get("birthday_image_enabled", False):
+        if current_config.get("birthday_image_enabled", True):
             try:
-                generated_image_file = await self.bot.generate_birthday_image(
+                # Zufälliges Hintergrundbild aus dem Ordner custom_images wählen
+                IMAGE_DIR = "data/custom_images"
+                custom_files = glob.glob(os.path.join(IMAGE_DIR, f"{guild_id}_*.*"))
+
+                selected_background = None
+                if custom_files:
+                    selected_background = random.choice(custom_files)
+
+                generated_image_file = await generate_birthday_image(
                     user,
                     final_image_title,
                     user.display_name,
-                    current_config.get("birthday_image_background")
+                    selected_background
                 )
-                if generated_image_file:
-                    embed.set_image(url="attachment://birthday_card.png")
-            except:
-                pass
+            except Exception as e:
+                print(f"Fehler bei der Test-Bildgenerierung: {e}")
 
         try:
             if generated_image_file:

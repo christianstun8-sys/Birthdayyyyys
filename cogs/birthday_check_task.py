@@ -7,6 +7,11 @@ from discord.ext import commands, tasks
 from PIL import Image, ImageDraw, ImageFont
 import pytz
 import aiomysql
+import glob
+import io
+import os
+import random
+
 
 from utils.babel import translator
 
@@ -65,7 +70,6 @@ async def load_bot_config(bot, guild_id: int):
                     "config_embed_color": 0x45A6C9,
                     "birthday_role_id": None,
                     "birthday_image_enabled": False,
-                    "birthday_image_background": None,
                     "lang": "en",
                     "title_no_age": None,
                     "message_no_age": None,
@@ -81,10 +85,10 @@ async def load_bot_config(bot, guild_id: int):
                     """
                     INSERT INTO guild_settings (
                         guild_id, birthday_channel_id, config_embed_color, birthday_role_id,
-                        birthday_image_enabled, birthday_image_background, lang,
+                        birthday_image_enabled, lang,
                         title_no_age, message_no_age, footer_no_age, image_title_no_age,
                         title_with_age, message_with_age, footer_with_age, image_title_with_age, message_time
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
                         guild_id,
@@ -355,11 +359,19 @@ class BirthdayCheckTask(commands.Cog):
 
                     generated_image_file = None
                     if current_config.get("birthday_image_enabled", True):
+                        IMAGE_DIR = "data/custom_images"
+
+                        custom_files = glob.glob(os.path.join(IMAGE_DIR, f"{guild.id}_*.*"))
+
+                        selected_background = None
+                        if custom_files:
+                            selected_background = random.choice(custom_files)
+
                         generated_image_file = await self.bot.generate_birthday_image(
                             member,
                             final_image_title,
                             member.display_name,
-                            current_config.get("birthday_image_background"),
+                            selected_background,
                         )
 
                     if target_channel:

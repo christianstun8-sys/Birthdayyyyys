@@ -29,7 +29,7 @@ else:
     logger.setLevel(logging.WARNING)
 
 def setup_directories():
-    for dir_name in ['databases', 'cogs', 'data']:
+    for dir_name in ['cogs', 'data', 'data.custom_images']:
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
             print(f"Verzeichnis '{dir_name}' erstellt.")
@@ -115,8 +115,9 @@ class BirthdayBot(commands.Bot):
         from cogs.birthday_check_task import load_all_guild_configs
         await load_all_guild_configs(self)
 
-        self.topgg = topgg.DBLClient(self, os.getenv("TOPGG_TOKEN"))
-        self.update_stats.start()
+        if not beta:
+            self.topgg = topgg.DBLClient(self, os.getenv("TOPGG_TOKEN"))
+            self.update_stats.start()
 
         print("------------------------------")
         print("Bot bereit!")
@@ -153,19 +154,8 @@ class BirthdayBot(commands.Bot):
         print(f"Bot wurde aus Guild {guild.name} (ID: {guild.id}) entfernt. Schade... :(")
 
         if guild.id in self.guild_configs:
-            config = self.guild_configs[guild.id]
-            if hasattr(config, 'db_connection'):
-                config.db_connection.close()
-
             del self.guild_configs[guild.id]
 
-        db_path = f"databases/guild_{guild.id}.db"
-
-        if os.path.exists(db_path):
-            try:
-                os.remove(db_path)
-            except Exception as e:
-                print(f"Fehler beim Löschen der DB: {e}")
 
         embed = discord.Embed(
             title="Birthdayyyyys wurde aus einem Server entfernt.",
@@ -216,7 +206,6 @@ class BirthdayBot(commands.Bot):
 
         try:
             await self.topgg.post_guild_count()
-            print(f"✅ Serveranzahl ({len(self.guilds)}) erfolgreich an Top.gg gesendet!")
         except Exception as e:
             print(f"❌ Fehler beim Senden der Serveranzahl an Top.gg: {e}")
 
@@ -228,6 +217,11 @@ class BirthdayBot(commands.Bot):
         if self.db_pool:
             self.db_pool.close()
             await self.db_pool.wait_closed()
+
+    @commands.command(name='broadcast')
+    async def broadcast_command(self, ctx: commands.Context):
+        if ctx.author.id == 1235134572157603841:
+            await Alerts.send_global_announcement(self)
 
 if __name__ == '__main__':
     setup_directories()
