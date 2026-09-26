@@ -6,7 +6,7 @@ class AlertCog(commands.Cog):
         self.bot = bot
 
     @commands.command(name='broadcast')
-    async def send_global_announcement(self):
+    async def send_global_announcement(self, ctx: commands.Context):
         await self.bot.wait_until_ready()
 
         success = 0
@@ -78,3 +78,6 @@ class AlertCog(commands.Cog):
                 fail += 1
 
         print(f"Broadcast FERTIG. Erfolgreich: {success}, Fehlgeschlagen: {fail}")
+
+async def setup(bot: commands.Bot):
+    await bot.add_cog(AlertCog(bot))

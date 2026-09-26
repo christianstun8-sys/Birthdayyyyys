@@ -14,7 +14,7 @@ from cogs import Alerts
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
-beta = False
+beta = True
 debug  = False
 
 if beta:

@@ -8,3 +8,4 @@ jishaku
 aiomysql
 cryptography
 topggpy
+aiosqlite
