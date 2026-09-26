@@ -107,6 +107,7 @@ class BirthdayBot(commands.Bot):
                 print(f"Fehler beim Synchronisieren der Support-Server-Befehle: {e}")
 
         self.uptime_ping.start()
+        self.add_command(self.broadcast_command)
 
 
     async def on_ready(self):
@@ -230,4 +231,3 @@ if __name__ == '__main__':
         bot.run(TOKEN)
     else:
         print("Fehler: Discord Bot Token nicht gefunden. Bitte setze die DISCORD_TOKEN Umgebungsvariable.")
-    bot.topgg.run

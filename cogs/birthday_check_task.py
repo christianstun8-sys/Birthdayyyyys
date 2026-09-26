@@ -104,7 +104,6 @@ async def load_bot_config(bot, guild_id: int):
                         None,
                         None,
                         None,
-                        None,
                     ),
                 )
 
