@@ -9,7 +9,7 @@ from cogs.birthday_check_task import remove_database_record
 import aiomysql
 import topgg
 
-import Alerts
+from cogs import Alerts
 
 load_dotenv()
 
@@ -107,7 +107,6 @@ class BirthdayBot(commands.Bot):
                 print(f"Fehler beim Synchronisieren der Support-Server-Befehle: {e}")
 
         self.uptime_ping.start()
-        self.add_command(self.broadcast_command)
 
 
     async def on_ready(self):
@@ -218,11 +217,6 @@ class BirthdayBot(commands.Bot):
         if self.db_pool:
             self.db_pool.close()
             await self.db_pool.wait_closed()
-
-    @commands.command(name='broadcast')
-    async def broadcast_command(self, ctx: commands.Context):
-        if ctx.author.id == 1235134572157603841:
-            await Alerts.send_global_announcement(self)
 
 if __name__ == '__main__':
     setup_directories()
