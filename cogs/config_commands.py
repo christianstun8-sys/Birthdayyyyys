@@ -1106,7 +1106,6 @@ class MainConfigView(discord.ui.View):
             ephemeral=True
         )
 
-
 class ConfigCommands(commands.Cog, name="ConfigCommands"):
     def __init__(self, bot):
         self.bot = bot
