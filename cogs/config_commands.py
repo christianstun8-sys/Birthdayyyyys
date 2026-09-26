@@ -55,11 +55,10 @@ def build_config_embed(bot: commands.Bot, guild_id: int, l: str = None):
     lang_display = lang_names.get(lang, lang.upper())
 
     alerts_id = config.get("alerts")
+    alerts_val = _("Deaktiviert")
     if alerts_id == "" or alerts_id is None:
         if guild.system_channel is not None:
             alerts_val = f"<#{guild.system_channel.id}>"
-    elif alerts_id == 0:
-        alerts_val = _("Deaktiviert")
     else:
         alerts_val = f"<#{alerts_id}>"
 
