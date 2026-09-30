@@ -94,7 +94,6 @@ async def load_bot_config(bot, guild_id: int):
                         0x45A6C9,
                         None,
                         False,
-                        None,
                         "en",
                         None,
                         None,
@@ -104,6 +103,7 @@ async def load_bot_config(bot, guild_id: int):
                         None,
                         None,
                         None,
+                        "08:00",
                     ),
                 )
 
