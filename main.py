@@ -62,7 +62,8 @@ class BirthdayBot(commands.Bot):
                 user=os.getenv("DB_USER_NAME"),
                 db=os.getenv("DB_NAME"),
                 port=int(os.getenv("DB_PORT")),
-                password=os.getenv("DB_PASSWORD")
+                password=os.getenv("DB_PASSWORD"),
+                autocommit=True
             )
             print("✅💾 Datenbank verbunden!")
         except Exception as e:

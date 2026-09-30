@@ -411,6 +411,18 @@ class BirthdayCheckTask(commands.Cog):
                                 f"Unerwarteter Fehler beim Entfernen der Rolle von"
                                 f" {member.name}: {e}"
                             )
+    @commands.Cog.listener()
+    async def on_member_remove(self, member: discord.Member):
+        guild_id = member.guild.id
+        member_id = member.id
+
+        async with self.bot.db_pool.acquire() as conn:
+            async with conn.cursor() as cursor:
+                await cursor.execute("""SELECT * FROM birthdays WHERE guild_id = %s AND user_id = %s""", (guild_id, member_id))
+                row = await cursor.fetchone()
+                if row:
+                    await cursor.execute("""DELETE FROM birthdays WHERE guild_id = %s AND user_id = %s""", (guild_id, member_id))
+
 
 
 async def setup(bot):
