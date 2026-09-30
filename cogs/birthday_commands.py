@@ -7,9 +7,45 @@ import pytz
 import eventmessages
 from utils.babel import translator
 
+class BirthdayPaginatorView(discord.ui.View):
+    def __init__(self, pages: list[discord.Embed], author_id: int):
+        super().__init__(timeout=180)
+        self.pages = pages
+        self.author_id = author_id
+        self.current_page = 0
+        self.update_buttons()
+
+    def update_buttons(self):
+        self.prev_button.disabled = self.current_page == 0
+        self.next_button.disabled = self.current_page == len(self.pages) - 1
+
+    @discord.ui.button(emoji="⬅️", style=discord.ButtonStyle.secondary)
+    async def prev_button(
+            self, interaction: discord.Interaction, button: discord.ui.Button
+    ):
+        if interaction.user.id != self.author_id:
+            return
+
+        self.current_page -= 1
+        self.update_buttons()
+        await interaction.response.edit_message(
+            embed=self.pages[self.current_page], view=self
+        )
+
+    @discord.ui.button(emoji="➡️", style=discord.ButtonStyle.secondary)
+    async def next_button(
+            self, interaction: discord.Interaction, button: discord.ui.Button
+    ):
+        if interaction.user.id != self.author_id:
+            return
+
+        self.current_page += 1
+        self.update_buttons()
+        await interaction.response.edit_message(
+            embed=self.pages[self.current_page], view=self
+        )
 
 class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
-
     def __init__(self, bot):
         self.bot = bot
 
@@ -337,30 +373,69 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                     months_dict[month] = []
                 months_dict[month].append(entry)
 
-            embed = discord.Embed(
-                title=f"📅 {_('Geburtstagskalender')}", color=embed_color
-            )
+            pages = []
+            title = f"📅 {_('Geburtstagskalender')}"
+
+            current_embed = discord.Embed(title=title, color=embed_color)
+            current_size = len(title)
 
             for m_num in range(1, 13):
-                if m_num in months_dict:
-                    field_value = "\n".join(months_dict[m_num])
+                if m_num not in months_dict:
+                    continue
 
-                    if len(field_value) > 1024:
-                        field_value = field_value[:1020] + "..."
+                entries = months_dict[m_num]
+                field_name = f"▫️ {month_names[m_num]}"
+                current_value_lines = []
 
-                    embed.add_field(
-                        name=f"▫️ {month_names[m_num]}",
-                        value=field_value,
-                        inline=False,
-                    )
+                for entry in entries:
+                    test_val = "\n".join(current_value_lines + [entry])
+                    if len(test_val) > 1024:
+                        f_val = "\n".join(current_value_lines)
+                        if current_size + len(field_name) + len(f_val) > 5500:
+                            pages.append(current_embed)
+                            current_embed = discord.Embed(title=title, color=embed_color)
+                            current_size = len(title)
 
-            await interaction.followup.send(embed=embed)
+                        current_embed.add_field(name=field_name, value=f_val, inline=False)
+                        current_size += len(field_name) + len(f_val)
+                        current_value_lines = [entry]
+                    else:
+                        current_value_lines.append(entry)
+
+                if current_value_lines:
+                    f_val = "\n".join(current_value_lines)
+                    if current_size + len(field_name) + len(f_val) > 5500:
+                        pages.append(current_embed)
+                        current_embed = discord.Embed(title=title, color=embed_color)
+                        current_size = len(title)
+
+                    current_embed.add_field(name=field_name, value=f_val, inline=False)
+                    current_size += len(field_name) + len(f_val)
+
+            if len(current_embed.fields) > 0:
+                pages.append(current_embed)
+
+            if not pages:
+                await interaction.followup.send(
+                    _("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True
+                )
+                return
+
+            if len(pages) == 1:
+                await interaction.followup.send(embed=pages[0])
+            else:
+                view = BirthdayPaginatorView(pages=pages, author_id=interaction.user.id)
+                await interaction.followup.send(embed=pages[0], view=view)
 
         except Exception as e:
             print(f"Error in birthday-list: {e}")
-            await eventmessages.unknown_error(
-                interaction.guild, self.bot, interaction
-            )
+            try:
+                await interaction.followup.send(
+                    _("Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
+                      "Server."), ephemeral=True
+                )
+            except Exception:
+                pass
 
 
 async def setup(bot):
