@@ -22,7 +22,7 @@ DEFAULT_IMAGE_WITH_AGE_TITLE = "Happy %age Birthday!"
 
 
 def format_age(age: int, lang: str) -> str:
-    if lang == "de":
+    if lang in ("de", "cs", "pl", "ru", "uk"):
         return f"{age}."
 
     if lang == "en":
@@ -31,6 +31,13 @@ def format_age(age: int, lang: str) -> str:
         else:
             suffix = {1: "st", 2: "nd", 3: "rd"}.get(age % 10, "th")
         return f"{age}{suffix}"
+
+    if lang == "fr":
+        suffix = "er" if age == 1 else "e"
+        return f"{age}{suffix}"
+
+    if lang == "es":
+        return f"{age}º"
 
     return str(age)
 

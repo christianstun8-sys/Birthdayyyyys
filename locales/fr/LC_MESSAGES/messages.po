@@ -34,7 +34,7 @@ msgstr "🎉 Joyeux anniversaire, %username !"
 #: cogs/birthday_check_task.py:316 cogs/config_commands.py:20
 #, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
-msgstr "🎂 Joyeux %agee anniversaire, %username !"
+msgstr "🎂 Joyeux %age anniversaire, %username !"
 
 #: cogs/birthday_check_task.py:319 cogs/config_commands.py:24
 msgid "Bitte sende deine besten Wünsche an %mention!"
@@ -42,7 +42,7 @@ msgstr "Veuillez envoyer vos meilleurs vœux à %mention !"
 
 #: cogs/birthday_check_task.py:322 cogs/config_commands.py:26
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
-msgstr "Souhaitons un joyeux %agee anniversaire à %mention !"
+msgstr "Souhaitons un joyeux %age anniversaire à %mention !"
 
 #: cogs/birthday_check_task.py:326 cogs/config_commands.py:35
 msgid "Feiere schön!"
@@ -211,7 +211,7 @@ msgstr "Joyeux anniversaire !"
 
 #: cogs/config_commands.py:32
 msgid "Happy %age Birthday!"
-msgstr "Joyeux %agee anniversaire !"
+msgstr "Joyeux %age anniversaire !"
 
 #: cogs/config_commands.py:59
 msgid "Deaktiviert"

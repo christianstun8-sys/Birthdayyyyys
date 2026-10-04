@@ -1034,4 +1034,4 @@ msgstr ""
 
 #: cogs/setup-help.py:54
 msgid "Danke für's Nutzen von Birthdayyyyys!"
-msgstr "Dziękujeme za korzystanie z bota Birthdayyyyys!"
+msgstr "Dziękujemy za korzystanie z bota Birthdayyyyys!"

@@ -280,7 +280,7 @@ msgstr "📣 Объявления"
 
 #: cogs/config_commands.py:260
 msgid "✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"
-msgstr "✅ Изображение успешно обрезанно и сохранено!"
+msgstr "✅ Изображение успешно обрезано и сохранено!"
 
 #: cogs/config_commands.py:265
 msgid "✅ Bild wurde ohne Zuschneiden gespeichert!"

@@ -89,8 +89,7 @@ msgid ""
 "✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} "
 "({timezone}) gesetzt!"
 msgstr ""
-"✅ День народження {mention} успішно встановлено на {day:02d}.{month:02d}. "
-"({timezone})!"
+"✅ День народження {mention} успішно встановлено на {day:02d}.{month:02d} ({timezone})!"
 
 #: cogs/birthday_commands.py:161
 #, python-brace-format
@@ -106,7 +105,7 @@ msgstr ""
 msgid ""
 "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!"
 msgstr ""
-"✅ Ваш день народження успішно встановлено на {day:02d}.{month:02d}. "
+"✅ Ваш день народження успішно встановлено на {day:02d}.{month:02d} "
 "({timezone})!"
 
 #: cogs/birthday_commands.py:207
@@ -127,7 +126,7 @@ msgstr "День народження {mention}: {day:02d}.{month:02d}.{year} ({
 #: cogs/birthday_commands.py:263
 #, python-brace-format
 msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
-msgstr "День народження {mention}: {day:02d}.{month:02d}. ({tz})."
+msgstr "День народження {mention}: {day:02d}.{month:02d} ({tz})."
 
 #: cogs/birthday_commands.py:272
 #, python-brace-format
@@ -137,7 +136,7 @@ msgstr "Ваш день народження: {day:02d}.{month:02d}.{year} ({tz}
 #: cogs/birthday_commands.py:279
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
-msgstr "Ваш день народження: {day:02d}.{month:02d}. ({tz})."
+msgstr "Ваш день народження: {day:02d}.{month:02d} ({tz})."
 
 #: cogs/birthday_commands.py:288
 #, python-brace-format
@@ -895,7 +894,7 @@ msgstr "Видалити дату вашого народження."
 
 #: cogs/info_commands.py:172
 msgid "Zeigt deinen oder den Geburtstag eines anderen Nutzers an."
-msgstr "Показує ваш день народження або день народження іншого користувача.\"\""
+msgstr "Показує ваш день народження або день народження іншого користувача."
 
 #: cogs/info_commands.py:174
 msgid "Zeigt alle gespeicherten Geburtstage an."

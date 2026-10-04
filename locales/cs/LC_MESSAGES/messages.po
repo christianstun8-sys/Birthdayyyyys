@@ -105,7 +105,7 @@ msgstr ""
 msgid ""
 "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!"
 msgstr ""
-"✅ Tvoje narozeniny byly nastaveny na {day:02d}.{month:02d}. ({timezone})!"
+"✅ Tvoje narozeniny byly nastaveny na {day:02d}.{month:02d} ({timezone})!"
 
 #: cogs/birthday_commands.py:207
 #, python-brace-format
@@ -213,7 +213,7 @@ msgstr "Všechno nejlepší k narozeninám!"
 
 #: cogs/config_commands.py:32
 msgid "Happy %age Birthday!"
-msgstr "Všechno nejlepší k {age}. narozeninám!"
+msgstr "Všechno nejlepší k %age. narozeninám!"
 
 #: cogs/config_commands.py:59
 msgid "Deaktiviert"
@@ -373,7 +373,7 @@ msgstr "Zápatí (volitelné, %username)"
 
 #: cogs/config_commands.py:461
 msgid "Standard: Feiere schön!"
-msgstr "Výchozí: Všechno nejlepší k narozeninám!"
+msgstr "Výchozí: Oslav to pořádně!"
 
 #: cogs/config_commands.py:469
 #, python-format
@@ -531,8 +531,8 @@ msgid ""
 "Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. Solltest du derzeit keine Bilder hinzugefügt haben, wird das Standardbild genutzt.\n"
 "**HINWEIS:** Die Funktion ist derzeit in der Beta-Phase. Bugs oder Benutzerunfreundlichkeiten können auftreten. Bitte melde jegliche auf dem Support Server!"
 msgstr ""
-"Zde najdeš seznam všech obrázků, které jsi přidal. Pokud jsi nepřidal žádné obrázky, použije se výchozí.\n"
-"**POZNÁMKA:** Tato funkce je aktuálně v beta fázi. Mohou se vyskytnout chyby nebo uživatelská nepřívětivost. Hlas prosím jakékoli problémy na podporujícím serveru!"
+"Zde najdeš seznam všech obrázků, které jsi přidal. Pokud jsi nepřidal žádné obrázky, použije se výchozí."
+"**POZNÁMKA:** Tato funkce je aktuálně v beta fázi. Mohou se vyskytnout chyby nebo snížená přívětivost pro uživatele. Nahlaste prosím jakékoli problémy na našem support serveru!"
 
 #: cogs/config_commands.py:989
 msgid "Kanal"
@@ -918,7 +918,7 @@ msgstr "Konfiguruje Birthdayyyyys."
 
 #: cogs/info_commands.py:188
 msgid "Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal."
-msgstr "Ošle testovací narozeninovou zprávu do konfigurovaného kanálu."
+msgstr "Pošle testovací narozeninovou zprávu do konfigurovaného kanálu."
 
 #: cogs/info_commands.py:190
 msgid "__Team:__"
