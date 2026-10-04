@@ -1,79 +1,77 @@
-# English translations for Birthdayyyyys.
-# Copyright (C) 2026 Christianst_
-# This file is distributed under the same license as the Birthdayyyyys
-# project.
-# Christianst_ <christian@christianst.xyz>, 2026.
+# Czech translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-10-04 13:13+0200\n"
-"PO-Revision-Date: 2026-08-06 14:36+0200\n"
-"Last-Translator: Christianst_ <christian@christianst.xyz>\n"
-"Language-Team: en <LL@li.org>\n"
-"Language: en\n"
+"PO-Revision-Date: 2026-10-04 12:54+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: cs <LL@li.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: eventmessages.py:17
 msgid "⚠️ Unbekannter Fehler"
-msgstr "⚠️ Unknown error"
+msgstr "⚠️ Neznámá chyba"
 
 #: cogs/birthday_commands.py:434 cogs/config_commands.py:286
 #: eventmessages.py:18
 msgid ""
 "Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
 "Server."
-msgstr ""
-"An unknown error occurred. Please report the problem on the support server."
+msgstr "Došlo k neznámé chybě. Nahlaste to prosím na support serveru."
 
 #: cogs/birthday_check_task.py:314 cogs/config_commands.py:18
 #, python-format
 msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
-msgstr "🎉 Happy birthday, %username!"
+msgstr "🎉 Všechno nejlepší k narozeninám, %username!"
 
 #: cogs/birthday_check_task.py:316 cogs/config_commands.py:20
 #, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
-msgstr "🎂 Happy %age birthday, %username!"
+msgstr "🎂 Všechno nejlepší k %age. narozeninám, %username!"
 
 #: cogs/birthday_check_task.py:319 cogs/config_commands.py:24
 msgid "Bitte sende deine besten Wünsche an %mention!"
-msgstr "Please send your best wishes to %mention!"
+msgstr "Pošlete prosím svá nejlepší přání uživateli %mention!"
 
 #: cogs/birthday_check_task.py:322 cogs/config_commands.py:26
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
-msgstr "Let's wish %mention a happy %age birthday!"
+msgstr "Pojďme popřát uživateli %mention k jeho %age. narozeninám!"
 
 #: cogs/birthday_check_task.py:326 cogs/config_commands.py:35
 msgid "Feiere schön!"
-msgstr "Enjoy your special day!"
+msgstr "Užij si oslavu!"
 
 #: cogs/birthday_check_task.py:395
 msgid "Geburtstagsrolle zugewiesen"
-msgstr "Birthday role assigned"
+msgstr "Narozeninová role byla přiřazena"
 
 #: cogs/birthday_check_task.py:411
 msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
-msgstr "Birthday role removed (birthday over)"
+msgstr "Narozeninová role byla odebrána (narozeniny skončily)"
 
 #: cogs/birthday_commands.py:95 cogs/birthday_commands.py:192
 #: cogs/config_commands.py:1135 cogs/config_commands.py:1137
 #: cogs/info_commands.py:151
 msgid "⚠️ Du hast keine Berechtigung dazu."
-msgstr "⚠️ You don't have permission to do this."
+msgstr "⚠️ K tomu nemáš oprávnění."
 
 #: cogs/birthday_commands.py:100
 msgid "Ungültige Zeitzone! Bitte wähle eine aus der Liste."
-msgstr "❌ Invalid timezone! Please choose one from the list."
+msgstr "Neplatné časové pásmo! Vyberte prosím jedno ze seznamu."
 
 #: cogs/birthday_commands.py:108
 msgid "❌ Ungültiges Datum angegeben!"
-msgstr "❌ Invalid date specified!"
+msgstr "❌ Zadáno neplatné datum!"
 
 #: cogs/birthday_commands.py:133
 #, python-brace-format
@@ -81,8 +79,8 @@ msgid ""
 "✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year} "
 "({timezone}) gesetzt!"
 msgstr ""
-"✅ {mention}'s birthday has been set to {day:02d}.{month:02d}.{year} "
-"({timezone})!"
+"✅ Narozeniny uživatele {mention} byly nastaveny na "
+"{day:02d}.{month:02d}.{year} ({timezone})!"
 
 #: cogs/birthday_commands.py:147
 #, python-brace-format
@@ -90,7 +88,8 @@ msgid ""
 "✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} "
 "({timezone}) gesetzt!"
 msgstr ""
-"✅ {mention}'s birthday has been set to {day:02d}.{month:02d}. ({timezone})!"
+"✅ Narozeniny uživatele {mention} byly nastaveny na {day:02d}.{month:02d} "
+"({timezone})!"
 
 #: cogs/birthday_commands.py:161
 #, python-brace-format
@@ -98,156 +97,159 @@ msgid ""
 "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) "
 "gesetzt!"
 msgstr ""
-"✅ Your birthday has been set to {day:02d}.{month:02d}.{year} ({timezone})!"
+"✅ Tvoje narozeniny byly nastaveny na {day:02d}.{month:02d}.{year} "
+"({timezone})!"
 
 #: cogs/birthday_commands.py:169
 #, python-brace-format
 msgid ""
 "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!"
-msgstr "✅ Your birthday has been set to {day:02d}.{month:02d}. ({timezone})!"
+msgstr ""
+"✅ Tvoje narozeniny byly nastaveny na {day:02d}.{month:02d}. ({timezone})!"
 
 #: cogs/birthday_commands.py:207
 #, python-brace-format
 msgid "✅ Der Geburtstag von {mention} wurde gelöscht."
-msgstr "✅ {mention}'s birthday has been deleted."
+msgstr "✅ Narozeniny uživatele {mention} byly smazány."
 
 #: cogs/birthday_commands.py:213
 msgid "✅ Dein Geburtstag wurde gelöscht."
-msgstr "✅ Your birthday has been deleted."
+msgstr "✅ Tvoje narozeniny byly smazány."
 
 #: cogs/birthday_commands.py:249
 #, python-brace-format
 msgid ""
 "Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
-msgstr "{mention}'s birthday is on {day:02d}.{month:02d}.{year} ({tz})."
+msgstr ""
+"Narozeniny uživatele {mention} jsou {day:02d}.{month:02d}.{year} ({tz})."
 
 #: cogs/birthday_commands.py:263
 #, python-brace-format
 msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
-msgstr "{mention}'s birthday is on {day:02d}.{month:02d}. ({tz})."
+msgstr "Narozeniny uživatele {mention} jsou {day:02d}.{month:02d} ({tz})."
 
 #: cogs/birthday_commands.py:272
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
-msgstr "Your birthday is on {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "Tvoje narozeniny jsou {day:02d}.{month:02d}.{year} ({tz})."
 
 #: cogs/birthday_commands.py:279
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
-msgstr "Your birthday is on {day:02d}.{month:02d}. ({tz})."
+msgstr "Tvoje narozeniny jsou {day:02d}.{month:02d}. ({tz})."
 
 #: cogs/birthday_commands.py:288
 #, python-brace-format
 msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
-msgstr "❌ {mention} hasn't registered a birthday yet."
+msgstr "❌ Uživatel {mention} ještě nemá zaregistrované narozeniny."
 
 #: cogs/birthday_commands.py:295
 msgid "❌ Du hast noch keinen Geburtstag registriert."
-msgstr "❌ You haven't registered a birthday yet."
+msgstr "❌ Ještě nemáš zaregistrované narozeniny."
 
 #: cogs/birthday_commands.py:315
 msgid "Januar"
-msgstr "January"
+msgstr "Leden"
 
 #: cogs/birthday_commands.py:316
 msgid "Februar"
-msgstr "February"
+msgstr "Únor"
 
 #: cogs/birthday_commands.py:317
 msgid "März"
-msgstr "March"
+msgstr "Březen"
 
 #: cogs/birthday_commands.py:318
 msgid "April"
-msgstr "April"
+msgstr "Duben"
 
 #: cogs/birthday_commands.py:319
 msgid "Mai"
-msgstr "May"
+msgstr "Květen"
 
 #: cogs/birthday_commands.py:320
 msgid "Juni"
-msgstr "June"
+msgstr "Červen"
 
 #: cogs/birthday_commands.py:321
 msgid "Juli"
-msgstr "July"
+msgstr "Červenec"
 
 #: cogs/birthday_commands.py:322
 msgid "August"
-msgstr "August"
+msgstr "Srpen"
 
 #: cogs/birthday_commands.py:323
 msgid "September"
-msgstr "September"
+msgstr "Září"
 
 #: cogs/birthday_commands.py:324
 msgid "Oktober"
-msgstr "October"
+msgstr "Říjen"
 
 #: cogs/birthday_commands.py:325
 msgid "November"
-msgstr "November"
+msgstr "Listopad"
 
 #: cogs/birthday_commands.py:326
 msgid "Dezember"
-msgstr "December"
+msgstr "Prosinec"
 
 #: cogs/birthday_commands.py:343 cogs/birthday_commands.py:420
 msgid "⚠️ Es sind noch keine Geburtstage registriert."
-msgstr "⚠️ No birthdays have been registered yet."
+msgstr "⚠️ Zatím nejsou registrovány žádné narozeniny."
 
 #: cogs/birthday_commands.py:358
 msgid "Jahre"
-msgstr "years"
+msgstr "let"
 
 #: cogs/birthday_commands.py:377
 msgid "Geburtstagskalender"
-msgstr "Birthday Calendar"
+msgstr "Kalendář narozenin"
 
 #: cogs/config_commands.py:30
 msgid "Happy Birthday!"
-msgstr "Happy Birthday!"
+msgstr "Všechno nejlepší k narozeninám!"
 
 #: cogs/config_commands.py:32
 msgid "Happy %age Birthday!"
-msgstr "Happy %age Birthday!"
+msgstr "Všechno nejlepší k {age}. narozeninám!"
 
 #: cogs/config_commands.py:59
 msgid "Deaktiviert"
-msgstr "Disabled"
+msgstr "Zakázáno"
 
 #: cogs/config_commands.py:69
 msgid "Nicht gesetzt"
-msgstr "Not set"
+msgstr "Nenastaveno"
 
 #: cogs/config_commands.py:70
 msgid "Keine"
-msgstr "None"
+msgstr "Žádné"
 
 #: cogs/config_commands.py:71
 msgid "✅ Aktiviert"
-msgstr "✅ Enabled"
+msgstr "✅ Povoleno"
 
 #: cogs/config_commands.py:71
 msgid "❌ Deaktiviert"
-msgstr "❌ Disabled"
+msgstr "❌ Zakázáno"
 
 #: cogs/config_commands.py:75
 msgid "⚙️ Server-Konfiguration"
-msgstr "⚙️ Server Configuration"
+msgstr "⚙️ Nastavení serveru"
 
 #: cogs/config_commands.py:76
 msgid ""
 "Hier kannst du alle Einstellungen für das Geburtstagssystem verwalten.\n"
 "Nutze das Menü unten zum Konfigurieren."
 msgstr ""
-"Here you can manage all settings for the birthday system.\n"
-"Use the menu below to configure."
+"Zde můžeš spravovat všechna nastavení systému narozenin.\n"
+"Použij nabídku níže ke konfiguraci."
 
 #: cogs/config_commands.py:80
 msgid "🪛 Kanal"
-msgstr "🪛 Channel"
+msgstr "🪛 Kanál"
 
 #: cogs/config_commands.py:81
 msgid "⚙️ Rolle"
@@ -255,195 +257,195 @@ msgstr "⚙️ Role"
 
 #: cogs/config_commands.py:82
 msgid "🖼️ Bilder"
-msgstr "🖼️ Images"
+msgstr "🖼️ Obrázky"
 
 #: cogs/config_commands.py:83
 msgid "🎨 Farbe"
-msgstr "🎨 Color"
+msgstr "🎨 Barva"
 
 #: cogs/config_commands.py:84
 msgid "🗣️ Sprache"
-msgstr "🗣️ Language"
+msgstr "🗣️ Jazyk"
 
 #: cogs/config_commands.py:85
 msgid "⏰ Uhrzeit"
-msgstr "⏰ Time"
+msgstr "⏰ Čas"
 
 #: cogs/config_commands.py:86
 msgid "📣 Ankündigungen"
-msgstr "📣 Announcements"
+msgstr "📣 Oznámení"
 
 #: cogs/config_commands.py:260
 msgid "✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"
-msgstr "✅ Image successfully cropped and saved!"
+msgstr "✅ Obrázek byl úspěšně oříznut a uložen!"
 
 #: cogs/config_commands.py:265
 msgid "✅ Bild wurde ohne Zuschneiden gespeichert!"
-msgstr "✅ Image saved without cropping!"
+msgstr "✅ Obrázek byl uložen bez oříznutí!"
 
 #: cogs/config_commands.py:272
 msgid "Bilddatei hochladen"
-msgstr "Upload image file"
+msgstr "Nahrát soubor obrázku"
 
 #: cogs/config_commands.py:279
 msgid "Bilder hochladen:"
-msgstr "Upload images:"
+msgstr "Nahrát obrázky:"
 
 #: cogs/config_commands.py:292
 msgid "Falsches Bildformat!"
-msgstr "Invalid image format!"
+msgstr "Neplatný formát obrázku!"
 
 #: cogs/config_commands.py:293
 msgid ""
 "Texte und Bilder können dadurch verrutschen. Willst du das Bild automatisch "
 "zuschneiden lassen, oder dennoch fortfahren?"
 msgstr ""
-"This may cause text and images to shift. Do you want the image to be cropped"
-" automatically, or proceed anyway?"
+"Texty a obrázky se tím mohou posunout. Chceš obrázek automaticky oříznout, "
+"nebo přesto pokračovat?"
 
 #: cogs/config_commands.py:302
 msgid "✅ Datei wurde erfolgreich hochgeladen!"
-msgstr "✅ File has been uploaded successfully!"
+msgstr "✅ Soubor byl úspěšně nahrán!"
 
 #: cogs/config_commands.py:311
 msgid "Sendezeit der Geburtstagsnachricht setzen"
-msgstr "Set birthday message send time"
+msgstr "Nastavit čas odeslání narozeninové zprávy"
 
 #: cogs/config_commands.py:313
 msgid "Neue Zeit (Format: HH:MM)"
-msgstr "New time (Format: HH:MM)"
+msgstr "Nový čas (Formát: HH:MM)"
 
 #: cogs/config_commands.py:331
 #, python-brace-format
 msgid "❌ Die Eingabe {input} ist keine gültige Zeit."
-msgstr "❌ The input {input} is not a valid time."
+msgstr "❌ Zadání {input} není platný čas."
 
 #: cogs/config_commands.py:353
 msgid "Nachricht ohne Altersangabe anpassen"
-msgstr "Customize message without age"
+msgstr "Upravit zprávu bez uvedení věku"
 
 #: cogs/config_commands.py:361
 #, python-format
 msgid "Titel des Embeds (%username)"
-msgstr "Title of the embed (%username)"
+msgstr "Název embedu (%username)"
 
 #: cogs/config_commands.py:370
 #, python-format
 msgid "Nachricht im Embed (%mention, %username)"
-msgstr "Message in the embed (%mention, %username)"
+msgstr "Zpráva v embedu (%mention, %username)"
 
 #: cogs/config_commands.py:380
 #, python-format
 msgid "Footer im Embed (optional, %username)"
-msgstr "Footer in the embed (optional, %username)"
+msgstr "Zápatí v embedu (volitelné, %username)"
 
 #: cogs/config_commands.py:381
 msgid "Kein Footer"
-msgstr "No footer"
+msgstr "Žádné zápatí"
 
 #: cogs/config_commands.py:389
 #, python-format
 msgid "Titel auf Geburtstagsbild (%username)"
-msgstr "Title on the birthday image (%username)"
+msgstr "Název na narozeninovém obrázku (%username)"
 
 #: cogs/config_commands.py:421
 msgid ""
 "Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"
-msgstr "The birthday message (without age) has been successfully updated! ✅"
+msgstr "Narozeninová zpráva (bez věku) byla úspěšně aktualizována! ✅"
 
 #: cogs/config_commands.py:433
 msgid "Nachricht mit Altersangabe anpassen"
-msgstr "Customize message with age"
+msgstr "Upravit zprávu s uvedením věku"
 
 #: cogs/config_commands.py:441
 msgid "Titel (%age)"
-msgstr "Title (%age)"
+msgstr "Název (%age)"
 
 #: cogs/config_commands.py:450
 #, python-format
 msgid "Beschr. (%mention, %username, %age)"
-msgstr "Description (%mention, %username, %age)"
+msgstr "Popis (%mention, %username, %age)"
 
 #: cogs/config_commands.py:460
 #, python-format
 msgid "Footer (optional, %username)"
-msgstr "Footer (optional, %username)"
+msgstr "Zápatí (volitelné, %username)"
 
 #: cogs/config_commands.py:461
 msgid "Standard: Feiere schön!"
-msgstr "Default: Enjoy your special day!"
+msgstr "Výchozí: Všechno nejlepší k narozeninám!"
 
 #: cogs/config_commands.py:469
 #, python-format
 msgid "Bildtitel (%age, %username)"
-msgstr "Image title (%age, %username)"
+msgstr "Název obrázku (%age, %username)"
 
 #: cogs/config_commands.py:501
 msgid "Die Geburtstagsnachricht (mit Alter) wurde erfolgreich aktualisiert! ✅"
-msgstr "The birthday message (with age) has been successfully updated! ✅"
+msgstr "Narozeninová zpráva (s věkem) byla úspěšně aktualizována! ✅"
 
 #: cogs/config_commands.py:513
 msgid "Embed-Farbe anpassen"
-msgstr "Customize embed color"
+msgstr "Upravit barvu embedu"
 
 #: cogs/config_commands.py:519
 msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
-msgstr "Color of the embed (Hex code, e.g. FF00FF)"
+msgstr "Barva embedu (hex kód, např. FF00FF)"
 
 #: cogs/config_commands.py:520
 #, python-brace-format
 msgid "Aktuell: {color}"
-msgstr "Currently: {color}"
+msgstr "Aktuální: {color}"
 
 #: cogs/config_commands.py:535
 msgid "Ungültiger Hex-Code."
-msgstr "Invalid Hex code."
+msgstr "Neplatný hex kód."
 
 #: cogs/config_commands.py:575 cogs/config_commands.py:989
 msgid "Geburtstagskanal festlegen"
-msgstr "Set birthday channel"
+msgstr "Nastavit narozeninový kanál"
 
 #: cogs/config_commands.py:578
 msgid "Kanal auswählen..."
-msgstr "Select channel..."
+msgstr "Vybrat kanál..."
 
 #: cogs/config_commands.py:585
 msgid "Ziel-Kanal für Geburtstage:"
-msgstr "Target channel for birthdays:"
+msgstr "Cílový kanál pro narozeniny:"
 
 #: cogs/config_commands.py:597 cogs/config_commands.py:650
 #: cogs/config_commands.py:1208
 msgid ""
 "❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
-msgstr "❌ I don't have permission to access the configured channel."
+msgstr "❌ Nemám oprávnění přistupovat ke konfigurovanému kanálu."
 
 #: cogs/config_commands.py:602 cogs/config_commands.py:654
 msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
-msgstr "❌ I cannot send messages in the selected channel."
+msgstr "❌ Nemohu psát zprávy do vybraného kanálu."
 
 #: cogs/config_commands.py:625
 msgid "News-Kanal festlegen"
-msgstr "Set news channel"
+msgstr "Nastavit kanál pro novinky"
 
 #: cogs/config_commands.py:628
 msgid "Kanal auswählen, leer lassen zum Deaktivieren..."
-msgstr "Select channel, leave empty to disable..."
+msgstr "Vyberte kanál, nechte prázdné pro deaktivaci..."
 
 #: cogs/config_commands.py:634
 msgid "Ziel-Kanal für News:"
-msgstr "Target channel for news:"
+msgstr "Cílový kanál pro novinky:"
 
 #: cogs/config_commands.py:668
 msgid "Geburtstagsrolle festlegen"
-msgstr "Set birthday role"
+msgstr "Nastavit narozeninovou roli"
 
 #: cogs/config_commands.py:671
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
-msgstr "Select role, leave empty to disable..."
+msgstr "Vyberte roli, nechte prázdné pro deaktivaci..."
 
 #: cogs/config_commands.py:678
 msgid "Geburtstagsrolle wählen"
-msgstr "Select birthday role"
+msgstr "Vybrat narozeninovou roli"
 
 #: cogs/config_commands.py:709
 #, python-brace-format
@@ -451,90 +453,90 @@ msgid ""
 "⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder gleichrangig "
 "mit meiner eigenen Rolle ist."
 msgstr ""
-"⚠️ I cannot assign the role {role} because it is higher than or equal to my "
-"own role."
+"⚠️ Nemohu přidělit roli {role}, protože je vyšší nebo na stejné úrovni jako "
+"moje vlastní role."
 
 #: cogs/config_commands.py:715
 msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
-msgstr "❌ You cannot set the @everyone role as a birthday role."
+msgstr "❌ Nemůžeš nastavit roli @everyone jako narozeninovou roli."
 
 #: cogs/config_commands.py:749
 msgid "Deutsch"
-msgstr "German"
+msgstr "Němčina"
 
 #: cogs/config_commands.py:757
 msgid "English"
-msgstr "English"
+msgstr "Angličtina"
 
 #: cogs/config_commands.py:765
 msgid "Französisch"
-msgstr "French"
+msgstr "Francouzština"
 
 #: cogs/config_commands.py:773
 msgid "Spanisch"
-msgstr "Spanish"
+msgstr "Španělština"
 
 #: cogs/config_commands.py:781
 msgid "Polnisch"
-msgstr "Polish"
+msgstr "Polština"
 
 #: cogs/config_commands.py:789
 msgid "Russisch"
-msgstr "Russian"
+msgstr "Ruština"
 
 #: cogs/config_commands.py:797
 msgid "Ukrainisch"
-msgstr "Ukrainian"
+msgstr "Ukrajinština"
 
 #: cogs/config_commands.py:805
 msgid "Tschechisch"
-msgstr "Czech"
+msgstr "Čeština"
 
 #: cogs/config_commands.py:839
 msgid "❌ Diese Sprache ist bereits eingestellt."
-msgstr "❌ This language is already set."
+msgstr "❌ Tento jazyk je již nastaven."
 
 #: cogs/config_commands.py:877 cogs/config_commands.py:964
 #, python-brace-format
 msgid "Bild {count}"
-msgstr "Image {count}"
+msgstr "Obrázek {count}"
 
 #: cogs/config_commands.py:885
 msgid "Wähle ein Bild zum Löschen..."
-msgstr "Select an image to delete..."
+msgstr "Vyberte obrázek ke smazání..."
 
 #: cogs/config_commands.py:903
 #, python-brace-format
 msgid "✅ Bild `{file}` wurde erfolgreich gelöscht!"
-msgstr "✅ Image `{file}` was successfully deleted!"
+msgstr "✅ Obrázek `{file}` byl úspěšně smazán!"
 
 #: cogs/config_commands.py:908
 msgid "❌ Fehler beim Löschen der Datei."
-msgstr "❌ Error deleting the file."
+msgstr "❌ Chyba při mazání souboru."
 
 #: cogs/config_commands.py:913
 msgid "❌ Das Bild existiert nicht mehr."
-msgstr "❌ The image no longer exists."
+msgstr "❌ Obrázek již neexistuje."
 
 #: cogs/config_commands.py:923
 msgid "➕ Bild hinzufügen"
-msgstr "➕ Add image"
+msgstr "➕ Přidat obrázek"
 
 #: cogs/config_commands.py:940
 msgid "## Hintergrundbilder verwalten"
-msgstr "## Manage background images"
+msgstr "## Správa pozadí"
 
 #: cogs/config_commands.py:944
 msgid ""
 "Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. Solltest du derzeit keine Bilder hinzugefügt haben, wird das Standardbild genutzt.\n"
 "**HINWEIS:** Die Funktion ist derzeit in der Beta-Phase. Bugs oder Benutzerunfreundlichkeiten können auftreten. Bitte melde jegliche auf dem Support Server!"
 msgstr ""
-"Here you will find a list of all images you have added. If you have not added any images yet, the default image will be used.\n"
-"**NOTE:** This feature is currently in beta. Bugs or user-unfriendliness may occur. Please report any issues on the Support Server!"
+"Zde najdeš seznam všech obrázků, které jsi přidal. Pokud jsi nepřidal žádné obrázky, použije se výchozí.\n"
+"**POZNÁMKA:** Tato funkce je aktuálně v beta fázi. Mohou se vyskytnout chyby nebo uživatelská nepřívětivost. Hlas prosím jakékoli problémy na podporujícím serveru!"
 
 #: cogs/config_commands.py:989
 msgid "Kanal"
-msgstr "Channel"
+msgstr "Kanál"
 
 #: cogs/config_commands.py:990
 msgid "Rolle"
@@ -542,116 +544,116 @@ msgstr "Role"
 
 #: cogs/config_commands.py:990
 msgid "Geburtstagsrolle zuweisen"
-msgstr "Assign birthday role"
+msgstr "Přiřadit narozeninovou roli"
 
 #: cogs/config_commands.py:991
 msgid "Bilder An/Aus"
-msgstr "Images On/Off"
+msgstr "Obrázky Zap/Vyp"
 
 #: cogs/config_commands.py:991
 msgid "Geburtstagskarten aktivieren/deaktivieren"
-msgstr "Enable/disable birthday cards"
+msgstr "Aktivovat/deaktivovat narozeninové karty"
 
 #: cogs/config_commands.py:992
 msgid "Farbe"
-msgstr "Color"
+msgstr "Barva"
 
 #: cogs/config_commands.py:992
 msgid "Farbe der Embeds ändern"
-msgstr "Change color of the embeds"
+msgstr "Změnit barvu embedů"
 
 #: cogs/config_commands.py:993
 msgid "Ankündigungen"
-msgstr "Announcements"
+msgstr "Oznámení"
 
 #: cogs/config_commands.py:993
 msgid "News-Kanal verwalten"
-msgstr "Manage news channel"
+msgstr "Spravovat kanál novinek"
 
 #: cogs/config_commands.py:994
 msgid "Sprache"
-msgstr "Language"
+msgstr "Jazyk"
 
 #: cogs/config_commands.py:994
 msgid "Sprache des Bots ändern"
-msgstr "Change bot language"
+msgstr "Změnit jazyk bota"
 
 #: cogs/config_commands.py:995
 msgid "Nachricht (ohne Alter)"
-msgstr "Message (without age)"
+msgstr "Zpráva (bez věku)"
 
 #: cogs/config_commands.py:995
 msgid "Embed-Text für Modus ohne Alter"
-msgstr "Embed text for mode without age"
+msgstr "Text embedu pro režim bez věku"
 
 #: cogs/config_commands.py:996
 msgid "Nachricht (mit Alter)"
-msgstr "Message (with age)"
+msgstr "Zpráva (s věkem)"
 
 #: cogs/config_commands.py:996
 msgid "Embed-Text für Modus mit Alter"
-msgstr "Embed text for mode with age"
+msgstr "Text vložené zprávy (Embed) pro režim s věkem"
 
 #: cogs/config_commands.py:997
 msgid "Uhrzeit"
-msgstr "Time"
+msgstr "Čas"
 
 #: cogs/config_commands.py:997
 msgid "Sendezeit der Nachrichten anpassen"
-msgstr "Customize message send time"
+msgstr "Upravit čas odeslání zpráv"
 
 #: cogs/config_commands.py:998
 msgid "BETA: Bilder-Verwaltung"
-msgstr "BETA: Image Management"
+msgstr "BETA: Správa obrázků"
 
 #: cogs/config_commands.py:998
 msgid "Öffne das Verwaltungsfenster für Hintergrundbilder"
-msgstr "Open the management panel for background images"
+msgstr "Otevřít okno správy pro obrázky pozadí"
 
 #: cogs/config_commands.py:1002
 msgid "Wähle eine Einstellung zum Bearbeiten..."
-msgstr "Select a setting to edit..."
+msgstr "Vyberte nastavení k úpravě..."
 
 #: cogs/config_commands.py:1091
 msgid "🌍 Sprache"
-msgstr "🌍 Language"
+msgstr "🌍 Jazyk"
 
 #: cogs/config_commands.py:1092
 msgid ""
 "Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
 "**HINWEIS:** Übersetzungen können fehlerhaft sein."
 msgstr ""
-"Here you can customize the language of the bot's responses.\n"
-"**NOTE:** Translations may contain errors."
+"Zde můžeš upravit jazyk, kterým bot odpovídá.\n"
+"**POZNÁMKA:** Překlady mohou obsahovat chyby."
 
 #: cogs/config_commands.py:1153
 msgid "Nur in Servern möglich."
-msgstr "Only possible in servers."
+msgstr "Možné pouze na serverech."
 
 #: cogs/config_commands.py:1185
 msgid "Nur auf einem Server möglich."
-msgstr "Only possible on a server."
+msgstr "Možné pouze na serveru."
 
 #: cogs/config_commands.py:1197
 msgid "Kein Kanal konfiguriert."
-msgstr "No channel configured."
+msgstr "Není nastaven žádný kanál."
 
 #: cogs/config_commands.py:1205
 msgid ""
 "❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze ihn "
 "in der Config neu."
 msgstr ""
-"❌ The configured channel was not found (deleted?). Please reset it in the "
-"config."
+"❌ Nastavený kanál nebyl nalezen (byl smazán?). Nastav jej prosím znovu v "
+"konfiguračním menu."
 
 #: cogs/config_commands.py:1267
 msgid ""
 "❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
-msgstr "❌ I don't have permission to write in the configured channel."
+msgstr "❌ Nemám oprávnění psát do nastaveného kanálu."
 
 #: cogs/config_commands.py:1269
 msgid "Test gesendet! ✅"
-msgstr "Test sent! ✅"
+msgstr "Test odeslán! ✅"
 
 #: cogs/info_commands.py:30
 #, python-brace-format
@@ -664,18 +666,18 @@ msgid ""
 "<:python:1390293453606486056> Library: discord.py-{version}\n"
 "ℹ️ Version: v{bot_version}"
 msgstr ""
-"Hey! I'm **Birthdayyyyys**, a bot to **congratulate** people on their **birthday**! :)\n"
+"Ahoj! Jsem **Birthdayyyyys**, bot pro **přání** k **narozeninám**! :)\n"
 "\n"
-"## ❔ __Info:__\n"
-"<:status_online:1390283178144698420> I was created <t:1751450400:R>\n"
-"<:developer:1390293000747225098> Developer: _chrxstianst.\n"
-"<:python:1390293453606486056> Library: discord.py-{version}\n"
-"ℹ️ Version: v{bot_version}"
+"## ❔ __Informace:__\n"
+"<:status_online:1390283178144698420> Vytvořen <t:1751450400:R>\n"
+"<:developer:1390293000747225098> Vývojář: _chrxstianst.\n"
+"<:python:1390293453606486056> Knihovna: discord.py-{version}\n"
+"ℹ️ Verze: v{bot_version}"
 
 #: cogs/info_commands.py:74 cogs/info_commands.py:89 cogs/info_commands.py:144
 #, python-brace-format
 msgid "__Hilfe für den Befehl /{command}__"
-msgstr "__Help for the command /{command}__"
+msgstr "__Nápověda pro příkaz /{command}__"
 
 #: cogs/info_commands.py:75
 msgid ""
@@ -683,53 +685,53 @@ msgid ""
 "Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
 "Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."
 msgstr ""
-"This allows you to easily set your birthday. \n"
-"By the way, your birthday can be removed again using `/birthday-remove`.\n"
-"If you made a typo, just use this command again."
+"Pomocí tohoto příkazu si můžeš snadno nastavit své narozeniny.\n"
+"Své narozeniny můžeš kdykoliv odstranit příkazem `/birthday-remove`.\n"
+"Pokud ses překlikl, stačí tento příkaz použít znovu."
 
 #: cogs/info_commands.py:80
 msgid "Mit dieser Auswahl legst du deinen Geburtsmonat fest."
-msgstr "With this selection, you set your birth month."
+msgstr "Tímto výběrem nastavíš svůj měsíc narození."
 
 #: cogs/info_commands.py:81
 msgid "Mit dieser Auswahl legst du deinen Geburtstag fest."
-msgstr "With this selection, you set your birthday."
+msgstr "Tímto výběrem nastavíš svůj den narození."
 
 #: cogs/info_commands.py:82
 msgid ""
 "*(optional)*: Lege hiermit das Geburtsjahr von dir fest. Dein Alter wird "
 "errechnet und offen bekannt gegeben."
 msgstr ""
-"*(optional)*: Set your birth year. Your age will be calculated and publicly "
-"announced."
+"*(volitelně)*: Zde můžeš nastavit svůj rok narození. Tvůj věk bude vypočítán"
+" a zveřejněn."
 
 #: cogs/info_commands.py:83
 msgid ""
 "*(optional)*: Falls du nicht in der Zeitzone **Europe/Berlin** wohnst, "
 "kannst du sie hier ändern."
 msgstr ""
-"*(optional)*: If you do not live in the **Europe/Berlin** timezone, you can "
-"change it here."
+"*(volitelně)*: Pokud nežiješ v časovém pásmu **Europe/Berlin**, můžeš si ho "
+"zde změnit."
 
 #: cogs/info_commands.py:84
 msgid ""
 "ADMIN: *(optional)*: Falls du den Geburtstag eines anderen Benutzers "
 "festlegen willst, wähle hier aus, für welchen."
 msgstr ""
-"ADMIN: *(optional)*: If you want to set another user’s birthday, select "
-"which user here."
+"SPRÁVCE: *(volitelně)*: Pokud chceš nastavit narozeniny jiného uživatele, "
+"vyber zde, komu je chceš nastavit."
 
 #: cogs/info_commands.py:90
 msgid ""
 "Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu nutzt"
 " man das Auswahlmenü auf dem gesendeten Panel."
 msgstr ""
-"This allows you to change the settings for the birthday bot. Use the select "
-"menu on the sent panel."
+"Pomocí toho lze měnit nastavení narozeninové boty. K tomu se používá nabídka"
+" výběru na odeslaném panelu."
 
 #: cogs/info_commands.py:95
 msgid "`Kanal`"
-msgstr "`Channel`"
+msgstr "`Kanál`"
 
 #: cogs/info_commands.py:96
 msgid ""
@@ -737,9 +739,9 @@ msgid ""
 "Wird kein Kanal gewählt, werden die Nachrichten automatisch im Systemkanal "
 "des Servers gesendet."
 msgstr ""
-"Set the channel where birthday greetings should be sent. If no channel is "
-"selected, messages will automatically be sent in the server's system "
-"channel."
+"Nastavte kanál, ve kterém se budou odesílat přání k narozeninám. Pokud není "
+"zvolen žádný kanál, zprávy se automaticky odešlou do systémového kanálu "
+"serveru."
 
 #: cogs/info_commands.py:100
 msgid "`Rolle`"
@@ -750,12 +752,12 @@ msgid ""
 "Im Formular kannst du eine Geburtstagsrolle festlegen, die bei einem "
 "Geburtstag für 24h vergeben wird."
 msgstr ""
-"In the form, you can set a birthday role that will be assigned for 24h on a "
-"birthday."
+"Ve formuláři můžete nastavit narozeninovou roli, která bude udělena na 24 "
+"hodin v den narozenin."
 
 #: cogs/info_commands.py:105
 msgid "`Bilder An/Aus`"
-msgstr "`Images On/Off`"
+msgstr "`Obrázky Zap/Vyp`"
 
 #: cogs/info_commands.py:106
 msgid ""
@@ -763,25 +765,25 @@ msgid ""
 "sollen. Wie so ein Banner aussieht, siehst du auf **__[der "
 "Homepage](https://birthdayyyyys.christianst.xyz)__**."
 msgstr ""
-"Set here whether personalized banners should be sent on birthdays. You can "
-"see what such a banner looks like on **__[the "
-"homepage](https://birthdayyyyys.christianst.xyz)__**."
+"Zde nastavte, zda se mají při narozeninách odesílat personalizované bannery."
+" Jak takový banner vypadá, se můžete podívat na **__[domovské "
+"stránce](https://birthdayyyyys.christianst.xyz)__**."
 
 #: cogs/info_commands.py:110
 msgid "`Farbe`"
-msgstr "`Color`"
+msgstr "`Barva`"
 
 #: cogs/info_commands.py:111
 msgid ""
 "Gib in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden nun "
 "diese Farbe nutzen. Standard: `45A6C9`."
 msgstr ""
-"Enter a HEX code into the form. All message embeds will now use this color. "
-"Default: `45A6C9`."
+"Zadejte do formuláře HEX kód. Všechny zprávy typu embed budou nyní používat "
+"tuto barvu. Výchozí: `45A6C9`."
 
 #: cogs/info_commands.py:115
 msgid "`Ankündigungen`"
-msgstr "`Announcements`"
+msgstr "`Oznámení`"
 
 #: cogs/info_commands.py:116
 msgid ""
@@ -790,22 +792,22 @@ msgid ""
 " Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu "
 "bekommen."
 msgstr ""
-"If you don't want to miss bot news, you can enter the channel ID for the "
-"desired channel in the form. Changelogs and announcements will be sent to "
-"it. Set the channel ID to `0` to receive no news."
+"Pokud nechcete zmeškat novinky o botovi, můžete ve formuláři zadat ID "
+"požadovaného kanálu. Do něj budou zasílány záznamy změn (changelogy) a "
+"oznámení. Nastavte ID kanálu na `0`, pokud žádné novinky dostávat nechcete."
 
 #: cogs/info_commands.py:120
 msgid "`Sprache`"
-msgstr "`Language`"
+msgstr "`Jazyk`"
 
 #: cogs/info_commands.py:121
 msgid ""
 "Ändere hier die Sprache, in der der Bot auf diesem Server kommuniziert."
-msgstr "Change the language the bot uses to communicate on this server here."
+msgstr "Zde změňte jazyk, kterým bot komunikuje na tomto serveru."
 
 #: cogs/info_commands.py:125
 msgid "`Nachricht (ohne Alter)`"
-msgstr "`Message (without age)`"
+msgstr "`Zpráva (bez věku)`"
 
 #: cogs/info_commands.py:126
 msgid ""
@@ -813,13 +815,13 @@ msgid ""
 " nicht anzeigen lassen. Du kannst auch den Titel des generierten Banners "
 "sowie Variablen zur Personalisierung nutzen."
 msgstr ""
-"Here you can edit the birthday embed for members who do not display their "
-"age. You can also use the title of the generated banner and variables for "
-"personalization."
+"Zde můžete upravit narozeninový embed pro členy, kteří si nezobrazují svůj "
+"věk. Můžete také použít název vygenerovaného banneru a proměnné pro "
+"personalizaci."
 
 #: cogs/info_commands.py:130
 msgid "`Nachricht (mit Alter)`"
-msgstr "`Message (with age)`"
+msgstr "`Zpráva (s věkem)`"
 
 #: cogs/info_commands.py:131
 msgid ""
@@ -827,118 +829,121 @@ msgid ""
 " anzeigen lassen. Du kannst auch den Titel des generierten Banners sowie "
 "Variablen zur Personalisierung nutzen."
 msgstr ""
-"Here you can edit the birthday embed for members who display their age. You "
-"can also use the title of the generated banner and variables for "
-"personalization."
+"Zde můžete upravit narozeninový embed pro členy, kteří si zobrazují svůj "
+"věk. Můžete také použít název vygenerovaného banneru a proměnné pro "
+"personalizaci."
 
 #: cogs/info_commands.py:135
 msgid "`Uhrzeit`"
-msgstr "`Time`"
+msgstr "`Čas`"
 
 #: cogs/info_commands.py:136
 msgid ""
 "Lege die tägliche Uhrzeit fest (z. B. `08:00`), zu der die "
 "Geburtstagsnachrichten auf dem Server gesendet werden sollen."
 msgstr ""
-"Set the daily time (e.g. `08:00`) at which birthday messages should be sent "
-"on the server."
+"Nastavte denní čas (např. `08:00`), kdy se mají narozeninové zprávy na "
+"serveru odesílat."
 
 #: cogs/info_commands.py:145
 msgid ""
 "Simuliere hier einen Geburtstag, um zu testen, ob deine Einstellungen "
 "funktionieren."
-msgstr "Simulate a birthday here to test if your settings work."
+msgstr ""
+"Zde simulujte narozeniny, abyste otestovali, zda vaše nastavení funguje."
 
 #: cogs/info_commands.py:148
 msgid "`Ohne Altersangabe`"
-msgstr "`Without Age`"
+msgstr "`Bez uvedení věku`"
 
 #: cogs/info_commands.py:148
 msgid ""
 "Simuliere einen Geburtstag, wo der Benutzer kein Geburtsjahr angegeben hat."
-msgstr "Simulate a birthday where the user did not specify a birth year."
+msgstr "Simulujte narozeniny, kdy uživatel nezadal rok narození."
 
 #: cogs/info_commands.py:149
 msgid "`Mit Altersangabe (Test-Alter: 30)`"
-msgstr "`With Age (Test Age: 30)`"
+msgstr "`S uvedením věku (testovací věk: 30)`"
 
 #: cogs/info_commands.py:149
 msgid ""
 "Simuliere einen Geburtstag, der gesendet wird, wenn der Benutzer 30 Jahre "
 "alt wird."
-msgstr "Simulate a birthday that is sent when the user turns 30 years old."
+msgstr ""
+"Simulujte narozeniny, které se odesílají, když uživatel dosáhne věku 30 let."
 
 #: cogs/info_commands.py:154
 msgid "❌ Fehler: Du hast keinen gültigen Befehl angegeben."
-msgstr "❌ Error: You did not specify a valid command."
+msgstr "❌ Chyba: Nezadal/a jste platný příkaz."
 
 #: cogs/info_commands.py:161
 msgid "ℹ️ Bot-Befehle"
-msgstr "ℹ️ Bot Commands"
+msgstr "ℹ️ Příkazy bota"
 
 #: cogs/info_commands.py:162
 msgid "Hier ist eine Liste aller verfügbaren Befehle:"
-msgstr "Here is a list of all available commands:"
+msgstr "Zde je seznam všech dostupných příkazů:"
 
 #: cogs/info_commands.py:168
 msgid "Setzt deinen Geburtstag."
-msgstr "Sets your birthday."
+msgstr "Nastaví tvoje narozeniny."
 
 #: cogs/info_commands.py:170
 msgid "Entfernt deinen Geburtstag."
-msgstr "Removes your birthday."
+msgstr "Odstraní tvoje narozeniny."
 
 #: cogs/info_commands.py:172
 msgid "Zeigt deinen oder den Geburtstag eines anderen Nutzers an."
-msgstr "Displays your birthday or the birthday of another user."
+msgstr "Zobrazí tvoje narozeniny nebo narozeniny jiného uživatele."
 
 #: cogs/info_commands.py:174
 msgid "Zeigt alle gespeicherten Geburtstage an."
-msgstr "Shows all registered birthdays."
+msgstr "Zobrazí všechny uložené narozeniny."
 
 #: cogs/info_commands.py:176
 msgid "Zeigt Informationen über den Bot an."
-msgstr "Shows information about the bot."
+msgstr "Zobrazí informace o botovi."
 
 #: cogs/info_commands.py:178
 msgid "Misst die derzeitige Antwortlatenz des Bots"
-msgstr "Measures the current response latency of the bot."
+msgstr "Měří aktuální odezvu bota."
 
 #: cogs/info_commands.py:181
 msgid "__Mitglieder:__"
-msgstr "__Members:__"
+msgstr "__Členové:__"
 
 #: cogs/info_commands.py:186
 msgid "Konfiguriert Birthdayyyyys."
-msgstr "Configures Birthdayyyyys."
+msgstr "Konfiguruje Birthdayyyyys."
 
 #: cogs/info_commands.py:188
 msgid "Sendet eine Test-Geburtstagsnachricht an den konfigurierten Kanal."
-msgstr "Sends a test birthday message to the configured channel."
+msgstr "Ošle testovací narozeninovou zprávu do konfigurovaného kanálu."
 
 #: cogs/info_commands.py:190
 msgid "__Team:__"
-msgstr "__Team:__"
+msgstr "__Tým:__"
 
 #: cogs/info_commands.py:192
 msgid "Nutze `/help [command]`, um über komplexere Befehle mehr zu erfahren."
-msgstr "Use `/help [command]` to learn more about more complex commands."
+msgstr ""
+"Použij `/help [command]` pro zjištění podrobností o složitějších příkazech."
 
 #: cogs/info_commands.py:226
 msgid "❌ Datenbankfehler"
-msgstr "❌ Database error"
+msgstr "❌ Chyba databáze"
 
 #: cogs/info_commands.py:232
 msgid "⏱️ Ping-Ergebnisse"
-msgstr "⏱️ Ping Results"
+msgstr "⏱️ Výsledky pingu"
 
 #: cogs/info_commands.py:233
 msgid "Latenzzeiten des Bots zu verschiedenen Komponenten:"
-msgstr "Latencies of the bot to different components:"
+msgstr "Odezvy bota na různé komponenty:"
 
 #: cogs/info_commands.py:238
 msgid "🤖 Interne Verarbeitung"
-msgstr "🤖 Internal Processing"
+msgstr "🤖 Interní zpracování"
 
 #: cogs/info_commands.py:243
 msgid "🌐 Discord API (Heartbeat)"
@@ -946,11 +951,11 @@ msgstr "🌐 Discord API (Heartbeat)"
 
 #: cogs/info_commands.py:248
 msgid "💾 Datenbank"
-msgstr "💾 Database"
+msgstr "💾 Databáze"
 
 #: cogs/setup-help.py:23
 msgid "👋 Hallo!"
-msgstr "👋 Hello!"
+msgstr "👋 Ahoj!"
 
 #: cogs/setup-help.py:24
 msgid ""
@@ -958,23 +963,24 @@ msgid ""
 "anfängst, Birthdayyyyys einzurichten, sind hier einige erste Schritte, die "
 "du befolgen kannst."
 msgstr ""
-"Thank you for adding Birthdayyyyys to your server! Before you start to "
-"configure Birthdayyyyys, here are some first steps you can follow."
+"Děkujeme za přidání Birthdayyyyys na tvůj server! Než začneš Birthdayyyyys "
+"nastavovat, zde je několik prvních kroků, které můžeš provést."
 
 #: cogs/setup-help.py:29
 msgid "Kanal einstellen:"
-msgstr "Set channel:"
+msgstr "Nastavení kanálu:"
 
 #: cogs/setup-help.py:30
 msgid ""
 "Nutze `/config` und klicke auf den Button `Kanal`, um den Geburtstagskanal "
 "zu setzen."
 msgstr ""
-"Use `/config` and click on the `Channel` button to set the birthday channel."
+"Použij `/config` a klikni na tlačítko `Kanál` pro nastavení narozeninového "
+"kanálu."
 
 #: cogs/setup-help.py:34
 msgid "Nachrichten bearbeiten:"
-msgstr "Edit messages:"
+msgstr "Úprava zpráv:"
 
 #: cogs/setup-help.py:35
 #, python-format
@@ -984,45 +990,45 @@ msgid ""
 "hat, berechnet der Bot automatisch das Alter. Nutze Variablen wie "
 "`%username`, um Nachrichten anzupassen."
 msgstr ""
-"Use `/config` and click on the `Message (With/Without Age)` button to edit "
-"the birthday greetings. If the user specified a birth year, the bot "
-"automatically calculates the age. Use variables like `%username` to "
-"customize messages."
+"Použij `/config` a klikni na tlačítko `Zpráva (S/Bez věku)` pro úpravu "
+"narozeninových přání. Pokud uživatel zadá rok narození, bot automaticky "
+"spočítá věk. Použij proměnné jako `%username` pro úpravu zpráv."
 
 #: cogs/setup-help.py:39
 msgid "Bildgenerierung aktivieren:"
-msgstr "Enable image generation:"
+msgstr "Aktivace generování obrázků:"
 
 #: cogs/setup-help.py:40
 msgid ""
 "Ein cooles Feature ist die Bildgenerierung. Sie erstellt ein Banner mit "
 "Profilbild und Namen. Aktiviere dies mit `/config` -> `Bilder An/Aus`."
 msgstr ""
-"A cool feature is the image generation. It creates a banner with profile "
-"picture and name. Enable this with `/config` -> `Images On/Off`."
+"Skvělou funkcí je generování obrázků. Vytvoří banner s profilovým obrázkem a"
+" jménem. Aktivuj to pomocí `/config` -> `Obrázky Zap/Vyp`."
 
 #: cogs/setup-help.py:44
 msgid "Konfiguration testen:"
-msgstr "Test configuration:"
+msgstr "Testování konfigurace:"
 
 #: cogs/setup-help.py:45
 msgid ""
 "Wenn du deine Konfiguration überprüfen willst, kannst du `/config-test` "
 "nutzen."
-msgstr "If you want to check your configuration, you can use `/config-test`."
+msgstr ""
+"Pokud chceš zkontrolovat svou konfiguraci, můžeš použít `/config-test`."
 
 #: cogs/setup-help.py:49
 msgid "Weitere Hilfe:"
-msgstr "Further help:"
+msgstr "Další nápověda:"
 
 #: cogs/setup-help.py:50
 msgid ""
 "Falls du weitere Hilfe brauchst, nutze `/help`. Bei Problemen tritt gerne "
 "dem Support Server bei: https://discord.gg/utD4afUrgt."
 msgstr ""
-"If you need further help, use `/help`. If problems occur, feel free to join "
-"the support server: https://discord.gg/utD4afUrgt."
+"Pokud potřebuješ další pomoc, použij `/help`. V případě problémů se neváhej "
+"připojit na náš podporující server: https://discord.gg/utD4afUrgt."
 
 #: cogs/setup-help.py:54
 msgid "Danke für's Nutzen von Birthdayyyyys!"
-msgstr "Thanks for using Birthdayyyyys!"
+msgstr "Děkujeme, že používáš Birthdayyyyys!"

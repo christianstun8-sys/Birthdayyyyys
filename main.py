@@ -9,8 +9,6 @@ from cogs.birthday_check_task import remove_database_record
 import aiomysql
 import topgg
 
-from cogs import Alerts
-
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
@@ -50,7 +48,7 @@ class BirthdayBot(commands.Bot):
         super().__init__(command_prefix=prefix, intents=intents, help_command=None)
         self.guild_configs = {}
         self.kuma_url = "https://status.christianst.xyz/api/push/bELLyg8wcQ?status=up&msg=OK&ping="
-        self.version = 5.2
+        self.version = 5.6
         self.db_pool = None
         self.topgg = None
 

@@ -50,7 +50,8 @@ def build_config_embed(bot: commands.Bot, guild_id: int, l: str = None):
         "es": "Español <:sp:1517919374046920774>",
         "pl": "Polski <:pl:1517920067256324108>",
         "ru": "Русский <:ru:1517920710889050122>",
-        "uk": "Українська <:ua:1518274492156215366>"
+        "uk": "Українська <:ua:1518274492156215366>",
+        "cs": "Česky <:cz:1556261648023687168>"
     }
     lang_display = lang_names.get(lang, lang.upper())
 
@@ -246,26 +247,29 @@ async def save_uploaded_image(guild_id: int, image_or_attachment) -> str:
     return full_path
 
 class ResizeButtonView(discord.ui.View):
-    def __init__(self, bot: commands.Bot, attachment: discord.Attachment):
+    def __init__(self, bot, attachment: discord.Attachment, guild_id: int):
         super().__init__(timeout=None)
+        lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
+        self._ = translator.get_translation(lang)
         self.attachment = attachment
 
     @discord.ui.button(label="🔧 Größe anpassen", style=discord.ButtonStyle.success)
     async def callback_change_size_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         new_image = await process_image(self.attachment)
         await save_uploaded_image(interaction.guild.id, new_image)
-        return await interaction.response.edit_message(embed=None, content="✅ Bild wurde erfolgreich zugeschnitten und gespeichert!", view=None)
+        return await interaction.response.edit_message(embed=None, content=self._("✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"), view=None)
 
     @discord.ui.button(label="👍 Überspringen", style=discord.ButtonStyle.danger)
     async def callback_change_button(self, interaction: discord.Interaction, button: discord.ui.Button):
         await save_uploaded_image(interaction.guild.id, self.attachment)
-        await interaction.response.edit_message(embed=None, content="✅ Bild wurde ohne Zuschneiden gespeichert!", view=None)
+        await interaction.response.edit_message(embed=None, content=self._("✅ Bild wurde ohne Zuschneiden gespeichert!"), view=None)
 
 class ImageUploadModal(discord.ui.Modal):
     def __init__(self, bot, guild_id: int):
         lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
         _ = translator.get_translation(lang)
-        super().__init__(title="Bilddatei hochladen", timeout=None)
+        self._ = _
+        super().__init__(title=_("Bilddatei hochladen"), timeout=None)
         self.fileupload = discord.ui.FileUpload(
             custom_id="file_upload_input",
             min_values=1,
@@ -279,23 +283,23 @@ class ImageUploadModal(discord.ui.Modal):
         attachment = self.fileupload.values[0]
         valid_file_type, err_msg, _ = await validate_and_read_image(attachment)
         if not valid_file_type:
-            return await interaction.followup.send(f"❌ {err_msg}", ephemeral=True)
+            return await interaction.followup.send(self._(f"Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-Server."), ephemeral=True)
 
         valid_size = is_valid_banner_resolution(attachment.width, attachment.height)
         if not valid_size:
             return await interaction.followup.send(
                 embed=discord.Embed(
-                    title="Falsches Bildformat!",
-                    description=f"Das Standard-Bildformat lautet `1920x540`. Das Format deines Bildes ist `{attachment.width}x{attachment.height}`. "
-                                f"Texte und Bilder können dadurch verrutschen. Willst du das Bild automatisch zuschneiden lassen, oder dennoch fortfahren?",
+                    title=self._("Falsches Bildformat!"),
+                    description=self._(f"Das Standard-Bildformat lautet `1920x540`. Das Format deines Bildes ist `{attachment.width}x{attachment.height}`. "
+                                f"Texte und Bilder können dadurch verrutschen. Willst du das Bild automatisch zuschneiden lassen, oder dennoch fortfahren?"),
                     color=discord.Color.red()
                 ),
-                view=ResizeButtonView(interaction.client, attachment),
+                view=ResizeButtonView(interaction.client, attachment, interaction.guild.id),
                 ephemeral=True
             )
 
         await save_uploaded_image(interaction.guild.id, attachment)
-        return await interaction.followup.send("✅ Datei wurde erfolgreich hochgeladen!", ephemeral=True)
+        return await interaction.followup.send(self._("✅ Datei wurde erfolgreich hochgeladen!"), ephemeral=True)
 
 
 class MessageTimeModal(discord.ui.Modal):
@@ -796,7 +800,14 @@ class LanguageConfigView(discord.ui.View):
                 emoji="<:ua:1518274492156215366>"
             )
         )
-
+        self.add_item(
+            discord.ui.Button(
+                label=_("Tschechisch"),
+                style=discord.ButtonStyle.grey,
+                custom_id="lang_cs",
+                emoji="<:cz:1556261648023687168>"
+            )
+        )
     async def interaction_check(self, interaction: discord.Interaction) -> bool:
         custom_id = interaction.data.get("custom_id")
 
@@ -814,6 +825,8 @@ class LanguageConfigView(discord.ui.View):
             await self.set_language(interaction, "ru")
         elif custom_id == "lang_uk":
             await self.set_language(interaction, "uk")
+        elif custom_id == "lang_cs":
+            await self.set_language(interaction, "cs")
 
         return False
 
@@ -905,7 +918,9 @@ class AddImageButton(discord.ui.Button):
     def __init__(self, bot: commands.Bot, guild_id: int):
         self.bot = bot
         self.guild_id = guild_id
-        super().__init__(style=discord.ButtonStyle.success, label="➕ Bild hinzufügen")
+        lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+        super().__init__(style=discord.ButtonStyle.success, label=_("➕ Bild hinzufügen"))
 
     async def callback(self, interaction: discord.Interaction):
         await interaction.response.send_modal(ImageUploadModal(self.bot, self.guild_id))

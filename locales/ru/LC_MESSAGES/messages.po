@@ -1,28 +1,29 @@
-# Russian translations for PROJECT.
+# Russian translations for Birthdayyyyys.
 # Copyright (C) 2026 ORGANIZATION
-# This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+# This file is distributed under the same license as the Birthdayyyyys
+# project.
+# Christianst_ <christian@christianst.xyz>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-09-26 21:27+0200\n"
+"POT-Creation-Date: 2026-10-04 13:13+0200\n"
 "PO-Revision-Date: 2026-09-26 22:39+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "Generated-By: Babel 2.18.0\n"
 
 #: eventmessages.py:17
 msgid "⚠️ Unbekannter Fehler"
 msgstr "⚠️ Неизвестная ошибка"
 
+#: cogs/birthday_commands.py:434 cogs/config_commands.py:286
 #: eventmessages.py:18
 msgid ""
 "Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
@@ -31,60 +32,60 @@ msgstr ""
 "Произошла неизвестная ошибка. Пожалуйста, сообщите об этом на сервере "
 "поддержки."
 
-#: cogs/birthday_check_task.py:313 cogs/config_commands.py:18
+#: cogs/birthday_check_task.py:314 cogs/config_commands.py:18
 #, python-format
 msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
 msgstr "🎉 С днём рождения, %username!"
 
-#: cogs/birthday_check_task.py:315 cogs/config_commands.py:20
+#: cogs/birthday_check_task.py:316 cogs/config_commands.py:20
 #, python-format
 msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
 msgstr "🎂 Поздравляем с %age-летием, %username!"
 
-#: cogs/birthday_check_task.py:318 cogs/config_commands.py:24
+#: cogs/birthday_check_task.py:319 cogs/config_commands.py:24
 msgid "Bitte sende deine besten Wünsche an %mention!"
 msgstr "Пожалуйста, передайте свои наилучшие пожелания %mention!"
 
-#: cogs/birthday_check_task.py:321 cogs/config_commands.py:26
+#: cogs/birthday_check_task.py:322 cogs/config_commands.py:26
 msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
 msgstr "Давайте поздравим %mention с %age-м днём рождения!"
 
-#: cogs/birthday_check_task.py:325 cogs/config_commands.py:35
+#: cogs/birthday_check_task.py:326 cogs/config_commands.py:35
 msgid "Feiere schön!"
 msgstr "Отличного праздника!"
 
-#: cogs/birthday_check_task.py:394
+#: cogs/birthday_check_task.py:395
 msgid "Geburtstagsrolle zugewiesen"
 msgstr "Имениннику выдана роль"
 
-#: cogs/birthday_check_task.py:410
+#: cogs/birthday_check_task.py:411
 msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
 msgstr "Роль именинника удалена (день рождения закончился)"
 
-#: cogs/birthday_commands.py:59 cogs/birthday_commands.py:156
-#: cogs/config_commands.py:1123 cogs/config_commands.py:1125
+#: cogs/birthday_commands.py:95 cogs/birthday_commands.py:192
+#: cogs/config_commands.py:1135 cogs/config_commands.py:1137
 #: cogs/info_commands.py:151
 msgid "⚠️ Du hast keine Berechtigung dazu."
 msgstr "⚠️ У вас нет прав на это действие."
 
-#: cogs/birthday_commands.py:64
+#: cogs/birthday_commands.py:100
 msgid "Ungültige Zeitzone! Bitte wähle eine aus der Liste."
 msgstr "Неверный часовой пояс! Пожалуйста, выберите из списка."
 
-#: cogs/birthday_commands.py:72
+#: cogs/birthday_commands.py:108
 msgid "❌ Ungültiges Datum angegeben!"
 msgstr "❌ Указана неверная дата!"
 
-#: cogs/birthday_commands.py:97
+#: cogs/birthday_commands.py:133
 #, python-brace-format
 msgid ""
-"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year}"
-" ({timezone}) gesetzt!"
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year} "
+"({timezone}) gesetzt!"
 msgstr ""
-"✅ День рождения {mention} успешно установлен на "
-"{day:02d}.{month:02d}.{year} ({timezone})!"
+"✅ День рождения {mention} успешно установлен на {day:02d}.{month:02d}.{year}"
+" ({timezone})!"
 
-#: cogs/birthday_commands.py:111
+#: cogs/birthday_commands.py:147
 #, python-brace-format
 msgid ""
 "✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} "
@@ -93,119 +94,119 @@ msgstr ""
 "✅ День рождения {mention} успешно установлен на {day:02d}.{month:02d}. "
 "({timezone})!"
 
-#: cogs/birthday_commands.py:125
+#: cogs/birthday_commands.py:161
 #, python-brace-format
 msgid ""
-"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone})"
-" gesetzt!"
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) "
+"gesetzt!"
 msgstr ""
 "✅ Ваш день рождения успешно установлен на {day:02d}.{month:02d}.{year} "
 "({timezone})!"
 
-#: cogs/birthday_commands.py:133
+#: cogs/birthday_commands.py:169
 #, python-brace-format
 msgid ""
-"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) "
-"gesetzt!"
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!"
 msgstr ""
 "✅ Ваш день рождения успешно установлен на {day:02d}.{month:02d}. "
 "({timezone})!"
 
-#: cogs/birthday_commands.py:171
+#: cogs/birthday_commands.py:207
 #, python-brace-format
 msgid "✅ Der Geburtstag von {mention} wurde gelöscht."
 msgstr "✅ День рождения {mention} успешно удалён."
 
-#: cogs/birthday_commands.py:177
+#: cogs/birthday_commands.py:213
 msgid "✅ Dein Geburtstag wurde gelöscht."
 msgstr "✅ Ваш день рождения успешно удалён."
 
-#: cogs/birthday_commands.py:213
+#: cogs/birthday_commands.py:249
 #, python-brace-format
-msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgid ""
+"Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
 msgstr "День рождения {mention}: {day:02d}.{month:02d}.{year} ({tz})."
 
-#: cogs/birthday_commands.py:227
+#: cogs/birthday_commands.py:263
 #, python-brace-format
 msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
 msgstr "День рождения {mention}: {day:02d}.{month:02d}. ({tz})."
 
-#: cogs/birthday_commands.py:236
+#: cogs/birthday_commands.py:272
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
 msgstr "Ваш день рождения: {day:02d}.{month:02d}.{year} ({tz})."
 
-#: cogs/birthday_commands.py:243
+#: cogs/birthday_commands.py:279
 #, python-brace-format
 msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
 msgstr "Ваш день рождения: {day:02d}.{month:02d}. ({tz})."
 
-#: cogs/birthday_commands.py:252
+#: cogs/birthday_commands.py:288
 #, python-brace-format
 msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
 msgstr "❌ Пользователь {mention} ещё не зарегистрировал свой день рождения."
 
-#: cogs/birthday_commands.py:259
+#: cogs/birthday_commands.py:295
 msgid "❌ Du hast noch keinen Geburtstag registriert."
 msgstr "❌ Вы ещё не зарегистрировали свой день рождения."
 
-#: cogs/birthday_commands.py:279
+#: cogs/birthday_commands.py:315
 msgid "Januar"
 msgstr "Январь"
 
-#: cogs/birthday_commands.py:280
+#: cogs/birthday_commands.py:316
 msgid "Februar"
 msgstr "Февраль"
 
-#: cogs/birthday_commands.py:281
+#: cogs/birthday_commands.py:317
 msgid "März"
 msgstr "Март"
 
-#: cogs/birthday_commands.py:282
+#: cogs/birthday_commands.py:318
 msgid "April"
 msgstr "Апрель"
 
-#: cogs/birthday_commands.py:283
+#: cogs/birthday_commands.py:319
 msgid "Mai"
 msgstr "Май"
 
-#: cogs/birthday_commands.py:284
+#: cogs/birthday_commands.py:320
 msgid "Juni"
 msgstr "Июнь"
 
-#: cogs/birthday_commands.py:285
+#: cogs/birthday_commands.py:321
 msgid "Juli"
 msgstr "Июль"
 
-#: cogs/birthday_commands.py:286
+#: cogs/birthday_commands.py:322
 msgid "August"
 msgstr "Август"
 
-#: cogs/birthday_commands.py:287
+#: cogs/birthday_commands.py:323
 msgid "September"
 msgstr "Сентябрь"
 
-#: cogs/birthday_commands.py:288
+#: cogs/birthday_commands.py:324
 msgid "Oktober"
 msgstr "Октябрь"
 
-#: cogs/birthday_commands.py:289
+#: cogs/birthday_commands.py:325
 msgid "November"
 msgstr "Ноябрь"
 
-#: cogs/birthday_commands.py:290
+#: cogs/birthday_commands.py:326
 msgid "Dezember"
 msgstr "Декабрь"
 
-#: cogs/birthday_commands.py:307
+#: cogs/birthday_commands.py:343 cogs/birthday_commands.py:420
 msgid "⚠️ Es sind noch keine Geburtstage registriert."
 msgstr "⚠️ Дни рождения ещё не зарегистрированы."
 
-#: cogs/birthday_commands.py:322
+#: cogs/birthday_commands.py:358
 msgid "Jahre"
 msgstr "лет"
 
-#: cogs/birthday_commands.py:341
+#: cogs/birthday_commands.py:377
 msgid "Geburtstagskalender"
 msgstr "Календарь дней рождения"
 
@@ -217,31 +218,31 @@ msgstr "С днём рождения!"
 msgid "Happy %age Birthday!"
 msgstr "С %age-м днём рождения!"
 
-#: cogs/config_commands.py:61
+#: cogs/config_commands.py:59
 msgid "Deaktiviert"
 msgstr "Выключено"
 
-#: cogs/config_commands.py:68
+#: cogs/config_commands.py:69
 msgid "Nicht gesetzt"
 msgstr "Не установлен"
 
-#: cogs/config_commands.py:69
+#: cogs/config_commands.py:70
 msgid "Keine"
 msgstr "Нет"
 
-#: cogs/config_commands.py:70
+#: cogs/config_commands.py:71
 msgid "✅ Aktiviert"
 msgstr "✅ Включены"
 
-#: cogs/config_commands.py:70
+#: cogs/config_commands.py:71
 msgid "❌ Deaktiviert"
 msgstr "❌ Выключены"
 
-#: cogs/config_commands.py:74
+#: cogs/config_commands.py:75
 msgid "⚙️ Server-Konfiguration"
 msgstr "⚙️ Конфигурация сервера"
 
-#: cogs/config_commands.py:75
+#: cogs/config_commands.py:76
 msgid ""
 "Hier kannst du alle Einstellungen für das Geburtstagssystem verwalten.\n"
 "Nutze das Menü unten zum Konfigurieren."
@@ -249,346 +250,379 @@ msgstr ""
 "Здесь вы можете управлять всеми настройками системы дней рождения.\n"
 "Используйте меню ниже для конфигурации."
 
-#: cogs/config_commands.py:79
+#: cogs/config_commands.py:80
 msgid "🪛 Kanal"
 msgstr "🪛 Канал"
 
-#: cogs/config_commands.py:80
+#: cogs/config_commands.py:81
 msgid "⚙️ Rolle"
 msgstr "⚙️ Роль"
 
-#: cogs/config_commands.py:81
+#: cogs/config_commands.py:82
 msgid "🖼️ Bilder"
 msgstr "🖼️ Картинки"
 
-#: cogs/config_commands.py:82
+#: cogs/config_commands.py:83
 msgid "🎨 Farbe"
 msgstr "🎨 Цвет"
 
-#: cogs/config_commands.py:83
+#: cogs/config_commands.py:84
 msgid "🗣️ Sprache"
 msgstr "🗣️ Язык"
 
-#: cogs/config_commands.py:84
+#: cogs/config_commands.py:85
 msgid "⏰ Uhrzeit"
 msgstr "⏰ Время"
 
-#: cogs/config_commands.py:85
+#: cogs/config_commands.py:86
 msgid "📣 Ankündigungen"
 msgstr "📣 Объявления"
 
-#: cogs/config_commands.py:276
+#: cogs/config_commands.py:260
+msgid "✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"
+msgstr "✅ Изображение успешно обрезанно и сохранено!"
+
+#: cogs/config_commands.py:265
+msgid "✅ Bild wurde ohne Zuschneiden gespeichert!"
+msgstr "✅ Изображение сохранено без обрезки!"
+
+#: cogs/config_commands.py:272
+msgid "Bilddatei hochladen"
+msgstr "Загрузить файл изображения"
+
+#: cogs/config_commands.py:279
 msgid "Bilder hochladen:"
 msgstr "Загрузить картинки:"
 
-#: cogs/config_commands.py:308
+#: cogs/config_commands.py:292
+msgid "Falsches Bildformat!"
+msgstr "Неверный формат изображения!"
+
+#: cogs/config_commands.py:293
+msgid ""
+"Texte und Bilder können dadurch verrutschen. Willst du das Bild automatisch "
+"zuschneiden lassen, oder dennoch fortfahren?"
+msgstr ""
+"Из-за этого текст и изображения могут сместиться. Вы хотите автоматически "
+"обрезать изображение или продолжить?"
+
+#: cogs/config_commands.py:302
+msgid "✅ Datei wurde erfolgreich hochgeladen!"
+msgstr "✅ Файл успешно загружен!"
+
+#: cogs/config_commands.py:311
 msgid "Sendezeit der Geburtstagsnachricht setzen"
 msgstr "Задать время отправки поздравления"
 
-#: cogs/config_commands.py:310
+#: cogs/config_commands.py:313
 msgid "Neue Zeit (Format: HH:MM)"
 msgstr "Новое время (Формат: ЧЧ:ММ)"
 
-#: cogs/config_commands.py:328
+#: cogs/config_commands.py:331
 #, python-brace-format
 msgid "❌ Die Eingabe {input} ist keine gültige Zeit."
 msgstr "❌ Введённое значение {input} не является корректным временем."
 
-#: cogs/config_commands.py:350
+#: cogs/config_commands.py:353
 msgid "Nachricht ohne Altersangabe anpassen"
 msgstr "Настройка сообщения без возраста"
 
-#: cogs/config_commands.py:358
+#: cogs/config_commands.py:361
 #, python-format
 msgid "Titel des Embeds (%username)"
 msgstr "Заголовок эмбеда (%username)"
 
-#: cogs/config_commands.py:367
+#: cogs/config_commands.py:370
 #, python-format
 msgid "Nachricht im Embed (%mention, %username)"
 msgstr "Сообщение в эмбеде (%mention, %username)"
 
-#: cogs/config_commands.py:377
+#: cogs/config_commands.py:380
 #, python-format
 msgid "Footer im Embed (optional, %username)"
 msgstr "Футер эмбеда (опционально, %username)"
 
-#: cogs/config_commands.py:378
+#: cogs/config_commands.py:381
 msgid "Kein Footer"
 msgstr "Без футера"
 
-#: cogs/config_commands.py:386
+#: cogs/config_commands.py:389
 #, python-format
 msgid "Titel auf Geburtstagsbild (%username)"
 msgstr "Заголовок открытки (%username)"
 
-#: cogs/config_commands.py:418
-msgid "Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"
+#: cogs/config_commands.py:421
+msgid ""
+"Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"
 msgstr "Поздравительное сообщение (без возраста) успешно обновлено! ✅"
 
-#: cogs/config_commands.py:430
+#: cogs/config_commands.py:433
 msgid "Nachricht mit Altersangabe anpassen"
 msgstr "Настройка сообщения с указанием возраста"
 
-#: cogs/config_commands.py:438
+#: cogs/config_commands.py:441
 msgid "Titel (%age)"
 msgstr "Заголовок (%age)"
 
-#: cogs/config_commands.py:447
+#: cogs/config_commands.py:450
 #, python-format
 msgid "Beschr. (%mention, %username, %age)"
 msgstr "Описание (%mention, %username, %age)"
 
-#: cogs/config_commands.py:457
+#: cogs/config_commands.py:460
 #, python-format
 msgid "Footer (optional, %username)"
 msgstr "Футер (опционально, %username)"
 
-#: cogs/config_commands.py:458
+#: cogs/config_commands.py:461
 msgid "Standard: Feiere schön!"
 msgstr "По умолчанию: Отличного праздника!"
 
-#: cogs/config_commands.py:466
+#: cogs/config_commands.py:469
 #, python-format
 msgid "Bildtitel (%age, %username)"
 msgstr "Заголовок картинки (%age, %username)"
 
-#: cogs/config_commands.py:498
+#: cogs/config_commands.py:501
 msgid "Die Geburtstagsnachricht (mit Alter) wurde erfolgreich aktualisiert! ✅"
 msgstr "Поздравительное сообщение (с возрастом) успешно обновлено! ✅"
 
-#: cogs/config_commands.py:510
+#: cogs/config_commands.py:513
 msgid "Embed-Farbe anpassen"
 msgstr "Настройка цвета эмбеда"
 
-#: cogs/config_commands.py:516
+#: cogs/config_commands.py:519
 msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
 msgstr "Цвет эмбеда (Hex-код, например, FF00FF)"
 
-#: cogs/config_commands.py:517
+#: cogs/config_commands.py:520
 #, python-brace-format
 msgid "Aktuell: {color}"
 msgstr "Текущий: {color}"
 
-#: cogs/config_commands.py:532
+#: cogs/config_commands.py:535
 msgid "Ungültiger Hex-Code."
 msgstr "Неверный Hex-код."
 
-#: cogs/config_commands.py:573 cogs/config_commands.py:976
+#: cogs/config_commands.py:575 cogs/config_commands.py:989
 msgid "Geburtstagskanal festlegen"
 msgstr "Установить канал для поздравлений"
 
-#: cogs/config_commands.py:576
+#: cogs/config_commands.py:578
 msgid "Kanal auswählen..."
 msgstr "Выбрать канал..."
 
-#: cogs/config_commands.py:583
+#: cogs/config_commands.py:585
 msgid "Ziel-Kanal für Geburtstage:"
 msgstr "Целевой канал для дней рождения:"
 
-#: cogs/config_commands.py:595 cogs/config_commands.py:648
-#: cogs/config_commands.py:1196
-msgid "❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
+#: cogs/config_commands.py:597 cogs/config_commands.py:650
+#: cogs/config_commands.py:1208
+msgid ""
+"❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
 msgstr "❌ У меня нет прав для доступа к указанному каналу."
 
-#: cogs/config_commands.py:600 cogs/config_commands.py:652
+#: cogs/config_commands.py:602 cogs/config_commands.py:654
 msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
 msgstr "❌ Я не могу отправлять сообщения в выбранный канал."
 
-#: cogs/config_commands.py:623
+#: cogs/config_commands.py:625
 msgid "News-Kanal festlegen"
 msgstr "Установить новостной канал"
 
-#: cogs/config_commands.py:626
+#: cogs/config_commands.py:628
 msgid "Kanal auswählen, leer lassen zum Deaktivieren..."
 msgstr "Выбрать канал (оставьте пустым для отключения)..."
 
-#: cogs/config_commands.py:632
+#: cogs/config_commands.py:634
 msgid "Ziel-Kanal für News:"
 msgstr "Целевой новостной канал:"
 
-#: cogs/config_commands.py:666
+#: cogs/config_commands.py:668
 msgid "Geburtstagsrolle festlegen"
 msgstr "Установить роль именинника"
 
-#: cogs/config_commands.py:669
+#: cogs/config_commands.py:671
 msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
 msgstr "Выбрать роль (оставьте пустым для отключения)..."
 
-#: cogs/config_commands.py:676
+#: cogs/config_commands.py:678
 msgid "Geburtstagsrolle wählen"
 msgstr "Выбрать роль именинника"
 
-#: cogs/config_commands.py:707
+#: cogs/config_commands.py:709
 #, python-brace-format
 msgid ""
-"⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder "
-"gleichrangig mit meiner eigenen Rolle ist."
+"⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder gleichrangig "
+"mit meiner eigenen Rolle ist."
 msgstr ""
-"⚠️ Я не могу выдавать роль {role}, так как она находится выше или на том "
-"же уровне, что и моя собственная роль."
+"⚠️ Я не могу выдавать роль {role}, так как она находится выше или на том же "
+"уровне, что и моя собственная роль."
 
-#: cogs/config_commands.py:713
+#: cogs/config_commands.py:715
 msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
-msgstr "❌ Вы не можете использовать роль @everyone в качестве роли именинника."
+msgstr ""
+"❌ Вы не можете использовать роль @everyone в качестве роли именинника."
 
-#: cogs/config_commands.py:747
+#: cogs/config_commands.py:749
 msgid "Deutsch"
 msgstr "Немецкий (Deutsch)"
 
-#: cogs/config_commands.py:755
+#: cogs/config_commands.py:757
 msgid "English"
 msgstr "Английский (English)"
 
-#: cogs/config_commands.py:763
+#: cogs/config_commands.py:765
 msgid "Französisch"
 msgstr "Французский (Français)"
 
-#: cogs/config_commands.py:771
+#: cogs/config_commands.py:773
 msgid "Spanisch"
 msgstr "Испанский (Español)"
 
-#: cogs/config_commands.py:779
+#: cogs/config_commands.py:781
 msgid "Polnisch"
 msgstr "Польский (Polski)"
 
-#: cogs/config_commands.py:787
+#: cogs/config_commands.py:789
 msgid "Russisch"
 msgstr "Русский"
 
-#: cogs/config_commands.py:795
+#: cogs/config_commands.py:797
 msgid "Ukrainisch"
 msgstr "Украинский (Українська)"
 
-#: cogs/config_commands.py:828
+#: cogs/config_commands.py:805
+msgid "Tschechisch"
+msgstr "Чешский"
+
+#: cogs/config_commands.py:839
 msgid "❌ Diese Sprache ist bereits eingestellt."
 msgstr "❌ Этот язык уже выбран."
 
-#: cogs/config_commands.py:866 cogs/config_commands.py:951
+#: cogs/config_commands.py:877 cogs/config_commands.py:964
 #, python-brace-format
 msgid "Bild {count}"
 msgstr "Картинка {count}"
 
-#: cogs/config_commands.py:874
+#: cogs/config_commands.py:885
 msgid "Wähle ein Bild zum Löschen..."
 msgstr "Выберите картинку для удаления..."
 
-#: cogs/config_commands.py:892
+#: cogs/config_commands.py:903
 #, python-brace-format
 msgid "✅ Bild `{file}` wurde erfolgreich gelöscht!"
 msgstr "✅ Картинка `{file}` успешно удалена!"
 
-#: cogs/config_commands.py:897
+#: cogs/config_commands.py:908
 msgid "❌ Fehler beim Löschen der Datei."
 msgstr "❌ Ошибка при удалении файла."
 
-#: cogs/config_commands.py:902
+#: cogs/config_commands.py:913
 msgid "❌ Das Bild existiert nicht mehr."
 msgstr "❌ Картинка больше не существует."
 
-#: cogs/config_commands.py:927
+#: cogs/config_commands.py:923
+msgid "➕ Bild hinzufügen"
+msgstr "➕ Добавить картинку"
+
+#: cogs/config_commands.py:940
 msgid "## Hintergrundbilder verwalten"
 msgstr "## Управление фоновыми картинками"
 
-#: cogs/config_commands.py:931
+#: cogs/config_commands.py:944
 msgid ""
-"Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. "
-"Solltest du derzeit keine Bilder hinzugefügt haben, wird das Standardbild"
-" genutzt.\n"
-"**HINWEIS:** Die Funktion ist derzeit in der Beta-Phase. Bugs oder "
-"Benutzerunfreundlichkeiten können auftreten. Bitte melde jegliche auf dem"
-" Support Server!"
+"Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. Solltest du derzeit keine Bilder hinzugefügt haben, wird das Standardbild genutzt.\n"
+"**HINWEIS:** Die Funktion ist derzeit in der Beta-Phase. Bugs oder Benutzerunfreundlichkeiten können auftreten. Bitte melde jegliche auf dem Support Server!"
 msgstr ""
-"Здесь вы найдёте список всех добавленных вами картинок. "
-"Если вы ещё не добавили ни одной картинки, будет использоваться стандартное изображение.\n"
-"**ПРИМЕЧАНИЕ:** Функция находится в стадии бета-тестирования. Могут возникать ошибки или "
-"неудобства. Пожалуйста, сообщайте о них на сервере поддержки!"
+"Здесь вы найдёте список всех добавленных вами картинок. Если вы ещё не добавили ни одной картинки, будет использоваться стандартное изображение.\n"
+"**ПРИМЕЧАНИЕ:** Функция находится в стадии бета-тестирования. Могут возникать ошибки или неудобства. Пожалуйста, сообщайте о них на сервере поддержки!"
 
-#: cogs/config_commands.py:976
+#: cogs/config_commands.py:989
 msgid "Kanal"
 msgstr "Канал"
 
-#: cogs/config_commands.py:977
+#: cogs/config_commands.py:990
 msgid "Rolle"
 msgstr "Роль"
 
-#: cogs/config_commands.py:977
+#: cogs/config_commands.py:990
 msgid "Geburtstagsrolle zuweisen"
 msgstr "Назначить роль именинника"
 
-#: cogs/config_commands.py:978
+#: cogs/config_commands.py:991
 msgid "Bilder An/Aus"
 msgstr "Картинки Вкл/Выкл"
 
-#: cogs/config_commands.py:978
+#: cogs/config_commands.py:991
 msgid "Geburtstagskarten aktivieren/deaktivieren"
 msgstr "Включить/выключить поздравительные карточки"
 
-#: cogs/config_commands.py:979
+#: cogs/config_commands.py:992
 msgid "Farbe"
 msgstr "Цвет"
 
-#: cogs/config_commands.py:979
+#: cogs/config_commands.py:992
 msgid "Farbe der Embeds ändern"
 msgstr "Изменить цвет эмбедов"
 
-#: cogs/config_commands.py:980
+#: cogs/config_commands.py:993
 msgid "Ankündigungen"
 msgstr "Объявления"
 
-#: cogs/config_commands.py:980
+#: cogs/config_commands.py:993
 msgid "News-Kanal verwalten"
 msgstr "Управление новостным каналом"
 
-#: cogs/config_commands.py:981
+#: cogs/config_commands.py:994
 msgid "Sprache"
 msgstr "Язык"
 
-#: cogs/config_commands.py:981
+#: cogs/config_commands.py:994
 msgid "Sprache des Bots ändern"
 msgstr "Изменить язык бота"
 
-#: cogs/config_commands.py:982
+#: cogs/config_commands.py:995
 msgid "Nachricht (ohne Alter)"
 msgstr "Сообщение (без возраста)"
 
-#: cogs/config_commands.py:982
+#: cogs/config_commands.py:995
 msgid "Embed-Text für Modus ohne Alter"
 msgstr "Текст эмбеда для режима без возраста"
 
-#: cogs/config_commands.py:983
+#: cogs/config_commands.py:996
 msgid "Nachricht (mit Alter)"
 msgstr "Сообщение (с возрастом)"
 
-#: cogs/config_commands.py:983
+#: cogs/config_commands.py:996
 msgid "Embed-Text für Modus mit Alter"
 msgstr "Текст эмбеда для режима с возрастом"
 
-#: cogs/config_commands.py:984
+#: cogs/config_commands.py:997
 msgid "Uhrzeit"
 msgstr "Время"
 
-#: cogs/config_commands.py:984
+#: cogs/config_commands.py:997
 msgid "Sendezeit der Nachrichten anpassen"
 msgstr "Настроить время отправки сообщений"
 
-#: cogs/config_commands.py:985
+#: cogs/config_commands.py:998
 msgid "BETA: Bilder-Verwaltung"
 msgstr "БЕТА: Управление картинками"
 
-#: cogs/config_commands.py:985
+#: cogs/config_commands.py:998
 msgid "Öffne das Verwaltungsfenster für Hintergrundbilder"
 msgstr "Открыть окно управления фоновыми картинками"
 
-#: cogs/config_commands.py:989
+#: cogs/config_commands.py:1002
 msgid "Wähle eine Einstellung zum Bearbeiten..."
 msgstr "Выберите параметр для редактирования..."
 
-#: cogs/config_commands.py:1078
+#: cogs/config_commands.py:1091
 msgid "🌍 Sprache"
 msgstr "🌍 Язык"
 
-#: cogs/config_commands.py:1079
+#: cogs/config_commands.py:1092
 msgid ""
 "Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
 "**HINWEIS:** Übersetzungen können fehlerhaft sein."
@@ -596,49 +630,47 @@ msgstr ""
 "Здесь вы можете изменить язык ответов бота.\n"
 "**ПРИМЕЧАНИЕ:** Перевод может содержать неточности."
 
-#: cogs/config_commands.py:1141
+#: cogs/config_commands.py:1153
 msgid "Nur in Servern möglich."
 msgstr "Возможно только на серверах."
 
-#: cogs/config_commands.py:1173
+#: cogs/config_commands.py:1185
 msgid "Nur auf einem Server möglich."
 msgstr "Возможно только в пределах сервера."
 
-#: cogs/config_commands.py:1185
+#: cogs/config_commands.py:1197
 msgid "Kein Kanal konfiguriert."
 msgstr "Канал не настроен."
 
-#: cogs/config_commands.py:1193
+#: cogs/config_commands.py:1205
 msgid ""
-"❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze "
-"ihn in der Config neu."
+"❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze ihn "
+"in der Config neu."
 msgstr ""
-"❌ Настроенный канал не найден (возможно, удалён?). Пожалуйста, укажите "
-"его заново в конфигурации."
+"❌ Настроенный канал не найден (возможно, удалён?). Пожалуйста, укажите его "
+"заново в конфигурации."
 
-#: cogs/config_commands.py:1255
-msgid "❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
+#: cogs/config_commands.py:1267
+msgid ""
+"❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
 msgstr "❌ У меня нет прав для отправки сообщений в настроенный канал."
 
-#: cogs/config_commands.py:1257
+#: cogs/config_commands.py:1269
 msgid "Test gesendet! ✅"
 msgstr "Тест отправлен! ✅"
 
 #: cogs/info_commands.py:30
 #, python-brace-format
 msgid ""
-"Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem "
-"**Geburtstag** zu **gratulieren**! :)\n"
+"Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **gratulieren**! :)\n"
 "\n"
 "## ❔ __Infos:__\n"
-"<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt "
-"worden\n"
+"<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden\n"
 "<:developer:1390293000747225098> Entwickler: _chrxstianst.\n"
 "<:python:1390293453606486056> Library: discord.py-{version}\n"
 "ℹ️ Version: v{bot_version}"
 msgstr ""
-"Привет! Я **Birthdayyyyys**, бот для **поздравления** пользователей с их "
-"**днём рождения**! :)\n"
+"Привет! Я **Birthdayyyyys**, бот для **поздравления** пользователей с их **днём рождения**! :)\n"
 "\n"
 "## ❔ __Информация:__\n"
 "<:status_online:1390283178144698420> Я был создан <t:1751450400:R>\n"
@@ -654,13 +686,11 @@ msgstr "__Справка по команде /{command}__"
 #: cogs/info_commands.py:75
 msgid ""
 "Hiermit kannst du ganz einfach deinen Geburtstag festlegen. \n"
-"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt "
-"werden.\n"
+"Dein Geburtstag kann übrigens mit `/birthday-remove` wieder entfernt werden.\n"
 "Falls du dich vertippt hast, nutze diesen Befehl einfach nochmal."
 msgstr ""
 "С помощью этой команды вы можете легко установить свой день рождения. \n"
-"Кстати, ваш день рождения можно удалить с помощью команды `/birthday-"
-"remove`.\n"
+"Кстати, ваш день рождения можно удалить с помощью команды `/birthday-remove`.\n"
 "Если вы ошиблись при вводе, просто используйте эту команду ещё раз."
 
 #: cogs/info_commands.py:80
@@ -692,13 +722,13 @@ msgid ""
 "ADMIN: *(optional)*: Falls du den Geburtstag eines anderen Benutzers "
 "festlegen willst, wähle hier aus, für welchen."
 msgstr ""
-"АДМИНИСТРАТОР: *(опционально)*: Если вы хотите указать дату рождения "
-"другого пользователя, выберите здесь, для кого именно."
+"АДМИНИСТРАТОР: *(опционально)*: Если вы хотите указать дату рождения другого"
+" пользователя, выберите здесь, для кого именно."
 
 #: cogs/info_commands.py:90
 msgid ""
-"Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu "
-"nutzt man das Auswahlmenü auf dem gesendeten Panel."
+"Hiermit kann man die Einstellungen für den Geburtstagsbot ändern. Dazu nutzt"
+" man das Auswahlmenü auf dem gesendeten Panel."
 msgstr ""
 "Эта команда позволяет изменить настройки бота. Используйте для этого "
 "выпадающее меню на отправленной панели."
@@ -710,8 +740,8 @@ msgstr "`Канал`"
 #: cogs/info_commands.py:96
 msgid ""
 "Lege den Kanal fest, in dem die Geburtstagsgrüße gesendet werden sollen. "
-"Wird kein Kanal gewählt, werden die Nachrichten automatisch im "
-"Systemkanal des Servers gesendet."
+"Wird kein Kanal gewählt, werden die Nachrichten automatisch im Systemkanal "
+"des Servers gesendet."
 msgstr ""
 "Укажите канал, в который будут отправляться поздравления. Если канал не "
 "выбран, сообщения будут автоматически отправляться в системный канал "
@@ -735,12 +765,12 @@ msgstr "`Картинки Вкл/Выкл`"
 
 #: cogs/info_commands.py:106
 msgid ""
-"Stelle hier ein, ob personalisierte Banner bei Geburtstagen gesendet "
-"werden sollen. Wie so ein Banner aussieht, siehst du auf **__[der "
+"Stelle hier ein, ob personalisierte Banner bei Geburtstagen gesendet werden "
+"sollen. Wie so ein Banner aussieht, siehst du auf **__[der "
 "Homepage](https://birthdayyyyys.christianst.xyz)__**."
 msgstr ""
-"Настройте, нужно ли отправлять персонализированные баннеры. Посмотреть, "
-"как выглядит такой баннер, можно на "
+"Настройте, нужно ли отправлять персонализированные баннеры. Посмотреть, как "
+"выглядит такой баннер, можно на "
 "**__[сайте](https://birthdayyyyys.christianst.xyz)__**."
 
 #: cogs/info_commands.py:110
@@ -749,11 +779,11 @@ msgstr "`Цвет`"
 
 #: cogs/info_commands.py:111
 msgid ""
-"Gib in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden "
-"nun diese Farbe nutzen. Standard: `45A6C9`."
+"Gib in das Formular einen HEX-Code ein. Alle Nachrichten-Embeds werden nun "
+"diese Farbe nutzen. Standard: `45A6C9`."
 msgstr ""
-"Введите HEX-код в форму. Этот цвет будет использоваться для всех эмбедов."
-" По умолчанию: `45A6C9`."
+"Введите HEX-код в форму. Этот цвет будет использоваться для всех эмбедов. По"
+" умолчанию: `45A6C9`."
 
 #: cogs/info_commands.py:115
 msgid "`Ankündigungen`"
@@ -762,20 +792,21 @@ msgstr "`Объявления`"
 #: cogs/info_commands.py:116
 msgid ""
 "Wenn du Botneuigkeiten nicht verpassen willst, kannst du im Formular die "
-"Kanal-ID für den gewünschten Kanal eingeben. In diesen werden Changelogs "
-"und Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu "
+"Kanal-ID für den gewünschten Kanal eingeben. In diesen werden Changelogs und"
+" Announcements gesendet. Setze die Kanal-ID auf `0`, um keine News zu "
 "bekommen."
 msgstr ""
 "Если вы не хотите пропускать новости бота, укажите ID нужного канала в "
-"форме. В него будут отправляться списки изменений и анонсы. Установите ID"
-" канала на `0`, чтобы отключить новости."
+"форме. В него будут отправляться списки изменений и анонсы. Установите ID "
+"канала на `0`, чтобы отключить новости."
 
 #: cogs/info_commands.py:120
 msgid "`Sprache`"
 msgstr "`Язык`"
 
 #: cogs/info_commands.py:121
-msgid "Ändere hier die Sprache, in der der Bot auf diesem Server kommuniziert."
+msgid ""
+"Ändere hier die Sprache, in der der Bot auf diesem Server kommuniziert."
 msgstr "Измените здесь язык, на котором бот общается на этом сервере."
 
 #: cogs/info_commands.py:125
@@ -784,13 +815,13 @@ msgstr "`Сообщение (без возраста)`"
 
 #: cogs/info_commands.py:126
 msgid ""
-"Hier kannst du das Geburtstagsembed für Mitglieder bearbeiten, die ihr "
-"Alter nicht anzeigen lassen. Du kannst auch den Titel des generierten "
-"Banners sowie Variablen zur Personalisierung nutzen."
+"Hier kannst du das Geburtstagsembed für Mitglieder bearbeiten, die ihr Alter"
+" nicht anzeigen lassen. Du kannst auch den Titel des generierten Banners "
+"sowie Variablen zur Personalisierung nutzen."
 msgstr ""
-"Здесь вы можете настроить поздравительный эмбед для участников, которые "
-"не показывают свой возраст. Вы также можете изменить заголовок "
-"создаваемого баннера и использовать переменные для персонализации."
+"Здесь вы можете настроить поздравительный эмбед для участников, которые не "
+"показывают свой возраст. Вы также можете изменить заголовок создаваемого "
+"баннера и использовать переменные для персонализации."
 
 #: cogs/info_commands.py:130
 msgid "`Nachricht (mit Alter)`"
@@ -798,9 +829,9 @@ msgstr "`Сообщение (с возрастом)`"
 
 #: cogs/info_commands.py:131
 msgid ""
-"Hier kannst du das Geburtstagsembed für Mitglieder bearbeiten, die ihr "
-"Alter anzeigen lassen. Du kannst auch den Titel des generierten Banners "
-"sowie Variablen zur Personalisierung nutzen."
+"Hier kannst du das Geburtstagsembed für Mitglieder bearbeiten, die ihr Alter"
+" anzeigen lassen. Du kannst auch den Titel des generierten Banners sowie "
+"Variablen zur Personalisierung nutzen."
 msgstr ""
 "Здесь вы можете настроить поздравительный эмбед для участников, которые "
 "показывают свой возраст. Вы также можете изменить заголовок создаваемого "
@@ -815,14 +846,15 @@ msgid ""
 "Lege die tägliche Uhrzeit fest (z. B. `08:00`), zu der die "
 "Geburtstagsnachrichten auf dem Server gesendet werden sollen."
 msgstr ""
-"Укажите ежедневное время (например, `08:00`), в которое на сервере должны"
-" отправляться поздравления."
+"Укажите ежедневное время (например, `08:00`), в которое на сервере должны "
+"отправляться поздравления."
 
 #: cogs/info_commands.py:145
 msgid ""
 "Simuliere hier einen Geburtstag, um zu testen, ob deine Einstellungen "
 "funktionieren."
-msgstr "Симуляция дня рождения для проверки правильности работы ваших настроек."
+msgstr ""
+"Симуляция дня рождения для проверки правильности работы ваших настроек."
 
 #: cogs/info_commands.py:148
 msgid "`Ohne Altersangabe`"
@@ -830,8 +862,7 @@ msgstr "`Без указания возраста`"
 
 #: cogs/info_commands.py:148
 msgid ""
-"Simuliere einen Geburtstag, wo der Benutzer kein Geburtsjahr angegeben "
-"hat."
+"Simuliere einen Geburtstag, wo der Benutzer kein Geburtsjahr angegeben hat."
 msgstr ""
 "Симуляция дня рождения для случая, когда пользователь не указал год "
 "рождения."
@@ -842,8 +873,8 @@ msgstr "`С указанием возраста (Тест: 30 лет)`"
 
 #: cogs/info_commands.py:149
 msgid ""
-"Simuliere einen Geburtstag, der gesendet wird, wenn der Benutzer 30 Jahre"
-" alt wird."
+"Simuliere einen Geburtstag, der gesendet wird, wenn der Benutzer 30 Jahre "
+"alt wird."
 msgstr ""
 "Симуляция дня рождения, отправляемого, когда пользователю исполняется 30 "
 "лет."
@@ -902,7 +933,8 @@ msgstr "__Команда:__"
 
 #: cogs/info_commands.py:192
 msgid "Nutze `/help [command]`, um über komplexere Befehle mehr zu erfahren."
-msgstr "Используйте `/help [команда]`, чтобы узнать больше о сложных командах."
+msgstr ""
+"Используйте `/help [команда]`, чтобы узнать больше о сложных командах."
 
 #: cogs/info_commands.py:226
 msgid "❌ Datenbankfehler"
@@ -935,12 +967,11 @@ msgstr "👋 Привет!"
 #: cogs/setup-help.py:24
 msgid ""
 "Vielen Dank fürs Hinzufügen von Birthdayyyyys zu deinem Server! Bevor du "
-"anfängst, Birthdayyyyys einzurichten, sind hier einige erste Schritte, "
-"die du befolgen kannst."
+"anfängst, Birthdayyyyys einzurichten, sind hier einige erste Schritte, die "
+"du befolgen kannst."
 msgstr ""
-"Спасибо, что добавили Birthdayyyyys на свой сервер! Прежде чем вы начнёте"
-" настройку бота, ознакомьтесь с первыми шагами, которые стоит "
-"предпринять."
+"Спасибо, что добавили Birthdayyyyys на свой сервер! Прежде чем вы начнёте "
+"настройку бота, ознакомьтесь с первыми шагами, которые стоит предпринять."
 
 #: cogs/setup-help.py:29
 msgid "Kanal einstellen:"
@@ -948,11 +979,11 @@ msgstr "Настройка канала:"
 
 #: cogs/setup-help.py:30
 msgid ""
-"Nutze `/config` und klicke auf den Button `Kanal`, um den "
-"Geburtstagskanal zu setzen."
+"Nutze `/config` und klicke auf den Button `Kanal`, um den Geburtstagskanal "
+"zu setzen."
 msgstr ""
-"Используйте `/config` и нажмите кнопку `Канал`, чтобы установить канал "
-"для поздравлений."
+"Используйте `/config` и нажмите кнопку `Канал`, чтобы установить канал для "
+"поздравлений."
 
 #: cogs/setup-help.py:34
 msgid "Nachrichten bearbeiten:"
@@ -961,15 +992,15 @@ msgstr "Редактирование сообщений:"
 #: cogs/setup-help.py:35
 #, python-format
 msgid ""
-"Nutze `/config` und klicke auf den Button `Nachricht (Mit/Ohne Alter)`, "
-"um die Geburtstagsgrüße zu bearbeiten. Wenn der User ein Geburtsjahr "
-"angegeben hat, berechnet der Bot automatisch das Alter. Nutze Variablen "
-"wie `%username`, um Nachrichten anzupassen."
+"Nutze `/config` und klicke auf den Button `Nachricht (Mit/Ohne Alter)`, um "
+"die Geburtstagsgrüße zu bearbeiten. Wenn der User ein Geburtsjahr angegeben "
+"hat, berechnet der Bot automatisch das Alter. Nutze Variablen wie "
+"`%username`, um Nachrichten anzupassen."
 msgstr ""
-"Используйте `/config` и нажмите кнопку `Сообщение (Без/С возрастом)`, "
-"чтобы отредактировать текст поздравлений. Если пользователь указал год "
-"рождения, бот автоматически рассчитает возраст. Используйте переменные "
-"вроде `%username` для персонализации."
+"Используйте `/config` и нажмите кнопку `Сообщение (Без/С возрастом)`, чтобы "
+"отредактировать текст поздравлений. Если пользователь указал год рождения, "
+"бот автоматически рассчитает возраст. Используйте переменные вроде "
+"`%username` для персонализации."
 
 #: cogs/setup-help.py:39
 msgid "Bildgenerierung aktivieren:"
@@ -1001,11 +1032,11 @@ msgstr "Дополнительная помощь:"
 
 #: cogs/setup-help.py:50
 msgid ""
-"Falls du weitere Hilfe brauchst, nutze `/help`. Bei Problemen tritt gerne"
-" dem Support Server bei: https://discord.gg/utD4afUrgt."
+"Falls du weitere Hilfe brauchst, nutze `/help`. Bei Problemen tritt gerne "
+"dem Support Server bei: https://discord.gg/utD4afUrgt."
 msgstr ""
-"Если вам понадобится дополнительная помощь, используйте команду `/help`. "
-"При возникновении проблем присоединяйтесь к серверу поддержки: "
+"Если вам понадобится дополнительная помощь, используйте команду `/help`. При"
+" возникновении проблем присоединяйтесь к серверу поддержки: "
 "https://discord.gg/utD4afUrgt."
 
 #: cogs/setup-help.py:54

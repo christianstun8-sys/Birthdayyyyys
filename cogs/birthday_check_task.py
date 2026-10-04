@@ -253,10 +253,15 @@ class BirthdayCheckTask(commands.Cog):
                             ):
                                 birthdays_today.append(user_id)
 
-                            if now_tz.hour == 0 and now_tz.minute == 0:
-                                yesterday = now_tz - timedelta(days=1)
-                                if yesterday.month == month and yesterday.day == day:
-                                    birthdays_to_remove_role.append(user_id)
+                            if (
+                                now_tz.month == month
+                                and now_tz.day == day
+                                and now_tz.hour == target_time.hour
+                                and now_tz.minute == target_time.minute
+                            ):
+                                birthdays_today.append(user_id)
+                            if not (now_tz.month == month and now_tz.day == day):
+                                birthdays_to_remove_role.append(user_id)
                         except Exception as e:
                             print(f"Fehler bei Zeitzonenberechnung für {user_id}: {e}")
 
