@@ -252,14 +252,7 @@ class BirthdayCheckTask(commands.Cog):
                             tz = pytz.timezone(tz_name or "Europe/Berlin")
                             now_tz = datetime.now(tz)
 
-                            if (
-                                    now_tz.month == month
-                                    and now_tz.day == day
-                                    and now_tz.hour == target_time.hour
-                                    and now_tz.minute == target_time.minute
-                            ):
-                                birthdays_today.append(user_id)
-
+                         
                             if (
                                 now_tz.month == month
                                 and now_tz.day == day
