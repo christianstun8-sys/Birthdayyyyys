@@ -10,7 +10,6 @@ import io
 import os
 import random
 
-
 from utils.babel import translator
 
 BACKGROUND_IMAGE_PATH = "data/birthday_background.jpg"

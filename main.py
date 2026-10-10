@@ -38,7 +38,7 @@ def setup_directories():
     if not os.path.exists(os.path.join(data_path, 'arial.ttf')):
         print(f"ACHTUNG: 'arial.ttf' fehlt im Verzeichnis '{data_path}'. Bitte einfügen.")
 
-intents = discord.Intents.default()
+intents = discord.Intents
 intents.message_content = True
 intents.members = True
 
