@@ -12,7 +12,7 @@ import topgg
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
-beta = False
+beta = True
 debug  = False
 
 if beta:
@@ -38,7 +38,7 @@ def setup_directories():
     if not os.path.exists(os.path.join(data_path, 'arial.ttf')):
         print(f"ACHTUNG: 'arial.ttf' fehlt im Verzeichnis '{data_path}'. Bitte einfügen.")
 
-intents = discord.Intents
+intents = discord.Intents.all()
 intents.message_content = True
 intents.members = True
 
