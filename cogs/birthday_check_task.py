@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 import aiohttp
 import discord
 from discord.ext import commands, tasks
@@ -416,6 +416,11 @@ class BirthdayCheckTask(commands.Cog):
                                 f"Unerwarteter Fehler beim Entfernen der Rolle von"
                                 f" {member.name}: {e}"
                             )
+
+    @check_birthdays.before_loop
+    async def before_check_birthdays(self):
+        await self.bot.wait_until_ready()
+
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
         guild_id = member.guild.id
