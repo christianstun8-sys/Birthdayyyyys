@@ -20,77 +20,78 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install dependencies
+        run: npm install axios
+
       - name: Fetch Stats & Generate Graph
         run: |
           node -e '
           const fs = require("fs");
-          const https = require("https");
+          const axios = require("axios");
 
-          const botId = "1389267222261792868";
-          const historyFile = "bot_history.json";
+          async function main() {
+            const botId = "1389267222261792868";
+            const historyFile = "bot_history.json";
+            const outputFile = "bot_growth.png";
 
-          https.get(`https://top.gg/api/bots/${botId}`, (res) => {
-            let data = "";
-            res.on("data", chunk => data += chunk);
-            res.on("end", () => {
+            let serverCount = 0;
+            try {
+              const res = await axios.get(`https://top.gg/api/bots/${botId}`);
+              serverCount = res.data.server_count || 0;
+            } catch (err) {
+              console.warn("API Abruf fehlgeschlagen oder Bot nicht öffentlich. Setze Wert auf 0.", err.message);
+            }
+
+            const today = new Date().toISOString().split("T")[0];
+
+            let history = [];
+            if (fs.existsSync(historyFile)) {
               try {
-                const json = JSON.parse(data);
-                const serverCount = json.server_count || 0;
-                const today = new Date().toISOString().split("T")[0];
-
-                let history = [];
-                if (fs.existsSync(historyFile)) {
-                  history = JSON.parse(fs.readFileSync(historyFile, "utf8"));
-                }
-
-                const existingIndex = history.findIndex(entry => entry.date === today);
-                if (existingIndex !== -1) {
-                  history[existingIndex].servers = serverCount;
-                } else {
-                  history.push({ date: today, servers: serverCount });
-                }
-
-                if (history.length > 30) history = history.slice(-30);
-                fs.writeFileSync(historyFile, JSON.stringify(history, null, 2));
-
-                const labels = JSON.stringify(history.map(h => h.date.slice(5)));
-                const serverData = JSON.stringify(history.map(h => h.servers));
-
-                const chartConfig = {
-                  type: "line",
-                  data: {
-                    labels: history.map(h => h.date.slice(5)),
-                    datasets: [{
-                      label: "Server Count",
-                      data: history.map(h => h.servers),
-                      borderColor: "#7289da",
-                      backgroundColor: "rgba(114, 137, 218, 0.2)",
-                      fill: true,
-                      tension: 0.3
-                    }]
-                  },
-                  options: {
-                    title: { display: true, text: "Bot Server Growth (Top.gg)" }
-                  }
-                };
-
-                const chartUrl = `https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}`;
-          
-                // Graph herunterladen und lokal speichern
-                https.get(chartUrl, (imgRes) => {
-                  const fileStream = fs.createWriteStream("bot_growth.png");
-                  imgRes.pipe(fileStream);
-                  fileStream.on("finish", () => {
-                    fileStream.close();
-                    console.log("Graph erfolgreich aktualisiert!");
-                  });
-                });
-
+                history = JSON.parse(fs.readFileSync(historyFile, "utf8"));
               } catch (e) {
-                console.error("Fehler beim Verarbeiten:", e);
+                history = [];
               }
-            });
-          }).on("error", (err) => console.error("Netzwerkfehler:", err));
+            }
+
+            const existingIndex = history.findIndex(entry => entry.date === today);
+            if (existingIndex !== -1) {
+              history[existingIndex].servers = serverCount;
+            } else {
+              history.push({ date: today, servers: serverCount });
+            }
+
+            if (history.length > 30) history = history.slice(-30);
+            fs.writeFileSync(historyFile, JSON.stringify(history, null, 2));
+
+            const chartConfig = {
+              type: "line",
+              data: {
+                labels: history.map(h => h.date.slice(5)),
+                datasets: [{
+                  label: "Server Count",
+                  data: history.map(h => h.servers),
+                  borderColor: "#7289da",
+                  backgroundColor: "rgba(114, 137, 218, 0.2)",
+                  fill: true,
+                  tension: 0.3
+                }]
+              },
+              options: {
+                title: { display: true, text: "Bot Server Growth (Top.gg)" }
+              }
+            };
+
+            const chartUrl = `https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}`;
+          
+            const response = await axios.get(chartUrl, { responseType: "arraybuffer" });
+            fs.writeFileSync(outputFile, Buffer.from(response.data));
+            console.log("Dateien erfolgreich geschrieben!");
+          }
+
+          main().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
           '
 
       - name: Commit & Push Changes
@@ -98,5 +99,5 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add bot_history.json bot_growth.png
-          git commit -m "update: bot growth graph" || exit 0
+          git commit -m "update: bot growth graph" || echo "Keine Änderungen zum Committen"
           git push
