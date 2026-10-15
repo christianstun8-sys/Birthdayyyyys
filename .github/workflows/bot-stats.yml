@@ -42,9 +42,9 @@ jobs:
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
               };
               if (process.env.TOPGG_TOKEN) {
-                headers["Authorization"] = process.env.TOPGG_TOKEN;
-              }
-
+                const rawToken = process.env.TOPGG_TOKEN.trim();
+                headers["Authorization"] = rawToken.startsWith("Bearer ") ? rawToken : `Bearer ${rawToken}`;
+              }   
               const res = await axios.get(`https://top.gg/api/bots/${botId}/stats`, { headers });
           
               serverCount = res.data.server_count || 0;
