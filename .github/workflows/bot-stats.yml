@@ -24,6 +24,8 @@ jobs:
         run: npm install axios
 
       - name: Fetch Stats & Generate Graph
+        env:
+          TOPGG_TOKEN: \${{ secrets.TOPGG_TOKEN }}
         run: |
           node -e '
           const fs = require("fs");
@@ -36,10 +38,12 @@ jobs:
 
             let serverCount = 0;
             try {
-              const res = await axios.get(`https://top.gg/api/bots/${botId}`);
+              const headers = process.env.TOPGG_TOKEN ? { Authorization: process.env.TOPGG_TOKEN } : {};
+              const res = await axios.get(`https://top.gg/api/bots/${botId}`, { headers });
               serverCount = res.data.server_count || 0;
+              console.log("Abgerufener Server-Count:", serverCount);
             } catch (err) {
-              console.warn("API Abruf fehlgeschlagen oder Bot nicht öffentlich. Setze Wert auf 0.", err.message);
+              console.warn("API Abruf fehlgeschlagen:", err.response ? err.response.data : err.message);
             }
 
             const today = new Date().toISOString().split("T")[0];
@@ -77,7 +81,15 @@ jobs:
                 }]
               },
               options: {
-                title: { display: true, text: "Bot Server Growth (Top.gg)" }
+                title: { display: true, text: "Bot Server Growth (Top.gg)" },
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      precision: 0,
+                      beginAtZero: true
+                    }
+                  }]
+                }
               }
             };
 
