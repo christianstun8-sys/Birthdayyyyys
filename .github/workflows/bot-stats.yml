@@ -86,6 +86,7 @@ jobs:
                   tension: 0.3
                 }]
               },
+          
               options: {
                 title: { display: true, text: "Bot Server Growth (Top.gg)" },
                 scales: {
