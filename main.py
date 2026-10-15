@@ -12,7 +12,7 @@ import topgg
 load_dotenv()
 
 # --- BETA VERWALTUNG (Nur für Beta-Versionen!) ---
-beta = True
+beta = False
 debug  = False
 
 if beta:
