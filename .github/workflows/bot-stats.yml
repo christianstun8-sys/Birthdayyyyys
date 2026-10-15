@@ -38,9 +38,15 @@ jobs:
 
             let serverCount = 0;
             try {
-              const headers = process.env.TOPGG_TOKEN ? { Authorization: process.env.TOPGG_TOKEN } : {};
-              const res = await axios.get(`https://top.gg/api/bots/${botId}`, { headers });
-              serverCount = res.data.server_count || 0;
+              const headers = {
+                "User-Agent": "GitHubActions-BotStatsFetcher/1.0"
+              };
+              if (process.env.TOPGG_TOKEN) {
+                headers["Authorization"] = process.env.TOPGG_TOKEN;
+              }
+
+              const res = await axios.get(`https://top.gg/api/v2/bots/${botId}`, { headers });
+              serverCount = res.data.server_count || res.data.monthlyPoints || 0;
               console.log("Abgerufener Server-Count:", serverCount);
             } catch (err) {
               console.warn("API Abruf fehlgeschlagen:", err.response ? err.response.data : err.message);
