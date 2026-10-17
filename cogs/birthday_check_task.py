@@ -520,7 +520,7 @@ class BirthdayCheckTask(commands.Cog):
                         description=final_embed_message,
                         color=current_config.get("config_embed_color", 0x3AAA06),
                     )
-                    thumbnail_enabled = current_config.get(f'show_avatar_{message_type}')
+                    thumbnail_enabled = bool(current_config.get(f'show_avatar_{message_type}', True))
                     if thumbnail_enabled:
                         embed.set_thumbnail(url=member.display_avatar.url)
                     if final_embed_footer:
