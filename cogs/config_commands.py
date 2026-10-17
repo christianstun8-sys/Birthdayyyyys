@@ -398,7 +398,7 @@ class ResizeButtonView(discord.ui.View):
             await interaction.response.defer(thinking=True, ephemeral=True)
             new_image = await process_image(self.attachment)
             await save_uploaded_image(interaction.guild.id, new_image)
-            return await interaction.followup.edit_message(embed=None, content=self._("✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"), view=None)
+            return await interaction.edit_original_response(embed=None, content=self._("✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"), view=None)
         elif interaction.data['custom_id'] == "skip_button":
             await interaction.response.defer(thinking=True, ephemeral=True)
             await save_uploaded_image(interaction.guild.id, self.attachment)
