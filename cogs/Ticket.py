@@ -6,6 +6,7 @@ from discord.ext import commands
 import aiosqlite
 import asyncio
 import io
+from utils.logger import log
 
 log_channel_id = 1454156865997897969
 team_role_id = 1454153903884210307
@@ -481,9 +482,9 @@ class RemoveMember(commands.Cog):
                 try:
                     await channel.delete(reason="Nutzer hat den Support-Server verlassen. / User left the support server.")
                 except discord.Forbidden:
-                    print(f"Keine Rechte um Ticket-Kanal {channel_id} zu löschen.")
+                    log(f"No permission to delete ticket channel {channel_id}.", 'ERROR')
                 except Exception as e:
-                    print(f"Fehler beim Löschen des Kanals {channel_id}: {e}")
+                    log(f"Error while deleting channel {channel_id}: {e}", 'ERROR')
 
         if channel_ids:
             async with aiosqlite.connect(TICKETS_DB) as db:

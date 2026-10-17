@@ -11,7 +11,7 @@ class SyncCommand(commands.Cog):
             return
 
         loadingembed = discord.Embed(
-                title="<a:loading:1458892675456434187> Synchronisiere Slash-Befehle, einen Moment...",
+                title="<a:loading:1458892675456434187> Synchronizing slash commands, please wait...",
                 color=discord.Color.light_grey()
             )
 
@@ -32,21 +32,21 @@ class SyncCommand(commands.Cog):
 
         if success and not no_sc:
             embed = discord.Embed(
-                title=f"<a:tickgreen:1458893404736848046> Ich habe erfolgreich {len(synced)} Slash-Befehle gesynct",
+                title=f"<a:tickgreen:1458893404736848046> I've successfully synchronized {len(synced)} slash commands",
                 color=discord.Color.green()
             )
 
         if success and no_sc:
             embed = discord.Embed(
-                title="<a:error:1458895434612215939> Fehler!",
-                description="Es wurden keine Slash-Befehle zum Syncen gefunden.",
+                title="<a:error:1458895434612215939> Error!",
+                description="There are no slash commands to synchronize, silly.",
                 color=discord.Color.red()
             )
 
         if not success:
             embed = discord.Embed(
-                title="<a:error:1458895434612215939> Fehler!",
-                description="Während dem Synchronisieren ist ein Fehler aufgetreten. \n\n"
+                title="<a:error:1458895434612215939> Error!",
+                description="While synchronizing the slash commands, I encountered an error. \n\n"
                             f"`{error}`",
                 color=discord.Color.red()
             )

@@ -1,0 +1,1376 @@
+# Arabic translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-16 21:28+0200\n"
+"PO-Revision-Date: 2026-10-14 15:35+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ar <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=0 && n%100<=2 ? 4 : 5);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: eventmessages.py:25
+msgid "⚠️ Unbekannter Fehler"
+msgstr "⚠️ خطأ غير معروف"
+
+#: cogs/birthday_commands.py:435 cogs/config_commands.py:426
+#: eventmessages.py:26
+msgid ""
+"Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
+"Server."
+msgstr "حدث خطأ غير معروف. يرجى الانضمام إلى خادم الدعم للإبلاغ عن المشكلة."
+
+#: eventmessages.py:53
+msgid "⚠️ Fehlende Berechtigung"
+msgstr "⚠️ صلاحية مفقودة"
+
+#: eventmessages.py:54
+msgid "Du hast nicht die erforderliche Berechtigung für diese Aktion."
+msgstr "ليس لديك الصلاحية اللازمة للقيام بهذا الإجراء."
+
+#: eventmessages.py:80
+msgid "⚠️ Bot fehlt Berechtigung"
+msgstr "⚠️ البوت يفتقر إلى الصلاحية"
+
+#: eventmessages.py:81
+msgid ""
+"Der Bot hat nicht die erforderliche Berechtigung für diese Aktion. Bitte "
+"überprüfe die Bot-Rolle."
+msgstr ""
+"لا يمتلك البوت الصلاحية اللازمة لهذا الإجراء. يرجى التحقق من دور (رتبة) "
+"البوت."
+
+#: eventmessages.py:109
+msgid "⚠️ Nicht gefunden"
+msgstr "⚠️ غير موجود"
+
+#: cogs/birthday_check_task.py:458 cogs/config_commands.py:60
+#, python-format
+msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
+msgstr "🎉 عيد ميلاد سعيد يا %username!"
+
+#: cogs/birthday_check_task.py:460 cogs/config_commands.py:62
+#, python-format
+msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
+msgstr "🎂 أتمنى لك عيد ميلاد %age رائعاً يا %username!"
+
+#: cogs/birthday_check_task.py:463 cogs/config_commands.py:66
+msgid "Bitte sende deine besten Wünsche an %mention!"
+msgstr "الرجاء إرسال أطيب تمنياتك إلى %mention!"
+
+#: cogs/birthday_check_task.py:466 cogs/config_commands.py:68
+msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
+msgstr "دعونا نهنئ %mention بمناسبة عيد ميلاده الـ %age!"
+
+#: cogs/birthday_check_task.py:470 cogs/config_commands.py:77
+msgid "Feiere schön!"
+msgstr "احتفل جيداً!"
+
+#: cogs/birthday_check_task.py:545
+msgid "Geburtstagsrolle zugewiesen"
+msgstr "تم تعيين دور عيد الميلاد"
+
+#: cogs/birthday_check_task.py:561
+msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
+msgstr "تمت إزالة دور عيد الميلاد (انتهى عيد الميلاد)"
+
+#: cogs/birthday_commands.py:96 cogs/birthday_commands.py:193
+#: cogs/config_commands.py:1305 cogs/config_commands.py:1307
+msgid "⚠️ Du hast keine Berechtigung dazu."
+msgstr "⚠️ ليس لديك صلاحية للقيام بذلك."
+
+#: cogs/birthday_commands.py:101
+msgid "Ungültige Zeitzone! Bitte wähle eine aus der Liste."
+msgstr "منطقة زمنية غير صالحة! يرجى اختيار واحدة من القائمة."
+
+#: cogs/birthday_commands.py:109
+msgid "❌ Ungültiges Datum angegeben!"
+msgstr "❌ تم تحديد تاريخ غير صالح!"
+
+#: cogs/birthday_commands.py:134
+#, python-brace-format
+msgid ""
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year} "
+"({timezone}) gesetzt!"
+msgstr ""
+"✅ تم تعيين تاريخ ميلاد {mention} إلى {day:02d}.{month:02d}.{year} "
+"({timezone})!"
+
+#: cogs/birthday_commands.py:148
+#, python-brace-format
+msgid ""
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} "
+"({timezone}) gesetzt!"
+msgstr ""
+"✅ تم تعيين تاريخ ميلاد {mention} إلى {day:02d}.{month:02d} ({timezone})!"
+
+#: cogs/birthday_commands.py:162
+#, python-brace-format
+msgid ""
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) "
+"gesetzt!"
+msgstr ""
+"✅ تم تعيين تاريخ ميلادك إلى {day:02d}.{month:02d}.{year} ({timezone})!"
+
+#: cogs/birthday_commands.py:170
+#, python-brace-format
+msgid ""
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!"
+msgstr "✅ تم تعيين تاريخ ميلادك إلى {day:02d}.{month:02d}. ({timezone})!"
+
+#: cogs/birthday_commands.py:208
+#, python-brace-format
+msgid "✅ Der Geburtstag von {mention} wurde gelöscht."
+msgstr "✅ تم حذف عيد ميلاد {mention}."
+
+#: cogs/birthday_commands.py:214
+msgid "✅ Dein Geburtstag wurde gelöscht."
+msgstr "✅ تم حذف عيد ميلادك."
+
+#: cogs/birthday_commands.py:250
+#, python-brace-format
+msgid ""
+"Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "عيد ميلاد {mention} هو في {day:02d}.{month:02d}.{year} ({tz})."
+
+#: cogs/birthday_commands.py:264
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
+msgstr "عيد ميلاد {mention} هو في {day:02d}.{month:02d} ({tz})."
+
+#: cogs/birthday_commands.py:273
+#, python-brace-format
+msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "عيد ميلادك في {day:02d}.{month:02d}.{year} ({tz})."
+
+#: cogs/birthday_commands.py:280
+#, python-brace-format
+msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
+msgstr "عيد ميلادك في {day:02d}.{month:02d}. ({tz})."
+
+#: cogs/birthday_commands.py:289
+#, python-brace-format
+msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
+msgstr "❌ لم يتم تسجيل عيد ميلاد للمستخدم {mention} بعد."
+
+#: cogs/birthday_commands.py:296
+msgid "❌ Du hast noch keinen Geburtstag registriert."
+msgstr "❌ لم تقم بتسجيل عيد ميلادك بعد."
+
+#: cogs/birthday_commands.py:316
+msgid "Januar"
+msgstr "يناير"
+
+#: cogs/birthday_commands.py:317
+msgid "Februar"
+msgstr "فبراير"
+
+#: cogs/birthday_commands.py:318
+msgid "März"
+msgstr "مارس"
+
+#: cogs/birthday_commands.py:319
+msgid "April"
+msgstr "أبريل"
+
+#: cogs/birthday_commands.py:320
+msgid "Mai"
+msgstr "مايو"
+
+#: cogs/birthday_commands.py:321
+msgid "Juni"
+msgstr "يونيو"
+
+#: cogs/birthday_commands.py:322
+msgid "Juli"
+msgstr "يوليو"
+
+#: cogs/birthday_commands.py:323
+msgid "August"
+msgstr "أغسطس"
+
+#: cogs/birthday_commands.py:324
+msgid "September"
+msgstr "سبتمبر"
+
+#: cogs/birthday_commands.py:325
+msgid "Oktober"
+msgstr "أكتوبر"
+
+#: cogs/birthday_commands.py:326
+msgid "November"
+msgstr "نوفمبر"
+
+#: cogs/birthday_commands.py:327
+msgid "Dezember"
+msgstr "ديسمبر"
+
+#: cogs/birthday_commands.py:344 cogs/birthday_commands.py:421
+msgid "⚠️ Es sind noch keine Geburtstage registriert."
+msgstr "⚠️ لم يتم تسجيل أي أعياد ميلاد بعد."
+
+#: cogs/birthday_commands.py:359
+msgid "Jahre"
+msgstr "سنوات"
+
+#: cogs/birthday_commands.py:378
+msgid "Geburtstagskalender"
+msgstr "تقويم أعياد الميلاد"
+
+#: cogs/config_commands.py:40
+msgid "Arabisch"
+msgstr "العربية"
+
+#: cogs/config_commands.py:41
+msgid "Tschechisch"
+msgstr "التيكية"
+
+#: cogs/config_commands.py:42
+msgid "Deutsch"
+msgstr "الألمانية"
+
+#: cogs/config_commands.py:43
+msgid "Englisch"
+msgstr "الإنجليزية"
+
+#: cogs/config_commands.py:44
+msgid "Spanisch"
+msgstr "الإسبانية"
+
+#: cogs/config_commands.py:45
+msgid "Französisch"
+msgstr "الفرنسية"
+
+#: cogs/config_commands.py:46
+msgid "Indonesisch"
+msgstr "الإندونيسية"
+
+#: cogs/config_commands.py:47
+msgid "Japanisch"
+msgstr "اليابانية"
+
+#: cogs/config_commands.py:48
+msgid "Koreanisch"
+msgstr "الكورية"
+
+#: cogs/config_commands.py:49
+msgid "Polnisch"
+msgstr "البولندية"
+
+#: cogs/config_commands.py:50
+msgid "Portugiesisch"
+msgstr "البرتغالية"
+
+#: cogs/config_commands.py:51
+msgid "Russisch"
+msgstr "الروسية"
+
+#: cogs/config_commands.py:52
+msgid "Türkisch"
+msgstr "التركية"
+
+#: cogs/config_commands.py:53
+msgid "Ukrainisch"
+msgstr "الأوكرانية"
+
+#: cogs/config_commands.py:54
+msgid "Chinesisch"
+msgstr "الصينية"
+
+#: cogs/config_commands.py:72
+msgid "Happy Birthday!"
+msgstr "عيد ميلاد سعيد!"
+
+#: cogs/config_commands.py:74
+msgid "Happy %age Birthday!"
+msgstr "عيد ميلاد سعيد الـ %age!"
+
+#: cogs/config_commands.py:95
+msgid "❌ Keine Berechtigung zum Schreiben im Geburtstagskanal."
+msgstr "❌ ليس لديك إذن بالكتابة في قناة أعياد الميلاد."
+
+#: cogs/config_commands.py:97
+msgid "⚠️ Keine Berechtigung, im Geburtstagskanal Links einzubetten."
+msgstr "⚠️ ليس لديك إذن تضمين الروابط في قناة أعياد الميلاد."
+
+#: cogs/config_commands.py:99
+msgid "❌ Keine Berechtigung, Dateien im Geburtstagskanal anzuhängen."
+msgstr "❌ ليس لديك صلاحية لإرفاق الملفات في قناة أعياد الميلاد."
+
+#: cogs/config_commands.py:101
+msgid ""
+"️❌ Kann den ausgewählten Geburtstagskanal nicht finden. Keine Berechtigung?"
+msgstr "❌ تعذر العثور على قناة أعياد الميلاد المحددة. هل توجد صلاحيات كافية؟"
+
+#: cogs/config_commands.py:104
+msgid "⚠️ Kein Geburtstagskanal gewählt - Systemkanal wird verwendet."
+msgstr ""
+"⚠️ لم يتم اختيار قناة أعياد الميلاد - سيتم استخدام القناة الافتراضية للنظام."
+
+#: cogs/config_commands.py:106
+msgid "❌ Kein Geburtstagskanal gewählt und kein Systemkanal verfügbar."
+msgstr "❌ لم يتم اختيار قناة أعياد الميلاد ولا تتوفر قناة النظام."
+
+#: cogs/config_commands.py:114
+msgid "️❌ Keine Berechtigung zum Schreiben im Ankündigungskanal für Updates."
+msgstr "❌ ليس لديك إذن بالكتابة في قناة إعلانات التحديثات."
+
+#: cogs/config_commands.py:116
+msgid ""
+"⚠️ Keine Berechtigung, im Ankündigungskanal für Updates Links einzubetten."
+msgstr "⚠️ ليس لديك إذن تضمين الروابط في قناة إعلانات التحديثات."
+
+#: cogs/config_commands.py:118
+msgid ""
+"️❌ Kann den ausgewählten Ankündigungskanal für Updates nicht finden. Keine "
+"Berechtigung?"
+msgstr ""
+"❌ تعذر العثور على قناة إعلانات التحديثات المحددة. هل توجد صلاحيات كافية؟"
+
+#: cogs/config_commands.py:126
+msgid ""
+"❌ Keine Berechtigung, die Geburtstagsrolle zu verwalten (Geburtstagsrolle "
+"ist höher als die Botrolle)."
+msgstr ""
+"❌ ليس لديك إذن لإدارة دور عيد الميلاد (دور عيد الميلاد أعلى من دور البوت)."
+
+#: cogs/config_commands.py:128
+msgid "❌ Geburtstagsrolle kann nicht `@everyone` sein."
+msgstr "❌ لا يمكن أن يكون دور عيد الميلاد هو `@everyone`."
+
+#: cogs/config_commands.py:131
+msgid "❌ Birthdayyyyys hat die 'Manage Roles' Berechtigung nicht."
+msgstr "❌ لا يمتلك Birthdayyyyys صلاحية 'إدارة الأدوار' (Manage Roles)."
+
+#: cogs/config_commands.py:140
+msgid ""
+"ℹ️ Geburtstagsbanner sind aktiviert, aber es wurden keine eigenen "
+"Hintergründe hinzugefügt - Standardhintergrund wird verwendet"
+msgstr ""
+"ℹ️ لافتات أعياد الميلاد مفعلة، ولكن لم يتم إضافة خلفيات مخصصة - سيتم استخدام"
+" الخلفية الافتراضية"
+
+#: cogs/config_commands.py:143
+msgid "⚠️ Birthdayyyyys hat die 'Embed Links' Berechtigung nicht."
+msgstr "⚠️ لا يمتلك Birthdayyyyys صلاحية 'تضمين الروابط' (Embed Links)."
+
+#: cogs/config_commands.py:146
+msgid "❌ Birthdayyyyys hat die 'Attach Files' Berechtigung nicht."
+msgstr "❌ لا يمتلك Birthdayyyyys صلاحية 'إرفاق الملفات' (Attach Files)."
+
+#: cogs/config_commands.py:179 cogs/config_commands.py:1492
+#: cogs/config_commands.py:1507
+msgid "Deaktiviert"
+msgstr "معطل"
+
+#: cogs/config_commands.py:189
+msgid "Nicht gesetzt"
+msgstr "غير محدد"
+
+#: cogs/config_commands.py:190
+msgid "Keine"
+msgstr "لا يوجد"
+
+#: cogs/config_commands.py:191
+msgid "✅ Aktiviert"
+msgstr "✅ مفعل"
+
+#: cogs/config_commands.py:191
+msgid "❌ Deaktiviert"
+msgstr "❌ معطل"
+
+#: cogs/config_commands.py:196
+msgid ""
+"Hier kannst du alle Einstellungen für das Geburtstagssystem verwalten.\n"
+"Nutze das Menü unten zum Konfigurieren."
+msgstr ""
+"هنا يمكنك إدارة جميع إعدادات نظام أعياد الميلاد.\n"
+"استخدم القائمة أدناه للتكوين."
+
+#: cogs/config_commands.py:198
+msgid ""
+"\n"
+"\n"
+"**⚠️ Konfigurationswarnungen:**\n"
+msgstr ""
+"\n"
+"\n"
+"**⚠️ تحذيرات الإعدادات:**\n"
+
+#: cogs/config_commands.py:204
+msgid "⚙️ Server-Konfiguration"
+msgstr "⚙️ إعدادات الخادم"
+
+#: cogs/config_commands.py:209
+msgid "🪛 Kanal"
+msgstr "🪛 القناة"
+
+#: cogs/config_commands.py:210
+msgid "⚙️ Rolle"
+msgstr "⚙️ الرتبة"
+
+#: cogs/config_commands.py:211
+msgid "🖼️ Bilder"
+msgstr "🖼️ الصور"
+
+#: cogs/config_commands.py:212
+msgid "🎨 Farbe"
+msgstr "🎨 اللون"
+
+#: cogs/config_commands.py:213
+msgid "🗣️ Sprache"
+msgstr "🗣️ اللغة"
+
+#: cogs/config_commands.py:214
+msgid "⏰ Uhrzeit"
+msgstr "⏰ الوقت"
+
+#: cogs/config_commands.py:215
+msgid "📣 Ankündigungen"
+msgstr "📣 الإعلانات"
+
+#: cogs/config_commands.py:384
+msgid "🔧 Größe anpassen"
+msgstr "🔧 تغيير الحجم"
+
+#: cogs/config_commands.py:389
+msgid "👍 Überspringen"
+msgstr "👍 تخطي"
+
+#: cogs/config_commands.py:401
+msgid "✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"
+msgstr "✅ تم اقتصاص الصورة وحفظها بنجاح!"
+
+#: cogs/config_commands.py:405
+msgid "✅ Bild wurde ohne Zuschneiden gespeichert!"
+msgstr "✅ تم حفظ الصورة بدون اقتصاص!"
+
+#: cogs/config_commands.py:412
+msgid "Bilddatei hochladen"
+msgstr "رفع ملف صورة"
+
+#: cogs/config_commands.py:419
+msgid "Bilder hochladen:"
+msgstr "رفع الصور:"
+
+#: cogs/config_commands.py:432
+msgid "Falsches Bildformat!"
+msgstr "تنسيق الصورة غير صحيح!"
+
+#: cogs/config_commands.py:433
+#, python-brace-format
+msgid ""
+"Das Standard-Bildformat lautet `32:9` (z.B. 1920x540). Das Format deines "
+"Bildes ist `{width}x{height}`. Texte und Bilder können dadurch verrutschen. "
+"Willst du das Bild automatisch zuschneiden lassen, oder dennoch fortfahren?"
+msgstr ""
+"تنسيق الصورة الافتراضي هو `32:9` (على سبيل المثال 1920x540). تنسيق صورتك هو "
+"`{width}x{height}`. قد تتسبب هذه النسبة في إزاحة النصوص والصور. هل تريد "
+"اقتصاص الصورة تلقائياً أم المتابعة على أي حال؟"
+
+#: cogs/config_commands.py:442
+msgid "✅ Datei wurde erfolgreich hochgeladen!"
+msgstr "✅ تم رفع الملف بنجاح!"
+
+#: cogs/config_commands.py:451
+msgid "Sendezeit der Geburtstagsnachricht setzen"
+msgstr "تعيين وقت إرسال رسالة عيد الميلاد"
+
+#: cogs/config_commands.py:453
+msgid "Neue Zeit (Format: HH:MM)"
+msgstr "الوقت الجديد (النسق: HH:MM)"
+
+#: cogs/config_commands.py:471
+#, python-brace-format
+msgid "❌ Die Eingabe {input} ist keine gültige Zeit."
+msgstr "❌ الإدخال {input} ليس وقتاً صالحاً."
+
+#: cogs/config_commands.py:493
+msgid "Nachricht ohne Altersangabe anpassen"
+msgstr "تخصيص الرسالة بدون ذكر العمر"
+
+#: cogs/config_commands.py:501
+#, python-format
+msgid "Titel des Embeds (%username)"
+msgstr "عنوان الـ Embed (%username)"
+
+#: cogs/config_commands.py:510
+#, python-format
+msgid "Nachricht im Embed (%mention, %username)"
+msgstr "الرسالة داخل الـ Embed (%mention, %username)"
+
+#: cogs/config_commands.py:520
+#, python-format
+msgid "Footer im Embed (optional, %username)"
+msgstr "تذييل الـ Embed (اختياري، %username)"
+
+#: cogs/config_commands.py:521
+msgid "Kein Footer"
+msgstr "بلا تذييل"
+
+#: cogs/config_commands.py:529 cogs/config_commands.py:611
+msgid "Anzeigen"
+msgstr "إظهار"
+
+#: cogs/config_commands.py:533 cogs/config_commands.py:615
+msgid "Verstecken"
+msgstr "إخفاء"
+
+#: cogs/config_commands.py:538 cogs/config_commands.py:620
+msgid "Profilbild im Embed anzeigen?"
+msgstr "عرض صورة الملف الشخصي في التضمين؟"
+
+#: cogs/config_commands.py:563
+msgid ""
+"Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"
+msgstr "تم تحديث رسالة عيد الميلاد (بدون العمر) بنجاح! ✅"
+
+#: cogs/config_commands.py:575
+msgid "Nachricht mit Altersangabe anpassen"
+msgstr "تخصيص الرسالة مع العمر"
+
+#: cogs/config_commands.py:583
+msgid "Titel (%age)"
+msgstr "العنوان (%age)"
+
+#: cogs/config_commands.py:592
+#, python-format
+msgid "Beschr. (%mention, %username, %age)"
+msgstr "الوصف (%mention, %username, %age)"
+
+#: cogs/config_commands.py:602
+#, python-format
+msgid "Footer (optional, %username)"
+msgstr "التذيل (اختياري، %username)"
+
+#: cogs/config_commands.py:603
+msgid "Standard: Feiere schön!"
+msgstr "الافتراضي: احتفل جيداً!"
+
+#: cogs/config_commands.py:644
+msgid "Die Geburtstagsnachricht (mit Alter) wurde erfolgreich aktualisiert! ✅"
+msgstr "تم تحديث رسالة عيد الميلاد (مع العمر) بنجاح! ✅"
+
+#: cogs/config_commands.py:656
+msgid "Bild-Texte anpassen"
+msgstr "تخصيص نصوص الصورة"
+
+#: cogs/config_commands.py:664
+#, python-format
+msgid "Bild-Titel ohne Alter (%username)"
+msgstr "عنوان الصورة بدون عمر (%username)"
+
+#: cogs/config_commands.py:673
+#, python-format
+msgid "Bild-Titel mit Alter (%age, %username)"
+msgstr "عنوان الصورة مع العمر (%age, %username)"
+
+#: cogs/config_commands.py:682
+#, python-format
+msgid "Bild-Text ohne Alter (%username)"
+msgstr "نص الصورة بدون عمر (%username)"
+
+#: cogs/config_commands.py:691
+#, python-format
+msgid "Bild-Text mit Alter (%username, %age)"
+msgstr "نص الصورة مع العمر (%username, %age)"
+
+#: cogs/config_commands.py:716
+msgid ""
+"Die Bild-Texte wurden übernommen. Klicke auf 'Speichern' um sie dauerhaft zu"
+" speichern. ✅"
+msgstr "تم تطبيق نصوص الصور. انقر على 'حفظ' لحفظها بشكل دائم. ✅"
+
+#: cogs/config_commands.py:728
+msgid "Embed-Farbe anpassen"
+msgstr "تخصيص لون تضمين الرسالة (Embed)"
+
+#: cogs/config_commands.py:734
+msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
+msgstr "لون التضمين (رمز Hex، مثل FF00FF)"
+
+#: cogs/config_commands.py:735
+#, python-brace-format
+msgid "Aktuell: {color}"
+msgstr "الحالي: {color}"
+
+#: cogs/config_commands.py:750
+msgid "Ungültiger Hex-Code."
+msgstr "رمز Hex غير صالح."
+
+#: cogs/config_commands.py:790 cogs/config_commands.py:1150
+msgid "Geburtstagskanal festlegen"
+msgstr "تعيين قناة أعياد الميلاد"
+
+#: cogs/config_commands.py:793
+msgid "Kanal auswählen..."
+msgstr "اختر قناة..."
+
+#: cogs/config_commands.py:800
+msgid "Ziel-Kanal für Geburtstage:"
+msgstr "القناة المستهدفة لأعياد الميلاد:"
+
+#: cogs/config_commands.py:812 cogs/config_commands.py:865
+#: cogs/config_commands.py:1378
+msgid ""
+"❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
+msgstr "❌ ليس لدي إذن للوصول إلى القناة المكوّنة."
+
+#: cogs/config_commands.py:817 cogs/config_commands.py:869
+msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
+msgstr "❌ لا يمكنني كتابة رسائل في القناة المحددة."
+
+#: cogs/config_commands.py:840
+msgid "News-Kanal festlegen"
+msgstr "تعيين قناة الأخبار"
+
+#: cogs/config_commands.py:843
+msgid "Kanal auswählen, leer lassen zum Deaktivieren..."
+msgstr "اختر قناة، أو اتركها فارغة للتعطيل..."
+
+#: cogs/config_commands.py:849
+msgid "Ziel-Kanal für News:"
+msgstr "القناة المستهدفة للأخبار:"
+
+#: cogs/config_commands.py:883
+msgid "Geburtstagsrolle festlegen"
+msgstr "تعيين دور عيد الميلاد"
+
+#: cogs/config_commands.py:886
+msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
+msgstr "اختر دوراً، أو اتركه فارغاً للإلغاء..."
+
+#: cogs/config_commands.py:893
+msgid "Geburtstagsrolle wählen"
+msgstr "اختر دور عيد الميلاد"
+
+#: cogs/config_commands.py:924
+#, python-brace-format
+msgid ""
+"⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder gleichrangig "
+"mit meiner eigenen Rolle ist."
+msgstr "⚠️ لا يمكنني منح دور {role} لأنه أعلى من دوري أو مساوي له في الرتبة."
+
+#: cogs/config_commands.py:930
+msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
+msgstr "❌ لا يمكنك تعيين دور @everyone كدور لعيد الميلاد."
+
+#: cogs/config_commands.py:979
+msgid "❌ Diese Sprache ist bereits eingestellt."
+msgstr "❌ هذه اللغة مضبوطة بالفعل."
+
+#: cogs/config_commands.py:1017 cogs/config_commands.py:1125
+#, python-brace-format
+msgid "Bild {count}"
+msgstr "الصورة {count}"
+
+#: cogs/config_commands.py:1025
+msgid "Wähle ein Bild zum Löschen..."
+msgstr "اختر صورة للحذف..."
+
+#: cogs/config_commands.py:1043
+#, python-brace-format
+msgid "✅ Bild `{file}` wurde erfolgreich gelöscht!"
+msgstr "✅ تم حذف الصورة `{file}` بنجاح!"
+
+#: cogs/config_commands.py:1048
+msgid "❌ Fehler beim Löschen der Datei."
+msgstr "❌ حدث خطأ أثناء حذف الملف."
+
+#: cogs/config_commands.py:1054
+msgid "❌ Das Bild existiert nicht mehr."
+msgstr "❌ الصورة لم تعد موجودة."
+
+#: cogs/config_commands.py:1065
+msgid "➕ Bild hinzufügen"
+msgstr "➕ إضافة صورة"
+
+#: cogs/config_commands.py:1085
+msgid "❌ Das Bildlimit von 10 Bildern wurde erreicht."
+msgstr "❌ تم الوصول إلى حد الصور الأقصى وهو 10 صور."
+
+#: cogs/config_commands.py:1101
+msgid "## Hintergrundbilder verwalten"
+msgstr "## إدارة صور الخلفية"
+
+#: cogs/config_commands.py:1105
+msgid ""
+"Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. Solltest "
+"du derzeit keine Bilder hinzugefügt haben, wird das Standardbild genutzt."
+msgstr ""
+"ستجد هنا قائمة بجميع الصور التي قمت بإضافتها. إذا لم تكن قد أضفت أي صور "
+"حالياً، سيتم استخدام الصورة الافتراضية."
+
+#: cogs/config_commands.py:1150
+msgid "Kanal"
+msgstr "القناة"
+
+#: cogs/config_commands.py:1151
+msgid "Rolle"
+msgstr "الدور"
+
+#: cogs/config_commands.py:1151
+msgid "Geburtstagsrolle zuweisen"
+msgstr "تعيين دور عيد الميلاد"
+
+#: cogs/config_commands.py:1152
+msgid "Bilder An/Aus"
+msgstr "الصور تشغيل/إيقاف"
+
+#: cogs/config_commands.py:1152
+msgid "Geburtstagskarten aktivieren/deaktivieren"
+msgstr "تفعيل/تعطيل بطاقات أعياد الميلاد"
+
+#: cogs/config_commands.py:1153
+msgid "Farbe"
+msgstr "اللون"
+
+#: cogs/config_commands.py:1153
+msgid "Farbe der Embeds ändern"
+msgstr "تغيير لون رسائل الـ Embed"
+
+#: cogs/config_commands.py:1154
+msgid "Ankündigungen"
+msgstr "الإعلانات"
+
+#: cogs/config_commands.py:1154
+msgid "News-Kanal verwalten"
+msgstr "إدارة قناة الأخبار"
+
+#: cogs/config_commands.py:1155
+msgid "Sprache"
+msgstr "اللغة"
+
+#: cogs/config_commands.py:1155
+msgid "Sprache des Bots ändern"
+msgstr "تغيير لغة البوت"
+
+#: cogs/config_commands.py:1156
+msgid "Nachricht (ohne Alter)"
+msgstr "الرسالة (بدون عمر)"
+
+#: cogs/config_commands.py:1156
+msgid "Embed-Text für Modus ohne Alter"
+msgstr "نص الـ Embed لوضع عدم إظهار العمر"
+
+#: cogs/config_commands.py:1157
+msgid "Nachricht (mit Alter)"
+msgstr "الرسالة (مع العمر)"
+
+#: cogs/config_commands.py:1157
+msgid "Embed-Text für Modus mit Alter"
+msgstr "نص الـ Embed لوضع إظهار العمر"
+
+#: cogs/config_commands.py:1158
+msgid "Uhrzeit"
+msgstr "الوقت"
+
+#: cogs/config_commands.py:1158
+msgid "Sendezeit der Nachrichten anpassen"
+msgstr "تعديل وقت إرسال الرسائل"
+
+#: cogs/config_commands.py:1159
+msgid "Banner-Design"
+msgstr "تصميم البانر"
+
+#: cogs/config_commands.py:1159
+msgid "Aussehen der Geburtstagsbanner anpassen"
+msgstr "تخصيص مظهر بانرات أعياد الميلاد"
+
+#: cogs/config_commands.py:1160
+msgid "Bilder-Verwaltung"
+msgstr "إدارة الصور"
+
+#: cogs/config_commands.py:1160
+msgid "Öffne das Verwaltungsfenster für Hintergrundbilder"
+msgstr "فتح نافذة إدارة صور الخلفية"
+
+#: cogs/config_commands.py:1164
+msgid "Wähle eine Einstellung zum Bearbeiten..."
+msgstr "اختر إعداداً للتعديل..."
+
+#: cogs/config_commands.py:1255
+msgid "🌍 Sprache"
+msgstr "🌍 اللغة"
+
+#: cogs/config_commands.py:1256
+msgid ""
+"Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
+"**HINWEIS:** Übersetzungen können fehlerhaft sein."
+msgstr ""
+"هنا يمكنك تخصيص لغة ردود البوت.\n"
+"**ملاحظة:** قد تحتوي الترجمات على أخطاء."
+
+#: cogs/config_commands.py:1323
+msgid "❌ Nur in Servern möglich."
+msgstr "❌ ممكن فقط في السيرفرات."
+
+#: cogs/config_commands.py:1355
+msgid "❌ Nur auf einem Server möglich."
+msgstr "❌ ممكن فقط على سيرفر واحد."
+
+#: cogs/config_commands.py:1367
+msgid "❌ Es wurde kein Geburtstagskanal gesetzt."
+msgstr "❌ لم يتم تعيين قناة أعياد ميلاد."
+
+#: cogs/config_commands.py:1375
+msgid ""
+"❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze ihn "
+"in der Config neu."
+msgstr ""
+"❌ لم يتم العثور على القناة المُكوّنة (هل تم حذفها؟). يرجى إعادة تعيينها في "
+"الإعدادات."
+
+#: cogs/config_commands.py:1442
+msgid ""
+"❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
+msgstr "❌ ليس لدي صلاحية للكتابة في القناة المُكوّنة."
+
+#: cogs/config_commands.py:1444
+msgid "Test gesendet! ✅"
+msgstr "تم إرسال الاختبار! ✅"
+
+#: cogs/config_commands.py:1469
+msgid "## 🎨 Banner-Design anpassen (1/2)"
+msgstr "## 🎨 تخصيص تصميم البنرات (1/2)"
+
+#: cogs/config_commands.py:1473
+msgid "Avatar/Text-Aktivierung und Avatar-Positionen"
+msgstr "تفعيل الرمز الشخصي/النص وأماكن الرمز الشخصي"
+
+#: cogs/config_commands.py:1479
+msgid "## 🎨 Banner-Design anpassen (2/2)"
+msgstr "## 🎨 تخصيص تصميم البنرات (2/2)"
+
+#: cogs/config_commands.py:1483
+msgid "Text-Positionen, Farben und Größen"
+msgstr "مواضع النصوص، الألوان والأحجام"
+
+#: cogs/config_commands.py:1488
+msgid "👤 Avatar"
+msgstr "👤 الرمز الشخصي"
+
+#: cogs/config_commands.py:1491 cogs/config_commands.py:1506
+msgid "Aktiviert"
+msgstr "مفعل"
+
+#: cogs/config_commands.py:1495
+msgid "Avatar aktiviert/deaktiviert"
+msgstr "تم تفعيل/إلغاء تفعيل الرمز الشخصي"
+
+#: cogs/config_commands.py:1503
+msgid "📝 Text"
+msgstr "📝 النص"
+
+#: cogs/config_commands.py:1510
+msgid "Text aktiviert/deaktiviert"
+msgstr "تم تفعيل/إلغاء تفعيل النص"
+
+#: cogs/config_commands.py:1520
+msgid "✏️ Bild-Texte anpassen"
+msgstr "✏️ تعديل نصوص الصورة"
+
+#: cogs/config_commands.py:1527
+msgid "📍 Text-Position (Vertikal)"
+msgstr "📍 موضع النص (عمودي)"
+
+#: cogs/config_commands.py:1530 cogs/config_commands.py:1563
+msgid "Oben"
+msgstr "أعلى"
+
+#: cogs/config_commands.py:1531 cogs/config_commands.py:1547
+#: cogs/config_commands.py:1564 cogs/config_commands.py:1580
+msgid "Mitte"
+msgstr "منتصف"
+
+#: cogs/config_commands.py:1532 cogs/config_commands.py:1565
+msgid "Unten"
+msgstr "أسفل"
+
+#: cogs/config_commands.py:1535
+msgid "Text-Position (Vertikal)"
+msgstr "موضع النص (عمودي)"
+
+#: cogs/config_commands.py:1543
+msgid "📍 Text-Position (Horizontal)"
+msgstr "📍 موضع النص (أفقي)"
+
+#: cogs/config_commands.py:1546 cogs/config_commands.py:1579
+msgid "Links"
+msgstr "يسار"
+
+#: cogs/config_commands.py:1548 cogs/config_commands.py:1581
+msgid "Rechts"
+msgstr "يمين"
+
+#: cogs/config_commands.py:1551
+msgid "Text-Position (Horizontal)"
+msgstr "موضع النص (أفقي)"
+
+#: cogs/config_commands.py:1560
+msgid "👤 Avatar-Position (Vertikal)"
+msgstr "👤 موضع الرمز الشخصي (عمودي)"
+
+#: cogs/config_commands.py:1568
+msgid "Avatar-Position (Vertikal)"
+msgstr "موضع الرمز الشخصي (عمودي)"
+
+#: cogs/config_commands.py:1576
+msgid "👤 Avatar-Position (Horizontal)"
+msgstr "👤 موضع الرمز الشخصي (أفقي)"
+
+#: cogs/config_commands.py:1584
+msgid "Avatar-Position (Horizontal)"
+msgstr "موضع الرمز الشخصي (أفقي)"
+
+#: cogs/config_commands.py:1592
+msgid "🎨 Text-Farbe"
+msgstr "🎨 لون النص"
+
+#: cogs/config_commands.py:1595
+msgid "Schwarz"
+msgstr "أسود"
+
+#: cogs/config_commands.py:1596
+msgid "Weiß"
+msgstr "أبيض"
+
+#: cogs/config_commands.py:1597
+msgid "Rot"
+msgstr "أحمر"
+
+#: cogs/config_commands.py:1598
+msgid "Blau"
+msgstr "أزرق"
+
+#: cogs/config_commands.py:1599
+msgid "Grün"
+msgstr "أخضر"
+
+#: cogs/config_commands.py:1600
+msgid "Gelb"
+msgstr "أصفر"
+
+#: cogs/config_commands.py:1601
+msgid "Lila"
+msgstr "بنفسجي"
+
+#: cogs/config_commands.py:1602
+msgid "Orange"
+msgstr "برتقالي"
+
+#: cogs/config_commands.py:1605
+msgid "Text-Farbe"
+msgstr "لون النص"
+
+#: cogs/config_commands.py:1613
+msgid "📏 Titel-Größe"
+msgstr "📏 حجم العنوان"
+
+#: cogs/config_commands.py:1616
+msgid "Klein (50px)"
+msgstr "صغير (50 بكسل)"
+
+#: cogs/config_commands.py:1617
+msgid "Normal (75px)"
+msgstr "عادي (75 بكسل)"
+
+#: cogs/config_commands.py:1618
+msgid "Groß (100px)"
+msgstr "كبير (100 بكسل)"
+
+#: cogs/config_commands.py:1619
+msgid "Sehr Groß (125px)"
+msgstr "كبير جداً (125 بكسل)"
+
+#: cogs/config_commands.py:1620
+msgid "Riesig (150px)"
+msgstr "ضخم (150 بكسل)"
+
+#: cogs/config_commands.py:1623
+msgid "Titel-Größe"
+msgstr "حجم العنوان"
+
+#: cogs/config_commands.py:1631
+msgid "📏 Name-Größe"
+msgstr "📏 حجم الاسم"
+
+#: cogs/config_commands.py:1634
+msgid "Klein (60px)"
+msgstr "صغير (60 بكسل)"
+
+#: cogs/config_commands.py:1635
+msgid "Normal (105px)"
+msgstr "عادي (105 بكسل)"
+
+#: cogs/config_commands.py:1636
+msgid "Groß (140px)"
+msgstr "كبير (140 بكسل)"
+
+#: cogs/config_commands.py:1637
+msgid "Sehr Groß (170px)"
+msgstr "كبير جداً (170 بكسل)"
+
+#: cogs/config_commands.py:1638
+msgid "Riesig (200px)"
+msgstr "ضخم (200 بكسل)"
+
+#: cogs/config_commands.py:1641
+msgid "Name-Größe"
+msgstr "حجم الاسم"
+
+#: cogs/config_commands.py:1649
+msgid "📐 Avatar-Größe"
+msgstr "📐 حجم الصورة الرمزية"
+
+#: cogs/config_commands.py:1652
+msgid "Klein (25%)"
+msgstr "صغير (25%)"
+
+#: cogs/config_commands.py:1653
+msgid "Normal (45%)"
+msgstr "عادي (45%)"
+
+#: cogs/config_commands.py:1654
+msgid "Groß (60%)"
+msgstr "كبير (60%)"
+
+#: cogs/config_commands.py:1655
+msgid "Sehr Groß (75%)"
+msgstr "كبير جداً (75%)"
+
+#: cogs/config_commands.py:1658
+msgid "Avatar-Größe"
+msgstr "حجم الصورة الرمزية"
+
+#: cogs/config_commands.py:1668
+msgid "⬅️ Zurück"
+msgstr "⬅️ السابق"
+
+#: cogs/config_commands.py:1674
+msgid "Weiter ➡️"
+msgstr "التالي ➡️"
+
+#: cogs/config_commands.py:1683
+msgid "💾 Speichern"
+msgstr "💾 حفظ"
+
+#: cogs/config_commands.py:1688
+msgid "👀 Vorschau"
+msgstr "👀 معاينة"
+
+#: cogs/config_commands.py:1847
+msgid "✅ Banner-Einstellungen gespeichert!"
+msgstr "✅ تم حفظ إعدادات البانر!"
+
+#: cogs/info_commands.py:31
+#, python-brace-format
+msgid ""
+"Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **gratulieren**! :)\n"
+"\n"
+"## ❔ __Infos:__\n"
+"<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden\n"
+"<:developer:1390293000747225098> Entwickler: **__[_chrxstianst.](https://discordid.netlify.app/?id=1235134572157603841)__**\n"
+"<:python:1390293453606486056> Library: discord.py-{version}\n"
+"ℹ️ Version: v{bot_version}\n"
+"🌐 Website: https://birthdayyyyys.christianst.xyz"
+msgstr ""
+"مرحباً! أنا **Birthdayyyyys**، بوت مخصص **لتهنئة** الأشخاص بأعياد ميلادهم! :)\n"
+"\n"
+"## ❔ __معلومات:__\n"
+"<:status_online:1390283178144698420> تم إنشائي <t:1751450400:R>\n"
+"<:developer:1390293000747225098> المطور: **__[_chrxstianst.](https://discordid.netlify.app/?id=1235134572157603841)__**\n"
+"<:python:1390293453606486056> المكتبة: discord.py-{version}\n"
+"ℹ️ الإصدار: v{bot_version}\n"
+"🌐 الموقع الإلكتروني: https://birthdayyyyys.christianst.xyz"
+
+#: cogs/info_commands.py:55
+msgid "Dieser Befehl kann nur in einem Server verwendet werden."
+msgstr "يمكن استخدام هذا الأمر فقط داخل خادم."
+
+#: cogs/info_commands.py:68
+msgid "🎉 Birthdayyyyys - Hilfe"
+msgstr "🎉 Birthdayyyyys - المساعدة"
+
+#: cogs/info_commands.py:69
+msgid "Willkommen! Hier findest du alle verfügbaren Befehle."
+msgstr "أهلاً بك! ستجد هنا جميع الأوامر المتاحة."
+
+#: cogs/info_commands.py:74
+msgid "📅 Geburtstagsbefehle"
+msgstr "📅 أوامر أعياد الميلاد"
+
+#: cogs/info_commands.py:76
+msgid "Deinen Geburtstag festlegen"
+msgstr "تحديد تاريخ ميلادك"
+
+#: cogs/info_commands.py:77
+msgid "Deinen Geburtstag entfernen"
+msgstr "إزالة تاريخ ميلادك"
+
+#: cogs/info_commands.py:78
+msgid "Geburtstag anzeigen"
+msgstr "عرض تاريخ الميلاد"
+
+#: cogs/info_commands.py:79
+msgid "Geburtstagskalender anzeigen"
+msgstr "عرض تقويم أعياد الميلاد"
+
+#: cogs/info_commands.py:85
+msgid "⚙️ Konfiguration"
+msgstr "⚙️ الإعدادات"
+
+#: cogs/info_commands.py:87
+msgid "Bot-Einstellungen öffnen"
+msgstr "فتح إعدادات البوت"
+
+#: cogs/info_commands.py:88
+msgid "Geburtstagsnachricht testen"
+msgstr "اختبار رسالة عيد الميلاد"
+
+#: cogs/info_commands.py:94
+msgid "ℹ️ Information"
+msgstr "ℹ️ معلومات"
+
+#: cogs/info_commands.py:96
+msgid "Bot-Informationen anzeigen"
+msgstr "عرض معلومات البوت"
+
+#: cogs/info_commands.py:97
+msgid "Bot-Latenz prüfen"
+msgstr "فحص سرعة استجابة البوت"
+
+#: cogs/info_commands.py:98
+msgid "Diese Hilfe anzeigen"
+msgstr "عرض رسالة المساعدة هذه"
+
+#: cogs/info_commands.py:104
+msgid "📚 Dokumentation"
+msgstr "📚 التوثيق"
+
+#: cogs/info_commands.py:105
+msgid ""
+"Für ausführliche Anleitungen und weitere Informationen besuche unsere "
+"[Dokumentation](https://birthdayyyyys.christianst.xyz/docs)."
+msgstr ""
+"للحصول على إرشادات تفصيلية ومعلومات أخرى، يرجى زيارة "
+"[التوثيق](https://birthdayyyyys.christianst.xyz/docs)."
+
+#: cogs/info_commands.py:111
+msgid "🔧 Admin-Hinweis"
+msgstr "🔧 ملاحظة المسؤول"
+
+#: cogs/info_commands.py:112
+msgid ""
+"Als Server-Administrator kannst du `/config` nutzen, um alle Bot-"
+"Einstellungen anzupassen."
+msgstr ""
+"بصفتك مسؤولاً عن الخادم، يمكنك استخدام `/config` لتخصيص جميع إعدادات البوت."
+
+#: cogs/info_commands.py:117
+msgid "Bei Fragen oder Problemen: https://birthdayyyyys.christianst.xyz/docs"
+msgstr "للأسئلة أو المشاكل: https://birthdayyyyys.christianst.xyz/docs"
+
+#: cogs/info_commands.py:150
+msgid "❌ Datenbankfehler"
+msgstr "❌ خطأ في قاعدة البيانات"
+
+#: cogs/info_commands.py:156
+msgid "⏱️ Ping-Ergebnisse"
+msgstr "⏱️ نتائج اختبار البينج"
+
+#: cogs/info_commands.py:157
+msgid "Latenzzeiten des Bots zu verschiedenen Komponenten:"
+msgstr "أوقات استجابة البوت لمختلف المكونات:"
+
+#: cogs/info_commands.py:162
+msgid "🤖 Interne Verarbeitung"
+msgstr "🤖 المعالجة الداخلية"
+
+#: cogs/info_commands.py:167
+msgid "🌐 Discord API (Heartbeat)"
+msgstr "🌐 واجهة برمجة تطبيقات ديسكورد (Heartbeat)"
+
+#: cogs/info_commands.py:172
+msgid "💾 Datenbank"
+msgstr "💾 قاعدة البيانات"
+
+#: cogs/setup-help.py:15
+msgid "Zurück"
+msgstr "رجوع"
+
+#: cogs/setup-help.py:16 cogs/setup-help.py:22
+msgid "Weiter"
+msgstr "التالي"
+
+#: cogs/setup-help.py:17
+msgid "Konfiguration öffnen"
+msgstr "فتح الإعدادات"
+
+#: cogs/setup-help.py:22
+msgid "Abschließen"
+msgstr "إتمام"
+
+#: cogs/setup-help.py:29
+msgid "Schritt 1/4: Kanal einstellen"
+msgstr "الخطوة 1/4: تعيين القناة"
+
+#: cogs/setup-help.py:30
+msgid ""
+"**Wähle den Kanal, in dem Geburtstagsgrüße gesendet werden sollen.**\n"
+"\n"
+"Ohne einen Kanal werden keine Geburtstagsnachrichten versendet. Du kannst den Systemkanal des Servers verwenden oder einen eigenen Kanal erstellen.\n"
+"\n"
+"👉 Nutze `/config` und wähle 'Kanal' aus dem Menü."
+msgstr ""
+"**اختر القناة التي سيتم إرسال تهاني أعياد الميلاد فيها.**\n"
+"\n"
+"بدون قناة، لن يتم إرسال رسائل أعياد الميلاد. يمكنك استخدام قناة النظام الخاصة بالسيرفر أو إنشاء قناة مخصصة.\n"
+"\n"
+"👉 استخدم `/config` واختر 'قناة' من القائمة."
+
+#: cogs/setup-help.py:38
+msgid "Schritt 2/4: Nachrichten anpassen"
+msgstr "الخطوة 2/4: تخصيص الرسائل"
+
+#: cogs/setup-help.py:39
+#, python-format
+msgid ""
+"**Passe die Geburtstagsgrüße an deinen Server an.**\n"
+"\n"
+"Du kannst zwei verschiedene Nachrichten erstellen:\n"
+"• Eine für Mitglieder ohne Geburtsjahr\n"
+"• Eine für Mitglieder mit Geburtsjahr (zeigt das Alter an)\n"
+"\n"
+"Verfügbare Variablen: `%username`, `%mention`, `%age`\n"
+"\n"
+"👉 Nutze `/config` und wähle 'Nachricht (Mit/Ohne Alter)'."
+msgstr ""
+"**قم بتخصيص تهاني أعياد الميلاد لتتناسب مع سيرفرك.**\n"
+"\n"
+"يمكنك إنشاء رسالتين مختلفتين:\n"
+"• واحدة للأعضاء بدون سنة ميلاد\n"
+"• واحدة للأعضاء الذين لديهم سنة ميلاد (تعرض العمر)\n"
+"\n"
+"المتغيرات المتاحة: `%username`, `%mention`, `%age`\n"
+"\n"
+"👉 استخدم `/config` واختر 'الرسالة (مع/بدون عمر)'."
+
+#: cogs/setup-help.py:49
+msgid "Schritt 3/4: Bilder aktivieren"
+msgstr "الخطوة 3/4: تفعيل الصور"
+
+#: cogs/setup-help.py:50
+msgid ""
+"**Aktiviere die automatische Bildgenerierung.**\n"
+"\n"
+"Der Bot kann personalisierte Banner mit Profilbild und Namen erstellen. Du kannst auch eigene Hintergrundbilder hochladen.\n"
+"\n"
+"👉 Nutze `/config` und wähle 'Bilder An/Aus'."
+msgstr ""
+"**قم بتفعيل إنشاء الصور التلقائي.**\n"
+"\n"
+"يمكن للبوت إنشاء لافتات مخصصة تحتوي على صورة الملف الشخصي والاسم. يمكنك أيضًا تحميل صور خلفية خاصة بك.\n"
+"\n"
+"👉 استخدم `/config` واختر 'تشغيل/إيقاف الصور'."
+
+#: cogs/setup-help.py:58
+msgid "Schritt 4/4: Testen & Mitglieder einladen"
+msgstr "الخطوة 4/4: الاختبار ودعوة الأعضاء"
+
+#: cogs/setup-help.py:59
+msgid ""
+"**Teste deine Konfiguration und lade Mitglieder ein.**\n"
+"\n"
+"• Teste mit `/config-test` um sicherzustellen, dass alles funktioniert\n"
+"• Mitglieder können ihren Geburtstag mit `/birthday-set` festlegen\n"
+"• Zeige alle Geburtstage mit `/birthday-list` an\n"
+"\n"
+"🎉 Dein Server ist bereit für Geburtstage!"
+msgstr ""
+"**اختبر إعداداتك وقم بدعوة الأعضاء.**\n"
+"\n"
+"• جرب باستخدام `/config-test` للتأكد من أن كل شيء يعمل\n"
+"• يمكن للأعضاء تحديد أعياد ميلادهم باستخدام `/birthday-set`\n"
+"• اعرض جميع أعياد الميلاد باستخدام `/birthday-list`\n"
+"\n"
+"🎉 سيرفرك جاهز الآن لأعياد الميلاد!"
+
+#: cogs/setup-help.py:83
+msgid "🎉 Setup abgeschlossen!"
+msgstr "🎉 تم الانتهاء من الإعداد!"
+
+#: cogs/setup-help.py:84
+msgid ""
+"Vielen Dank für das Einrichten von Birthdayyyyys!\n"
+"\n"
+"Bei Fragen nutze `/help` oder tritt dem Support Server bei: https://discord.gg/utD4afUrgt\n"
+"\n"
+"Wenn dir der Bot gefallen sollte, lass gerne eine Bewertung auf **__[TopGG](https://top.gg/bot/1389267222261792868)__** da!"
+msgstr ""
+"شكرًا لك على إعداد Birthdayyyyys!\n"
+"\n"
+"إذا كان لديك أي أسئلة، استخدم الأمر `/help` أو انضم إلى سيرفر الدعم الفني: https://discord.gg/utD4afUrgt\n"
+"\n"
+"إذا أعجبك البوت، فلا تتردد في ترك تقييم على **__[TopGG](https://top.gg/bot/1389267222261792868)__**!"
+
+#: cogs/setup-help.py:129
+msgid "👋 Willkommen bei Birthdayyyyys!"
+msgstr "👋 أهلاً بك في Birthdayyyyys!"
+
+#: cogs/setup-help.py:130
+msgid ""
+"Danke, dass du Birthdayyyyys zu deinem Server hinzugefügt hast! Folge dem "
+"interaktiven Guide unten, um den Bot in wenigen Minuten einzurichten."
+msgstr ""
+"شكرًا لإضافة Birthdayyyyys إلى خادمك! اتبع الدليل التفاعلي أدناه لإعداد "
+"البوت في غضون دقائق معدودة."
+
+#: cogs/setup-help.py:136
+msgid "⚡ Schnellstart"
+msgstr "⚡ البدء السريع"
+
+#: cogs/setup-help.py:137
+msgid ""
+"Klicke auf 'Guide starten' um durch die Einrichtung geführt zu werden. Oder "
+"nutze direkt `/config` für alle Einstellungen."
+msgstr ""
+"انقر على 'بدء الدليل' ليتم إرشادك خلال عملية الإعداد. أو استخدم `/config` "
+"مباشرة لجميع الإعدادات."
+
+#: cogs/setup-help.py:143
+msgid "📋 Die wichtigsten Befehle"
+msgstr "📋 أهم الأوامر"
+
+#: cogs/setup-help.py:144
+msgid ""
+"• `/config` - Bot konfigurieren\n"
+"• `/birthday-set` - Geburtstag festlegen\n"
+"• `/birthday-list` - Alle Geburtstage anzeigen\n"
+"• `/help` - Weitere Hilfe"
+msgstr ""
+"• `/config` - إعداد البوت\n"
+"• `/birthday-set` - تحديد عيد ميلادك\n"
+"• `/birthday-list` - عرض كل أعياد الميلاد\n"
+"• `/help` - للمزيد من المساعدة"
+
+#: cogs/setup-help.py:152
+msgid "💡 Brauchst du Hilfe?"
+msgstr "💡 هل تحتاج إلى مساعدة؟"
+
+#: cogs/setup-help.py:153
+msgid "Support Server: https://discord.gg/utD4afUrgt"
+msgstr "خادم الدعم الفني: https://discord.gg/utD4afUrgt"
+
+#: cogs/setup-help.py:158
+msgid "Danke für's Nutzen von Birthdayyyyys!"
+msgstr "شكرًا لاستخدامك Birthdayyyyys!"

@@ -12,6 +12,8 @@ import random
 
 from utils.babel import translator
 
+from utils.logger import log
+
 BACKGROUND_IMAGE_PATH = "data/birthday_background.jpg"
 FONT_PATH = "data/arial.ttf"
 IMAGE_TEXT_COLOR = (0, 0, 0, 255)
@@ -38,13 +40,62 @@ def format_age(age: int, lang: str) -> str:
     if lang == "es":
         return f"{age}º"
 
+    if lang == "pt":
+        if age == 1:
+            return f"{age}º"
+        return f"{age}º"
+
+    if lang == "tr":
+        return f"{age}."
+
+    if lang == "ar":
+        return f"{age}"
+
+    if lang == "id":
+        return f"{age}"
+
+    if lang == "ja":
+        return f"{age}歳"
+
+    if lang == "ko":
+        return f"{age}세"
+
+    if lang == "zh":
+        return f"{age}岁"
+
     return str(age)
 
 async def setup_database_record(bot, guild_id: int, language: str):
     async with bot.db_pool.acquire() as db:
         async with db.cursor() as cursor:
             try:
-                await cursor.execute("""INSERT INTO guild_settings (guild_id, config_embed_color, lang, message_time) VALUES (%s, %s, %s, %s)""", (guild_id, 0x45A6C9, language, "08:00"))
+                await cursor.execute(
+                    """INSERT INTO guild_settings (
+                        guild_id, config_embed_color, lang, message_time,
+                        banner_text_position_v, banner_text_position_h,
+                        banner_avatar_enabled, banner_text_enabled, banner_avatar_position_v, banner_avatar_position_h,
+                        banner_text_color, banner_title_size,
+                        banner_name_size, banner_avatar_size_percent, show_avatar_no_age, show_avatar_with_age
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                    (
+                        guild_id,
+                        0x45A6C9,
+                        language,
+                        "08:00",
+                        "center",
+                        "center",
+                        True,
+                        True,
+                        "bottom",
+                        "center",
+                        "000000",
+                        75,
+                        105,
+                        45,
+                        True,
+                        True
+                    )
+                )
                 await db.commit()
             except aiomysql.IntegrityError:
                 pass
@@ -84,6 +135,20 @@ async def load_bot_config(bot, guild_id: int):
                     "footer_with_age": None,
                     "image_title_with_age": None,
                     "message_time": "08:00",
+                    "banner_text_position_v": "center",
+                    "banner_text_position_h": "center",
+                    "banner_avatar_enabled": True,
+                    "banner_text_enabled": True,
+                    "banner_avatar_position_v": "bottom",
+                    "banner_avatar_position_h": "center",
+                    "banner_text_color": "000000",
+                    "banner_title_size": 75,
+                    "banner_name_size": 105,
+                    "banner_avatar_size_percent": 45,
+                    "banner_name_text_no_age": None,
+                    "banner_name_text_with_age": None,
+                    "show_avatar_no_age": True,
+                    "show_avatar_with_age": True
                 }
                 await cursor.execute(
                     """
@@ -91,8 +156,11 @@ async def load_bot_config(bot, guild_id: int):
                         guild_id, birthday_channel_id, config_embed_color, birthday_role_id,
                         birthday_image_enabled, lang,
                         title_no_age, message_no_age, footer_no_age, image_title_no_age,
-                        title_with_age, message_with_age, footer_with_age, image_title_with_age, message_time
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        title_with_age, message_with_age, footer_with_age, image_title_with_age, message_time,
+                        banner_text_position_v, banner_text_position_h, banner_avatar_enabled, banner_text_enabled, banner_avatar_position_v, banner_avatar_position_h,
+                        banner_text_color, banner_title_size, banner_name_size, banner_avatar_size_percent,
+                        banner_name_text_no_age, banner_name_text_with_age, show_avatar_no_age, show_avatar_with_age 
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
                         guild_id,
@@ -110,6 +178,20 @@ async def load_bot_config(bot, guild_id: int):
                         None,
                         None,
                         "08:00",
+                        "center",
+                        "center",
+                        True,
+                        True,
+                        "bottom",
+                        "center",
+                        "000000",
+                        75,
+                        105,
+                        45,
+                        None,
+                        None,
+                        True,
+                        True
                     ),
                 )
 
@@ -119,7 +201,7 @@ async def load_all_guild_configs(bot):
         try:
             await load_bot_config(bot, guild.id)
         except Exception as e:
-            print(f"Fehler beim Laden der Konfiguration für Guild {guild.id}: {e}")
+            log(f"Error loading configuration for guild {guild.id}: {e}", 'ERROR')
 
 
 async def generate_birthday_image(
@@ -127,7 +209,12 @@ async def generate_birthday_image(
         title_text: str,
         name_text: str,
         background_path: str = None,
-):
+        bot: commands.Bot = None,
+        guild_id: int = None,
+        banner_config: dict = None,
+        with_age: bool = False,
+        age_str: str = None,
+) -> discord.File:
     try:
         bg_path = (
             background_path
@@ -137,67 +224,146 @@ async def generate_birthday_image(
         if not os.path.exists(bg_path):
             return None
 
+        if banner_config is None:
+            banner_config = {}
+            if bot and guild_id:
+                await bot.load_bot_config(bot, guild_id)
+                config = bot.guild_configs.get(guild_id, {})
+                banner_config = {
+                    "text_position_v": config.get("banner_text_position_v", "center"),
+                    "text_position_h": config.get("banner_text_position_h", "center"),
+                    "avatar_activated": config.get("banner_avatar_enabled", True),
+                    "text_activated": config.get("banner_text_enabled", True),
+                    "avatar_position_v": config.get("banner_avatar_position_v", "bottom"),
+                    "avatar_position_h": config.get("banner_avatar_position_h", "center"),
+                    "text_color": config.get("banner_text_color", "000000"),
+                    "title_size": config.get("banner_title_size", 75),
+                    "name_size": config.get("banner_name_size", 105),
+                    "avatar_size_percent": config.get("banner_avatar_size_percent", 45),
+                    "image_title_no_age": config.get("image_title_no_age", "Happy Birthday!"),
+                    "image_title_with_age": config.get("image_title_with_age", "Happy Birthday!"),
+                    "banner_name_text_no_age": config.get("banner_name_text_no_age", "%username"),
+                    "banner_name_text_with_age": config.get("banner_name_text_with_age", "%username"),
+                }
+            else:
+                banner_config = {
+                    "text_position_v": "center",
+                    "text_position_h": "center",
+                    "avatar_activated": True,
+                    "text_activated": True,
+                    "avatar_position_v": "bottom",
+                    "avatar_position_h": "center",
+                    "text_color": "000000",
+                    "title_size": 75,
+                    "name_size": 105,
+                    "avatar_size_percent": 45,
+                    "image_title_no_age": "Happy Birthday!",
+                    "image_title_with_age": "Happy Birthday!",
+                    "banner_name_text_no_age": "%username",
+                    "banner_name_text_with_age": "%username",
+                }
+
         with Image.open(bg_path) as img:
             draw = ImageDraw.Draw(img)
 
+            title_size = banner_config.get("title_size") or 75
+            name_size = banner_config.get("name_size") or 105
+
             try:
-                font_title = ImageFont.truetype(FONT_PATH, 75)
-                font_name = ImageFont.truetype(FONT_PATH, 105)
+                font_title = ImageFont.truetype(FONT_PATH, title_size)
+                font_name = ImageFont.truetype(FONT_PATH, name_size)
             except Exception:
                 font_title = ImageFont.load_default()
                 font_name = ImageFont.load_default()
 
-            center_x = img.width // 2
-            center_y = img.height // 3
+            text_color_hex = banner_config.get("text_color") or "000000"
+            if not isinstance(text_color_hex, str) or len(text_color_hex) < 6:
+                text_color_hex = "000000"
 
-            y_title = center_y - 100
-            y_name = center_y + 15
-
-            draw.text(
-                (center_x, y_title),
-                title_text,
-                font=font_title,
-                fill=IMAGE_TEXT_COLOR,
-                anchor="mm",
-            )
-            draw.text(
-                (center_x, y_name),
-                name_text,
-                font=font_name,
-                fill=IMAGE_TEXT_COLOR,
-                anchor="mm",
+            text_color = (
+                int(text_color_hex[0:2], 16),
+                int(text_color_hex[2:4], 16),
+                int(text_color_hex[4:6], 16),
+                255
             )
 
-            async with aiohttp.ClientSession() as session:
-                async with session.get(str(user.display_avatar.url)) as resp:
-                    if resp.status == 200:
-                        avatar_data = io.BytesIO(await resp.read())
-                        with Image.open(avatar_data) as avatar:
-                            avatar_size = int(img.height * 0.45)
-                            avatar = avatar.resize((avatar_size, avatar_size)).convert("RGBA")
+            text_y_map = {"top": img.height * 0.2, "center": img.height * 0.4, "bottom": img.height * 0.7}
+            text_x_map = {"left": img.width * 0.15, "center": img.width * 0.5, "right": img.width * 0.85}
 
-                            mask = Image.new("L", (avatar_size, avatar_size), 0)
-                            draw_mask = ImageDraw.Draw(mask)
-                            draw_mask.ellipse((0, 0, avatar_size, avatar_size), fill=255)
+            v_pos = banner_config.get("text_position_v") or "center"
+            h_pos = banner_config.get("text_position_h") or "center"
 
-                            avatar_alpha = avatar.split()[3]
+            y_title = text_y_map.get(v_pos, img.height * 0.4) - 100
+            y_name = text_y_map.get(v_pos, img.height * 0.4) + 15
+            x_text = text_x_map.get(h_pos, img.width * 0.5)
 
-                            final_mask = Image.new("L", (avatar_size, avatar_size), 0)
-                            final_mask.paste(mask, (0, 0), mask=avatar_alpha)
+            if banner_config.get("text_activated", True):
+                image_title_key = "image_title_with_age" if with_age else "image_title_no_age"
+                image_title_text = banner_config.get(image_title_key) or title_text or "Happy Birthday!"
 
-                            x_pos = center_x - (avatar_size // 2)
-                            y_pos = img.height - avatar_size
+                if isinstance(image_title_text, str):
+                    image_title_text = image_title_text.replace("%username", user.display_name or "")
+                    if with_age and age_str:
+                        image_title_text = image_title_text.replace("%age", age_str)
 
-                            img.paste(avatar, (x_pos, y_pos), final_mask)
+                draw.text(
+                    (x_text, y_title),
+                    str(image_title_text),
+                    font=font_title,
+                    fill=text_color,
+                    anchor="mm",
+                )
+
+                banner_name_text_key = "banner_name_text_with_age" if with_age else "banner_name_text_no_age"
+                banner_name_text = banner_config.get(banner_name_text_key) or name_text or user.display_name or ""
+
+                if isinstance(banner_name_text, str):
+                    banner_name_text = banner_name_text.replace("%username", user.display_name or "")
+                    if with_age and age_str:
+                        banner_name_text = banner_name_text.replace("%age", age_str)
+
+                draw.text(
+                    (x_text, y_name),
+                    str(banner_name_text),
+                    font=font_name,
+                    fill=text_color,
+                    anchor="mm",
+                )
+
+            if banner_config.get("avatar_activated", True):
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(str(user.display_avatar.url)) as resp:
+                        if resp.status == 200:
+                            avatar_data = io.BytesIO(await resp.read())
+                            with Image.open(avatar_data) as avatar:
+                                avatar_size = int(img.height * (banner_config.get("avatar_size_percent", 45) / 100))
+                                avatar = avatar.convert("RGBA").resize((avatar_size, avatar_size), Image.Resampling.LANCZOS)
+
+                                mask = Image.new("L", (avatar_size, avatar_size), 0)
+                                draw_mask = ImageDraw.Draw(mask)
+                                draw_mask.ellipse((0, 0, avatar_size, avatar_size), fill=255)
+
+                                avatar_alpha = avatar.getchannel("A")
+                                final_mask = Image.composite(avatar_alpha, Image.new("L", (avatar_size, avatar_size), 0), mask)
+
+                                avatar_y_map = {"top": img.height * 0.1, "center": img.height * 0.5, "bottom": img.height * 0.85}
+                                avatar_x_map = {"left": img.width * 0.1, "center": img.width * 0.5, "right": img.width * 0.9}
+
+                                avatar_v = banner_config.get("avatar_position_v") or "bottom"
+                                avatar_h = banner_config.get("avatar_position_h") or "center"
+
+                                x_pos = avatar_x_map.get(avatar_h, img.width * 0.5) - (avatar_size // 2)
+                                y_pos = avatar_y_map.get(avatar_v, img.height * 0.85) - (avatar_size // 2)
+
+                                img.paste(avatar, (int(x_pos), int(y_pos)), final_mask)
 
             img_byte_arr = io.BytesIO()
             img.save(img_byte_arr, format="PNG")
             img_byte_arr.seek(0)
             return discord.File(img_byte_arr, filename="birthday_card.png")
     except Exception as e:
-        print(f"Fehler bei der Bildgenerierung: {e}")
+        log(f"Error during image generation: {e}", 'ERROR')
         return None
-
 
 async def get_first_writable_channel(guild: discord.Guild):
     for channel in guild.text_channels:
@@ -210,6 +376,8 @@ class BirthdayCheckTask(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+
+    async def cog_load(self):
         self.check_birthdays.start()
 
     def cog_unload(self):
@@ -262,7 +430,7 @@ class BirthdayCheckTask(commands.Cog):
                             if not (now_tz.month == month and now_tz.day == day):
                                 birthdays_to_remove_role.append(user_id)
                         except Exception as e:
-                            print(f"Fehler bei Zeitzonenberechnung für {user_id}: {e}")
+                            log(f"Error in timezone calculation for {user_id}: {e}", 'ERROR')
 
             birthday_channel_id = current_config.get("birthday_channel_id")
             birthday_role_id = current_config.get("birthday_role_id")
@@ -304,9 +472,9 @@ class BirthdayCheckTask(commands.Cog):
                     if birth_year > 0:
                         tz = pytz.timezone(user_tz_name)
                         age = datetime.now(tz).year - birth_year
-                        print(f"[BIRTHDAY DEBUG] guild={guild.name!r} lang={lang!r} age={age}")
+                        log(f"[BIRTHDAY DEBUG] guild={guild.name!r} lang={lang!r} age={age}", 'DEBUG')
                         age_str = format_age(age, lang)
-                        print(f"[BIRTHDAY DEBUG] age_str={age_str!r}")
+                        log(f"[BIRTHDAY DEBUG] age_str={age_str!r}", 'DEBUG')
                         message_type = "with_age"
 
                     embed_title = current_config.get(f"title_{message_type}") or (
@@ -354,7 +522,9 @@ class BirthdayCheckTask(commands.Cog):
                         description=final_embed_message,
                         color=current_config.get("config_embed_color", 0x3AAA06),
                     )
-                    embed.set_thumbnail(url=member.display_avatar.url)
+                    thumbnail_enabled = current_config.get(f'show_avatar_{message_type}')
+                    if thumbnail_enabled:
+                        embed.set_thumbnail(url=member.display_avatar.url)
                     if final_embed_footer:
                         embed.set_footer(text=final_embed_footer)
 
@@ -373,6 +543,10 @@ class BirthdayCheckTask(commands.Cog):
                             final_image_title,
                             member.display_name,
                             selected_background,
+                            self.bot,
+                            guild.id,
+                            with_age=(message_type == "with_age"),
+                            age_str=age_str if message_type == "with_age" else None,
                         )
 
                     if target_channel:
@@ -381,9 +555,9 @@ class BirthdayCheckTask(commands.Cog):
                             if generated_image_file:
                                 await target_channel.send(file=generated_image_file)
                         except Exception as e:
-                            print(
-                                f"Fehler beim Senden der Geburstagsnachricht in"
-                                f" {guild.name}: {e}"
+                            log(
+                                f"Error sending birthday message in {guild.name}: {e}",
+                                'ERROR'
                             )
 
                     if birthday_role and birthday_role not in member.roles:
@@ -394,9 +568,9 @@ class BirthdayCheckTask(commands.Cog):
                                 birthday_role, reason=_("Geburtstagsrolle zugewiesen")
                             )
                         except Exception as e:
-                            print(
-                                f"Unerwarteter Fehler beim Zuweisen der Rolle an"
-                                f" {member.name}: {e}"
+                            log(
+                                f"Unexpected error assigning role to {member.name}: {e}",
+                                'ERROR'
                             )
 
             if birthday_role and birthdays_to_remove_role:
@@ -411,9 +585,9 @@ class BirthdayCheckTask(commands.Cog):
                                 ),
                             )
                         except Exception as e:
-                            print(
-                                f"Unerwarteter Fehler beim Entfernen der Rolle von"
-                                f" {member.name}: {e}"
+                            log(
+                                f"Unexpected error removing role from {member.name}: {e}",
+                                'ERROR'
                             )
 
     @check_birthdays.before_loop

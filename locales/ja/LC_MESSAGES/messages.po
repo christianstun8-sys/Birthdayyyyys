@@ -1,0 +1,1356 @@
+# Japanese translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-10-16 21:28+0200\n"
+"PO-Revision-Date: 2026-10-14 14:21+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: ja <LL@li.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: eventmessages.py:25
+msgid "⚠️ Unbekannter Fehler"
+msgstr "⚠️ 不明なエラー"
+
+#: cogs/birthday_commands.py:435 cogs/config_commands.py:426
+#: eventmessages.py:26
+msgid ""
+"Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
+"Server."
+msgstr "不明なエラーが発生しました。サポートサーバーまでご連絡ください。"
+
+#: eventmessages.py:53
+msgid "⚠️ Fehlende Berechtigung"
+msgstr "⚠️ 権限がありません"
+
+#: eventmessages.py:54
+msgid "Du hast nicht die erforderliche Berechtigung für diese Aktion."
+msgstr "この操作を実行する権限がありません。"
+
+#: eventmessages.py:80
+msgid "⚠️ Bot fehlt Berechtigung"
+msgstr "⚠️ ボットの権限が不足しています"
+
+#: eventmessages.py:81
+msgid ""
+"Der Bot hat nicht die erforderliche Berechtigung für diese Aktion. Bitte "
+"überprüfe die Bot-Rolle."
+msgstr "ボットにこの操作を実行するための必要な権限がありません。ボットのロールを確認してください。"
+
+#: eventmessages.py:109
+msgid "⚠️ Nicht gefunden"
+msgstr "⚠️ 見つかりません"
+
+#: cogs/birthday_check_task.py:458 cogs/config_commands.py:60
+#, python-format
+msgid "🎉 Herzlichen Glückwunsch zum Geburtstag, %username!"
+msgstr "🎉 %usernameさん、お誕生日おめでとうございます！"
+
+#: cogs/birthday_check_task.py:460 cogs/config_commands.py:62
+#, python-format
+msgid "🎂 Alles Gute zum %age Geburtstag, %username!"
+msgstr "🎂 %usernameさん、%age歳の誕生日おめでとうございます！"
+
+#: cogs/birthday_check_task.py:463 cogs/config_commands.py:66
+msgid "Bitte sende deine besten Wünsche an %mention!"
+msgstr "%mentionさんに温かいお祝いの言葉を送りましょう！"
+
+#: cogs/birthday_check_task.py:466 cogs/config_commands.py:68
+msgid "Lasst uns %mention zu seinem %age Geburtstag gratulieren!"
+msgstr "%mentionさんの%age歳の誕生日をみんなでお祝いしましょう！"
+
+#: cogs/birthday_check_task.py:470 cogs/config_commands.py:77
+msgid "Feiere schön!"
+msgstr "素敵なお祝いにしてください！"
+
+#: cogs/birthday_check_task.py:545
+msgid "Geburtstagsrolle zugewiesen"
+msgstr "誕生日ロールを付与しました"
+
+#: cogs/birthday_check_task.py:561
+msgid "Geburtstagsrolle entfernt (Geburtstag vorbei)"
+msgstr "誕生日ロールを解除しました（誕生日が終了しました）"
+
+#: cogs/birthday_commands.py:96 cogs/birthday_commands.py:193
+#: cogs/config_commands.py:1305 cogs/config_commands.py:1307
+msgid "⚠️ Du hast keine Berechtigung dazu."
+msgstr "⚠️ これを実行する権限がありません。"
+
+#: cogs/birthday_commands.py:101
+msgid "Ungültige Zeitzone! Bitte wähle eine aus der Liste."
+msgstr "無効なタイムゾーンです！リストから選択してください。"
+
+#: cogs/birthday_commands.py:109
+msgid "❌ Ungültiges Datum angegeben!"
+msgstr "❌ 無効な日付が指定されました！"
+
+#: cogs/birthday_commands.py:134
+#, python-brace-format
+msgid ""
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d}.{year} "
+"({timezone}) gesetzt!"
+msgstr "✅ {mention} の誕生日を {year}年{month:02d}月{day:02d}日（{timezone}）に設定しました！"
+
+#: cogs/birthday_commands.py:148
+#, python-brace-format
+msgid ""
+"✅ Der Geburtstag von {mention} wurde auf den {day:02d}.{month:02d} "
+"({timezone}) gesetzt!"
+msgstr "✅ {mention} の誕生日を {month:02d}月{day:02d}日（{timezone}）に設定しました！"
+
+#: cogs/birthday_commands.py:162
+#, python-brace-format
+msgid ""
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year} ({timezone}) "
+"gesetzt!"
+msgstr "✅ あなたの誕生日を {year}年{month:02d}月{day:02d}日（{timezone}）に設定しました！"
+
+#: cogs/birthday_commands.py:170
+#, python-brace-format
+msgid ""
+"✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}. ({timezone}) gesetzt!"
+msgstr "✅ あなたの誕生日を {month:02d}月{day:02d}日（{timezone}）に設定しました！"
+
+#: cogs/birthday_commands.py:208
+#, python-brace-format
+msgid "✅ Der Geburtstag von {mention} wurde gelöscht."
+msgstr "✅ {mention} の誕生日を削除しました。"
+
+#: cogs/birthday_commands.py:214
+msgid "✅ Dein Geburtstag wurde gelöscht."
+msgstr "✅ あなたの誕生日を削除しました。"
+
+#: cogs/birthday_commands.py:250
+#, python-brace-format
+msgid ""
+"Der Geburtstag von {mention} ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "{mention} の誕生日は {year}年{month:02d}月{day:02d}日（{tz}）です。"
+
+#: cogs/birthday_commands.py:264
+#, python-brace-format
+msgid "Der Geburtstag von {mention} ist am {day:02d}.{month:02d} ({tz})."
+msgstr "{mention} の誕生日は {month:02d}月{day:02d}日（{tz}）です。"
+
+#: cogs/birthday_commands.py:273
+#, python-brace-format
+msgid "Dein Geburtstag ist am {day:02d}.{month:02d}.{year} ({tz})."
+msgstr "あなたの誕生日は {day:02d}年{month:02d}月{year}日 ({tz}) です。"
+
+#: cogs/birthday_commands.py:280
+#, python-brace-format
+msgid "Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz})."
+msgstr "あなたの誕生日は {month:02d}月{day:02d}日 ({tz}) です。"
+
+#: cogs/birthday_commands.py:289
+#, python-brace-format
+msgid "❌ Der Benutzer {mention} hat noch keinen Geburtstag registriert."
+msgstr "❌ ユーザー {mention} の誕生日はまだ登録されていません。"
+
+#: cogs/birthday_commands.py:296
+msgid "❌ Du hast noch keinen Geburtstag registriert."
+msgstr "❌ あなたの誕生日はまだ登録されていません。"
+
+#: cogs/birthday_commands.py:316
+msgid "Januar"
+msgstr "1月"
+
+#: cogs/birthday_commands.py:317
+msgid "Februar"
+msgstr "2月"
+
+#: cogs/birthday_commands.py:318
+msgid "März"
+msgstr "3月"
+
+#: cogs/birthday_commands.py:319
+msgid "April"
+msgstr "4月"
+
+#: cogs/birthday_commands.py:320
+msgid "Mai"
+msgstr "5月"
+
+#: cogs/birthday_commands.py:321
+msgid "Juni"
+msgstr "6月"
+
+#: cogs/birthday_commands.py:322
+msgid "Juli"
+msgstr "7月"
+
+#: cogs/birthday_commands.py:323
+msgid "August"
+msgstr "8月"
+
+#: cogs/birthday_commands.py:324
+msgid "September"
+msgstr "9月"
+
+#: cogs/birthday_commands.py:325
+msgid "Oktober"
+msgstr "10月"
+
+#: cogs/birthday_commands.py:326
+msgid "November"
+msgstr "11月"
+
+#: cogs/birthday_commands.py:327
+msgid "Dezember"
+msgstr "12月"
+
+#: cogs/birthday_commands.py:344 cogs/birthday_commands.py:421
+msgid "⚠️ Es sind noch keine Geburtstage registriert."
+msgstr "⚠️ 登録されている誕生日はまだありません。"
+
+#: cogs/birthday_commands.py:359
+msgid "Jahre"
+msgstr "歳"
+
+#: cogs/birthday_commands.py:378
+msgid "Geburtstagskalender"
+msgstr "誕生日カレンダー"
+
+#: cogs/config_commands.py:40
+msgid "Arabisch"
+msgstr "アラビア語"
+
+#: cogs/config_commands.py:41
+msgid "Tschechisch"
+msgstr "チェコ語"
+
+#: cogs/config_commands.py:42
+msgid "Deutsch"
+msgstr "ドイツ語"
+
+#: cogs/config_commands.py:43
+msgid "Englisch"
+msgstr "英語"
+
+#: cogs/config_commands.py:44
+msgid "Spanisch"
+msgstr "スペイン語"
+
+#: cogs/config_commands.py:45
+msgid "Französisch"
+msgstr "フランス語"
+
+#: cogs/config_commands.py:46
+msgid "Indonesisch"
+msgstr "インドネシア語"
+
+#: cogs/config_commands.py:47
+msgid "Japanisch"
+msgstr "日本語"
+
+#: cogs/config_commands.py:48
+msgid "Koreanisch"
+msgstr "韓国語"
+
+#: cogs/config_commands.py:49
+msgid "Polnisch"
+msgstr "ポーランド語"
+
+#: cogs/config_commands.py:50
+msgid "Portugiesisch"
+msgstr "ポルトガル語"
+
+#: cogs/config_commands.py:51
+msgid "Russisch"
+msgstr "ロシア語"
+
+#: cogs/config_commands.py:52
+msgid "Türkisch"
+msgstr "トルコ語"
+
+#: cogs/config_commands.py:53
+msgid "Ukrainisch"
+msgstr "ウクライナ語"
+
+#: cogs/config_commands.py:54
+msgid "Chinesisch"
+msgstr "中国語"
+
+#: cogs/config_commands.py:72
+msgid "Happy Birthday!"
+msgstr "お誕生日おめでとうございます！"
+
+#: cogs/config_commands.py:74
+msgid "Happy %age Birthday!"
+msgstr "お誕生日おめでとうございます！ (%age歳)"
+
+#: cogs/config_commands.py:95
+msgid "❌ Keine Berechtigung zum Schreiben im Geburtstagskanal."
+msgstr "❌ 誕生日のチャンネルに書き込む権限がありません。"
+
+#: cogs/config_commands.py:97
+msgid "⚠️ Keine Berechtigung, im Geburtstagskanal Links einzubetten."
+msgstr "⚠️ 誕生日のチャンネルにリンクを埋め込む権限がありません。"
+
+#: cogs/config_commands.py:99
+msgid "❌ Keine Berechtigung, Dateien im Geburtstagskanal anzuhängen."
+msgstr "❌ 誕生日のチャンネルにファイルを添付する権限がありません。"
+
+#: cogs/config_commands.py:101
+msgid ""
+"️❌ Kann den ausgewählten Geburtstagskanal nicht finden. Keine Berechtigung?"
+msgstr "❌ 選択された誕生日チャンネルが見つかりません。権限がありませんか？"
+
+#: cogs/config_commands.py:104
+msgid "⚠️ Kein Geburtstagskanal gewählt - Systemkanal wird verwendet."
+msgstr "⚠️ 誕生日チャンネルが選択されていません - システムチャンネルを使用します。"
+
+#: cogs/config_commands.py:106
+msgid "❌ Kein Geburtstagskanal gewählt und kein Systemkanal verfügbar."
+msgstr "❌ 誕生日チャンネルが選択されておらず、利用可能なシステムチャンネルもありません。"
+
+#: cogs/config_commands.py:114
+msgid "️❌ Keine Berechtigung zum Schreiben im Ankündigungskanal für Updates."
+msgstr "❌ 更新情報のお知らせチャンネルに書き込む権限がありません。"
+
+#: cogs/config_commands.py:116
+msgid ""
+"⚠️ Keine Berechtigung, im Ankündigungskanal für Updates Links einzubetten."
+msgstr "⚠️ 更新情報のお知らせチャンネルにリンクを埋め込む権限がありません。"
+
+#: cogs/config_commands.py:118
+msgid ""
+"️❌ Kann den ausgewählten Ankündigungskanal für Updates nicht finden. Keine "
+"Berechtigung?"
+msgstr "❌ 選択された更新情報のお知らせチャンネルが見つかりません。権限がありませんか？"
+
+#: cogs/config_commands.py:126
+msgid ""
+"❌ Keine Berechtigung, die Geburtstagsrolle zu verwalten (Geburtstagsrolle "
+"ist höher als die Botrolle)."
+msgstr "❌ 誕生日ロールを管理する権限がありません（誕生日ロールがボットのロールよりも上位にあります）。"
+
+#: cogs/config_commands.py:128
+msgid "❌ Geburtstagsrolle kann nicht `@everyone` sein."
+msgstr "❌ 誕生日ロールを `@everyone` にすることはできません。"
+
+#: cogs/config_commands.py:131
+msgid "❌ Birthdayyyyys hat die 'Manage Roles' Berechtigung nicht."
+msgstr "❌ Birthdayyyyys に「ロールの管理」権限がありません。"
+
+#: cogs/config_commands.py:140
+msgid ""
+"ℹ️ Geburtstagsbanner sind aktiviert, aber es wurden keine eigenen "
+"Hintergründe hinzugefügt - Standardhintergrund wird verwendet"
+msgstr "ℹ️ バースデーバナーは有効になっていますが、カスタム背景が追加されていないため、デフォルトの背景が使用されます"
+
+#: cogs/config_commands.py:143
+msgid "⚠️ Birthdayyyyys hat die 'Embed Links' Berechtigung nicht."
+msgstr "⚠️ Birthdayyyyys に「リンクの埋め込み」権限がありません。"
+
+#: cogs/config_commands.py:146
+msgid "❌ Birthdayyyyys hat die 'Attach Files' Berechtigung nicht."
+msgstr "❌ Birthdayyyyys に「ファイルを添付」権限がありません。"
+
+#: cogs/config_commands.py:179 cogs/config_commands.py:1492
+#: cogs/config_commands.py:1507
+msgid "Deaktiviert"
+msgstr "無効"
+
+#: cogs/config_commands.py:189
+msgid "Nicht gesetzt"
+msgstr "未設定"
+
+#: cogs/config_commands.py:190
+msgid "Keine"
+msgstr "なし"
+
+#: cogs/config_commands.py:191
+msgid "✅ Aktiviert"
+msgstr "✅ 有効"
+
+#: cogs/config_commands.py:191
+msgid "❌ Deaktiviert"
+msgstr "❌ 無効"
+
+#: cogs/config_commands.py:196
+msgid ""
+"Hier kannst du alle Einstellungen für das Geburtstagssystem verwalten.\n"
+"Nutze das Menü unten zum Konfigurieren."
+msgstr ""
+"ここでは、誕生日システムのすべての設定を管理できます。\n"
+"下のメニューを使用して設定してください。"
+
+#: cogs/config_commands.py:198
+msgid ""
+"\n"
+"\n"
+"**⚠️ Konfigurationswarnungen:**\n"
+msgstr ""
+"\n"
+"\n"
+"**⚠️ 設定の警告:**\n"
+
+#: cogs/config_commands.py:204
+msgid "⚙️ Server-Konfiguration"
+msgstr "⚙️ サーバー設定"
+
+#: cogs/config_commands.py:209
+msgid "🪛 Kanal"
+msgstr "🪛 チャンネル"
+
+#: cogs/config_commands.py:210
+msgid "⚙️ Rolle"
+msgstr "⚙️ ロール"
+
+#: cogs/config_commands.py:211
+msgid "🖼️ Bilder"
+msgstr "🖼️ 画像"
+
+#: cogs/config_commands.py:212
+msgid "🎨 Farbe"
+msgstr "🎨 カラー"
+
+#: cogs/config_commands.py:213
+msgid "🗣️ Sprache"
+msgstr "🗣️ 言語"
+
+#: cogs/config_commands.py:214
+msgid "⏰ Uhrzeit"
+msgstr "⏰ 時刻"
+
+#: cogs/config_commands.py:215
+msgid "📣 Ankündigungen"
+msgstr "📣 アナウンス"
+
+#: cogs/config_commands.py:384
+msgid "🔧 Größe anpassen"
+msgstr "🔧 サイズ変更"
+
+#: cogs/config_commands.py:389
+msgid "👍 Überspringen"
+msgstr "👍 スキップ"
+
+#: cogs/config_commands.py:401
+msgid "✅ Bild wurde erfolgreich zugeschnitten und gespeichert!"
+msgstr "✅ 画像の切り抜きと保存が正常に完了しました！"
+
+#: cogs/config_commands.py:405
+msgid "✅ Bild wurde ohne Zuschneiden gespeichert!"
+msgstr "✅ 画像を切り抜かずに保存しました！"
+
+#: cogs/config_commands.py:412
+msgid "Bilddatei hochladen"
+msgstr "画像ファイルをアップロード"
+
+#: cogs/config_commands.py:419
+msgid "Bilder hochladen:"
+msgstr "画像をアップロード:"
+
+#: cogs/config_commands.py:432
+msgid "Falsches Bildformat!"
+msgstr "不正な画像フォーマットです！"
+
+#: cogs/config_commands.py:433
+#, python-brace-format
+msgid ""
+"Das Standard-Bildformat lautet `32:9` (z.B. 1920x540). Das Format deines "
+"Bildes ist `{width}x{height}`. Texte und Bilder können dadurch verrutschen. "
+"Willst du das Bild automatisch zuschneiden lassen, oder dennoch fortfahren?"
+msgstr ""
+"標準の画像フォーマットは `32:9` (例: 1920x540) です。あなたの画像のフォーマットは `{width}x{height}` "
+"です。これによりテキストや画像がずれる可能性があります。画像を自動で切り抜きますか、それともこのまま続行しますか？"
+
+#: cogs/config_commands.py:442
+msgid "✅ Datei wurde erfolgreich hochgeladen!"
+msgstr "✅ ファイルのアップロードが正常に完了しました！"
+
+#: cogs/config_commands.py:451
+msgid "Sendezeit der Geburtstagsnachricht setzen"
+msgstr "誕生日メッセージの送信時間を設定"
+
+#: cogs/config_commands.py:453
+msgid "Neue Zeit (Format: HH:MM)"
+msgstr "新しい時刻 (形式: HH:MM)"
+
+#: cogs/config_commands.py:471
+#, python-brace-format
+msgid "❌ Die Eingabe {input} ist keine gültige Zeit."
+msgstr "❌ 入力された {input} は有効な時刻ではありません。"
+
+#: cogs/config_commands.py:493
+msgid "Nachricht ohne Altersangabe anpassen"
+msgstr "年齢なしメッセージをカスタマイズ"
+
+#: cogs/config_commands.py:501
+#, python-format
+msgid "Titel des Embeds (%username)"
+msgstr "埋め込みのタイトル (%username)"
+
+#: cogs/config_commands.py:510
+#, python-format
+msgid "Nachricht im Embed (%mention, %username)"
+msgstr "埋め込みのメッセージ (%mention, %username)"
+
+#: cogs/config_commands.py:520
+#, python-format
+msgid "Footer im Embed (optional, %username)"
+msgstr "埋め込みのフッター (オプション, %username)"
+
+#: cogs/config_commands.py:521
+msgid "Kein Footer"
+msgstr "フッターなし"
+
+#: cogs/config_commands.py:529 cogs/config_commands.py:611
+msgid "Anzeigen"
+msgstr "表示"
+
+#: cogs/config_commands.py:533 cogs/config_commands.py:615
+msgid "Verstecken"
+msgstr "非表示"
+
+#: cogs/config_commands.py:538 cogs/config_commands.py:620
+msgid "Profilbild im Embed anzeigen?"
+msgstr "埋め込みにプロフィール画像を表示しますか？"
+
+#: cogs/config_commands.py:563
+msgid ""
+"Die Geburtstagsnachricht (ohne Alter) wurde erfolgreich aktualisiert! ✅"
+msgstr "生年月日メッセージ（年齢なし）が正常に更新されました！ ✅"
+
+#: cogs/config_commands.py:575
+msgid "Nachricht mit Altersangabe anpassen"
+msgstr "年齢付きメッセージをカスタマイズ"
+
+#: cogs/config_commands.py:583
+msgid "Titel (%age)"
+msgstr "タイトル (%age)"
+
+#: cogs/config_commands.py:592
+#, python-format
+msgid "Beschr. (%mention, %username, %age)"
+msgstr "説明 (%mention, %username, %age)"
+
+#: cogs/config_commands.py:602
+#, python-format
+msgid "Footer (optional, %username)"
+msgstr "フッター（オプション、%username）"
+
+#: cogs/config_commands.py:603
+msgid "Standard: Feiere schön!"
+msgstr "デフォルト: 素敵な一日を！"
+
+#: cogs/config_commands.py:644
+msgid "Die Geburtstagsnachricht (mit Alter) wurde erfolgreich aktualisiert! ✅"
+msgstr "生年月日メッセージ（年齢付き）が正常に更新されました！ ✅"
+
+#: cogs/config_commands.py:656
+msgid "Bild-Texte anpassen"
+msgstr "画像テキストをカスタマイズ"
+
+#: cogs/config_commands.py:664
+#, python-format
+msgid "Bild-Titel ohne Alter (%username)"
+msgstr "年齢なしの画像タイトル (%username)"
+
+#: cogs/config_commands.py:673
+#, python-format
+msgid "Bild-Titel mit Alter (%age, %username)"
+msgstr "年齢付きの画像タイトル (%age, %username)"
+
+#: cogs/config_commands.py:682
+#, python-format
+msgid "Bild-Text ohne Alter (%username)"
+msgstr "年齢なしの画像テキスト (%username)"
+
+#: cogs/config_commands.py:691
+#, python-format
+msgid "Bild-Text mit Alter (%username, %age)"
+msgstr "年齢付きの画像テキスト (%username, %age)"
+
+#: cogs/config_commands.py:716
+msgid ""
+"Die Bild-Texte wurden übernommen. Klicke auf 'Speichern' um sie dauerhaft zu"
+" speichern. ✅"
+msgstr "画像テキストが適用されました。永続的に保存するには「保存」をクリックしてください。 ✅"
+
+#: cogs/config_commands.py:728
+msgid "Embed-Farbe anpassen"
+msgstr "埋め込みの色をカスタマイズ"
+
+#: cogs/config_commands.py:734
+msgid "Farbe des Embeds (Hex-Code, z.B. FF00FF)"
+msgstr "埋め込みの色（HEXコード、例：FF00FF）"
+
+#: cogs/config_commands.py:735
+#, python-brace-format
+msgid "Aktuell: {color}"
+msgstr "現在: {color}"
+
+#: cogs/config_commands.py:750
+msgid "Ungültiger Hex-Code."
+msgstr "無効なHEXコードです。"
+
+#: cogs/config_commands.py:790 cogs/config_commands.py:1150
+msgid "Geburtstagskanal festlegen"
+msgstr "誕生日チャンネルを設定"
+
+#: cogs/config_commands.py:793
+msgid "Kanal auswählen..."
+msgstr "チャンネルを選択..."
+
+#: cogs/config_commands.py:800
+msgid "Ziel-Kanal für Geburtstage:"
+msgstr "誕生日の宛先チャンネル："
+
+#: cogs/config_commands.py:812 cogs/config_commands.py:865
+#: cogs/config_commands.py:1378
+msgid ""
+"❌ Ich habe keine Berechtigung, auf den konfigurierten Kanal zuzugreifen."
+msgstr "❌ 設定されたチャンネルにアクセスする権限がありません。"
+
+#: cogs/config_commands.py:817 cogs/config_commands.py:869
+msgid "❌ Ich kann keine Nachrichten in dem ausgewählten Kanal schreiben."
+msgstr "❌ 選択されたチャンネルにメッセージを送信できません。"
+
+#: cogs/config_commands.py:840
+msgid "News-Kanal festlegen"
+msgstr "お知らせチャンネルを設定"
+
+#: cogs/config_commands.py:843
+msgid "Kanal auswählen, leer lassen zum Deaktivieren..."
+msgstr "チャンネルを選択するか、無効にするには空のままにしてください..."
+
+#: cogs/config_commands.py:849
+msgid "Ziel-Kanal für News:"
+msgstr "お知らせの宛先チャンネル："
+
+#: cogs/config_commands.py:883
+msgid "Geburtstagsrolle festlegen"
+msgstr "誕生日ロールを設定"
+
+#: cogs/config_commands.py:886
+msgid "Rolle auswählen, leer lassen zum Deaktivieren..."
+msgstr "ロールを選択してください。無効にするには空のままにします..."
+
+#: cogs/config_commands.py:893
+msgid "Geburtstagsrolle wählen"
+msgstr "誕生日ロールを選択"
+
+#: cogs/config_commands.py:924
+#, python-brace-format
+msgid ""
+"⚠️ Ich kann die Rolle {role} nicht vergeben, da sie höher oder gleichrangig "
+"mit meiner eigenen Rolle ist."
+msgstr "⚠️ 私のロールと同等かそれよりも高いため、ロール {role} を付与できません。"
+
+#: cogs/config_commands.py:930
+msgid "❌ Du kannst nicht die @everyone Rolle als Geburtstagsrolle setzen."
+msgstr "❌ @everyone ロールを誕生日ロールとして設定することはできません。"
+
+#: cogs/config_commands.py:979
+msgid "❌ Diese Sprache ist bereits eingestellt."
+msgstr "❌ この言語はすでに設定されています。"
+
+#: cogs/config_commands.py:1017 cogs/config_commands.py:1125
+#, python-brace-format
+msgid "Bild {count}"
+msgstr "画像 {count}"
+
+#: cogs/config_commands.py:1025
+msgid "Wähle ein Bild zum Löschen..."
+msgstr "削除する画像を選択してください..."
+
+#: cogs/config_commands.py:1043
+#, python-brace-format
+msgid "✅ Bild `{file}` wurde erfolgreich gelöscht!"
+msgstr "✅ 画像 `{file}` が正常に削除されました！"
+
+#: cogs/config_commands.py:1048
+msgid "❌ Fehler beim Löschen der Datei."
+msgstr "❌ ファイルの削除中にエラーが発生しました。"
+
+#: cogs/config_commands.py:1054
+msgid "❌ Das Bild existiert nicht mehr."
+msgstr "❌ その画像はもう存在しません。"
+
+#: cogs/config_commands.py:1065
+msgid "➕ Bild hinzufügen"
+msgstr "➕ 画像を追加"
+
+#: cogs/config_commands.py:1085
+msgid "❌ Das Bildlimit von 10 Bildern wurde erreicht."
+msgstr "❌ 画像の制限である10枚に達しました。"
+
+#: cogs/config_commands.py:1101
+msgid "## Hintergrundbilder verwalten"
+msgstr "## 背景画像の管理"
+
+#: cogs/config_commands.py:1105
+msgid ""
+"Du findest hier eine Liste aller Bilder, die du hinzugefügt hast. Solltest "
+"du derzeit keine Bilder hinzugefügt haben, wird das Standardbild genutzt."
+msgstr "追加した画像の一覧がここに表示されます。現在画像を追加していない場合は、デフォルトの画像が使用されます。"
+
+#: cogs/config_commands.py:1150
+msgid "Kanal"
+msgstr "チャンネル"
+
+#: cogs/config_commands.py:1151
+msgid "Rolle"
+msgstr "ロール"
+
+#: cogs/config_commands.py:1151
+msgid "Geburtstagsrolle zuweisen"
+msgstr "誕生日の役割を割り当てる"
+
+#: cogs/config_commands.py:1152
+msgid "Bilder An/Aus"
+msgstr "画像のオン/オフ"
+
+#: cogs/config_commands.py:1152
+msgid "Geburtstagskarten aktivieren/deaktivieren"
+msgstr "誕生日カードの有効化/無効化"
+
+#: cogs/config_commands.py:1153
+msgid "Farbe"
+msgstr "色"
+
+#: cogs/config_commands.py:1153
+msgid "Farbe der Embeds ändern"
+msgstr "埋め込みの色を変更する"
+
+#: cogs/config_commands.py:1154
+msgid "Ankündigungen"
+msgstr "お知らせ"
+
+#: cogs/config_commands.py:1154
+msgid "News-Kanal verwalten"
+msgstr "ニュースチャンネルを管理する"
+
+#: cogs/config_commands.py:1155
+msgid "Sprache"
+msgstr "言語"
+
+#: cogs/config_commands.py:1155
+msgid "Sprache des Bots ändern"
+msgstr "ボットの言語を変更する"
+
+#: cogs/config_commands.py:1156
+msgid "Nachricht (ohne Alter)"
+msgstr "メッセージ（年齢なし）"
+
+#: cogs/config_commands.py:1156
+msgid "Embed-Text für Modus ohne Alter"
+msgstr "年齢非表示モードの埋め込みテキスト"
+
+#: cogs/config_commands.py:1157
+msgid "Nachricht (mit Alter)"
+msgstr "メッセージ（年齢あり）"
+
+#: cogs/config_commands.py:1157
+msgid "Embed-Text für Modus mit Alter"
+msgstr "年齢表示モードの埋め込みテキスト"
+
+#: cogs/config_commands.py:1158
+msgid "Uhrzeit"
+msgstr "時刻"
+
+#: cogs/config_commands.py:1158
+msgid "Sendezeit der Nachrichten anpassen"
+msgstr "メッセージの送信時間を調整する"
+
+#: cogs/config_commands.py:1159
+msgid "Banner-Design"
+msgstr "バナーデザイン"
+
+#: cogs/config_commands.py:1159
+msgid "Aussehen der Geburtstagsbanner anpassen"
+msgstr "誕生日バナーの外観を調整する"
+
+#: cogs/config_commands.py:1160
+msgid "Bilder-Verwaltung"
+msgstr "画像管理"
+
+#: cogs/config_commands.py:1160
+msgid "Öffne das Verwaltungsfenster für Hintergrundbilder"
+msgstr "背景画像管理ウィンドウを開く"
+
+#: cogs/config_commands.py:1164
+msgid "Wähle eine Einstellung zum Bearbeiten..."
+msgstr "編集する設定を選択してください..."
+
+#: cogs/config_commands.py:1255
+msgid "🌍 Sprache"
+msgstr "🌍 言語"
+
+#: cogs/config_commands.py:1256
+msgid ""
+"Hier kannst du die Sprache der Antworten des Bots anpassen.\n"
+"**HINWEIS:** Übersetzungen können fehlerhaft sein."
+msgstr ""
+"ここでボットの返答案の言語を調整できます。\n"
+"**注意:** 翻訳が不正確な場合があります。"
+
+#: cogs/config_commands.py:1323
+msgid "❌ Nur in Servern möglich."
+msgstr "❌ サーバー内でしか実行できません。"
+
+#: cogs/config_commands.py:1355
+msgid "❌ Nur auf einem Server möglich."
+msgstr "❌ サーバーでのみ使用可能です。"
+
+#: cogs/config_commands.py:1367
+msgid "❌ Es wurde kein Geburtstagskanal gesetzt."
+msgstr "❌ 誕生日チャンネルが設定されていません。"
+
+#: cogs/config_commands.py:1375
+msgid ""
+"❌ Der konfigurierte Kanal wurde nicht gefunden (gelöscht?). Bitte setze ihn "
+"in der Config neu."
+msgstr "❌ 設定されたチャンネルが見つかりませんでした（削除されましたか？）。設定で再度指定してください。"
+
+#: cogs/config_commands.py:1442
+msgid ""
+"❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."
+msgstr "❌ 設定されたチャンネルにメッセージを送信する権限がありません。"
+
+#: cogs/config_commands.py:1444
+msgid "Test gesendet! ✅"
+msgstr "テスト送信しました！ ✅"
+
+#: cogs/config_commands.py:1469
+msgid "## 🎨 Banner-Design anpassen (1/2)"
+msgstr "## 🎨 バナーデザインのカスタマイズ (1/2)"
+
+#: cogs/config_commands.py:1473
+msgid "Avatar/Text-Aktivierung und Avatar-Positionen"
+msgstr "アバター/テキストの有効化とアバターの位置"
+
+#: cogs/config_commands.py:1479
+msgid "## 🎨 Banner-Design anpassen (2/2)"
+msgstr "## 🎨 バナーデザインのカスタマイズ (2/2)"
+
+#: cogs/config_commands.py:1483
+msgid "Text-Positionen, Farben und Größen"
+msgstr "テキストの位置、色、サイズ"
+
+#: cogs/config_commands.py:1488
+msgid "👤 Avatar"
+msgstr "👤 アバター"
+
+#: cogs/config_commands.py:1491 cogs/config_commands.py:1506
+msgid "Aktiviert"
+msgstr "有効"
+
+#: cogs/config_commands.py:1495
+msgid "Avatar aktiviert/deaktiviert"
+msgstr "アバターの有効/無効"
+
+#: cogs/config_commands.py:1503
+msgid "📝 Text"
+msgstr "📝 テキスト"
+
+#: cogs/config_commands.py:1510
+msgid "Text aktiviert/deaktiviert"
+msgstr "テキストの有効/無効"
+
+#: cogs/config_commands.py:1520
+msgid "✏️ Bild-Texte anpassen"
+msgstr "✏️ 画像テキストのカスタマイズ"
+
+#: cogs/config_commands.py:1527
+msgid "📍 Text-Position (Vertikal)"
+msgstr "📍 テキスト位置（垂直）"
+
+#: cogs/config_commands.py:1530 cogs/config_commands.py:1563
+msgid "Oben"
+msgstr "上"
+
+#: cogs/config_commands.py:1531 cogs/config_commands.py:1547
+#: cogs/config_commands.py:1564 cogs/config_commands.py:1580
+msgid "Mitte"
+msgstr "中央"
+
+#: cogs/config_commands.py:1532 cogs/config_commands.py:1565
+msgid "Unten"
+msgstr "下"
+
+#: cogs/config_commands.py:1535
+msgid "Text-Position (Vertikal)"
+msgstr "テキスト位置（垂直）"
+
+#: cogs/config_commands.py:1543
+msgid "📍 Text-Position (Horizontal)"
+msgstr "📍 テキスト位置（水平）"
+
+#: cogs/config_commands.py:1546 cogs/config_commands.py:1579
+msgid "Links"
+msgstr "左"
+
+#: cogs/config_commands.py:1548 cogs/config_commands.py:1581
+msgid "Rechts"
+msgstr "右"
+
+#: cogs/config_commands.py:1551
+msgid "Text-Position (Horizontal)"
+msgstr "テキスト位置（水平）"
+
+#: cogs/config_commands.py:1560
+msgid "👤 Avatar-Position (Vertikal)"
+msgstr "👤 アバター位置（垂直）"
+
+#: cogs/config_commands.py:1568
+msgid "Avatar-Position (Vertikal)"
+msgstr "アバター位置（垂直）"
+
+#: cogs/config_commands.py:1576
+msgid "👤 Avatar-Position (Horizontal)"
+msgstr "👤 アバター位置（水平）"
+
+#: cogs/config_commands.py:1584
+msgid "Avatar-Position (Horizontal)"
+msgstr "アバターの位置 (水平)"
+
+#: cogs/config_commands.py:1592
+msgid "🎨 Text-Farbe"
+msgstr "🎨 テキストの色"
+
+#: cogs/config_commands.py:1595
+msgid "Schwarz"
+msgstr "黒"
+
+#: cogs/config_commands.py:1596
+msgid "Weiß"
+msgstr "白"
+
+#: cogs/config_commands.py:1597
+msgid "Rot"
+msgstr "赤"
+
+#: cogs/config_commands.py:1598
+msgid "Blau"
+msgstr "青"
+
+#: cogs/config_commands.py:1599
+msgid "Grün"
+msgstr "緑"
+
+#: cogs/config_commands.py:1600
+msgid "Gelb"
+msgstr "黄"
+
+#: cogs/config_commands.py:1601
+msgid "Lila"
+msgstr "紫"
+
+#: cogs/config_commands.py:1602
+msgid "Orange"
+msgstr "オレンジ"
+
+#: cogs/config_commands.py:1605
+msgid "Text-Farbe"
+msgstr "テキストの色"
+
+#: cogs/config_commands.py:1613
+msgid "📏 Titel-Größe"
+msgstr "📏 タイトルのサイズ"
+
+#: cogs/config_commands.py:1616
+msgid "Klein (50px)"
+msgstr "小 (50px)"
+
+#: cogs/config_commands.py:1617
+msgid "Normal (75px)"
+msgstr "標準 (75px)"
+
+#: cogs/config_commands.py:1618
+msgid "Groß (100px)"
+msgstr "大 (100px)"
+
+#: cogs/config_commands.py:1619
+msgid "Sehr Groß (125px)"
+msgstr "特大 (125px)"
+
+#: cogs/config_commands.py:1620
+msgid "Riesig (150px)"
+msgstr "極大 (150px)"
+
+#: cogs/config_commands.py:1623
+msgid "Titel-Größe"
+msgstr "タイトルのサイズ"
+
+#: cogs/config_commands.py:1631
+msgid "📏 Name-Größe"
+msgstr "📏 名前のサイズ"
+
+#: cogs/config_commands.py:1634
+msgid "Klein (60px)"
+msgstr "小 (60px)"
+
+#: cogs/config_commands.py:1635
+msgid "Normal (105px)"
+msgstr "標準 (105px)"
+
+#: cogs/config_commands.py:1636
+msgid "Groß (140px)"
+msgstr "大 (140px)"
+
+#: cogs/config_commands.py:1637
+msgid "Sehr Groß (170px)"
+msgstr "特大 (170px)"
+
+#: cogs/config_commands.py:1638
+msgid "Riesig (200px)"
+msgstr "極大 (200px)"
+
+#: cogs/config_commands.py:1641
+msgid "Name-Größe"
+msgstr "名前のサイズ"
+
+#: cogs/config_commands.py:1649
+msgid "📐 Avatar-Größe"
+msgstr "📐 アバターサイズ"
+
+#: cogs/config_commands.py:1652
+msgid "Klein (25%)"
+msgstr "小 (25%)"
+
+#: cogs/config_commands.py:1653
+msgid "Normal (45%)"
+msgstr "通常 (45%)"
+
+#: cogs/config_commands.py:1654
+msgid "Groß (60%)"
+msgstr "大 (60%)"
+
+#: cogs/config_commands.py:1655
+msgid "Sehr Groß (75%)"
+msgstr "特大 (75%)"
+
+#: cogs/config_commands.py:1658
+msgid "Avatar-Größe"
+msgstr "アバターサイズ"
+
+#: cogs/config_commands.py:1668
+msgid "⬅️ Zurück"
+msgstr "⬅️ 戻る"
+
+#: cogs/config_commands.py:1674
+msgid "Weiter ➡️"
+msgstr "次へ ➡️"
+
+#: cogs/config_commands.py:1683
+msgid "💾 Speichern"
+msgstr "💾 保存"
+
+#: cogs/config_commands.py:1688
+msgid "👀 Vorschau"
+msgstr "👀 プレビュー"
+
+#: cogs/config_commands.py:1847
+msgid "✅ Banner-Einstellungen gespeichert!"
+msgstr "✅ バナーの設定が保存されました！"
+
+#: cogs/info_commands.py:31
+#, python-brace-format
+msgid ""
+"Hey! Ich bin **Birthdayyyyys**, ein Bot, um Leuten zu ihrem **Geburtstag** zu **gratulieren**! :)\n"
+"\n"
+"## ❔ __Infos:__\n"
+"<:status_online:1390283178144698420> Ich bin <t:1751450400:R> erstellt worden\n"
+"<:developer:1390293000747225098> Entwickler: **__[_chrxstianst.](https://discordid.netlify.app/?id=1235134572157603841)__**\n"
+"<:python:1390293453606486056> Library: discord.py-{version}\n"
+"ℹ️ Version: v{bot_version}\n"
+"🌐 Website: https://birthdayyyyys.christianst.xyz"
+msgstr ""
+"やあ！私は**Birthdayyyyys**、みんなの**誕生日**を**お祝い**するためのBotです！:)\n"
+"\n"
+"## ❔ __情報:__\n"
+"<:status_online:1390283178144698420> 作成日時: <t:1751450400:R>\n"
+"<:developer:1390293000747225098> 開発者: **__[_chrxstianst.](https://discordid.netlify.app/?id=1235134572157603841)__**\n"
+"<:python:1390293453606486056> ライブラリ: discord.py-{version}\n"
+"ℹ️ バージョン: v{bot_version}\n"
+"🌐 ウェブサイト: https://birthdayyyyys.christianst.xyz"
+
+#: cogs/info_commands.py:55
+msgid "Dieser Befehl kann nur in einem Server verwendet werden."
+msgstr "このコマンドはサーバー内でのみ使用できます。"
+
+#: cogs/info_commands.py:68
+msgid "🎉 Birthdayyyyys - Hilfe"
+msgstr "🎉 Birthdayyyyys - ヘルプ"
+
+#: cogs/info_commands.py:69
+msgid "Willkommen! Hier findest du alle verfügbaren Befehle."
+msgstr "ようこそ！ここでは利用可能なすべてのコマンドを確認できます。"
+
+#: cogs/info_commands.py:74
+msgid "📅 Geburtstagsbefehle"
+msgstr "📅 誕生日コマンド"
+
+#: cogs/info_commands.py:76
+msgid "Deinen Geburtstag festlegen"
+msgstr "自分の誕生日を設定する"
+
+#: cogs/info_commands.py:77
+msgid "Deinen Geburtstag entfernen"
+msgstr "自分の誕生日を削除する"
+
+#: cogs/info_commands.py:78
+msgid "Geburtstag anzeigen"
+msgstr "誕生日を表示する"
+
+#: cogs/info_commands.py:79
+msgid "Geburtstagskalender anzeigen"
+msgstr "誕生日カレンダーを表示する"
+
+#: cogs/info_commands.py:85
+msgid "⚙️ Konfiguration"
+msgstr "⚙️ 設定"
+
+#: cogs/info_commands.py:87
+msgid "Bot-Einstellungen öffnen"
+msgstr "Botの設定を開く"
+
+#: cogs/info_commands.py:88
+msgid "Geburtstagsnachricht testen"
+msgstr "誕生日メッセージをテストする"
+
+#: cogs/info_commands.py:94
+msgid "ℹ️ Information"
+msgstr "ℹ️ 情報"
+
+#: cogs/info_commands.py:96
+msgid "Bot-Informationen anzeigen"
+msgstr "Bot情報を表示する"
+
+#: cogs/info_commands.py:97
+msgid "Bot-Latenz prüfen"
+msgstr "Botの遅延を確認する"
+
+#: cogs/info_commands.py:98
+msgid "Diese Hilfe anzeigen"
+msgstr "このヘルプを表示する"
+
+#: cogs/info_commands.py:104
+msgid "📚 Dokumentation"
+msgstr "📚 ドキュメント"
+
+#: cogs/info_commands.py:105
+msgid ""
+"Für ausführliche Anleitungen und weitere Informationen besuche unsere "
+"[Dokumentation](https://birthdayyyyys.christianst.xyz/docs)."
+msgstr ""
+"詳細なガイドや追加情報については、[ドキュメント](https://birthdayyyyys.christianst.xyz/docs)をご覧ください。"
+
+#: cogs/info_commands.py:111
+msgid "🔧 Admin-Hinweis"
+msgstr "🔧 管理者向けヒント"
+
+#: cogs/info_commands.py:112
+msgid ""
+"Als Server-Administrator kannst du `/config` nutzen, um alle Bot-"
+"Einstellungen anzupassen."
+msgstr "サーバー管理者として、`/config` を使用してすべてのBot設定を調整できます。"
+
+#: cogs/info_commands.py:117
+msgid "Bei Fragen oder Problemen: https://birthdayyyyys.christianst.xyz/docs"
+msgstr "質問や問題がある場合: https://birthdayyyyys.christianst.xyz/docs"
+
+#: cogs/info_commands.py:150
+msgid "❌ Datenbankfehler"
+msgstr "❌ データベースエラー"
+
+#: cogs/info_commands.py:156
+msgid "⏱️ Ping-Ergebnisse"
+msgstr "⏱️ Ping結果"
+
+#: cogs/info_commands.py:157
+msgid "Latenzzeiten des Bots zu verschiedenen Komponenten:"
+msgstr "さまざまなコンポーネントに対するボットのレイテンシ:"
+
+#: cogs/info_commands.py:162
+msgid "🤖 Interne Verarbeitung"
+msgstr "🤖 内部処理"
+
+#: cogs/info_commands.py:167
+msgid "🌐 Discord API (Heartbeat)"
+msgstr "🌐 Discord API (ハートビート)"
+
+#: cogs/info_commands.py:172
+msgid "💾 Datenbank"
+msgstr "💾 データベース"
+
+#: cogs/setup-help.py:15
+msgid "Zurück"
+msgstr "戻る"
+
+#: cogs/setup-help.py:16 cogs/setup-help.py:22
+msgid "Weiter"
+msgstr "次へ"
+
+#: cogs/setup-help.py:17
+msgid "Konfiguration öffnen"
+msgstr "設定を開く"
+
+#: cogs/setup-help.py:22
+msgid "Abschließen"
+msgstr "完了"
+
+#: cogs/setup-help.py:29
+msgid "Schritt 1/4: Kanal einstellen"
+msgstr "ステップ 1/4: チャンネルの設定"
+
+#: cogs/setup-help.py:30
+msgid ""
+"**Wähle den Kanal, in dem Geburtstagsgrüße gesendet werden sollen.**\n"
+"\n"
+"Ohne einen Kanal werden keine Geburtstagsnachrichten versendet. Du kannst den Systemkanal des Servers verwenden oder einen eigenen Kanal erstellen.\n"
+"\n"
+"👉 Nutze `/config` und wähle 'Kanal' aus dem Menü."
+msgstr ""
+"**誕生日のお祝いメッセージを送信するチャンネルを選択します。**\n"
+"\n"
+"チャンネルが設定されていない場合、誕生日メッセージは送信されません。サーバーのシステムチャンネルを使用するか、新しいチャンネルを作成することができます。\n"
+"\n"
+"👉 `/config`を使用し、メニューから「チャンネル」を選択してください。"
+
+#: cogs/setup-help.py:38
+msgid "Schritt 2/4: Nachrichten anpassen"
+msgstr "ステップ 2/4: メッセージのカスタマイズ"
+
+#: cogs/setup-help.py:39
+#, python-format
+msgid ""
+"**Passe die Geburtstagsgrüße an deinen Server an.**\n"
+"\n"
+"Du kannst zwei verschiedene Nachrichten erstellen:\n"
+"• Eine für Mitglieder ohne Geburtsjahr\n"
+"• Eine für Mitglieder mit Geburtsjahr (zeigt das Alter an)\n"
+"\n"
+"Verfügbare Variablen: `%username`, `%mention`, `%age`\n"
+"\n"
+"👉 Nutze `/config` und wähle 'Nachricht (Mit/Ohne Alter)'."
+msgstr ""
+"**サーバーに合わせて誕生日のお祝いメッセージをカスタマイズします。**\n"
+"\n"
+"2種類の異なるメッセージを作成できます:\n"
+"• 誕生年がないメンバー用\n"
+"• 誕生年があるメンバー用（年齢を表示）\n"
+"\n"
+"利用可能な変数: `%username`, `%mention`, `%age`\n"
+"\n"
+"👉 `/config`を使用し、メニューから「メッセージ（年齢あり/なし）」を選択してください。"
+
+#: cogs/setup-help.py:49
+msgid "Schritt 3/4: Bilder aktivieren"
+msgstr "ステップ 3/4: 画像の有効化"
+
+#: cogs/setup-help.py:50
+msgid ""
+"**Aktiviere die automatische Bildgenerierung.**\n"
+"\n"
+"Der Bot kann personalisierte Banner mit Profilbild und Namen erstellen. Du kannst auch eigene Hintergrundbilder hochladen.\n"
+"\n"
+"👉 Nutze `/config` und wähle 'Bilder An/Aus'."
+msgstr ""
+"**自動画像生成を有効にします。**\n"
+"\n"
+"ボットはプロフィール画像と名前を使ったパーソナライズされたバナーを作成できます。独自の背景画像をアップロードすることも可能です。\n"
+"\n"
+"👉 `/config`を使用し、メニューから「画像のオン/オフ」を選択してください。"
+
+#: cogs/setup-help.py:58
+msgid "Schritt 4/4: Testen & Mitglieder einladen"
+msgstr "ステップ 4/4: テストとメンバーの招待"
+
+#: cogs/setup-help.py:59
+msgid ""
+"**Teste deine Konfiguration und lade Mitglieder ein.**\n"
+"\n"
+"• Teste mit `/config-test` um sicherzustellen, dass alles funktioniert\n"
+"• Mitglieder können ihren Geburtstag mit `/birthday-set` festlegen\n"
+"• Zeige alle Geburtstage mit `/birthday-list` an\n"
+"\n"
+"🎉 Dein Server ist bereit für Geburtstage!"
+msgstr ""
+"**設定をテストし、メンバーを招待します。**\n"
+"\n"
+"• `/config-test`を使ってすべてが正しく機能しているかテストする\n"
+"• メンバーは`/birthday-set`で自分の誕生日を設定できる\n"
+"• `/birthday-list`ですべての誕生日を表示する\n"
+"\n"
+"🎉 サーバーの誕生日の準備ができました！"
+
+#: cogs/setup-help.py:83
+msgid "🎉 Setup abgeschlossen!"
+msgstr "🎉 セットアップ完了！"
+
+#: cogs/setup-help.py:84
+msgid ""
+"Vielen Dank für das Einrichten von Birthdayyyyys!\n"
+"\n"
+"Bei Fragen nutze `/help` oder tritt dem Support Server bei: https://discord.gg/utD4afUrgt\n"
+"\n"
+"Wenn dir der Bot gefallen sollte, lass gerne eine Bewertung auf **__[TopGG](https://top.gg/bot/1389267222261792868)__** da!"
+msgstr ""
+"Birthdayyyyysの設定ありがとうございます！\n"
+"\n"
+"ご質問がある場合は `/help` を使用するか、サポートサーバーに参加してください: https://discord.gg/utD4afUrgt\n"
+"\n"
+"このボットが気に入っていただけましたら、ぜひ **__[TopGG](https://top.gg/bot/1389267222261792868)__** でレビューを残してください！"
+
+#: cogs/setup-help.py:129
+msgid "👋 Willkommen bei Birthdayyyyys!"
+msgstr "👋 Birthdayyyyysへようこそ！"
+
+#: cogs/setup-help.py:130
+msgid ""
+"Danke, dass du Birthdayyyyys zu deinem Server hinzugefügt hast! Folge dem "
+"interaktiven Guide unten, um den Bot in wenigen Minuten einzurichten."
+msgstr ""
+"Birthdayyyyysをサーバーに追加していただきありがとうございます！以下のインタラクティブガイドに従って、わずか数分でボットを設定してください。"
+
+#: cogs/setup-help.py:136
+msgid "⚡ Schnellstart"
+msgstr "⚡ クイックスタート"
+
+#: cogs/setup-help.py:137
+msgid ""
+"Klicke auf 'Guide starten' um durch die Einrichtung geführt zu werden. Oder "
+"nutze direkt `/config` für alle Einstellungen."
+msgstr ""
+"「ガイドを開始」をクリックして、セットアップを進めてください。または、すべての設定を行うために直接 `/config` を使用してください。"
+
+#: cogs/setup-help.py:143
+msgid "📋 Die wichtigsten Befehle"
+msgstr "📋 主なコマンド"
+
+#: cogs/setup-help.py:144
+msgid ""
+"• `/config` - Bot konfigurieren\n"
+"• `/birthday-set` - Geburtstag festlegen\n"
+"• `/birthday-list` - Alle Geburtstage anzeigen\n"
+"• `/help` - Weitere Hilfe"
+msgstr ""
+"• `/config` - ボットの設定\n"
+"• `/birthday-set` - 誕生日の登録\n"
+"• `/birthday-list` - 誕生日の一覧表示\n"
+"• `/help` - その他のヘルプ"
+
+#: cogs/setup-help.py:152
+msgid "💡 Brauchst du Hilfe?"
+msgstr "💡 ヘルプが必要ですか？"
+
+#: cogs/setup-help.py:153
+msgid "Support Server: https://discord.gg/utD4afUrgt"
+msgstr "サポートサーバー: https://discord.gg/utD4afUrgt"
+
+#: cogs/setup-help.py:158
+msgid "Danke für's Nutzen von Birthdayyyyys!"
+msgstr "Birthdayyyyysをご利用いただきありがとうございます！"

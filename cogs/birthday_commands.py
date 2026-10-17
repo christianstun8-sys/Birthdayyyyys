@@ -6,6 +6,7 @@ import pytz
 
 import eventmessages
 from utils.babel import translator
+from utils.logger import log
 
 class BirthdayPaginatorView(discord.ui.View):
     def __init__(self, pages: list[discord.Embed], author_id: int):
@@ -90,7 +91,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
         )
         _ = translator.get_translation(lang)
 
-        if user is not None and not interaction.user.guild_permissions.administrator:
+        if user is not None and not interaction.user.guild_permissions.manage_guild:
             return await interaction.response.send_message(
                 _("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True
             )
@@ -187,7 +188,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
         )
         _ = translator.get_translation(lang)
 
-        if user is not None and not interaction.user.guild_permissions.administrator:
+        if user is not None and not interaction.user.guild_permissions.manage_guild:
             return await interaction.response.send_message(
                 _("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True
             )
@@ -428,7 +429,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                 await interaction.followup.send(embed=pages[0], view=view)
 
         except Exception as e:
-            print(f"Error in birthday-list: {e}")
+            log(f"{e}", 'ERROR')
             try:
                 await interaction.followup.send(
                     _("Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"

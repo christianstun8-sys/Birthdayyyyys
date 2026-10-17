@@ -3,6 +3,7 @@ from discord.ext import commands
 import aiosqlite
 from pathlib import Path
 from discord.app_commands import locale_str
+from utils.logger import log
 
 class RenameModal(discord.ui.Modal, title="Kanal umbenennen"):
     def __init__(self, voice_channel: discord.VoiceChannel):
@@ -266,7 +267,7 @@ class TempVoice(commands.Cog):
                     }
 
             except Exception as e:
-                print(f"Ein Fehler ist im Event on_voice_state_update aufgetreten: {e}")
+                log(f"Error in on_voice_state_update event: {e}", 'ERROR')
 
         if before.channel is not None and "voice-" in before.channel.name.lower():
 
@@ -289,9 +290,9 @@ class TempVoice(commands.Cog):
                         del self.temp_channels_data[vc_id]
 
                 except discord.errors.Forbidden:
-                    print(f"ERROR: Bot lacks 'Manage Channels' permission to delete {before.channel.name} or its interface.")
+                    log(f"Bot lacks 'Manage Channels' permission to delete {before.channel.name} or its interface.", 'ERROR')
                 except Exception as e:
-                    print(f"An error occurred while deleting the channels {before.channel.name}: {e}")
+                    log(f"Error while deleting channels {before.channel.name}: {e}", 'ERROR')
 
 async def setup(bot):
     await bot.add_cog(TempVoice(bot))

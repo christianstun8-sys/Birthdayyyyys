@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from utils.logger import log
 
 discord_role_id = 1453818699759747325
 status_role_id = 1453818753350500383
@@ -91,7 +92,7 @@ class RRButtonsView(discord.ui.View):
                     await interaction.response.send_message("❌ Fehler: Ich habe keine Berechtigung, deine Rollen zu verwalten.\n*❌ Error: I do not have permission to manage your roles.*", ephemeral=True)
                 except Exception as e:
                     await interaction.response.send_message(f"❌ Fehler: {e}\n*❌ Error: {e}*", ephemeral=True)
-                    print(f"❌ Fehler beim Zuweisen/Entfernen des Neuigkeitenpings an {interaction.user.name}: {e}")
+                    log(f"Error assigning/removing news ping for {interaction.user.name}: {e}", 'ERROR')
 
             else:
                 try:
@@ -101,7 +102,7 @@ class RRButtonsView(discord.ui.View):
                     await interaction.response.send_message("❌ Fehler: Ich habe keine Berechtigung, deine Rollen zu verwalten.\n*❌ Error: I do not have permission to manage your roles.*", ephemeral=True)
                 except Exception as e:
                     await interaction.response.send_message(f"❌ Fehler: {e}\n*❌ Error: {e}*", ephemeral=True)
-                    print(f"❌ Fehler beim Zuweisen des Neuigkeitenpings an {interaction.user.name}: {e}")
+                    log(f"Error assigning news ping for {interaction.user.name}: {e}", 'ERROR')
 
         else:
             await interaction.response.send_message("❌ Fehler: Rolle nicht gefunden.\n*❌ Error: Role not found.*", ephemeral=True)
@@ -119,7 +120,7 @@ class RRButtonsView(discord.ui.View):
                     await interaction.response.send_message("❌ Fehler: Ich habe keine Berechtigung, deine Rollen zu verwalten.\n*❌ Error: I do not have permission to manage your roles.*", ephemeral=True)
                 except Exception as e:
                     await interaction.response.send_message(f"❌ Fehler: {e}\n*❌ Error: {e}*", ephemeral=True)
-                    print(f"❌ Fehler beim Zuweisen/Entfernen des Discord-Neuigkeiten-Pings an {interaction.user.name}: {e}")
+                    log(f"Error assigning/removing Discord news ping for {interaction.user.name}: {e}", 'ERROR')
 
             else:
                 try:
@@ -129,7 +130,7 @@ class RRButtonsView(discord.ui.View):
                     await interaction.response.send_message("❌ Fehler: Ich habe keine Berechtigung, deine Rollen zu verwalten.\n*❌ Error: I do not have permission to manage your roles.*", ephemeral=True)
                 except Exception as e:
                     await interaction.response.send_message(f"❌ Fehler: {e}\n*❌ Error: {e}*", ephemeral=True)
-                    print(f"❌ Fehler beim Zuweisen des Discord-Neuigkeiten-Pings an {interaction.user.name}: {e}")
+                    log(f"Error assigning Discord news ping for {interaction.user.name}: {e}", 'ERROR')
 
         else:
             await interaction.response.send_message("❌ Fehler: Rolle nicht gefunden.\n*❌ Error: Role not found.*", ephemeral=True)
@@ -148,7 +149,7 @@ class RRButtonsView(discord.ui.View):
                     await interaction.response.send_message("❌ Fehler: Ich habe keine Berechtigung, deine Rollen zu verwalten.\n*❌ Error: I do not have permission to manage your roles.*", ephemeral=True)
                 except Exception as e:
                     await interaction.response.send_message(f"❌ Fehler: {e}\n*❌ Error: {e}*", ephemeral=True)
-                    print(f"❌ Fehler beim Zuweisen/Entfernen des Statuspings an {interaction.user.name}: {e}")
+                    log(f"Error assigning/removing status ping for {interaction.user.name}: {e}", 'ERROR')
 
             else:
                 try:
@@ -158,7 +159,7 @@ class RRButtonsView(discord.ui.View):
                     await interaction.response.send_message("❌ Fehler: Ich habe keine Berechtigung, deine Rollen zu verwalten.\n*❌ Error: I do not have permission to manage your roles.*", ephemeral=True)
                 except Exception as e:
                     await interaction.response.send_message(f"❌ Fehler: {e}\n*❌ Error: {e}*", ephemeral=True)
-                    print(f"❌ Fehler beim Zuweisen des Statuspings an {interaction.user.name}: {e}")
+                    log(f"Error assigning status ping for {interaction.user.name}: {e}", 'ERROR')
 
         else:
             await interaction.response.send_message("❌ Fehler: Rolle nicht gefunden.\n*❌ Error: Role not found.*", ephemeral=True)
