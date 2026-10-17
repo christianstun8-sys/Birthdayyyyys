@@ -472,9 +472,7 @@ class BirthdayCheckTask(commands.Cog):
                     if birth_year > 0:
                         tz = pytz.timezone(user_tz_name)
                         age = datetime.now(tz).year - birth_year
-                        log(f"[BIRTHDAY DEBUG] guild={guild.name!r} lang={lang!r} age={age}", 'DEBUG')
                         age_str = format_age(age, lang)
-                        log(f"[BIRTHDAY DEBUG] age_str={age_str!r}", 'DEBUG')
                         message_type = "with_age"
 
                     embed_title = current_config.get(f"title_{message_type}") or (
