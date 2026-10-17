@@ -568,10 +568,7 @@ class BirthdayCheckTask(commands.Cog):
                                 birthday_role, reason=_("Geburtstagsrolle zugewiesen")
                             )
                         except Exception as e:
-                            log(
-                                f"Unexpected error assigning role to {member.name}: {e}",
-                                'ERROR'
-                            )
+                            pass
 
             if birthday_role and birthdays_to_remove_role:
                 for user_id in birthdays_to_remove_role:
@@ -585,10 +582,7 @@ class BirthdayCheckTask(commands.Cog):
                                 ),
                             )
                         except Exception as e:
-                            log(
-                                f"Unexpected error removing role from {member.name}: {e}",
-                                'ERROR'
-                            )
+                            pass
 
     @check_birthdays.before_loop
     async def before_check_birthdays(self):
