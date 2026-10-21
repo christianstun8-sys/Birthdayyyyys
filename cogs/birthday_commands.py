@@ -3,8 +3,6 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import pytz
-
-import eventmessages
 from utils.babel import translator
 from utils.logger import log
 
@@ -86,6 +84,9 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
             timezone: str = "Europe/Berlin",
             user: discord.User = None,
     ):
+        if interaction.guild is None:
+            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
+
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )
@@ -183,6 +184,8 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     async def birthday_remove(
             self, interaction: discord.Interaction, user: discord.User = None
     ):
+        if interaction.guild is None:
+            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )
@@ -224,6 +227,8 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     async def birthday_show(
             self, interaction: discord.Interaction, user: discord.User = None
     ):
+        if interaction.guild is None:
+            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )
@@ -302,6 +307,8 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
         description=app_commands.locale_str("cmd_birthday_list_desc"),
     )
     async def birthday_list(self, interaction: discord.Interaction):
+        if interaction.guild is None:
+            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )

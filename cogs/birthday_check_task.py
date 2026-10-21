@@ -160,7 +160,7 @@ async def load_bot_config(bot, guild_id: int):
                         banner_text_position_v, banner_text_position_h, banner_avatar_enabled, banner_text_enabled, banner_avatar_position_v, banner_avatar_position_h,
                         banner_text_color, banner_title_size, banner_name_size, banner_avatar_size_percent,
                         banner_name_text_no_age, banner_name_text_with_age, show_avatar_no_age, show_avatar_with_age 
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
                         guild_id,
