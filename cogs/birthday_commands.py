@@ -85,7 +85,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
             user: discord.User = None,
     ):
         if interaction.guild is None:
-            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
+            return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
 
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
@@ -185,7 +185,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
             self, interaction: discord.Interaction, user: discord.User = None
     ):
         if interaction.guild is None:
-            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
+            return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )
@@ -228,7 +228,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
             self, interaction: discord.Interaction, user: discord.User = None
     ):
         if interaction.guild is None:
-            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
+            return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )
@@ -308,7 +308,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     )
     async def birthday_list(self, interaction: discord.Interaction):
         if interaction.guild is None:
-            return await interaction.response.send_message("❌ Nur auf einem Server möglich.", ephemeral=False)
+            return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
         lang = (
             self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
         )
