@@ -75,8 +75,9 @@ async def setup_database_record(bot, guild_id: int, language: str):
                         banner_text_position_v, banner_text_position_h,
                         banner_avatar_enabled, banner_text_enabled, banner_avatar_position_v, banner_avatar_position_h,
                         banner_text_color, banner_title_size,
-                        banner_name_size, banner_avatar_size_percent, show_avatar_no_age, show_avatar_with_age
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                        banner_name_size, banner_avatar_size_percent, show_avatar_no_age, show_avatar_with_age,
+                        image_position
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
                     (
                         guild_id,
                         0x45A6C9,
@@ -93,7 +94,8 @@ async def setup_database_record(bot, guild_id: int, language: str):
                         105,
                         45,
                         True,
-                        True
+                        True,
+                        "below"
                     )
                 )
                 await db.commit()
@@ -148,9 +150,11 @@ async def load_bot_config(bot, guild_id: int):
                     "banner_name_text_no_age": None,
                     "banner_name_text_with_age": None,
                     "show_avatar_no_age": True,
-                    "show_avatar_with_age": True
+                    "show_avatar_with_age": True,
+                    "image_position": "below"
                 }
-                await cursor.execute(
+                try:
+                    await cursor.execute(
                     """
                     INSERT INTO guild_settings (
                         guild_id, birthday_channel_id, config_embed_color, birthday_role_id,
@@ -159,8 +163,9 @@ async def load_bot_config(bot, guild_id: int):
                         title_with_age, message_with_age, footer_with_age, image_title_with_age, message_time,
                         banner_text_position_v, banner_text_position_h, banner_avatar_enabled, banner_text_enabled, banner_avatar_position_v, banner_avatar_position_h,
                         banner_text_color, banner_title_size, banner_name_size, banner_avatar_size_percent,
-                        banner_name_text_no_age, banner_name_text_with_age, show_avatar_no_age, show_avatar_with_age 
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                        banner_name_text_no_age, banner_name_text_with_age, show_avatar_no_age, show_avatar_with_age,
+                        image_position
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
                         guild_id,
@@ -191,9 +196,12 @@ async def load_bot_config(bot, guild_id: int):
                         None,
                         None,
                         True,
-                        True
+                        True,
+                        "below"
                     ),
                 )
+                except aiomysql.IntegrityError:
+                    pass
 
 
 async def load_all_guild_configs(bot):
@@ -214,7 +222,7 @@ async def generate_birthday_image(
         banner_config: dict = None,
         with_age: bool = False,
         age_str: str = None,
-) -> discord.File:
+) -> discord.File | None:
     try:
         bg_path = (
             background_path
@@ -549,9 +557,14 @@ class BirthdayCheckTask(commands.Cog):
 
                     if target_channel:
                         try:
-                            await target_channel.send(embed=embed)
-                            if generated_image_file:
+                            image_position = current_config.get("image_position", "below")
+                            if image_position == "above" and generated_image_file:
                                 await target_channel.send(file=generated_image_file)
+                                await target_channel.send(embed=embed)
+                            else:
+                                await target_channel.send(embed=embed)
+                                if generated_image_file:
+                                    await target_channel.send(file=generated_image_file)
                         except Exception as e:
                             log(
                                 f"Error sending birthday message in {guild.name}: {e}",

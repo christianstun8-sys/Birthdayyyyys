@@ -1,6 +1,5 @@
 import discord
-from discord import app_commands, Interaction
-from discord._types import ClientT
+from discord import app_commands
 from discord.ext import commands
 from datetime import datetime
 from utils.babel import translator
@@ -1201,7 +1200,7 @@ class ConfigSelect(discord.ui.Select):
 
 class MainConfigView(discord.ui.View):
     def __init__(self, bot: commands.Bot, guild_id: int):
-        super().__init__(timeout=300)
+        super().__init__(timeout=None)
         self.bot = bot
         self.guild_id = guild_id
         self.add_item(ConfigSelect(bot, guild_id))
@@ -1433,15 +1432,76 @@ class ConfigCommands(commands.Cog, name="ConfigCommands"):
                 log(f"Error during test image generation: {e}", 'ERROR')
 
         try:
-            if generated_image_file:
-                await target_channel.send(embed=embed, file=generated_image_file)
+            image_position = current_config.get("image_position", "below")
+            if image_position == "above" and generated_image_file:
+                await target_channel.send(file=generated_image_file)
+                await target_channel.send(embed=embed)
             else:
                 await target_channel.send(embed=embed)
+                if generated_image_file:
+                    await target_channel.send(file=generated_image_file)
 
         except discord.Forbidden:
             return await interaction.followup.send(_("❌ Ich habe keine Berechtigung, in den konfigurierten Kanal zu schreiben."), ephemeral=True)
 
         await interaction.followup.send(_("Test gesendet! ✅"), ephemeral=True)
+
+
+class PreviewBackgroundView(discord.ui.View):
+    def __init__(self, bot, guild_id: int, banner_config: dict, user: discord.User):
+        super().__init__(timeout=None)
+        self.bot = bot
+        self.guild_id = guild_id
+        self.banner_config = banner_config
+        self.user = user
+
+        lang = bot.guild_configs.get(guild_id, {}).get("lang", "en")
+        _ = translator.get_translation(lang)
+        self._ = _
+
+        IMAGE_DIR = "data/custom_images"
+        custom_files = glob.glob(os.path.join(IMAGE_DIR, f"{guild_id}_*.*"))
+
+        if custom_files:
+            background_options = []
+            for file_path in custom_files:
+                filename = os.path.basename(file_path)
+                parts = filename.split("_", 1)
+                count_str = parts[1].split(".")[0] if len(parts) > 1 else filename
+                background_options.append(
+                    discord.SelectOption(label=_("Bild {count}".format(count=count_str)), value=file_path, emoji="🖼️")
+                )
+            self.background_select = discord.ui.Select(
+                placeholder=_("Hintergrund für Vorschau auswählen"),
+                min_values=1,
+                max_values=1,
+                options=background_options,
+                custom_id="select_preview_background"
+            )
+            self.add_item(self.background_select)
+
+    async def interaction_check(self, interaction: discord.Interaction):
+        if interaction.data['custom_id'] == "select_preview_background":
+            await self.update_preview(interaction)
+        return False
+
+    async def update_preview(self, interaction: discord.Interaction):
+        await interaction.response.defer(thinking=True, ephemeral=True)
+
+        selected_background = self.background_select.values[0]
+
+        picture = await generate_birthday_image(
+            user=self.user,
+            title_text="Happy Birthday",
+            name_text=self.user.display_name,
+            banner_config=self.banner_config,
+            background_path=selected_background
+        )
+
+        if picture is None:
+            return await interaction.followup.send(content="❌ Fehler bei der Bildgenerierung.", ephemeral=True)
+
+        await interaction.edit_original_response(attachments=[picture], view=self)
 
 
 class BannerCustomizationView(discord.ui.LayoutView):
@@ -1555,6 +1615,22 @@ class BannerCustomizationView(discord.ui.LayoutView):
             custom_id="select_text_pos_h"
         )
         self.page2.add_item(discord.ui.ActionRow(self.text_pos_h_select))
+
+        self.page1.add_item(discord.ui.Separator())
+        self.page1.add_item(discord.ui.TextDisplay(_("📷 Bild-Position")))
+        image_position_default = current_config.get("image_position", "below")
+        image_position_options = [
+            discord.SelectOption(label=_("Über dem Embed"), value="above", emoji="⬆️", default=(image_position_default == "above")),
+            discord.SelectOption(label=_("Unter dem Embed"), value="below", emoji="⬇️", default=(image_position_default == "below"))
+        ]
+        self.image_position_select = discord.ui.Select(
+            placeholder=_("Bild-Position relativ zum Embed"),
+            min_values=1,
+            max_values=1,
+            options=image_position_options,
+            custom_id="select_image_position"
+        )
+        self.page1.add_item(discord.ui.ActionRow(self.image_position_select))
 
         self.page1.add_item(discord.ui.Separator())
         self.page1.add_item(discord.ui.TextDisplay(_("👤 Avatar-Position (Vertikal)")))
@@ -1735,6 +1811,7 @@ class BannerCustomizationView(discord.ui.LayoutView):
     async def preview_embed(self, interaction: discord.Interaction):
         await interaction.response.defer(thinking=True, ephemeral=True)
 
+
         def get_select_value(select):
             if select.values:
                 return select.values[0]
@@ -1748,6 +1825,8 @@ class BannerCustomizationView(discord.ui.LayoutView):
 
         await self.bot.load_bot_config(self.bot, self.guild_id)
         current_config = self.bot.guild_configs.get(self.guild_id, {})
+        lang = current_config.get("lang", "de")
+        _ = translator.get_translation(lang)
 
         banner_config = {
             "text_position_v": get_select_value(self.text_pos_v_select) or "center",
@@ -1766,15 +1845,26 @@ class BannerCustomizationView(discord.ui.LayoutView):
             "banner_name_text_with_age": self.temp_banner_name_text_with_age or "%username",
         }
 
+        IMAGE_DIR = "data/custom_images"
+
+        custom_files = glob.glob(os.path.join(IMAGE_DIR, f"{interaction.guild_id}_*.*"))
+
+        selected_background = None
+        if custom_files:
+            selected_background = random.choice(custom_files)
+
         picture = await generate_birthday_image(
             user=interaction.user,
             title_text="Happy Birthday",
             name_text=interaction.user.display_name,
-            banner_config=banner_config
+            banner_config=banner_config,
+            background_path=selected_background
         )
         if picture is None:
             return await interaction.followup.send(content="❌ Fehler bei der Bildgenerierung.")
-        return await interaction.followup.send(content="👀 So wird das Embed aussehen:", file=picture, ephemeral=True)
+
+        view = PreviewBackgroundView(self.bot, self.guild_id, banner_config, interaction.user)
+        return await interaction.followup.send(content=_("👀 So wird das Embed aussehen:"), file=picture, view=view, ephemeral=True)
 
     async def open_text_modal(self, interaction: discord.Interaction):
         modal = BannerTextModal(self.bot, self.guild_id, self)
@@ -1798,7 +1888,8 @@ class BannerCustomizationView(discord.ui.LayoutView):
             "image_title_no_age": self.temp_image_title_no_age or "Happy Birthday!",
             "image_title_with_age": self.temp_image_title_with_age or "Happy Birthday!",
             "banner_name_text_no_age": self.temp_banner_name_text_no_age or "%username",
-            "banner_name_text_with_age": self.temp_banner_name_text_with_age or "%username"
+            "banner_name_text_with_age": self.temp_banner_name_text_with_age or "%username",
+            "image_position": self.image_position_select.values[0] if self.image_position_select.values else current_config.get("image_position", "below")
         }
 
         for key, value in settings.items():
@@ -1821,7 +1912,8 @@ class BannerCustomizationView(discord.ui.LayoutView):
                        image_title_no_age = %s,
                        image_title_with_age = %s,
                        banner_name_text_no_age = %s,
-                       banner_name_text_with_age = %s
+                       banner_name_text_with_age = %s,
+                       image_position = %s
                        WHERE guild_id = %s""",
                     (
                         settings["banner_text_position_v"],
@@ -1838,6 +1930,7 @@ class BannerCustomizationView(discord.ui.LayoutView):
                         settings["image_title_with_age"],
                         settings["banner_name_text_no_age"],
                         settings["banner_name_text_with_age"],
+                        settings["image_position"],
                         self.guild_id
                     )
                 )
