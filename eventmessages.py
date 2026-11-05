@@ -3,9 +3,11 @@ import main
 from utils.babel import translator
 from utils.logger import log
 
-async def unknown_error(guild: discord.Guild, bot: main.BirthdayBot, interaction, error: str = None):
-    guild_id = guild.id
-    guild_name = guild.name if guild else "Unknown Guild"
+async def unknown_error(bot: main.BirthdayBot, interaction: discord.Interaction, error: str = None):
+    guild = interaction.guild if interaction.guild else None
+    if guild:
+        guild_id = guild.id
+        guild_name = guild.name if guild else "Unknown Guild"
     user = interaction.user if interaction else None
     user_name = user.name if user else "Unknown User"
 
