@@ -4,7 +4,6 @@ from discord import app_commands
 from discord.ext import commands
 import pytz
 from utils.babel import translator
-from utils.logger import log
 from eventmessages import unknown_error
 
 class BirthdayPaginatorView(discord.ui.View):
@@ -447,14 +446,7 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                     await interaction.followup.send(embed=pages[0], view=view)
 
             except Exception as e:
-                log(f"{e}", 'ERROR')
-                try:
-                    await interaction.followup.send(
-                        _("Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
-                          "Server."), ephemeral=True
-                    )
-                except Exception:
-                    pass
+                pass
 
         except Exception as e:
             await unknown_error(interaction.client, interaction, str(e))
