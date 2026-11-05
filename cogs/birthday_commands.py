@@ -5,6 +5,7 @@ from discord.ext import commands
 import pytz
 from utils.babel import translator
 from utils.logger import log
+from eventmessages import unknown_error
 
 class BirthdayPaginatorView(discord.ui.View):
     def __init__(self, pages: list[discord.Embed], author_id: int):
@@ -87,92 +88,95 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
         if interaction.guild is None:
             return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
 
-        lang = (
-            self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
-        )
-        _ = translator.get_translation(lang)
-
-        if user is not None and not interaction.user.guild_permissions.manage_guild:
-            return await interaction.response.send_message(
-                _("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True
-            )
-
-        if timezone not in pytz.all_timezones:
-            return await interaction.response.send_message(
-                _("Ungültige Zeitzone! Bitte wähle eine aus der Liste."),
-                ephemeral=True,
-            )
-
         try:
-            date(year if year else 2000, month, day)
-        except ValueError:
-            return await interaction.response.send_message(
-                _("❌ Ungültiges Datum angegeben!"), ephemeral=True
+            lang = (
+                self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
             )
+            _ = translator.get_translation(lang)
 
-        target_user_id = user.id if user else interaction.user.id
-
-        async with self.bot.db_pool.acquire() as conn:
-            async with conn.cursor() as cursor:
-                await cursor.execute(
-                    """
-                    INSERT INTO birthdays (guild_id, user_id, month, day, year, timezone)
-                    VALUES (%s, %s, %s, %s, %s, %s) AS new
-                    ON DUPLICATE KEY UPDATE
-                        month = new.month,
-                        day = new.day,
-                        year = new.year,
-                        timezone = new.timezone
-                """,
-                (interaction.guild_id, target_user_id, month, day, year, timezone),
-                )
-                await conn.commit()
-
-        if user:
-            if year:
+            if user is not None and not interaction.user.guild_permissions.manage_guild:
                 return await interaction.response.send_message(
+                    _("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True
+                )
+
+            if timezone not in pytz.all_timezones:
+                return await interaction.response.send_message(
+                    _("Ungültige Zeitzone! Bitte wähle eine aus der Liste."),
+                    ephemeral=True,
+                )
+
+            try:
+                date(year if year else 2000, month, day)
+            except ValueError:
+                return await interaction.response.send_message(
+                    _("❌ Ungültiges Datum angegeben!"), ephemeral=True
+                )
+
+            target_user_id = user.id if user else interaction.user.id
+
+            async with self.bot.db_pool.acquire() as conn:
+                async with conn.cursor() as cursor:
+                    await cursor.execute(
+                        """
+                        INSERT INTO birthdays (guild_id, user_id, month, day, year, timezone)
+                        VALUES (%s, %s, %s, %s, %s, %s) AS new
+                        ON DUPLICATE KEY UPDATE
+                            month = new.month,
+                            day = new.day,
+                            year = new.year,
+                            timezone = new.timezone
+                    """,
+                    (interaction.guild_id, target_user_id, month, day, year, timezone),
+                    )
+                    await conn.commit()
+
+            if user:
+                if year:
+                    return await interaction.response.send_message(
+                        _(
+                            "✅ Der Geburtstag von {mention} wurde auf den"
+                            " {day:02d}.{month:02d}.{year} ({timezone}) gesetzt!"
+                        ).format(
+                            mention=user.mention,
+                            day=day,
+                            month=month,
+                            year=year,
+                            timezone=timezone,
+                        ),
+                        ephemeral=True,
+                    )
+                else:
+                    return await interaction.response.send_message(
+                        _(
+                            "✅ Der Geburtstag von {mention} wurde auf den"
+                            " {day:02d}.{month:02d} ({timezone}) gesetzt!"
+                        ).format(
+                            mention=user.mention,
+                            day=day,
+                            month=month,
+                            timezone=timezone,
+                        ),
+                        ephemeral=True,
+                    )
+
+            if year:
+                await interaction.response.send_message(
                     _(
-                        "✅ Der Geburtstag von {mention} wurde auf den"
-                        " {day:02d}.{month:02d}.{year} ({timezone}) gesetzt!"
-                    ).format(
-                        mention=user.mention,
-                        day=day,
-                        month=month,
-                        year=year,
-                        timezone=timezone,
-                    ),
+                        "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year}"
+                        " ({timezone}) gesetzt!"
+                    ).format(day=day, month=month, year=year, timezone=timezone),
                     ephemeral=True,
                 )
             else:
-                return await interaction.response.send_message(
+                await interaction.response.send_message(
                     _(
-                        "✅ Der Geburtstag von {mention} wurde auf den"
-                        " {day:02d}.{month:02d} ({timezone}) gesetzt!"
-                    ).format(
-                        mention=user.mention,
-                        day=day,
-                        month=month,
-                        timezone=timezone,
-                    ),
+                        "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}."
+                        " ({timezone}) gesetzt!"
+                    ).format(day=day, month=month, timezone=timezone),
                     ephemeral=True,
                 )
-
-        if year:
-            await interaction.response.send_message(
-                _(
-                    "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}.{year}"
-                    " ({timezone}) gesetzt!"
-                ).format(day=day, month=month, year=year, timezone=timezone),
-                ephemeral=True,
-            )
-        else:
-            await interaction.response.send_message(
-                _(
-                    "✅ Dein Geburtstag wurde auf den {day:02d}.{month:02d}."
-                    " ({timezone}) gesetzt!"
-                ).format(day=day, month=month, timezone=timezone),
-                ephemeral=True,
-            )
+        except Exception as e:
+            await unknown_error(interaction.client, interaction, str(e))
 
     @app_commands.command(
         name=app_commands.locale_str("cmd_birthday_remove_name"),
@@ -186,36 +190,39 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     ):
         if interaction.guild is None:
             return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
-        lang = (
-            self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
-        )
-        _ = translator.get_translation(lang)
-
-        if user is not None and not interaction.user.guild_permissions.manage_guild:
-            return await interaction.response.send_message(
-                _("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True
+        try:
+            lang = (
+                self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
             )
+            _ = translator.get_translation(lang)
 
-        target_user_id = user.id if user else interaction.user.id
-
-        async with self.bot.db_pool.acquire() as conn:
-            async with conn.cursor() as cursor:
-                await cursor.execute(
-                    "DELETE FROM birthdays WHERE guild_id = %s AND user_id = %s",
-                    (interaction.guild_id, target_user_id),
+            if user is not None and not interaction.user.guild_permissions.manage_guild:
+                return await interaction.response.send_message(
+                    _("⚠️ Du hast keine Berechtigung dazu."), ephemeral=True
                 )
-                await conn.commit()
 
-        if user:
-            return await interaction.response.send_message(
-                _("✅ Der Geburtstag von {mention} wurde gelöscht.").format(
-                    mention=user.mention
-                ),
-                ephemeral=True,
+            target_user_id = user.id if user else interaction.user.id
+
+            async with self.bot.db_pool.acquire() as conn:
+                async with conn.cursor() as cursor:
+                    await cursor.execute(
+                        "DELETE FROM birthdays WHERE guild_id = %s AND user_id = %s",
+                        (interaction.guild_id, target_user_id),
+                    )
+                    await conn.commit()
+
+            if user:
+                return await interaction.response.send_message(
+                    _("✅ Der Geburtstag von {mention} wurde gelöscht.").format(
+                        mention=user.mention
+                    ),
+                    ephemeral=True,
+                )
+            await interaction.response.send_message(
+                _("✅ Dein Geburtstag wurde gelöscht."), ephemeral=True
             )
-        await interaction.response.send_message(
-            _("✅ Dein Geburtstag wurde gelöscht."), ephemeral=True
-        )
+        except Exception as e:
+            await unknown_error(interaction.client, interaction, str(e))
 
     @app_commands.command(
         name=app_commands.locale_str("cmd_birthday_show_name"),
@@ -229,78 +236,81 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     ):
         if interaction.guild is None:
             return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
-        lang = (
-            self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
-        )
-        _ = translator.get_translation(lang)
+        try:
+            lang = (
+                self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
+            )
+            _ = translator.get_translation(lang)
 
-        target_user_id = user.id if user else interaction.user.id
+            target_user_id = user.id if user else interaction.user.id
 
-        async with self.bot.db_pool.acquire() as conn:
-            async with conn.cursor() as cursor:
-                await cursor.execute(
-                    """SELECT month, day, year, timezone
-                       FROM birthdays
-                       WHERE guild_id = %s AND user_id = %s""",
-                    (interaction.guild_id, target_user_id),
-                )
-                row = await cursor.fetchone()
+            async with self.bot.db_pool.acquire() as conn:
+                async with conn.cursor() as cursor:
+                    await cursor.execute(
+                        """SELECT month, day, year, timezone
+                           FROM birthdays
+                           WHERE guild_id = %s AND user_id = %s""",
+                        (interaction.guild_id, target_user_id),
+                    )
+                    row = await cursor.fetchone()
 
-                if row:
-                    month, day, year, tz = row
-                    if user:
-                        if year:
+                    if row:
+                        month, day, year, tz = row
+                        if user:
+                            if year:
+                                return await interaction.response.send_message(
+                                    _(
+                                        "Der Geburtstag von {mention} ist am"
+                                        " {day:02d}.{month:02d}.{year} ({tz})."
+                                    ).format(
+                                        day=day,
+                                        month=month,
+                                        year=year,
+                                        tz=tz,
+                                        mention=user.mention,
+                                    ),
+                                    ephemeral=True,
+                                )
+                            else:
+                                return await interaction.response.send_message(
+                                    _(
+                                        "Der Geburtstag von {mention} ist am"
+                                        " {day:02d}.{month:02d} ({tz})."
+                                    ).format(day=day, month=month, tz=tz, mention=user.mention),
+                                    ephemeral=True,
+                                )
+                        else:
+                            if year:
+                                return await interaction.response.send_message(
+                                    _(
+                                        "Dein Geburtstag ist am {day:02d}.{month:02d}.{year}"
+                                        " ({tz})."
+                                    ).format(day=day, month=month, year=year, tz=tz),
+                                    ephemeral=True,
+                                )
+                            else:
+                                return await interaction.response.send_message(
+                                    _("Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz}).").format(
+                                        day=day, month=month, tz=tz
+                                    ),
+                                    ephemeral=True,
+                                )
+                    else:
+                        if user:
                             return await interaction.response.send_message(
                                 _(
-                                    "Der Geburtstag von {mention} ist am"
-                                    " {day:02d}.{month:02d}.{year} ({tz})."
-                                ).format(
-                                    day=day,
-                                    month=month,
-                                    year=year,
-                                    tz=tz,
-                                    mention=user.mention,
-                                ),
+                                    "❌ Der Benutzer {mention} hat noch keinen Geburtstag"
+                                    " registriert."
+                                ).format(mention=user.mention),
                                 ephemeral=True,
                             )
                         else:
                             return await interaction.response.send_message(
-                                _(
-                                    "Der Geburtstag von {mention} ist am"
-                                    " {day:02d}.{month:02d} ({tz})."
-                                ).format(day=day, month=month, tz=tz, mention=user.mention),
+                                _("❌ Du hast noch keinen Geburtstag registriert."),
                                 ephemeral=True,
                             )
-                    else:
-                        if year:
-                            return await interaction.response.send_message(
-                                _(
-                                    "Dein Geburtstag ist am {day:02d}.{month:02d}.{year}"
-                                    " ({tz})."
-                                ).format(day=day, month=month, year=year, tz=tz),
-                                ephemeral=True,
-                            )
-                        else:
-                            return await interaction.response.send_message(
-                                _("Dein Geburtstag ist am {day:02d}.{month:02d}. ({tz}).").format(
-                                    day=day, month=month, tz=tz
-                                ),
-                                ephemeral=True,
-                            )
-                else:
-                    if user:
-                        return await interaction.response.send_message(
-                            _(
-                                "❌ Der Benutzer {mention} hat noch keinen Geburtstag"
-                                " registriert."
-                            ).format(mention=user.mention),
-                            ephemeral=True,
-                        )
-                    else:
-                        return await interaction.response.send_message(
-                            _("❌ Du hast noch keinen Geburtstag registriert."),
-                            ephemeral=True,
-                        )
+        except Exception as e:
+            await unknown_error(interaction.client, interaction, str(e))
 
     @app_commands.command(
         name=app_commands.locale_str("cmd_birthday_list_name"),
@@ -309,95 +319,109 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
     async def birthday_list(self, interaction: discord.Interaction):
         if interaction.guild is None:
             return await interaction.response.send_message("❌ Only possible on a server.", ephemeral=False)
-        lang = (
-            self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
-        )
-        _ = translator.get_translation(lang)
-
-        await interaction.response.defer()
-        embed_color = self.bot.guild_configs.get(interaction.guild_id, {}).get(
-            "config_embed_color", 0x3AAA06
-        )
-
-        month_names = {
-            1: _("Januar"),
-            2: _("Februar"),
-            3: _("März"),
-            4: _("April"),
-            5: _("Mai"),
-            6: _("Juni"),
-            7: _("Juli"),
-            8: _("August"),
-            9: _("September"),
-            10: _("Oktober"),
-            11: _("November"),
-            12: _("Dezember"),
-        }
-
         try:
-            async with self.bot.db_pool.acquire() as conn:
-                async with conn.cursor() as cursor:
-                    await cursor.execute(
-                        """SELECT user_id, month, day, year, timezone
-                           FROM birthdays
-                           WHERE guild_id = %s
-                           ORDER BY month, day""",
-                        (interaction.guild_id,),
+            lang = (
+                self.bot.guild_configs.get(interaction.guild_id, {}).get("lang", "en")
+            )
+            _ = translator.get_translation(lang)
+
+            await interaction.response.defer()
+            embed_color = self.bot.guild_configs.get(interaction.guild_id, {}).get(
+                "config_embed_color", 0x3AAA06
+            )
+
+            month_names = {
+                1: _("Januar"),
+                2: _("Februar"),
+                3: _("März"),
+                4: _("April"),
+                5: _("Mai"),
+                6: _("Juni"),
+                7: _("Juli"),
+                8: _("August"),
+                9: _("September"),
+                10: _("Oktober"),
+                11: _("November"),
+                12: _("Dezember"),
+            }
+
+            try:
+                async with self.bot.db_pool.acquire() as conn:
+                    async with conn.cursor() as cursor:
+                        await cursor.execute(
+                            """SELECT user_id, month, day, year, timezone
+                               FROM birthdays
+                               WHERE guild_id = %s
+                               ORDER BY month, day""",
+                            (interaction.guild_id,),
+                        )
+                        rows = await cursor.fetchall()
+
+                if not rows:
+                    await interaction.followup.send(
+                        _("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True
                     )
-                    rows = await cursor.fetchall()
+                    return
 
-            if not rows:
-                await interaction.followup.send(
-                    _("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True
-                )
-                return
+                months_dict = {}
 
-            months_dict = {}
+                for user_id, month, day, birth_year, tz_name in rows:
+                    name = f"<@{user_id}>"
 
-            for user_id, month, day, birth_year, tz_name in rows:
-                name = f"<@{user_id}>"
+                    age_info = ""
+                    if birth_year and birth_year > 0:
+                        try:
+                            tz = pytz.timezone(tz_name or "Europe/Berlin")
+                            today_tz = datetime.now(tz)
+                            age = today_tz.year - birth_year
+                            age_info = f" ({age} " + _("Jahre") + ")"
+                        except Exception:
+                            pass
 
-                age_info = ""
-                if birth_year and birth_year > 0:
-                    try:
-                        tz = pytz.timezone(tz_name or "Europe/Berlin")
-                        today_tz = datetime.now(tz)
-                        age = today_tz.year - birth_year
-                        age_info = f" ({age} " + _("Jahre") + ")"
-                    except Exception:
-                        pass
+                    tz_display = (
+                        f" `[{tz_name}]`" if tz_name and tz_name != "Europe/Berlin" else ""
+                    )
+                    year_display = f".{birth_year}" if birth_year else ""
 
-                tz_display = (
-                    f" `[{tz_name}]`" if tz_name and tz_name != "Europe/Berlin" else ""
-                )
-                year_display = f".{birth_year}" if birth_year else ""
+                    entry = (
+                        f"• **{day:02d}.{month:02d}{year_display}** -"
+                        f" {name}{age_info}{tz_display}"
+                    )
 
-                entry = (
-                    f"• **{day:02d}.{month:02d}{year_display}** -"
-                    f" {name}{age_info}{tz_display}"
-                )
+                    if month not in months_dict:
+                        months_dict[month] = []
+                    months_dict[month].append(entry)
 
-                if month not in months_dict:
-                    months_dict[month] = []
-                months_dict[month].append(entry)
+                pages = []
+                title = f"📅 {_('Geburtstagskalender')}"
 
-            pages = []
-            title = f"📅 {_('Geburtstagskalender')}"
+                current_embed = discord.Embed(title=title, color=embed_color)
+                current_size = len(title)
 
-            current_embed = discord.Embed(title=title, color=embed_color)
-            current_size = len(title)
+                for m_num in range(1, 13):
+                    if m_num not in months_dict:
+                        continue
 
-            for m_num in range(1, 13):
-                if m_num not in months_dict:
-                    continue
+                    entries = months_dict[m_num]
+                    field_name = f"▫️ {month_names[m_num]}"
+                    current_value_lines = []
 
-                entries = months_dict[m_num]
-                field_name = f"▫️ {month_names[m_num]}"
-                current_value_lines = []
+                    for entry in entries:
+                        test_val = "\n".join(current_value_lines + [entry])
+                        if len(test_val) > 1024:
+                            f_val = "\n".join(current_value_lines)
+                            if current_size + len(field_name) + len(f_val) > 5500:
+                                pages.append(current_embed)
+                                current_embed = discord.Embed(title=title, color=embed_color)
+                                current_size = len(title)
 
-                for entry in entries:
-                    test_val = "\n".join(current_value_lines + [entry])
-                    if len(test_val) > 1024:
+                            current_embed.add_field(name=field_name, value=f_val, inline=False)
+                            current_size += len(field_name) + len(f_val)
+                            current_value_lines = [entry]
+                        else:
+                            current_value_lines.append(entry)
+
+                    if current_value_lines:
                         f_val = "\n".join(current_value_lines)
                         if current_size + len(field_name) + len(f_val) > 5500:
                             pages.append(current_embed)
@@ -406,45 +430,34 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
 
                         current_embed.add_field(name=field_name, value=f_val, inline=False)
                         current_size += len(field_name) + len(f_val)
-                        current_value_lines = [entry]
-                    else:
-                        current_value_lines.append(entry)
 
-                if current_value_lines:
-                    f_val = "\n".join(current_value_lines)
-                    if current_size + len(field_name) + len(f_val) > 5500:
-                        pages.append(current_embed)
-                        current_embed = discord.Embed(title=title, color=embed_color)
-                        current_size = len(title)
+                if len(current_embed.fields) > 0:
+                    pages.append(current_embed)
 
-                    current_embed.add_field(name=field_name, value=f_val, inline=False)
-                    current_size += len(field_name) + len(f_val)
+                if not pages:
+                    await interaction.followup.send(
+                        _("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True
+                    )
+                    return
 
-            if len(current_embed.fields) > 0:
-                pages.append(current_embed)
+                if len(pages) == 1:
+                    await interaction.followup.send(embed=pages[0])
+                else:
+                    view = BirthdayPaginatorView(pages=pages, author_id=interaction.user.id)
+                    await interaction.followup.send(embed=pages[0], view=view)
 
-            if not pages:
-                await interaction.followup.send(
-                    _("⚠️ Es sind noch keine Geburtstage registriert."), ephemeral=True
-                )
-                return
-
-            if len(pages) == 1:
-                await interaction.followup.send(embed=pages[0])
-            else:
-                view = BirthdayPaginatorView(pages=pages, author_id=interaction.user.id)
-                await interaction.followup.send(embed=pages[0], view=view)
+            except Exception as e:
+                log(f"{e}", 'ERROR')
+                try:
+                    await interaction.followup.send(
+                        _("Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
+                          "Server."), ephemeral=True
+                    )
+                except Exception:
+                    pass
 
         except Exception as e:
-            log(f"{e}", 'ERROR')
-            try:
-                await interaction.followup.send(
-                    _("Ein unbekannter Fehler ist aufgetreten. Bitte melde dich beim Support-"
-                      "Server."), ephemeral=True
-                )
-            except Exception:
-                pass
-
+            await unknown_error(interaction.client, interaction, str(e))
 
 async def setup(bot):
     await bot.add_cog(BirthdayCommands(bot))
