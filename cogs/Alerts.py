@@ -52,50 +52,36 @@ class AlertCog(commands.Cog):
                         color_val = int(color_val.replace("#", ""), 16)
 
                     embed = discord.Embed(
-                        title="🚀 Update: Version 6 is Here!",
+                        title="⚠️ Important Database Warning",
                         description=(
-                            "After several weeks of work, I’m finally able to announce the latest update: **Version 6**!\n"
-                            "In this version, all sorts of things have been tweaked and improved."
+                            "Birthdayyyyys will be down for a short period of time, because of a database switch."
                         ),
                         color=color_val
                     )
 
                     embed.add_field(
-                        name="🖼️ Banner Configuration",
+                        name="💾 Database host gets discontinued",
                         value=(
-                            "• **Official Feature:** The image upload system has been improved and is no longer in beta!\n"
-                            "• **New Customisation Menu:** A brand-new menu lets you customise the entire birthday banner. Edit the position of text and avatar, adjust text colours, enable/disable elements, resize them, and more!\n"
-                            "• **Text Configuration:** Text settings are now handled directly via this menu (no longer edited via the embed message configuration)."
+                            "Birthdayyyyys currently uses the free service of Aiven for a secure and stable database hosting. "
+                            "Where's the problem? Well, the free tier of Aiven will be discontinued on the 21st December 2026. From this date, all information of the bot's database gets deleted."
+                          
                         ),
                         inline=False
                     )
 
                     embed.add_field(
-                        name="🗣️ New Languages",
+                        name="🤔 What now?",
                         value=(
-                            "**7 new languages** have been added to the bot:\n"
-                            "🇸🇦 Arabic  •  🇮🇩 Indonesian  •  🇯🇵 Japanese  •  🇰🇷 Korean\n"
-                            "🇵🇹 Portuguese  •  🇹🇷 Turkish  •  🇨🇳 Chinese"
+                            "I will transfer all data to a private database, which means, that Birthdayyyyys will not depend on any third-party service anymore. "
+                            "The transfer will be on the 7th Nov (tomorrow) at 11am (UTC). At this time, the bot will be offline and will neither respond to any commands nor announce any birthdays. The end of the downtake is unknown so far."
                         ),
                         inline=False
                     )
 
                     embed.add_field(
-                        name="✍️ Other Configurations & Warnings ⚠️",
+                        name="❓ Will my data be safe?!",
                         value=(
-                            "• **Custom Texts:** You can now change both the image title and the second text for even more personal creative freedom!\n"
-                            "• **User Thumbnail:** In the default message configuration, you can now toggle whether the user's thumbnail should be displayed. This might be expanded in the future... 🤫\n"
-                            "• **Configuration Warnings:** Wondering why something isn't working? The config menu now displays helpful warnings for potential errors (e.g., missing permissions)."
-                        ),
-                        inline=False
-                    )
-
-                    embed.add_field(
-                        name="📄 Documentation & GitHub 🐙",
-                        value=(
-                            "• **Full Docs:** Comprehensive documentation is now available at [birthdayyyyys.christianst.xyz/docs](https://birthdayyyyys.christianst.xyz/docs), detailing every feature.\n"
-                            "• **Free Hosting:** The bot can now be hosted completely free of charge; the repository has been updated for better feature configuration.\n\n"
-                            "A huge thank you for helping the bot reach over **120 servers** so far! 🎉"
+                            "Yes, your data from the start of the downtake will be completely fine. Should you still encounter any data leaks, please contact me on the support server. "
                         ),
                         inline=False
                     )
