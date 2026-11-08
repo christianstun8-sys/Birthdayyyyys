@@ -118,12 +118,12 @@ class BirthdayCommands(commands.Cog, name="BirthdayCommands"):
                     await cursor.execute(
                         """
                         INSERT INTO birthdays (guild_id, user_id, month, day, year, timezone)
-                        VALUES (%s, %s, %s, %s, %s, %s) AS new
+                        VALUES (%s, %s, %s, %s, %s, %s)
                         ON DUPLICATE KEY UPDATE
-                            month = new.month,
-                            day = new.day,
-                            year = new.year,
-                            timezone = new.timezone
+                            month = VALUES(month),
+                            day = VALUES(day),
+                            year = VALUES(year),
+                            timezone = VALUES(timezone)
                     """,
                     (interaction.guild_id, target_user_id, month, day, year, timezone),
                     )
