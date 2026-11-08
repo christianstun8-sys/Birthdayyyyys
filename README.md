@@ -8,7 +8,7 @@
 
 A multi-functional Discord bot for birthday management and server administration.
 
-Version: 6.2
+Version: 6.2.2
 Python: 3.8+
 Discord.py: 2.0+
 
