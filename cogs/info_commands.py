@@ -124,8 +124,8 @@ class InfoCommands(commands.Cog, name="InfoCommands"):
     )
     async def ping_command(self, interaction: discord.Interaction):
         discord_latency_ms = round(self.bot.latency * 1000)
-        start_time = time.perf_counter()
         await interaction.response.defer(thinking=True, ephemeral=True)
+        start_time = time.perf_counter()
 
         if interaction.guild is None:
             embed_color = 0x45a6c9
